@@ -1,0 +1,79 @@
+<style>
+<!--
+.chat-g {
+	padding: 10px;
+}
+
+.chat-g>.chat-g-my {
+	
+}
+
+.chat-g-list {
+}
+
+ul.chat-g-list>li.g {
+	float: left;
+	padding: 10px 20px;
+	text-align: center;
+	position: relative;
+}
+
+ul.chat-g-list>li.g:hover {
+	background: #f5f5f5;
+}
+
+ul.chat-g-list>li.g>img {
+	width: 40px;
+	height: 40px;
+}
+
+ul.chat-g-list>li.g>p {
+	color: gray;
+}
+ul.chat-g-list>li.g>span.close{
+	padding: 4px 8px;
+	color: black;
+	display: inline-block;
+	position: absolute;
+	right:-5px;
+	top:-5px;
+}
+ul.chat-g-list>li.g>span.close:hover{
+	background: #cecece;
+}
+div.chat-g-title {
+	color: gray;
+}
+
+.chat-g>.chat-g-jo {
+	margin-top: 20px;
+}
+-->
+</style>
+<script type="text/javascript" src="js/chatGroup.js" plugin></script>
+<div class="chat-g">
+	<div class="chat-g-my">
+		<div class="chat-g-title">我的群</div>
+		<ul class="chat-g-list">
+			<li class="g"><img src="./img/guangjiewang.svg">
+				<p>面向连接编程</p><span class="close" style="display: none;" title="删除该群，删除群将清理掉群的所有数据，请小心使用">X</span></li>
+			<li class="g"><img src="./img/dao.svg">
+				<p>神经元技术交流</p></li>
+			<li class="g" op='add'><img src="./img/icon-1460251879837.svg">
+				<p>创建群</p></li>
+		</ul>
+		<div style="clear: both;"></div>
+	</div>
+	<div class="chat-g-jo">
+		<div class="chat-g-title">我加入的群</div>
+		<ul class="chat-g-list">
+			<li class="g"><img src="./img/3.jpg">
+				<p>群组1</p><span class="close" style="display: none;" title="退出该群">X</span></li>
+			<li class="g"><img src="./img/4.jpg">
+				<p>群组2</p></li>
+			<li class="g" op='find'><img src="./img/icon-1460251991620.svg">
+				<p>查找</p></li>
+		</ul>
+		<div style="clear: both;"></div>
+	</div>
+</div>

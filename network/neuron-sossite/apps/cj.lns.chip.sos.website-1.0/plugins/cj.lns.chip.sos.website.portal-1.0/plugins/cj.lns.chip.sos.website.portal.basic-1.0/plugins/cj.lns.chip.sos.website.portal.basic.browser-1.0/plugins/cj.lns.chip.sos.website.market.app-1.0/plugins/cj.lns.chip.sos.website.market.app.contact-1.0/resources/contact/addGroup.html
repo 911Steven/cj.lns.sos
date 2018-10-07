@@ -1,0 +1,48 @@
+<style>
+<!--
+.group-add{
+	margin: 20px;
+}
+.group-add>li{
+	padding: 10px;
+}
+.group-add>li[input]>input{
+	height: 40px;
+	width: 100%;
+	padding: 10px;
+}
+.group-add>li[button]{
+	width:100%;
+	text-align: right;
+	cursor: pointer;
+}
+-->
+</style>
+<script type="text/javascript">
+<!--
+	(function(){
+		$('.group-add>li[input]>input').focus(function(){
+			$('#groupValue').removeAttr('style');
+		});
+		$('.group-add>li[button]').on('click',function(){
+			var groupValue=$('#groupValue').val();
+			if(typeof groupValue=='undefined'||groupValue==''){
+				$('#groupValue').attr('style','border:1px solid red;');
+				return;
+			}
+			$.get('./contact/addGroup.service',{
+				groupValue:groupValue
+			},function(d){
+				$('.group-add>li[input]').html('成功添加了分组，请点击左侧分组查看。');
+			}).error(function(e){
+				alert(e.status+' '+e.responseText);
+			});
+		});
+	})();
+	
+//-->
+</script>
+<ul class="group-add">
+	<li input title="组名"><input id="groupValue" type="text"></li>
+	<li button><span>添加</span></li>
+</ul>

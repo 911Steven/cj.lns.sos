@@ -1,0 +1,54 @@
+<script type="text/javascript">
+<!--
+(function(){
+	$('.app-list .list').delegate('.item', 'click', function() {
+		var url='./servicews/market/mount.html';
+		var box = $(this).find('.opp>input')
+		var appId=$(this).attr('appId');
+		var provider=$(this).attr('provider');
+		var category=$(this).attr('category');
+		if (box.prop('checked')) {
+			
+			$.get(url,{
+				action:'unmount',
+				appId:appId,
+				provider:provider,
+				category:category
+				
+			},function(){
+				box.prop('checked', false);
+			}).error(function(e1,e2,e3){
+				alert(e1+' '+e2+' '+e3);
+			});
+		} else {
+			
+			$.get(url,{
+				action:'mount',
+				appId:appId,
+				provider:provider,
+				category:category
+			},function(){
+				box.prop('checked', true);
+			}).error(function(e1,e2,e3){
+				alert(e1+' '+e2+' '+e3);
+			});
+		}
+	});
+})();
+
+//-->
+</script>
+<div class="app-list bop">
+	<div class="content-panel">
+		<div class="sp-panel">用于管理您的视窗系统，启用或停止</div>
+		<ul class="list">
+			<li class="item" appId="security"><img appimg src="img/iconfont-picfill.svg" plugin>
+				<div class="main-panel">
+					<div appname ></div>
+				</div>
+				<div class='opp'>
+					<input title="是否启用该应用" name="selectedApp"  type="checkbox">
+				</div></li>
+		</ul>
+	</div>
+</div>

@@ -1,0 +1,70 @@
+<style>
+<!--
+.portlet[category]{
+background: white;
+}
+.portlet[category]>.op{
+	height: 25px;
+	text-align:right;
+	padding:6px 10px;
+	background: white;
+	position:relative;
+	border-bottom: 1px solid #cecece;
+}
+.portlet[category]>.op>input{
+	height: 25px;
+	margin-right: 2px;
+	vertical-align:middle;
+	display: none;
+}
+.portlet[category]>.op>span{
+	position: absolute;
+	left:20px;
+	top:8px;
+	font-size:10px;
+	color: gray;
+	display: none;
+}
+.portlet[category]>.op>img{
+	width: 20px;
+	height: 20px;
+	vertical-align:middle;
+	display: inline-block;
+	cursor: pointer;
+}
+.portlet[category]>.op>img:hover{
+	border-bottom: 1px solid gray;
+}
+.portlet[category]>ul>li{
+	padding: 10px 0;
+	margin-left:10px;
+	cursor:pointer;
+	border-bottom: 1px solid #ececec;
+	position: relative;
+	
+}
+.portlet[category]>ul>li:hover{
+	background: #f5f5f5;
+}
+.portlet[category]>ul>li>span[x]{
+	position: absolute;
+	right:10px;
+	top:10px;
+	padding:0 8px;
+	display: none;
+}
+.portlet[category]>ul>li>span[x]:hover{
+	background: white;
+}
+.cat-selected{
+	background: #f5f5f5;
+}
+-->
+</style>
+<div class="portlet" category>
+	<div class="op"><input><span>分类，回撤完成添加</span><img title="添加分类" src="microblog/img/kind.svg" plugin></div>
+	<ul>
+		<li class="cat-selected"><span label>ecm</span><span x>X</span></li>
+		<li><span label>netsite</span><span x>X</span></li>
+	</ul>
+</div>

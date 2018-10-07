@@ -1,0 +1,544 @@
+<script cscwork type="text/javascript" src="common/js/cscWork.js" plugin />
+<style cscwork>
+<!--
+.csc-work {
+	position: relative;
+	height: 80%;
+	width: 500px;
+	left: 50%;
+	margin-left: -250px;
+	background: white;
+}
+
+.csc-work>.header {
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	height: 50px;
+	background: #ececec;
+}
+
+.csc-work>.content {
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 50px;
+	bottom: 40px;
+	padding: 0 10px;
+	overflow: auto;
+}
+
+.csc-work>.footer {
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	height: auto;
+	padding: 5px 0 2px 0;
+	background: #f5f5f5;
+}
+
+.csc-work>.header>div[title] {
+	font-size: 16px;
+	font-weight: bold;
+	text-align: center;
+	height: 100%;
+	padding: 10px 0;
+}
+
+.csc-work>.header>.slider {
+	position: absolute;
+	right: 20px;
+	top: 26px;
+}
+
+.csc-work>.header>.slider>li {
+	display: inline-block;
+	padding: 2px 8px;
+	cursor: pointer;
+}
+
+.csc-work>.header>.slider>li:hover {
+	text-decoration: underline;
+	background: white;
+}
+
+.csc-work>.header>.panel {
+	position: absolute;
+	left: 0;
+	top: 50px;
+	right: 0;
+	min-height: 100px;
+	background: white;
+	z-index: 99999999;
+	border-bottom: 1px solid #ececec;
+	display: none;
+}
+
+.csc-work>.footer>.typed {
+	padding-right: 40px;
+	padding-left: 2px;
+}
+
+.csc-work>.footer>.typed>.text {
+	position: relative;
+}
+
+.csc-work>.footer>.typed>.text>.textarea {
+	height: auto;
+	padding: 4px 50px 4px 4px;
+	background: white;
+	resize: none;
+	min-height: 20px;
+	max-height: 200px;
+	font-size: 12px;
+	border: 1px solid #ececec;
+	word-wrap: break-word;
+	word-break: break-all;
+	white-space: normal;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+
+.csc-work>.footer>.typed>.text>.textarea pre {
+	white-space: pre-wrap;
+	word-wrap: break-word;
+}
+
+.csc-work>.footer>.typed>.text>span {
+	display: inline-block;
+	position: absolute;
+	right: 1px;
+	top: 1px;
+	bottom: 1px;
+	width: 50px;
+	cursor: pointer;
+	background: #f5f5f5;
+	text-align: center;
+	padding: 4px 0;
+}
+
+.csc-work>.footer>.typed>.text>span:hover {
+	color: red;
+}
+
+.csc-work>.footer>.typed>.op {
+	position: absolute;
+	right: 0;
+	top: 4px;
+	width: 30px;
+	right: 5px;
+	bottom: 10px;
+	text-align: center;
+}
+
+.csc-work>.footer>.typed>.op>img {
+	width: 30px;
+	height: 30px;
+	cursor: pointer;
+}
+
+.csc-work>.footer>.typed>.op>img:hover {
+	fill: red;
+	color: red;
+}
+
+.csc-work>.content>.response {
+	margin: 30px 50px;
+}
+
+.content>.response {
+	margin: 30px 50px;
+}
+
+.csc-work>.content>.response>.header {
+	text-align: center;
+	color: gray;
+	position: relative;
+}
+
+.csc-work>.content>.response>.header>.face[left] {
+	position: absolute;
+	left: -40px;
+	top: 0;
+	cursor: pointer;
+}
+
+.csc-work>.content>.response>.header>.face[left]>img {
+	width: 30px;
+	height: 30px;
+	-moz-border-radius: 15px; /* Gecko browsers */
+	-webkit-border-radius: 15px; /* Webkit browsers */
+	border-radius: 15px;
+	vertical-align: middle;
+}
+
+.csc-work>.content>.response>.header>.face[left]>p {
+	display: inline-block;
+}
+
+.csc-work>.content>.response>.header>.face[right] {
+	position: absolute;
+	right: -40px;
+	top: 0;
+	cursor: pointer;
+}
+
+.csc-work>.content>.response>.header>.face[right]>img {
+	width: 30px;
+	height: 30px;
+	-moz-border-radius: 15px; /* Gecko browsers */
+	-webkit-border-radius: 15px; /* Webkit browsers */
+	border-radius: 15px;
+	vertical-align: middle;
+}
+
+.csc-work>.content>.response>.header>.face[right]>p {
+	display: inline-block;
+}
+
+.csc-work>.content>.response>.body {
+	border: 1px solid #ececec;
+	padding: 10px;
+	position: relative;
+	margin-top: 2px;
+}
+
+.csc-work>.content>.response>.body a {
+	text-decoration: underline;
+	color: blue;
+	padding: 0 4px;
+}
+
+.csc-work>.content>.response[type=style1]>.body {
+	padding-left: 150px;
+}
+
+.csc-work>.content>.response[type=style1]>.body>p {
+	text-align: center;
+	position: absolute;
+	left: 0;
+	top: 50%;
+	margin-top: -50px;
+	width: 140px;
+	height: 140px;
+}
+
+.csc-work>.content>.response[type=style1]>.body>p>img {
+	width: auto;
+	height: 100px;
+}
+
+.csc-work>.content>.response[type=style1]>.body>.items>li {
+	padding: 10px 0;
+}
+
+.csc-work>.content>.response[type=style1]>.body>.items>li>img {
+	width: 30px;
+	height: 30px;
+}
+
+.csc-work>.content>.response[type=style2]>.body {
+	padding-left: 10px;
+}
+
+.csc-work>.content>.response[type=style2]>.body>p {
+	text-align: center;
+	width: auto;
+	height: 140px;
+}
+
+.csc-work>.content>.response[type=style2]>.body>p>img {
+	width: auto;
+	height: 100%;
+}
+
+.csc-work>.content>.response[type=style2]>.body>.items>li {
+	padding: 4px 0;
+}
+
+.csc-work>.content>.response[type=style2]>.body>.items>li>img {
+	width: 28px;
+	height: 28px;
+}
+
+.csc-work>.header>.panel {
+	padding: 10px;
+	background: #f5f5f5;
+}
+
+.csc-work>.header>.panel[item=service] {
+	padding-left: 100px;
+}
+
+.csc-work>.header>.panel[item=service]>span[spliter] {
+	display: inline-block;
+	position: absolute;
+	top: 33px;
+	left: 0;
+	right: 0;
+	height: 1px;
+	border-bottom: 1px solid #ececec;
+}
+
+.csc-work>.header>.panel[item=service]>span[m] {
+	position: absolute;
+	left: 40px;
+	top: 12px;
+	display: inline-block;
+	text-align: center;
+}
+
+.csc-work>.header>.panel[item=service] span[m] {
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+.csc-work>.header>.panel[item=service] span[m]:hover {
+	color: red;
+}
+
+.csc-work>.header>.panel[item=service]>ul {
+	display: inline-block;
+	vertical-align:top;
+}
+
+.csc-work>.header>.panel[item=service]>ul>li {
+	display: inline-block;
+	padding: 2px 15px;
+	vertical-align:top;
+}
+
+.csc-work>.header>.panel[item=service]>ul>li>span[m] {
+	display: inline-block;
+	margin-bottom: 10px;
+}
+
+.csc-work>.header>.panel[item=call]>ul>li {
+	padding: 2px 10px;
+	cursor: pointer;
+	display: inline-block;
+	vertical-align:top;
+	text-align: center;
+}
+
+.csc-work>.header>.panel[item=call]>ul>li:hover {
+	background: #f5f5f5;
+}
+
+.csc-work>.header>.panel[item=call]>ul>li>img {
+	width: 40px;
+	height: 40px;
+}
+
+.csc-work>.header>.panel[item=intr]>div[logo] {
+	text-align: center;
+}
+
+.csc-work>.header>.panel[item=intr]>div[logo]>p[name] {
+	text-align: center;
+	font-size: 16px;
+	margin: 10px 0;
+}
+
+.csc-work>.header>.panel[item=intr]>div[logo]>img {
+	max-width: 120px;
+	width: auto;
+	height: 80px;
+}
+
+.csc-work>.header>.panel[item=intr]>ul>li {
+	padding: 5px 10px;
+}
+
+.csc-work>.header>.panel[item=intr]>ul>li>span {
+	color: gray;
+	font-weight: bold;
+	display: inline-block;
+	margin-bottom: 4px;
+	border-bottom: 1px solid #ececec;
+}
+
+.csc-work>.header>.panel[item=intr]>ul>li>div {
+	padding-left: 20px;
+}
+
+.push-services {
+	padding: 10px;
+	display: none;
+}
+
+.push-services>.list>li {
+	display: inline-block;
+	padding: 2px 10px;
+	text-align: center;
+	vertical-align:top;
+}
+
+.push-services>.list>li:hover {
+	border: 1px solid white;
+}
+
+.push-services>.list>li>img {
+	width: 30px;
+	height: 30px;
+}
+.csc-work>.header>.panel {
+	position: absolute;
+	left: 0;
+	top: 50px;
+	right: 0;
+	min-height: 100px;
+	background: white;
+	z-index: 99999999;
+	border-bottom: 1px solid #ececec;
+}
+.csc-work>.header>.slider {
+	position: absolute;
+	right: 20px;
+	top: 26px;
+}
+
+.csc-work>.header>.slider>li {
+	display: inline-block;
+	vertical-align:top;
+	padding: 2px 8px;
+	cursor: pointer;
+}
+
+.csc-work>.header>.slider>li:hover {
+	text-decoration: underline;
+	background: white;
+}
+-->
+</style>
+<div class="csc-work">
+	<div class="header">
+		<div title>南方电网</div>
+		<ul class="slider">
+			<li item="menu"><span label>菜单</span></li>
+		</ul>
+		<div class="panel" item="service">
+			<span m welcome>欢迎</span> <span spliter></span>
+			<ul>
+				<li><span m>服务1</span>
+					<ul>
+						<li><span m>服务1.1</span></li>
+						<li><span m>服务1.2</span></li>
+						<li><span m>服务1.4</span></li>
+					</ul></li>
+				<li><span m>服务1</span>
+					<ul>
+						<li><span m>服务1.1</span></li>
+						<li><span m>服务这就是好东西</span></li>
+						<li><span m>服务1.3</span></li>
+						<li><span m>服务1.4</span></li>
+					</ul></li>
+				<li><span m>服务1</span>
+					<ul>
+						<li><span m>服务1.1</span></li>
+						<li><span m>服务1.2</span></li>
+						<li><span m>服务1.3</span></li>
+						<li><span m>服务1.4</span></li>
+					</ul></li>
+				<li><span m>服务1</span>
+					<ul>
+						<li><span m>服务1.1</span></li>
+						<li><span m>服务1.2</span></li>
+						<li><span m>服务1.3</span></li>
+						<li><span m>服务1.4</span></li>
+					</ul></li>
+			</ul>
+		</div>
+	</div>
+	<div class="content">
+		<div class="response" type="text">
+			<div class="header">
+				<div class="face" left>
+					<img src="img/5.jpg">
+					<p>南方电网</p>
+				</div>
+				<span time>2016年10月21日 3:00</span>
+			</div>
+			<div class="body">
+				欢迎<a href="#">赵向彬</a>登录客服中心，由<a href="#">人工客服a</a>向您服务.
+			</div>
+		</div>
+		<div class="response" type="text">
+			<div class="header">
+				<div class="face" right>
+					<p>我</p>
+					<img src="img/3.jpg">
+
+				</div>
+				<span time>2016年10月21日 13:00</span>
+			</div>
+			<div class="body">您的装机单因［电信设备缺货］原因提出改约：6月30日下午，
+				属实请回复1,不属实或师傅没有联系过请回复2.</div>
+		</div>
+		<div class="response" type="style1">
+			<div class="header">
+				<div class="face" left>
+					<img src="img/4.jpg">
+					<p>客服a</p>
+				</div>
+				<span time>2016年10月21日 14:00</span>
+			</div>
+			<div class="body">
+				<p>
+					<img src="img/4.jpg">
+				</p>
+				<ul class="items">
+					<li><img src="img/2.jpg"> <span href>审计署:1.51亿扶贫资金被冒领或违规使用</span></li>
+					<li><img src="img/2.jpg"> <span href>审计署:1.51亿扶贫资金被冒领或违规使用</span></li>
+					<li><img src="img/2.jpg"> <span href>审计署:1.51亿扶贫资金被冒领或违规使用</span></li>
+					<li><img src="img/2.jpg"> <span href>审计署:1.51亿扶贫资金被冒领或违规使用</span></li>
+					<li><img src="img/2.jpg"> <span href>审计署:1.51亿扶贫资金被冒领或违规使用</span></li>
+				</ul>
+			</div>
+		</div>
+		<div class="response" type="style2">
+			<div class="header">
+				<div class="face" left>
+					<img src="img/4.jpg">
+					<p>客服a</p>
+				</div>
+				<span time>2016年10月21日 14:00</span>
+			</div>
+			<div class="body">
+				<p>
+					<img src="img/4.jpg">
+				</p>
+				<ul class="items">
+					<li><img src="img/2.jpg"> <span href>欢迎光临</span></li>
+					<li><img src="img/2.jpg"> <span href>审计署:1.51亿扶贫资金被冒领或违规使用</span></li>
+					<li><img src="img/2.jpg"> <span href>审计署:1.51亿扶贫资金被冒领或违规使用</span></li>
+					<li><img src="img/2.jpg"> <span href>审计署:1.51亿扶贫资金被冒领或违规使用</span></li>
+					<li><img src="img/2.jpg"> <span href>审计署:1.51亿扶贫资金被冒领或违规使用</span></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="footer">
+		<div class="typed">
+			<div class="text">
+				<div class="textarea" contenteditable="true"></div>
+				<span>发送</span>
+			</div>
+			<div class="op">
+				<img src="img/plus.svg">
+			</div>
+		</div>
+		<div class="push-services" title="信息推送服务面板">
+			<ul class="list">
+				<li developer='user1' chip='helloworld'><img src="img/2.jpg">
+					<p>南电新闻</p></li>
+				<li developer='user1' chip='helloworld'><img src="img/2.jpg">
+					<p>南电新闻</p></li>
+				<li developer='user1' chip='helloworld'><img src="img/2.jpg">
+					<p>南电新闻</p></li>
+			</ul>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,14 @@
+[
+	{
+		"categoryId":"test",
+		"categoryName":"菜单1",
+		"categoryIcon":"/img/chat.svg",
+		"desc":"用于测试的菜单"
+	},
+	{
+		"categoryId":"test2",
+		"categoryName":"菜单2",
+		"categoryIcon":"/img/chat.svg",
+		"desc":"用于测试的菜单2"
+	}
+]

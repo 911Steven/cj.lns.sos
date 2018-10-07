@@ -1,0 +1,266 @@
+<style>
+<!--
+.pub {
+	width: 100%;
+}
+
+.pub>.context {
+	position: relative;
+}
+
+.pub>.context>span {
+	position: absolute;
+	left: 10px;
+	top: 15px;
+	color: gray;
+}
+
+.pub>.context>textarea {
+	width: 100%;
+	height: 250px;
+	font-size: 12px;
+	padding: 10px;
+	margin-top: 10px;
+	resize: none;
+	border: 1px solid #ececec;
+}
+
+.pub>.title {
+	position: relative;
+}
+
+.pub>.title>span {
+	position: absolute;
+	left: 10px;
+	top: 8px;
+	color: gray;
+}
+
+.pub>.title>input {
+	height: 40px;
+	width: 100%;
+	padding: 5px;
+	font-size: 15px;
+	font-weight: bold;
+	padding: 5px;
+	border: 1px solid #ececec;
+}
+
+.pub>.op {
+	text-align: right;
+	margin-top: 20px;
+	position: relative;
+	padding-right: 80px;
+}
+
+.pub>.op>.right {
+	width: 40px;
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+
+.pub>.op>.right>.save {
+	padding: 0px;
+	color: white;
+	cursor: pointer;
+	margin-bottom: 10px;
+	background: white;
+	width: 40px;
+	height: 40px;
+	position: relative;
+}
+
+.pub>.op>.right>.save>img {
+	width: 30px;
+	height: 30px;
+	position: absolute;
+	left: 5px;
+	top: 5px;
+}
+
+.pub>.op>.right>.save:hover {
+	background: #cecece;
+}
+
+.pub>.op>.right>.upload {
+	text-align: center;
+	background: white;
+}
+
+.pub>.op>.right>.upload>li {
+	cursor: pointer;
+	padding: 10px 0;
+}
+
+.pub>.op>.right>.upload>li>img {
+	width: 25px;
+	height: 25px;
+}
+
+.pub>.op>.right>.upload>li:hover {
+	background: #cecece;
+}
+
+.pub>.op>.right>.security {
+	text-align: center;
+	margin-bottom: 10px;
+	position: relative;
+	cursor: pointer;
+	background: white;
+}
+
+.pub>.op>.right>.security>img {
+	position: absolute;
+	left: -28px;
+	top: -25px;
+	width: 20px;
+	height: 20px;
+}
+
+.pub>.op>.right>.security>img:hover {
+	background: white;
+}
+
+.pub>.op>.right>.security>ul {
+	display: none;
+}
+
+.pub>.op>.right>.security>ul>li {
+	padding: 5px 0;
+	cursor: pointer;
+	font-size: 10px;
+	font-weight: bold;
+	border-bottom: 1px solid #ececec;
+}
+
+.pub>.op>.right>.security>ul>li:hover {
+	background: #f5f5f5;
+}
+
+.pub>.op>.area {
+	width: 100%;
+	height: auto;
+	text-align: left;
+	min-height: 350px;
+	border: 1px solid #ececec;
+}
+
+.pub>.op>.area>.files {
+	border-bottom: 1px solid white;
+	margin-bottom: 10px;
+	position: relative;
+}
+
+.pub>.op>.area>.files>li {
+	margin: 0 10px 5px 10px;
+	position: static;
+	display: inline;
+	cursor: pointer;
+}
+
+.pub>.op>.area>.files>li:hover {
+	border-bottom: 1px solid white;
+}
+
+.pub>.op>.area>.files>li>img {
+	width: 20px;
+	height: 20px;
+}
+
+.pub>.op>.area>.pics {
+	text-align: center;
+}
+
+.pub>.op>.area>.pics>.show {
+	background: white;
+	height: 250px;
+}
+
+.pub>.op>.area>.pics>.show>img {
+	height: 100%;
+	max-width: 600px;
+}
+.pub>.op>.area>.pics>.show>video{
+	width: 100%;
+	height: 100%;
+}
+.pub>.op>.area>.pics>.items {
+	vertical-align: middle;
+}
+
+.pub>.op>.area>.pics>.items>li {
+	display: inline-block;
+	padding: 10px;
+	cursor: pointer;
+	padding: 10px;
+	vertical-align: middle;
+}
+
+.pub>.op>.area>.pics>.items>li:hover {
+	background: white;
+}
+
+.pub>.op>.area>.pics>.items>li>img {
+	width: 60px;
+	vertical-align: middle;
+	height: 60px;
+}
+.pub>.op>.area>.pics>.items>li>video {
+	width: 60px;
+	vertical-align: middle;
+	height: 60px;
+}
+-->
+</style>
+<script type="text/javascript" src="js/jquery/ajaxfileupload.js" />
+<script type="text/javascript" src="microblog/js/pubarticle.js" plugin />
+<div class="pub">
+	<div class="title">
+		<input><span>标题，限50字</span>
+	</div>
+	<div class="context">
+		<textarea></textarea>
+		<span>内容，不限字数</span>
+	</div>
+	<div class="op">
+		<div class="area" title="">
+			<ul class="files">
+				<li title="文件名"><img src='microblog/img/file.svg' plugin></li>
+				<li title="文件名"><img src='microblog/img/file.svg' plugin></li>
+			</ul>
+			<div class="pics">
+				<div class="show">
+					<img src="img/5.jpg">
+				</div>
+				<ul class="items">
+					<li><img src="img/1.jpg"></li>
+					<li><img src="img/2.jpg"></li>
+					<li><img src="img/3.jpg"></li>
+					<li><img src="img/4.jpg"></li>
+				</ul>
+			</div>
+		</div>
+		<div class="right">
+			<div class="save" title="发送">
+				<img src="microblog/img/sendit.svg" plugin>
+			</div>
+			<div class="security" title="发送:所有人">
+				<img src="microblog/img/see.svg" plugin>
+				<ul>
+					<li title="所有人" role="allUsers">所有人</li>
+					<li title="仅自己" role="self">仅自己</li>
+					<li title="选择" role="options">选择...</li>
+				</ul>
+			</div>
+			<ul class="upload">
+				<li title="上传图片" upload='pic'><img
+					src="microblog/img/uploadpic.svg" plugin></li>
+				<li title="上传音视频" upload='media'><img
+					src="microblog/img/media-blue.svg" plugin></li>
+				<li title="上传文件或程序" upload='file'><img
+					src="microblog/img/uploadfile-blue.svg" plugin></li>
+			</ul>
+		</div>
+	</div>
+</div>

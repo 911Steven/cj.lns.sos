@@ -1,0 +1,254 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<title>云网</title>
+<link href="../../../../css/global.css" type="text/css" rel="stylesheet">
+<link href="../../../../css/pages/portal-viewer.css" type="text/css"
+	rel="stylesheet">
+<script type="text/javascript"
+	src="../../../../js/jquery/jquery-2.1.4.js"></script>
+<style type="text/css">
+#content_inner>.body>pre>img {
+	width: 100%;
+}
+
+.grid-s5m0e5 {
+	height: 11800px;
+}
+#content_inner > .body > pre>.result{
+	font-size: 10px;
+	margin-left: 60px;
+}
+#content_inner > .body > pre>.style1{
+font-size: 10px;
+	margin-left: 60px;
+}
+</style>
+</head>
+<body>
+	<div class="topbar">
+		<ul class="left">
+			<li class="about"><span label>关于</span></li>
+		</ul>
+		<ul class="right">
+			<li class="mine"><a target="_blank"
+				href="../../../../public/register2.html">注册</a></li>
+			<li class="login"><span label>登录</span></li>
+		</ul>
+	</div>
+	<div class="banner">
+		<div class="b-left"></div>
+		<div class="b-center">
+			<div class="logo">
+				<img src="../../../../img/pages/logo.png">
+				<p>云网</p>
+			</div>
+		</div>
+		<div class="b-right"></div>
+	</div>
+	<div class="grid-s5m0e5">
+		<div class="col-main">
+			<div class="main-wrap">
+				<div id="content">
+					<div id="content_inner">
+						<div class="title">
+							<p>netsite 热插拔应用容器</p>
+						</div>
+						<div class="subtitle">
+							<ul>
+								<li><span label>作者：</span><span value
+									style="padding-right: 10px;">cj (赵向彬)</span><span label>发布日期：</span><span
+									value>2016年8月19日 17:33</span></li>
+							</ul>
+						</div>
+						<div class="body">
+							<div style="font-family: sans-serif; margin-bottom: 10px;">
+								<span><b>关键词：</b></span>webcontainer web容器 tomcat jetty was weblogic osgi bundle 热插拔
+							</div>
+							<div style="font-family: sans-serif; margin-bottom: 10px;">
+								<span><b>摘要：</b></span>netsite是一款热插拔容器，它不仅可以部署web应用，还能部署任何非web的应用，它对graph一视同仁。
+								<br><br>与传统的web容器相比，它将net与应用分离，运维人员即在运行时即可管理net也可管理应用，并能通过插入、unplug或app.stop,app.start,net.stop,net.start等来插拔。
+								<br><br>与神经元相比，它更多的将应用当成终点节点来用，虽然也可通过net的client向后连接，但它使用的都是基于netty的nio，不支持连接池，所以如果使用它向后连接，会形成瓶劲。而神经元的应用可以放到神经网络的任何神经元节点上
+								<br><br>一个神经元的应用与netsite的应用差别仅在于其graph的cj服务声明头上，神经元在声明graph时只须加上：@CjService(name = "cj.neuron.app", isExoteric = true)，而netsite对服务名没有要求
+								<br><br>一般我是推荐使用neuron，如果只是像tomcat这样的部署下应用，不向后连接的话，可以使用netsite
+								<br><br>有人会问，使用ecm开发的web应用能否在tomcat,jetty中部署呢，答案是可以，只需要在tomcat中设一个控制器，加载web程序集，获取到graph服务，并将请求通过graph的输入端子转入即可。这如此简单，所以本工作室不做此工作了，留给感兴趣的朋友去发挥。
+								<br><br><a href="downloads/netsite.zip" style="color:blue;text-decoration: underline;">下载netsite体验</a> 如果欲下载最新版本请到开发平台的产品中下载
+								</div>
+							<div style="font-family: sans-serif; margin-bottom: 10px;">
+								<span><b>正文：</b></span>
+							</div>
+							<pre>
+1.netsite工具的目录结构：
+<p class='style1'>CJdeMacBook-Pro:netsite carocean$ ls -l
+total 17008
+drwxr-xr-x  3 carocean  staff      102  5  3  2015 assemblies 程序集目录
+-rw-r--r--@ 1 carocean  staff   210889  8  9 23:26 cj.studio.ecm.chip.netsite-1.0.jar
+-rw-r--r--  1 carocean  staff     6790  8  9 23:26 cj.studio.ecm.netsite.start-1.0.jar
+-rw-r--r--  1 carocean  staff        2  5  7  2015 client.json 客户端net
+-rw-r--r--@ 1 carocean  staff        2  8 17 19:38 connectTable.json net到应用芯片的连接表
+drwxr-xr-x  3 carocean  staff      102  8 17 19:37 logs 日志目录
+-rw-r--r--  1 carocean  staff  8456183  8  9 23:26 netsite-1.0.jar
+-rw-r--r--  1 carocean  staff      146  2  1  2016 netsite.bat
+-rw-r--r--@ 1 carocean  staff      130  2  1  2016 netsite.sh
+-rw-r--r--@ 1 carocean  staff       57  8 17 19:38 proc 进程表
+-rw-r--r--  1 carocean  staff        2  8 17 19:37 registry.properties 程序集的注册表
+-rw-r--r--  1 carocean  staff        2  8 17 19:37 servers.json 服务端net表
+drwxr-xr-x  3 carocean  staff      102  8 17 19:39 work 临时工作目录</p>
+二、命令集：
+<p class='style1'>netsite >^CCJdeMacBook-Pro:netsite carocean$ sh netsite.sh -m
+
+usage: netsite
+ -debug,--debug <arg>   调试时使用。运行时主目录，
+                        即netsite包所在的目录
+ -m,--help              帮助，支持ac,sc,cc,gc命令。
+                        ac:程序集及进程管理命令。
+                        sc:服务器管理命令。
+                        cc:客户端管理命令。
+                        gc:netgraph与chipgraph连接管理命令</p>
+三、命令介绍
+	1.sc命令，管理服务器net
+	<p class='style1'>netsite >sc -m
+usage: sc
+ -clear,--clearmemo          清除netsite配置快照
+ -d,--defaultSitePid <arg>   为netsite服务器设访问的根站点进程，不需要其它参数。作用：
+                             当请求netsite任意服务器时，如果请求地址中不含进程号，则使用该默认进程。
+ -l,--log                    充许网络日志输出到控制台
+ -ls,--list                  列出所有服务器
+ -m,--man                    帮助
+ -name,--name <arg>          为服务器指定名字，应用在启动新建服务时，
+                             在创建时如果省略则以端口号作为名字
+ -p,--port <arg>             服务端口号
+ -P <property=value>         设置服务器相关属性,格式为：-Pproperty=value
+ -restore,--restore          持久化netsite配置
+ -save,--save                保存netsite配置快照
+ -start,--start              启动服务.如果指定参数name，且存在服务名则按服务名重起；
+                             否则尝试启动新服务必须参数是p,t，可选name，
+                             如果新服务与预配置服务相同，则重启，
+                             否则新建服务
+ -stop,--stop <arg>          停止指定的名称的服务器
+ -stopall,--stopall          停止所有服务器
+ -t,--tranprotocol <arg>     指定传输协议，支持：
+                             udt,tcp,http,websocket,udp,local,switch
+ -T <poolPropName=value>     设置客户端连接池属性，
+                             工作线程数-Twork=n,池最大大小-Tmax=n,
+                             池空间数-Tidle=n,
+                             池最小数-Tmin=n,
+                             超时时间-Ttimeout=n
+ -update,--update <arg>      更新指定名称的服务器，该参数会导致服务重启</p> 
+ 	2.cc命令，管理客户端net    
+ 	<p class='style1'>
+ 	netsite >cc -m
+usage: cc
+ -clear,--clearmemo         清除netsite配置快照
+ -close,--close <arg>       关闭指定名称的客户端.
+ -connect,--connect <arg>   格式：要么指定连接名，要么指定套节字ip:port
+ -is,--is                   判断是否存在指定名字的客户端。必选参数-name
+ -l,--log                   充许网络日志输出到控制台
+ -ls,--list                 列出所有客户端
+ -m,--man                   帮助
+ -name,--name <arg>         在创建新连接时可指定名称
+ -P <property=value>        设置服务器相关属性,格式为：-Pproperty=value
+ -restore,--restore         持久化netsite配置
+ -save,--save               保存netsite配置快照
+ -t,--protocol <arg>        指定协议
+ -T <poolPropName=value>    设置客户端线程和连接池属性，
+                            -Twork=n工作线程数,默认为2-Tcapacity=n池容量,默认为1
+                            -Tidle=ms池中空闲信道的休眠时间，超时则关闭连接,默认－1为永远等
+                            -TidleCheck=ms空闲信道休眠是否超时的检查时间间隔，默认-1表示不检查，如果是不
+                            检查，则信道池不堵塞，每次在现有连接中负载一个。
+                            它用于检测idle是否到期
+                            -TidleCheckin=ms信道被netty检查出空闲并检入到信道池的时间，在一个信道空
+                            闲后达到此时间，才会被放入信道池中。
+                            默认3600毫秒,-1表示永不空闲，因此也永不会被置入信道池
+                            -TactiveTimeout=ms申请新信道时的等待超时时间，默认－1为永远等
+ 	</p> 
+ 	3.ac指令：管理程序集，安装、启动、停止，xie zai，进程查看等  
+ 	<p class='style1'>netsite >ac -m
+usage: ac
+ -cached,--cached      指缓冲区的程序集.
+ -f,--f <arg>          文件路径
+ -g,--graph            打印出程序集的graph
+ -id,--id <arg>        指定程序集id.
+ -install,--install    安装芯片.芯片名文件名或路径,必须结合：f|cached|id参数,
+                       如果指定cached则将已缓冲的全部安装
+                       如果f是目录则扫描后安装
+ -kill,--kill          停止程序集.需pid
+ -l,--log              充许网络日志输出到控制台
+ -ls,--ls
+                       查看netsite进程信息，id|pid|reg|cached,id是程序集标识，pid是进程号，re
+                       g用于查看注册表，cached用于查看缓冲
+ -m,--man              帮助
+ -mod,--modify         结合reg、-P、id参数，可修改注册表。比如调试时将注册表程序集地址改为编译目的地
+ -P <property=value>   设置服务器相关属性,格式为：-Pproperty=value
+ -pid,--pid <arg>      指定程序集进程号.
+ -reg,--reg            注册表.
+ -run,--run            运行指定的芯片，需id(程序集id)，可选pid指定进程号，如不选则以程序集名作为进程号
+ -scan,--scan <arg>    扫描指定位置的jar以发现芯片
+ -un,--uninstall       删除一个程序集,需id(程序集标识）</p>  
+ 	4.gc指令：建立net与程序集芯片中graph的连接，它将graph的输入输出端子插入到相应的net上。在使用该命令前，先使用命令ac -ls 查看程序集中的graph信息，使用sc -ls查看服务net信息或cc -ls客户端net信息，然后进行相应连接
+ 	<p class='style1'>netsite >gc -m
+usage: gc
+ -a,--all                     结合指令ls，查看chip graph 上的所有连接，因此需要组合pid,g
+ -fl,--flow <arg>
+                              充许在此插头中流动的侦地址匹配正则表达式。如果未指定该参数，则默认为按net名或grap
+                              h名导向侦
+ -g,--g <arg>                 chipGraph的名字
+ -is,--isplug                 是否已将chipgraph的指定pin插入到netgraph,说明：
+                              必须参数：pid,g,o,p,n,例：
+                              gc -plug -pid test -g myGraph -p input -o
+                              input -n myNet
+ -ls,--list                   查询连接情况。说明：
+                              必须参数：pid,t,可选：o,p
+ -m,--man                     帮助
+ -n,--netgraphName <arg>      操作的目标网络图名称。
+ -o,--o <arg>                 操作：input,output等
+ -off,--off                   关闭watch
+ -p,--pin <arg>               chipGraph的端子
+ -pid,--chipProcessId <arg>   芯片的进程号
+ -plug,--plug                 将chipgraph的指定pin插入到netgraph,说明：
+                              必须参数：pid,g,o,p,n,例：
+                              gc -plug -pid test -g myGraph -p input -o
+                              input -n myNet
+                              可选参数：-flow -rewirte
+                              默认不重写侦地址，且以目标graph的名作为flow的目标。
+ -re,--rewirte <arg>          匹配要重写的侦地址，正则要将替换的分成组。
+ -to,--to <arg>               rewrite的替换内容。格式：$1{value},
+                              $表示在rewrite中的分组,$1表示分组1，括号内是被替换内容
+ -unplug,--unplug             将chipgraph的指定pin拔掉从指定的netgraph，说明：
+                              必须参数：pid,g,o,p,n,例：
+                              gc -unplug -pid website -g myGraph -p output
+                              -o output -n myNet
+ -watch,--watch               监视指定的输出插头的侦流。
+                              必选参数：pid|n,g</p>   
+							</pre>
+
+						</div>
+						<div class="bottom"></div>
+					</div>
+				</div>
+				<div id="side">
+					<div class="fill"></div>
+					<div class="portlet">
+						<div class="title">
+							<span label>相关</span>
+						</div>
+						<ul class="items">
+				<li><a href="../views/ecm_hello.html" plugin target="_blank">· 从ecm 工具包的 helloworld 入门</a></li>
+		<li><a href="../views/net_hello.html" plugin target="_blank">· 从net 工具包的 helloworld 入门</a></li>
+		<li><a href="../views/intro_ecm.html" plugin target="_blank">· 介绍： ecm 面向连接电子模型开发工具包</a></li>
+		<li><a href="../views/intro_net.html" plugin target="_blank">· 介绍： net 通讯开发工具包</a></li>
+		<li><a href="../views/intro_plus.html" plugin target="_blank">· 介绍： plus 模块化、插件化、服务化增强开发工具包</a></li>
+		<li><a href="../views/intro_netdisk.html" plugin target="_blank">· 介绍： netdisk 多维云盘开发工具包</a></li>
+		<li><a href="../views/intro_neuron.html" plugin target="_blank">· 介绍： neuron 分布式连接容器</a></li>
+		<li><a href="../views/intro_mdisk.html" plugin target="_blank">· 介绍： mdisk 多维云盘命令行工具</a></li>
+		<li><a href="../views/intro_cjnet.html" plugin target="_blank">· 介绍： cjnet 调试、测试命令行工具</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-sub"></div>
+		<div class="col-extra"></div>
+	</div>
+</body>
+</html>

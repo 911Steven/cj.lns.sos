@@ -1,0 +1,136 @@
+<script type="text/javascript" src="js/findChatGroup.js" plugin>
+	
+</script>
+<style>
+<!--
+.find-g {
+	margin: 10px;
+}
+
+.find-g>.op {
+	margin-bottom: 15px;
+	position: relative;
+}
+
+.find-g>.op>input {
+	padding: 5px 40px 5px 5px;
+	width: 100%;
+	height: 50px;
+}
+
+.find-g>.op>img {
+	width: 28px;
+	height: 28px;
+	position: absolute;
+	right: 8px;
+	top: 8px;
+}
+
+.find-g>.op>span.tips {
+	position: absolute;
+	left: 10px;
+	top: 14px;
+	color: gray;
+}
+
+.find-g>.result>.gitem {
+	position: relative;
+	padding-left: 40px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	cursor: pointer;
+}
+
+.find-g>.result>.gitem:hover {
+	background: #f5f5f5;
+}
+
+.find-g>.result>.gitem>img.gface {
+	width: 38px;
+	height: 38px;
+	position: absolute;
+	left: 0;
+	top: 12px;
+}
+
+.find-g>.result>.gitem>.gtext {
+	margin-left: 10px;
+}
+
+.find-g>.result>.gitem>.gtext>li.gintr {
+	color: gray;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	width: 200px;
+}
+
+li.gitem>img.join {
+	padding: 6px 8px;
+	color: black;
+	display: inline-block;
+	position: absolute;
+	right: 4px;
+	top: 16px;
+	width: 20px;
+	height: 20px;
+}
+
+li.gitem>img.join:hover {
+	background: #cecece;
+}
+
+.find-g>.result>.gitem>.gpanel {
+	margin-top: 10px;
+	cursor: default;
+	display: none;
+}
+
+.find-g>.result>.gitem>.gpanel>li {
+	margin-bottom: 4px;
+}
+
+.find-g>.result>.gitem>.gpanel>li>span.label {
+	color: gray;
+}
+
+.find-g>.result>.gitem>.gpanel>li>a {
+	padding-right: 10px;
+	font-size: 12px;
+	text-decoration: underline;
+}
+.find-g>.result>.gitem>.gpanel>li[intr]>p{
+	padding-right: 10px;
+}
+-->
+</style>
+<div class="find-g">
+	<div class="op">
+		<input type="text" value=""><img src="img/find.svg"><span
+			class="tips">群号/群名</span>
+	</div>
+	<ul class="result">
+		<li class="gitem" title="群号:234234234"><img class="gface"
+			src="img/1.jpg">
+			<ul class="gtext">
+				<li class="gname">组名</li>
+				<li class="gintr">组简介</li>
+			</ul> <img class="join" src="img/join.svg">
+			<ul class="gpanel">
+				<li creator><span class="label">群主：</span><a href="#">carocean</a></li>
+				<li num><span class="label">群号：</span><span>3232323</span></li>
+				<li member><span class="label">成员：</span><a href="#">20人</a><label></label></li>
+				<li securiy><span class="label">安全：</span><span jj>验证</span></li>
+				<li prop><span class='label'>资产：</span><a href='#'>照片|100</a><a
+					href='#'>文件|80</a><a href='#'>信息|1万</a></li>
+				<li intr><span class="label">简介：</span>
+				<p>兵史上女兵方队 丨荒唐村官哪家强 胜利日的九个瞬间 丨世界各国阅兵之最 揭开瑞海国际真身 丨天津爆炸N大疑问
+						“人体冷冻”另一面 丨祭古龙</p></li>
+			</ul></li>
+		<li class="gitem"><img class="gface" src="img/2.jpg">
+			<ul class="gtext">
+				<li class="gname">组名</li>
+				<li class="gintr">组简介</li>
+			</ul> <img class="join" src="img/join.svg"></li>
+	</ul>
+</div>

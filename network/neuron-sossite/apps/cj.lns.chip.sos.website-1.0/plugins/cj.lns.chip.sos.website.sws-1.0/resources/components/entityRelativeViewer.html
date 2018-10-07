@@ -1,0 +1,87 @@
+
+<style name='e-r-v'>
+<!--
+.e-r-v {
+	position: absolute;
+	width: 380px;
+	min-height: 200px;
+	max-height:400px;
+	background: white;
+	border: 1px solid #ececec;
+	right: 0;
+	z-index: 99999999;
+}
+
+.e-r-v>.events>li {
+	text-align: left;
+	cursor: pointer;
+	position: relative; text-align : left; cursor : pointer;
+	padding: 4px 10px 4px 45px;
+	border-bottom: 1px solid #ececec;
+}
+
+.e-r-v>.events>li:hover {
+	background: #f5f5f5;
+}
+
+.e-r-v>.events>li>img {
+	position: absolute;
+	left: 10px;
+	top: 12px;
+	width: 30px;
+	height: 30px;
+	cursor: pointer;
+}
+
+.e-r-v>.events>li>.done {
+	position: absolute;
+	right: 10px;
+	top: 6px;
+	width: 180px;
+	text-align: right;
+}
+.e-r-v>.events>li>.done>li[times]>span[value]{
+	 -moz-border-radius: 50%;      /* Gecko browsers */
+    -webkit-border-radius: 50%;   /* Webkit browsers */
+    border-radius:50%;  
+    display: inline-block;
+    background: red;
+    color: white;
+    font-weight: bold;
+    margin-right: 5px;
+    min-width: 20px;
+    min-height: 20px;
+    text-align: center;
+}
+.e-r-v>.events>li>.face>li[name]{
+	font-weight: bold;
+}
+.e-r-v>.events>li>.face>li[sign]{
+	color: gray;
+}
+.e-r-v>.more{
+	margin-top: 10px;
+}
+.e-r-v>.more>span[label]{
+	padding: 2px 10px;
+	cursor: pointer;
+}
+.e-r-v>.more>span[label]:hover{
+	text-decoration: underline;
+}
+-->
+</style>
+<div class="e-r-v">
+	<ul class="events">
+		<li><img src='img/2.jpg'>
+			<ul class="face">
+				<li name><span label>Carocean</span></li>
+				<li sign><span label>生活着</span></li>
+			</ul>
+			<ul class="done">
+				<li ptime><span value title="最近一次发生时间">2015年10月23日 13:22</span></li>
+				<li times><span value>10</span><span unit>次</span></li>
+			</ul></li>
+	</ul>
+	<div class='more' skip='0'><span label>加载更多...</span></div>
+</div>

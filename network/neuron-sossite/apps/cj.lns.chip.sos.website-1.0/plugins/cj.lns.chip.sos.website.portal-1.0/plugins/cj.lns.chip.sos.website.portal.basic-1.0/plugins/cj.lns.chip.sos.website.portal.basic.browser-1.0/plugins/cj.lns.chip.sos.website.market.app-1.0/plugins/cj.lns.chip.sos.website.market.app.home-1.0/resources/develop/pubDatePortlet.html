@@ -1,0 +1,94 @@
+<script type="text/javascript">
+<!--
+(function(){
+	var dates=$('.main-right[region=portlet]');
+	dates.undelegate('.portlet[mydate][type=app] li[path]>div','click');
+	dates.delegate('.portlet[mydate][type=app] li[path]>div','click',function(e){
+		var path=$(this).parent('li').attr('path');
+		$.cj.App.openApp('./swssite/develop/myarticle.html?cdPath='+path);
+		$('.windows > .titleBar > .menu > ul > li[selected]').removeAttr('selected');
+		$('.windows .art-panel > .more').remove();
+	});
+})();
+//-->
+</script>
+<style>
+<!--
+.portlet[mydate] {
+	padding-left: 0;
+}
+
+.portlet[mydate]>.head {
+	border-bottom: 1px solid #ececec;
+	padding-left: 10px;
+	padding-top:10px;
+	vertical-align: bottom;
+}
+
+.portlet[mydate]>.dates {
+	padding-left: 10px;
+	color: #003377;
+	font-weight: bold;
+}
+
+.portlet[mydate]>.dates>.year>ul, .portlet[mydate]>.dates>.year>ul>.month>ul {
+	padding-left: 35px;
+}
+
+.portlet[mydate]>.dates>.year>ul>.month>div, .portlet[mydate]>.dates>.year>ul>.month>ul>.day>div,
+	.portlet[mydate]>.dates>.year>div {
+	cursor: pointer;
+}
+.portlet[mydate]>.dates>.year>ul>.month>div>span[label], .portlet[mydate]>.dates>.year>ul>.month>ul>.day>div>span[label],
+	.portlet[mydate]>.dates>.year>div>span[label] {
+		padding-right: 10px;
+	}
+.portlet[mydate]>.dates>.year>ul>.month>div:hover, .portlet[mydate]>.dates>.year>ul>.month>ul>.day>div:hover,
+	.portlet[mydate]>.dates>.year>div:hover {
+	background: #ececec;
+}
+-->
+</style>
+<div class="portlet" mydate>
+	<div class="head">
+		<span>发布日期</span>
+	</div>
+	<ul class="dates">
+		<li class="year"><div>
+				<span label>2016年</span><span v>(12)</span>
+			</div>
+			<ul>
+				<li class="month"><div>
+						<span label>4月</span><span v>(10)</span>
+					</div>
+					<ul>
+						<li class="day"><div>
+								<span label>11日</span><span v>(5)</span>
+							</div></li>
+						<li class="day"><div>
+								<span label>12日</span><span v>(5)</span>
+							</div></li>
+					</ul></li>
+				<li class="month"><span label>5月</span><span v>(13)</span>
+					<ul>
+						<li class="day"><span label>6日</span><span v>(4)</span></li>
+						<li class="day"><span label>7日</span><span v>(5)</span></li>
+						<li class="day"><span label>8日</span><span v>(4)</span></li>
+					</ul></li>
+			</ul></li>
+		<li class="year"><span label>2017年</span><span v>(12)</span>
+			<ul>
+				<li class="month"><span label>4月</span><span v>(10)</span>
+					<ul>
+						<li class="day"><span label>11日</span><span v>(5)</span></li>
+						<li class="day"><span label>12日</span><span v>(5)</span></li>
+					</ul></li>
+				<li class="month"><span label>5月</span><span v>(13)</span>
+					<ul>
+						<li class="day"><span label>6日</span><span v>(4)</span></li>
+						<li class="day"><span label>7日</span><span v>(5)</span></li>
+						<li class="day"><span label>8日</span><span v>(4)</span></li>
+					</ul></li>
+			</ul></li>
+	</ul>
+</div>

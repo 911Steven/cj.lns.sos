@@ -1,0 +1,22 @@
+<html>
+<head>
+<title>cj</title>
+<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0, minimal-ui">
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+<link rel="stylesheet" href="blue/portal.css" plugin />
+<link rel="stylesheet" type="text/css" href="api/jmobi/css/icons.css" plugin/>
+<link rel="stylesheet" type="text/css" href="api/jmobi/css/af.ui.css" plugin/>
+   <script type="text/javascript" charset="utf-8" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="http://cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.3/fastclick.min.js"></script>
+    <script src="api/jmobi/appframework.ui.js" plugin ></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular.min.js"></script>
+</head>
+<body region="workbench" >
+	<div>请下载cj应用手机版</div>
+	<div>请下载cj应用pad版</div>
+</body>
+</html>

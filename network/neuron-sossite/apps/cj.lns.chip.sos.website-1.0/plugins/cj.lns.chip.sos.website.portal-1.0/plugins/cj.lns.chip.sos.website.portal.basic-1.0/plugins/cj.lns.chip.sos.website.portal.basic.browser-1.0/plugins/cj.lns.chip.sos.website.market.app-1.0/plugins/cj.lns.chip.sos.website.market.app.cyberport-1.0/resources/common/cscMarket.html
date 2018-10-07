@@ -1,0 +1,170 @@
+<script type="text/javascript" src="common/js/cscMarket.js" plugin />
+<style market>
+<!--
+.market {
+	position: relative;
+	padding-left: 200px;
+	height: auto;
+}
+
+.market>.scsChipInfo {
+	position: fixed;
+	width: 480px;
+	min-height: 400px;
+	top: 50%;
+	left: 50%; margin-left : -140px; margin-top : -200px;
+	background: #f5f5f5;
+	border: 2px solid #ececec;
+	z-index: 99999999;
+	display: none;
+	left: 50%;
+	margin-left: -140px;
+	margin-top: -200px;
+	margin-left: -140px;
+	margin-top: -200px;
+}
+
+.market>.category {
+	position: absolute;
+	left: 0;
+	top: 0;
+	bottom: 0;
+	width: 200px;
+	background: white;
+}
+
+.market>.category>ul>li {
+	padding: 10px;
+	cursor: pointer;
+}
+
+.market>.category>ul>li.cat-selected, .market>.category>ul>li:hover {
+	background: #f5f5f5;
+}
+
+.market>.list {
+	min-height: 400px;
+}
+
+.market>.list>.table {
+	padding: 10px;
+}
+
+.market>.list>.table>li[marketid] {
+	margin: 10px 0;
+	position: relative;
+	background: white;
+	padding: 10px 0 10px 55px;
+}
+
+.market>.list>.table>li[marketid]>img {
+	position: absolute;
+	left: 10px;
+	top: 12px;
+	width: 40px;
+	height: 40px;
+}
+
+.market>.list>.table>li[marketid]>.face {
+	
+}
+
+.market>.list>p[spliter] {
+	margin-left: 10px;
+	border-bottom: 1px solid white;
+}
+
+.market>.list>.table>li[marketid]>.face>li {
+	
+}
+
+.market>.list>.table>li[marketid]>.face>li[v]>span[label] {
+	color: gray;
+	padding-right: 10px;
+}
+
+.market>.list>.table>li[marketid]>img, .market>.list>.table>li[marketid]>.face>li>span {
+	cursor: pointer;
+}
+
+.market>.list>.table>li[marketid]>.face>li>span[name]:hover {
+	text-decoration: underline;
+}
+
+.market>.list>.table>li[marketid]>.op {
+	position: absolute;
+	right: 10px;
+	top: 12px;
+}
+
+.market>.list>.table>li>.op>li {
+	display: inline-block;
+	padding: 0 10px;
+	font-size: 10px;
+}
+.market>.list>.table>li>.op>li>span[label] {
+	padding-right: 4px;
+	color: gray;
+}
+
+
+.market>.list>.zdxz>p {
+	padding-left: 10px;
+	border-bottom: 1px solid white;
+	margin-left: 10px;
+}
+
+.market>.list>.zdxz>ul {
+	padding: 10px;
+}
+
+.market>.list>.zdxz>ul>li {
+	display: inline-block;
+	padding: 4px 15px;
+	cursor: pointer;
+	margin: 8px;
+}
+
+.market>.list>.zdxz>ul>li:hover {
+	border: 1px solid white;
+}
+
+.market>.list>.zdxz>ul>li>p {
+	line-height: 15px;
+}
+
+.market>.list>.zdxz>ul>li>img {
+	width: 50px;
+	height: 50px;
+}
+.market>.list>.table>.cimore{
+	background: #f5f5f5;
+	margin: 0 0 10px 0;
+	text-align: center;
+	cursor: pointer;
+	text-decoration: underline;
+	display: none;
+}
+.market>.list>.table>.cimore:hover{
+	background: white;
+	color: blue;
+}
+-->
+</style>
+<div class="market">
+	<div class="category">
+		<ul>
+			<li  class="cat-selected"><span label>体育</span></li>
+			<li ><span label>健康健美</span></li>
+			<li ><span label>儿童</span></li>
+			<li ><span label>医疗</span></li>
+			<li ><span label>商务</span></li>
+			<li ><span label>医疗</span></li>
+			<li ><span label>医疗</span></li>
+			<li ><span label>医疗</span></li>
+		</ul>
+	</div>
+	<div class="list" id="ctgy-cnt">
+	</div>
+	<div class="scsChipInfo"></div>
+</div>

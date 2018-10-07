@@ -1,0 +1,265 @@
+body {
+	overflow: visible;
+	width: 100%;
+	height: 100%;
+	background-image: url("../img/background/hill.jpg");
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	filter:
+		"progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale')";
+	-moz-background-size: 100% 100%;
+	background-size: 100% 100%;
+}
+
+.register {
+	position: absolute;
+	left: 50%;
+	margin-left: -300px;
+	width: 600px;
+	top: 60px;
+	bottom: 100px;
+	background: #f5f5f5;
+	min-height: 400px;
+}
+
+.register>.flow {
+	background: gray;
+	height: 40px;
+	font-size: 12px;
+	position: relative;
+	color: white;
+}
+
+.register>.flow>.op {
+	position: absolute;
+	background: gray;
+	left: 600px;
+	height: 300px;
+	width: 100px;
+	top: 0;
+	-moz-border-radius: 0 15px 15px 0; /* Gecko browsers */
+	-webkit-border-radius: 0 15px 15px 0; /* Webkit browsers */
+	border-radius: 0 15px 15px 0;
+}
+
+.register>.flow>.op>ul {
+	margin-top: 40px;
+}
+
+.register>.flow>.op>ul>li {
+	padding: 10px;
+	cursor: pointer;
+}
+
+.register>.flow>.op>ul>li:hover {
+	background: #f5f5f5;
+	color: black;
+}
+
+.register>.flow>ul {
+	
+}
+
+.register>.flow>ul>li {
+	float: left;
+	padding: 8px 5px;
+	border: 1px solid #f5f5f5;
+}
+
+.register>.flow>ul>li.selected {
+	background: #f5f5f5;
+	color: black;
+}
+
+.register>.content {
+	margin: 20px;
+	font-size: 16px;
+	position: relative;
+}
+
+.register>.content>ul>li {
+	margin: 20px 0;
+}
+
+.register>.content>ul>li>label {
+	font-weight: bold;
+	color: gray;
+	width: 50px;
+	display: inline-block;
+	text-align: right;
+	padding-right: 10px;
+}
+
+.register>.content>ul>li>span {
+	width: 300px;
+	display: inline-block;
+}
+
+.register>.content>ul>li>span>input {
+	width: 100%;
+	padding: 5px;
+	line-height: 22px;
+}
+
+.register>.content>ul>li>span>input[type="radio"] {
+	width: 40px;
+}
+
+.register>.content>.head {
+	position: absolute;
+	right: 20px;
+	top: 0;
+	height: 180px;
+	width: 140px;
+	background: white;
+	text-align: center;
+}
+
+.register>.content>.head>img {
+	height: 120px;
+	width: 120px;
+	border: none;
+	margin-top: 10px;
+}
+
+.register>.content>.head>.upload {
+	margin: 10px;
+}
+
+.register>.content>.c-left {
+	position: absolute;
+	left: 0;
+	top: 0;
+	right: 260px;
+	bottom: 0;
+}
+
+.register>.content>.c-left>ul>li {
+	float: left;
+	padding: 20px 30px;
+	text-align: center;
+	cursor: pointer;
+	position: relative;
+	max-width: 80px;
+	border: 1px solid #f5f5f5;
+}
+.register>.content>.c-left>ul>li>.swsSelect{
+	position: absolute;
+	top:0;
+	right:0;
+	height: 20px;
+	width:20px;
+}
+.register>.content>.c-left>ul>li:hover {
+	border: 1px solid #d0d0d0;
+}
+
+.register>.content>.c-left>ul>li>img {
+	width: 45px;
+	height: 45px;
+}
+
+.register>.content>.c-right {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 260px;
+	bottom: 0;
+	font-size: 12px;
+}
+
+.register>.content>.c-right>.c-r-t {
+	margin-bottom: 20px;
+}
+
+#swsNum>li {
+	float: left;
+}
+
+#swsNum>li.spliter {
+	width: 10px;
+	height: 15px;
+}
+
+#swsNum>li.auto {
+	margin-top: 12px;
+	padding-left: 10px;
+}
+
+#swsNum>li.auto>input {
+	height: 24px;
+	width: 100px;
+	border: none;
+	background: white;
+}
+
+#swsNum>li.genNum {
+	width: 20px;
+	margin-top: 12px;
+	margin-left: 4px;
+	height: 25px;
+	background: #e8e8e8;
+	cursor: pointer;
+	-moz-box-shadow: -2px -2px 2px #999 inset;
+	-webkit-box-shadow: -2px -2px 2px #999 inset;
+	box-shadow: -2px -2px 2px #999 inset;
+}
+
+#swsNum>li.genNum:hover {
+	border: 1px solid gray;
+}
+
+.updown {
+	position: relative;
+	margin: 0;
+	padding: 0;
+	width: 15px;
+	line-height: 10px;
+}
+
+.updown>li.up {
+	height: 15px;
+	cursor: pointer;
+}
+
+.updown>li.up:hover {
+	background: #ececec;
+}
+
+.updown>li.up>img {
+	height: 15px;
+	width: 15px;
+}
+
+.updown>li.down {
+	height: 15px;
+	cursor: pointer;
+}
+
+.updown>li.down:hover {
+	background: #ececec;
+}
+
+.updown>li.down>img {
+	height: 15px;
+	width: 15px;
+}
+
+.updown>li>input {
+	width: 15px;
+	height: 20px;
+	border: none;
+	padding: 3px;
+}
+.register .disk>div{
+	margin: 20px 0px;
+}
+.register .disk>div>span{
+	color: gray;
+}
+.register .disk>div>input{
+	padding: 5px;
+	height: 25px;
+	width:100px;
+	border: 1px solid #cecece;
+}

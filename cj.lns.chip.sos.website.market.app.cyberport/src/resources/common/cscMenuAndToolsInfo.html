@@ -1,0 +1,118 @@
+<style>
+<!--
+.csc-s-info {
+	
+}
+
+.csc-s-info>.bar {
+	text-align: right;
+	padding: 0 10px;
+}
+
+.csc-s-info>.bar>span[close] {
+	padding: 2px 10px;
+	cursor: pointer;
+}
+
+.csc-s-info>.bar>span[close]:hover {
+	color: red;
+}
+
+.csc-s-info>.header {
+	padding-top: 10px;
+	padding-left: 120px;
+	height: 120px;
+	position: relative;
+	background: white;
+}
+
+.csc-s-info>.header>img {
+	width: 100px;
+	height: 100px;
+	position: absolute;
+	left: 10px;
+	top: 10px;
+	-moz-border-radius: 15px; /* Gecko browsers */
+	-webkit-border-radius: 15px; /* Webkit browsers */
+	border-radius: 15px;
+}
+
+.csc-s-info>.header>.pad {
+	padding: 0 10px;
+}
+
+.csc-s-info>.header>.pad>li[name] {
+	margin-bottom: 56px;
+}
+
+.csc-s-info>.header>.pad>li[op] {
+	text-align: left;
+}
+.csc-s-info>.header>.pad>li[info]>span[chip]{
+	padding-right: 10px;
+}
+.csc-s-info>.header>p[unbind] {
+	position: absolute;
+	right: 60px;
+	bottom: 18px;
+	text-decoration: underline;
+	cursor: pointer;
+	display: inline-block;
+}
+
+.csc-s-info>.body {
+	padding: 10px;
+}
+
+.csc-s-info>.body>ul>li {
+	margin: 10px 0;
+	border-bottom: 1px solid #ececec;
+}
+
+.csc-s-info>.body>ul>li>select {
+	min-width: 150px;
+}
+
+.csc-s-info>.body>ul>li>select>option {
+	padding: 4px 10px;
+}
+.csc-s-info>.body>ul>li[service]{
+	display: none;
+}
+.csc-s-info>.body>ul>li[service]>ul>li {
+	display: inline-block;
+	padding: 5px 10px;
+	margin:2px;
+}
+.csc-s-info>.body>ul>li[service]>ul>li>span[label]{
+	padding-right: 4px;
+}
+-->
+</style>
+<div class="csc-s-info">
+	<div class="bar">
+		<span close>X</span>
+	</div>
+	<div class="header">
+		<img src="img/4.jpg">
+		<ul class="pad">
+			<li name>netsite</li>
+			<li info><span label>已绑定到：</span><span chip>芯片1</span><span
+				service>服务1</span><span csctype>(工具)</span></li>
+		</ul>
+		<p unbind>解除绑定</p>
+	</div>
+	<div class="body">
+		<ul>
+			<li chip><span label>芯片：</span><select><option>芯片1</option>
+					<option>芯片2</option></select></li>
+			<li service>
+				<ul>
+					<li><span label>服务1</span><input name="csc" type="radio"></li>
+					<li><span label>服务1</span><input name="csc" type="radio"></li>
+					<li><span label>服务1</span><input name="csc" type="radio"></li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+</div>

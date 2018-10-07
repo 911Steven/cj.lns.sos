@@ -1,0 +1,393 @@
+<style>
+<!--
+.inst-panel {
+	background: #6dccc4;
+}
+
+.inst-panel>.service {
+	padding: 10px 10px 10px 10px;
+	position: relative;
+}
+
+.inst-panel>.scsServiceInfo {
+	display: none;
+	margin-top: 1px;
+}
+
+.inst-panel>.service>.spliter {
+	text-align: right;
+	color: #f5f5f5;
+}
+
+.inst-panel>.service>.spliter>div[up] {
+	border-bottom: 1px solid white;
+	padding-right: 10px;
+}
+
+.inst-panel>.service>.spliter>div[down] {
+	padding-right: 10px;
+}
+
+.inst-panel>.service span[m] {
+	text-decoration: underline;
+	cursor: pointer;
+	display: inline-block;
+	margin-right: 10px;
+	color: gray;
+}
+
+.inst-panel>.service span[m].bind {
+	color: black;
+}
+
+.inst-panel>.service span[m]:hover {
+	color: red;
+}
+
+.inst-panel>.service>ul.message {
+	
+}
+
+.inst-panel>.service>ul.message>li {
+	display: inline-block;
+	padding: 2px 15px;
+}
+
+.inst-panel>.service>ul.message>li>img {
+	width: 35px;
+	height: 35px;
+	display: inline-block;
+	margin-left: 3px;
+	cursor: pointer;
+}
+
+.inst-panel>.service>ul.business {
+	
+}
+
+.inst-panel>.service>ul.business>li {
+	display: inline-block;
+	padding: 2px 15px;
+}
+
+.inst-panel>.service>ul.business>li>span[m] {
+	display: inline-block;
+	margin-top: 5px;
+}
+
+.inst-panel>.service>ul.business>li>ul {
+	border-left: 1px solid white;
+	margin-left: 10px;
+	padding-left: 5px;
+}
+
+.inst-panel>.service>ul.business>li>ul>li {
+	padding: 4px 0;
+}
+
+.inst-panel>.install>.items {
+	display: none;
+}
+
+.inst-panel>.install>.items>li {
+	margin: 10px 0;
+	position: relative;
+	padding: 10px 10px 10px 50px;
+	border-bottom: 1px solid #ececec;
+	background: white;
+}
+
+.inst-panel>.install>.items>li>.ci {
+	padding: 10px;
+	border-top: 1px solid #ececec;
+	display: none;
+}
+
+.inst-panel>.install>.items>li>.ci>ul.view>li {
+	padding: 5px 0;
+}
+
+.inst-panel>.install>.items>li>.ci>ul.view>li>span[label] {
+	color: gray;
+	font-weight: bold;
+	display: inline-block;
+	padding-right: 5px;
+}
+
+.inst-panel>.install>.items>li>.ci>.op {
+	text-align: right;
+}
+
+.inst-panel>.install>.items>li>.ci>.op>li {
+	display: inline-block;
+	padding: 4px 10px;
+	cursor: pointer;
+	text-decoration: underline;
+}
+
+.inst-panel>.install>.items>li>.ci>.op>li:hover {
+	color: blue;
+}
+
+.inst-panel>.install>.items>li>img {
+	width: 35px;
+	height: 35px;
+	position: absolute;
+	left: 10px;
+	top: 15px;
+}
+
+.inst-panel>.install>.items>li>span[del] {
+	padding: 2px 10px;
+	position: absolute;
+	top: 18px;
+	right: 10px;
+	cursor: pointer;
+	display: none;
+}
+
+.inst-panel>.install>.items>li>span[del]:hover {
+	color: red;
+}
+
+.inst-panel>.install>.items>li>.face>li[s]>span[label] {
+	display: inline-block;
+	padding-right: 10px;
+	color: gray;
+}
+
+.inst-panel>.install>.items>li>.face>li[s]>span[status] {
+	padding-right: 10px;
+}
+
+.inst-panel>.install>.items>li>img, .inst-panel>.install>.items>li>.face>li[a]>span
+	{
+	cursor: pointer;
+}
+
+.inst-panel>.install {
+	padding: 10px;
+}
+
+.inst-panel>.install>.op {
+	text-align: right;
+}
+
+.inst-panel>.install>.op>span {
+	padding: 4px 10px;
+	cursor: pointer;
+	text-decoration: underline;
+}
+
+.inst-panel>.install>.op>span:hover {
+	color: blue;
+}
+
+.inst-panel>.service li.op>span[add] {
+	cursor: pointer;
+	color: white;
+	display: none;
+	padding: 0 10px;
+}
+
+.inst-panel>.service li.op>span[add]:hover {
+	color: blue;
+}
+
+.inst-panel>.service li>span[up], .inst-panel>.service li>span[down],
+	.inst-panel>.service li>span[del] {
+	cursor: pointer;
+	display: none;
+	color: white;
+	padding: 0px 6px;
+}
+
+.inst-panel>.service li>span[up]:hover, .inst-panel>.service li>span[down]:hover,
+	.inst-panel>.service li>span[del]:hover {
+	color: blue;
+}
+
+.inst-panel>.desc {
+	padding: 20px 0;
+}
+
+.inst-panel>.desc>span {
+	display: inline-block;
+	padding-left: 10px;
+}
+
+.inst-panel>.desc>p {
+	border-top: 1px solid gray;
+	padding: 0 10px;
+	color: gray;
+	padding: 0 10px;
+}
+
+.inst-panel>.install>.items>li>.ci>ul.view>li[contains]>ul {
+	padding-left: 80px;
+	display: none;
+}
+
+.inst-panel>.install>.items>li>.ci>ul.view>li[contains]>ul>li {
+	padding: 2px 0;
+}
+
+.inst-panel>.install>.items>li>.ci>ul.view>li[contains]>ul>li>ul[cinfo]
+	{
+	margin-left: 20px;
+	border-left:1px solid #ececec;
+}
+
+.inst-panel>.install>.items>li>.ci>ul.view>li[contains]>span[get] {
+	cursor: pointer;
+	text-decoration: underline;
+}
+
+.inst-panel>.install>.items>li>.ci>ul.view>li[contains]>span[get]:hover
+	{
+	color: blue;
+}
+
+.inst-panel>.install>.items>li>.ci>ul.view>li[contains]>ul>li>span[label]
+	{
+	cursor: pointer;
+	text-decoration: underline;
+}
+
+.inst-panel>.install>.items>li>.ci>ul.view>li[contains]>ul>li>span[label]:hover
+	{
+	color: blue;
+}
+-->
+</style>
+<div class="inst-panel">
+	<div class="desc">
+		<span>使用说明</span>
+		<p>为服务台建立菜单和发送工具：1.新建菜单和发送工具；2.绑定到芯片所提供的功能。灰色表示未绑定</p>
+		<p>说明：不限行列，使用者自行控制菜单和工具数量，太多了服务台装不下，就没人爱用了。推荐一级菜单4个（带欢迎），二级菜单8个以内</p>
+	</div>
+	<div class="service">
+		<ul class="business" title="服务菜单">
+			<li class="s" atid='0' welcome><span m>欢迎</span></li>
+			<li class="s" atid='023232323'>
+				<ul>
+					<li class="op" atid='239903930'><span add>A</span></li>
+					<li class="i"><span m>服务1.1</span><span up title="上移">&#8593;</span><span
+						down title="下移">&#8595;</span><span del title="删除">X</span></li>
+					<li class="i"><span m class="bind">服务1.2</span><span up
+						title="上移">&#8593;</span><span down title="下移">&#8595;</span><span
+						del title="删除">X</span></li>
+					<li class="i"><span m>服务1.3</span><span up title="上移">&#8593;</span><span
+						down title="下移">&#8595;</span><span del title="删除">X</span></li>
+					<li class="i"><span m class="bind">服务1.4</span><span up
+						title="上移">&#8593;</span><span down title="下移">&#8595;</span><span
+						del title="删除">X</span></li>
+				</ul> <span m>服务1</span><span del title="删除">X</span>
+			</li>
+			<li class="s" atid='0230990239'>
+				<ul>
+					<li class="op"><span add>A</span></li>
+					<li class="i"><span m>服务1.1</span><span up title="上移">&#8593;</span><span
+						down title="下移">&#8595;</span><span del title="删除">X</span></li>
+					<li class="i"><span m>服务1.3</span><span up title="上移">&#8593;</span><span
+						down title="下移">&#8595;</span><span del title="删除">X</span></li>
+					<li class="i"><span m>服务1.4</span><span up title="上移">&#8593;</span><span
+						down title="下移">&#8595;</span><span del title="删除">X</span></li>
+				</ul> <span m class="bind">服务1</span><span del title="删除">X</span>
+			</li>
+			<li class="s">
+				<ul>
+					<li class="op"><span add>A</span></li>
+					<li class="i"><span m>服务1.1</span><span up title="上移">&#8593;</span><span
+						down title="下移">&#8595;</span><span del title="删除">X</span></li>
+					<li class="i"><span m class="bind">服务1.2</span><span up
+						title="上移">&#8593;</span><span down title="下移">&#8595;</span><span
+						del title="删除">X</span></li>
+					<li class="i"><span m>服务1.3</span><span up title="上移">&#8593;</span><span
+						down title="下移">&#8595;</span><span del title="删除">X</span></li>
+					<li class="i"><span m>服务1.4</span><span up title="上移">&#8593;</span><span
+						down title="下移">&#8595;</span><span del title="删除">X</span></li>
+				</ul> <span m>服务1</span><span del title="删除">X</span>
+			</li>
+			<li class="op"><span title="添加" add>A</span></li>
+		</ul>
+		<div class="spliter">
+			<div up title="在服务台的服务列表菜单中展示，一般用于流程性服务，以处理用户的流程需求">服务菜单</div>
+			<div down title="在服务台的发送按钮之下的工具中出现，一般是要求用户填写表单，并通过发送按钮提交表单">服务工具</div>
+		</div>
+		<ul class="message" title="信息推送服务">
+			<li class="t"><img src="img/3.jpg"><br /> <span m>发布新闻</span><span
+				del title="删除">X</span></li>
+			<li class="t"><img src="img/3.jpg"><br /> <span m
+				class="bind">发布新闻</span><span del title="删除">X</span></li>
+			<li class="op"><span add>A</span></li>
+		</ul>
+	</div>
+	<div class="scsServiceInfo"></div>
+	<div class="install">
+		<div class="op">
+			<span show>管理我的芯片</span>
+		</div>
+		<ul class="items">
+			<li class="i"><img src="img/5.jpg">
+				<ul class="face">
+					<li a><span label>会员注册</span></li>
+					<li s><span label>状态:</span><span status>未运行</span><span label>市场中位置:</span><span
+						inmarket>/ddd/ee/fff/app.jar</span></li>
+				</ul>
+				<div class="ci">
+					<ul class="op">
+						<li status="run">运行</li>
+						<li status="stop">停止</li>
+						<li status="uninstall">卸载</li>
+					</ul>
+					<ul class="view">
+						<li product title="该字段是关键字段，用于识别产品"><span label>产品:</span><span
+							value>ddd</span></li>
+						<li version><span label>版本:</span><span value>ddd</span></li>
+						<li guid><span label>标识:</span><span value>ddd</span></li>
+						<li company><span label>公司:</span><span value>ddd</span></li>
+						<li ctime><span label>上架日期:</span><span value>ddd</span></li>
+						<li contains><span label>包含服务:</span> <span get>查看</span>
+							<ul title="芯片中包含的服务">
+								<li><span label>默认服务</span>
+									<ul cinfo>
+										<li type><span label>类型：</span><span value>tool</span></li>
+										<li usage><span label>用法：</span><span value></span></li>
+									</ul></li>
+								<li><span label>服务1</span></li>
+								<li><span label>服务1</span></li>
+								<li><span label>服务1</span></li>
+							</ul></li>
+						<li copyright><span label>版权:</span><span value>ddd</span></li>
+						<li desc><span label>说明:</span><span value>ddd</span></li>
+					</ul>
+				</div></li>
+			<li class="i"><img src="img/5.jpg">
+				<ul class="face">
+					<li a><span label>会员注册</span></li>
+					<li s><span label>市场中位置:</span><span inmarket>/ddd/ee/fff/app.jar</span></li>
+				</ul>
+				<div class="ci">
+					<ul class="op">
+						<li status="run">运行</li>
+						<li status="stop">停止</li>
+						<li status="uninstall">卸载</li>
+					</ul>
+					<ul class="view">
+						<li product title="该字段是关键字段，用于识别产品"><span label>产品:</span><span
+							value>ddd</span></li>
+						<li version><span label>版本:</span><span value>ddd</span></li>
+						<li guid><span label>标识:</span><span value>ddd</span></li>
+						<li company><span label>公司:</span><span value>ddd</span></li>
+						<li size><span label>大小:</span><span value>ddd</span><span
+							unit>K</span></li>
+						<li ctime><span label>更新日期:</span><span value>ddd</span></li>
+						<li history><span label>历史版本数:</span><span value>ddd</span></li>
+						<li copyright><span label>版权:</span><span value>ddd</span></li>
+						<li desc><span label>说明:</span><span value>ddd</span></li>
+					</ul>
+				</div></li>
+		</ul>
+	</div>
+</div>

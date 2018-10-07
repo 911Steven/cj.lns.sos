@@ -1,0 +1,1 @@
+{"sosSite":{"protocol":"http","port":"8085","props":{"bossThreadCount":"1","heartbeatInterval":"1000000","workThreadCount":"4"}},"tcpSite":{"protocol":"rio-tcp","port":"8086","props":{"bossThreadCount":"1","heartbeatInterval":"-1","workThreadCount":"10"}}}

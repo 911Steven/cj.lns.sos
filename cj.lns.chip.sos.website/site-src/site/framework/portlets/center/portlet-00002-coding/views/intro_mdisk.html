@@ -1,0 +1,350 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<title>云网</title>
+<link href="../../../../css/global.css" type="text/css" rel="stylesheet">
+<link href="../../../../css/pages/portal-viewer.css" type="text/css"
+	rel="stylesheet">
+<script type="text/javascript"
+	src="../../../../js/jquery/jquery-2.1.4.js"></script>
+<style type="text/css">
+#content_inner>.body>pre>img {
+	width: 100%;
+}
+
+.grid-s5m0e5 {
+	height: 11800px;
+}
+#content_inner > .body > pre>.result{
+	font-size: 10px;
+	margin-left: 60px;
+}
+#content_inner > .body > pre>.style1{
+font-size: 10px;
+	margin-left: 60px;
+}
+</style>
+</head>
+<body>
+	<div class="topbar">
+		<ul class="left">
+			<li class="about"><span label>关于</span></li>
+		</ul>
+		<ul class="right">
+			<li class="mine"><a target="_blank"
+				href="../../../../public/register2.html">注册</a></li>
+			<li class="login"><span label>登录</span></li>
+		</ul>
+	</div>
+	<div class="banner">
+		<div class="b-left"></div>
+		<div class="b-center">
+			<div class="logo">
+				<img src="../../../../img/pages/logo.png">
+				<p>云网</p>
+			</div>
+		</div>
+		<div class="b-right"></div>
+	</div>
+	<div class="grid-s5m0e5">
+		<div class="col-main">
+			<div class="main-wrap">
+				<div id="content">
+					<div id="content_inner">
+						<div class="title">
+							<p>mdisk 多维云盘命令行工具</p>
+						</div>
+						<div class="subtitle">
+							<ul>
+								<li><span label>作者：</span><span value
+									style="padding-right: 10px;">cj (赵向彬)</span><span label>发布日期：</span><span
+									value>2016年8月19日 18:14</span></li>
+							</ul>
+						</div>
+						<div class="body">
+							<div style="font-family: sans-serif; margin-bottom: 10px;">
+								<span><b>关键词：</b></span>mongodb 多维 cube 立方体 网盘 云盘 用户配额 文件系统 结构化数据 非结构化数据
+							</div>
+							<div style="font-family: sans-serif; margin-bottom: 10px;">
+								<span><b>摘要：</b></span>mdisk是多维网盘的客户端命令行工具，只要你安装好了mongodb，将命令行工具连接上它就可以开始使用网盘了。
+								<br><br><a href="downloads/disk.zip" style="color: blue;text-decoration: underline;">下载mdisk</a>，如欲使用最新版，到开发平台下载
+								</div>
+							<div style="font-family: sans-serif; margin-bottom: 10px;">
+								<span><b>正文：</b></span>
+							</div>
+							<pre>
+一、mdisk工具目录：
+<p class='style1'>CJdeMacBook-Pro:disk carocean$ ls -l
+total 16440
+-rw-r--r--  1 carocean  staff  1586760  8  8 18:30 cj.lns.chip.sos.disk-1.0.jar
+-rw-r--r--  1 carocean  staff     4638  8  9 15:12 cj.lns.chip.sos.disk.start-1.0.jar
+drwxr-xr-x  4 carocean  staff      136  1 14  2016 conf
+-rw-r--r--  1 carocean  staff  6759850  8  9 15:12 disk-1.0.jar
+-rwxr-xr-x  1 carocean  staff       91  2  1  2016 disk.bat
+-rwxr-xr-x@ 1 carocean  staff      127  2  1  2016 disk.sh
+-rw-r--r--  1 carocean  staff    48732  2  5  2016 hs_err_pid26877.log
+drwxr-xr-x  3 carocean  staff      102  1 16  2016 logs</p>							
+二、与mongodb的连接
+<p class='style1'>CJdeMacBook-Pro:disk carocean$ sh disk.sh -m
+
+usage: disk
+ -d,--debug <arg>   调试命令行程序集时使用，需指定以下jar包所在目录
+                    cj.lns.chip.sos.disk-1.0
+ -h,--host <arg>    必须指定远程地址，格式：-h ip:port，port可以省去
+ -l,--log           充许网络日志输出到控制台
+ -m,--man           帮助
+ -p,--pwd <arg>     密码，如果密码前有!符，请将密码前后加引号'
+ -u,--user <arg>    用户名</p>
+ 连接
+ <p class='style1'>sh disk.sh -h 192.168.201.210 -u caroceanjofers -p 'xxxxxx'
+
+——————————————使用说明——————————————
+       如不记得命令，可用man命令查询
+__________________________________
+
+192.168.201.210:27017 >
+查看网盘：
+192.168.201.210:27017 >ls
+  $lns.disk
+  $data.disk
+  sosadmin
+  user1
+  user2
+  user3
+  user4
+ </p>
+ 三、打开一个网盘
+ <p class='style1'>192.168.201.210:27017 >man
+usf 统一存储系统指令集
+usage: ls
+列出网盘
+
+----------------
+usage: create
+创建网盘。例：
+create cctv -alias 中央电视台网盘 -u carocean -p 11
+ -alias,--alias <arg>   网盘别名，中文名
+ -fbc,--fbcount <arg>
+                        文件系统块集合产生以记录数为阀值，默认为4万条产生新的块集合，-1表示永远使用一个块。此值可在sys
+                        tem_fs_assigner集合中修改
+ -fbs,--fbsize <arg>    文件系统
+                        块集合产生以集合数据大小为阀值，默认8G，且与参数-fbc均达到阀值才生成新块集合。此值可在syst
+                        em_fs_assigner集合中修改
+ -p,--password <arg>    密码
+ -u,--user <arg>        用户名
+----------------
+usage: open
+打开网盘
+ -p,--password <arg>   密码
+ -u,--user <arg>       用户名
+----------------
+ </p>
+ 	打开$data.disk网盘：
+ 	<p class='style1'>192.168.201.210:27017 >open $data.disk -u carocean -p xxxx
+  网盘：$data.disk
+        网盘别名： 公共数据磁盘
+        网盘大小： 1.92167936E8
+        网盘已用： 2.49105992E8
+        存储空间数：      2
+  $data.disk >
+  
+ <strong> 查看存储空间：</strong>
+  $data.disk >ls
+共有2个存储空间
+    home
+    faces
+    
+   <strong>打开home</strong>
+   $data.disk >open
+    存储空间：home
+        标识：       54c1334984664baaa631b212b4859452
+        别名：       公共数据磁盘 的主存储空间
+        空间容量： 不限
+        空间占用： 1.9003392E8
+        数据大小： 2.46992784E8
+        用途：       -
+    公共数据磁盘 的主存储空间 >
+    
+    <strong>查看元组tuple</strong>
+    公共数据磁盘 的主存储空间 >ls
+    元组：
+        元组名       个数  大小  已用空间    索引占用：
+        sns.app 5       775     36864   36864
+        sos.servicews   12      2124    36864   36864
+        sns.chatGroup.users     18      2690    36864   36864
+        csc.computer    2       685     36864   36864
+        csc.market.relatives    30      23842   36864   36864
+        sns.chatGroup   9       2077    36864   36864
+        csc.market      2       979     36864   36864
+        sns.chatroom    3       480     36864   36864
+        sns.chatroom.users      4       546     36864   36864
+        csc.host        1       508     36864   16384
+        
+     <strong>立方体指令集，查询和管理元组</strong>   
+         公共数据磁盘 的主存储空间 >立方体指令集
+usage: tuple
+文档等结构化数据指令。例：tuple tupleName ls -limit 3
+tuple tupleName ls 列出元组数据.可选参数：-skip n -limit n -where
+tuple tupleName cube
+按坐标系查询或统计元组。格式：{'date':'/2015/3/12','type':'html'}.必选参数：-where 可选-r
+tuple tupleName coord 列出元组中的坐标并按坐标列出元组。可选参数：-dim -off -r
+tuple tupleName save 保存元组数据。必选参数：-e 可选：-set
+tuple tupleName update 更新元组数据.必选参数：-id -e 可选：-set
+tuple tupleName drop 删除元组及其所有数据
+tuple tupleName del 删除元组数据，必选参数：-id，可选-where
+ -dim,--dimension <arg>   限制返回行数
+ -e,--editor              开启编辑框接受输入
+ -id,--id <arg>           元组的标识，一般用于删除或更新
+ -limit,--limit <arg>     限制返回行数
+ -off,--off               coord指令：关闭级别的显示及不显示元组数据只统计
+ -r,--recurse             此参数的每一次将统计其下各级的文件数，并返回每级总数，无此参数则每级仅统计本级直接包含的文件。
+ -set,--setCoordinate     是否设置坐标
+ -skip,--skip <arg>       跳过的记录数
+ -where,--where           输入查询条件，bson格式，必须以{}
+----------------
+usage: coord
+坐标定义.
+coord ls 查看坐标，可选参数-n
+coord export -f 导出坐标到本地文件
+coord import -f 从本地文件导入坐标
+ -f,--file <arg>   文件路径
+ -n,--name <arg>   维度名，关联ls
+ -off,--off        关闭级别的显示，关联ls
+----------------
+usage: mr
+按aggregate语法进行统计运算。例：mr inbox 然后在输入框中输入管道。
+注意：在统计元组字段时，必须在字段前加:tuple关键字，否则可能得不到结果
+
+----------------
+usage: ls
+用于查看存储空间中的元组列表。例：ls
+
+----------------
+usage: dim
+维护维度定义.
+dim ls 查看维度，可选参数-n
+dim export -f 导出维度到本地文件
+dim import -f 从本地文件导入维度 -e 从编辑模式导入
+ -e,--e            开始编辑输入模式
+ -f,--file <arg>   文件路径
+ -n,--name <arg>   维度名，关联ls
+ -off,--off        关闭级别的显示，关联ls
+----------------
+usage: cjql
+按cjql语法自由查询。例：select {'tuple.name':'1'}.limit(10) from {}
+ -c,--count   要求输入count语句
+----------------
+usage: fs
+文件系统。无参数表示进入，参数用于多维度查看和统计文件
+ -cd,--cdate      按创建日期查看文件系统
+ -ch,--chunkCol   按块集合查看文件系统
+ -ft,--fileType   按文件类型坐标查看文件系统
+ -l,--list        列出文件系统的统计信息
+ -n,--none        不显示文件数，只显示统计。
+ -r,--recurse     此参数的每一次将统计其下各级的文件数，并返回每级总数，无此参数则每级仅统计本级直接包含的文件。
+ -tp,--tuple
+                  对文件进行多维元维查询，支持多个坐标查询，格式:{'createDate':'2015/10/23','file
+                  Type':'doc','dir':'/我的文件/电影'}
+----------------
+     
+     
+     <strong>进入文件系统</strong>
+         公共数据磁盘 的主存储空间 >fs
+        fs >ls
+文件夹 根文件夹 --------------------- 目录名：/ --------------------
+
+目录:
+chatGroups                      wallpaper                       dockers                 
+market                  market-icons                    
+        fs >ls -l
+文件夹 根文件夹 --------------------- 目录名：/ --------------------
+            类型      文件大小|目录文件数    创建日期    名称
+            -D          0               2016-04-11 20:25:45     chatGroups
+            -D          76              2016-06-23 01:16:19     wallpaper
+            -D          0               2016-07-10 22:24:43     dockers
+            -D          0               2016-07-12 17:12:43     market
+            -D     
+            
+      <strong>进入dockers目录</strong>  
+             fs > cd dockers
+        fs >ls 
+文件夹 docker的images依赖程序 --------------------- 目录名：dockers --------------------
+
+目录:
+ubuntu-neuron                   
+        fs >pwd
+    /dockers/
+      
+     <strong>进入本地文件系统，想下载就下载，想上传就上传</strong> 
+             fs >local
+        /dockers/ >local >pwd
+    /Users/carocean
+        /dockers/ >local >man
+        /dockers/ >local >本地文件系统指令集
+usage: cd
+进入目录
+
+----------------
+usage: download
+下载文件。将远程当前目录中的文件下载到本地当前目录中。
+例：download -f xxx/xxx/fff.file  download -a
+ -a,--all          下载当前远程目录中的所有目录和文件及其下所有
+ -f,--file <arg>   下载指定文件
+----------------
+usage: upload
+上传文件
+ -d,--dir <arg>        上传指定目录及其下所有文件，如果上传当前目录，用.号
+ -ex,--exclude <arg>
+                       结合-d参数：排除目录或名字。按目录名和文件名进行排除，支持全名匹配，正则表达式，建议：\.git|\
+                       .gradle|.*\.class，转义输入一条扛即可
+ -f,--file <arg>       上传指定文件
+----------------
+usage: ls
+查看本地文件系统。
+ -l,--list   显示明细
+----------------
+usage: rm
+删除本地文件和目录。例：rm 目录  rm 文件
+
+----------------
+usage: pwd
+显示当前路径
+
+----------------
+usage: mkdir
+创建本地目录。例：mkdir 路径
+
+----------------
+     
+ 	</p>
+							</pre>
+						</div>
+						<div class="bottom"></div>
+					</div>
+				</div>
+				<div id="side">
+					<div class="fill"></div>
+					<div class="portlet">
+						<div class="title">
+							<span label>相关</span>
+						</div>
+						<ul class="items">
+				<li><a href="../views/ecm_hello.html" plugin target="_blank">· 从ecm 工具包的 helloworld 入门</a></li>
+		<li><a href="../views/net_hello.html" plugin target="_blank">· 从net 工具包的 helloworld 入门</a></li>
+		<li><a href="../views/intro_ecm.html" plugin target="_blank">· 介绍： ecm 面向连接电子模型开发工具包</a></li>
+		<li><a href="../views/intro_net.html" plugin target="_blank">· 介绍： net 通讯开发工具包</a></li>
+		<li><a href="../views/intro_plus.html" plugin target="_blank">· 介绍： plus 模块化、插件化、服务化增强开发工具包</a></li>
+		<li><a href="../views/intro_netdisk.html" plugin target="_blank">· 介绍： netdisk 多维云盘开发工具包</a></li>
+		<li><a href="../views/intro_neuron.html" plugin target="_blank">· 介绍： neuron 分布式连接容器</a></li>
+		<li><a href="../views/intro_netsite.html" plugin target="_blank">· 介绍： netsite 热插拔应用容器</a></li>
+		<li><a href="../views/intro_cjnet.html" plugin target="_blank">· 介绍： cjnet 调试、测试命令行工具</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-sub"></div>
+		<div class="col-extra"></div>
+	</div>
+</body>
+</html>

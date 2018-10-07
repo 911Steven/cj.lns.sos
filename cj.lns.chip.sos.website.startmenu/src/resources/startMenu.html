@@ -1,0 +1,74 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="css/startmenu.css" plugin>
+<script type="text/javascript" src="js/startmenu.js" plugin></script>
+</head>
+<body>
+	<ul class="sm-box">
+		<li class="third">
+			<div class="left box-shadow" cjevent="show(back)">
+				<a style="" href="#">返回</a>
+			</div>
+			<div class="right" cjevent="click(island)">
+				<div id="cyberport-popup" class="popup-panel">loadding...</div>
+				<a class="circle-box   box-shadow" href="#" cmd> <img
+					class="circle-inner" src="/img/head.jpg" plugin /> <span code></span>
+				</a>
+
+			</div>
+			<div class="msg-tips" cjevent="refresh(current)">
+				<a href="#">8</a>
+			</div>
+		</li>
+		<li class="first" cjevent="openSwsPanel(currentSws)"><a href="#" cmd>
+				<img src="/img/iconfont-diannao.svg" plugin />
+				<div>
+					<label class="box-shadow">我的视窗</label>
+				</div>
+		</a>
+			<div id="sws-popup" class="popup-panel">loadding...</div></li>
+		<li class="second"></li>
+
+		<li class="fourth ">
+			<div class="left box-shadow">
+				<a style="" href="#" cjevent="refresh(current)">应用1</a>
+			</div>
+			<div class="right  box-shadow">
+				<ul class="app-box" id="tools">
+					<li cjevent="openShortcutPanel(publish)"><a href="#" cmd
+						class="app-icon"> <img src="/img/iconfont-jiahao.svg" plugin />
+							<div>
+								<label>发布</label>
+							</div>
+					</a>
+						<div class="popup-panel" id="publish-popup">loading...</div></li>
+					<li cjevent="openShortcutPanel(application)"><a href="#" cmd
+						class="app-icon"> <img src="/img/iconfont-yingyong.svg" plugin />
+							<div>
+								<label>应用</label>
+							</div>
+					</a>
+						<div class="popup-panel" id="application-popup">loading...</div></li>
+					<li cjevent="openShortcutPanel(contact)"><a href="#" cmd
+						class="app-icon"> <img src="/img/iconfont-dingdanxinxi.svg"
+							plugin />
+							<div>
+								<label>联系人</label>
+							</div>
+					</a>
+						<div class="popup-panel" id="contact-popup">loadding...</div></li>
+					<li cjevent="logout(out)"><a href="#" class="app-icon" cmd> <img
+							src="/img/iconfont-weibo.svg" plugin />
+							<div>
+								<label>退出</label>
+							</div>
+					</a></li>
+					<li>
+						<div style="height: 10px;"></div>
+					</li>
+				</ul>
+			</div>
+		</li>
+	</ul>
+</body>
+</html>

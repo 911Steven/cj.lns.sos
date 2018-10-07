@@ -1,0 +1,656 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<title>云连网</title>
+<link href="../../../../css/global.css" type="text/css" rel="stylesheet">
+<link href="../../../../css/pages/portal-viewer.css" type="text/css"
+	rel="stylesheet">
+<script type="text/javascript"
+	src="../../../../js/jquery/jquery-2.1.4.js"></script>
+<style type="text/css">
+#content_inner>.body>pre>img {
+	width: 100%;
+}
+
+.grid-s5m0e5 {
+	height: 20200px;
+}
+pre xmp{
+	font-size: 10px;
+	white-space: pre-wrap;
+    word-wrap: break-word;
+}
+</style>
+</head>
+<body>
+	<div class="topbar">
+		<ul class="left">
+			<li class="about"><span label>关于</span></li>
+		</ul>
+		<ul class="right">
+			<li class="mine"><a target="_blank"
+				href="../../../../public/register2.html">注册</a></li>
+			<li class="login"><span label>登录</span></li>
+		</ul>
+	</div>
+	<div class="banner">
+		<div class="b-left"></div>
+		<div class="b-center">
+			<div class="logo">
+				<img src="../../../../img/pages/logo.png">
+				<p>云网</p>
+			</div>
+		</div>
+		<div class="b-right"></div>
+	</div>
+	<div class="grid-s5m0e5">
+		<div class="col-main">
+			<div class="main-wrap">
+				<div id="content">
+					<div id="content_inner">
+						<div class="title">
+							<p>ecm开发手册</p>
+						</div>
+						<div class="subtitle">
+							<ul>
+								<li><span label>作者：</span><span value
+									style="padding-right: 10px;">cj (赵向彬)</span><span label>发布日期：</span><span
+									value>2016年8月24日 15:24</span></li>
+							</ul>
+						</div>
+						<div class="body">
+							<div style="font-family: sans-serif; margin-bottom: 10px;">
+								<span><b>关键词：</b></span>面向连接编程 面向模块编程 面向协议编程 编程思想 结构化 面向对象 <br>
+								java j2ee spring dotnet osgi netty tomcat jetty nodejs jsp php
+								aspx zookeeper docker
+							</div>
+							<div style="font-family: sans-serif; margin-bottom: 10px;">
+								<span><b>摘要：</b></span>ecm的开发，包括例程，学习
+							</div>
+							<div style="font-family: sans-serif; margin-bottom: 10px;">
+								<span><b>正文：</b></span>
+							</div>
+							<pre>
+本手册例程请在开发平台“视窗空间”找示例工程8月24日发布的版本下载
+在工程中的示例项目：
+入口：
+your.crop.examples.main项目中的TestEcmIOC类
+your.crop.examples.chip1 芯片1 
+your.crop.examples.chip2 芯片2
+1.程序集的用法
+装载、运行、停止、卸载，如下：
+<xmp>
+TestEcmIOC.java
+public static void main(String... strings) {
+		String cf1 = "/Users/carocean/studio/examples/build/your.crop.examples.chip1/your.crop.examples.chip1-1.0.jar";
+		String cf2 = "/Users/carocean/studio/examples/build/your.crop.examples.chip2/your.crop.examples.chip2-1.0.jar";
+		Assembly a1 = Assembly.loadAssembly(cf1);//装载一个程序集
+		Assembly a2 = Assembly.loadAssembly(cf2);
+		a2.dependency(a1);//由于a2程序集中的deptment依类于a1程序集的IDeptmemt接口，故而a2.要依赖于a1
+		a2.start();//启动a2（依赖时a1自启）
+		Object obj = a2.workbin().part("chip2main");//通过零件箱获取程序集a2中的开放服务
+		IAdaptable a = (IAdaptable) obj;//开放服务均是适配器类型，它可以转换任意类型
+		IActuator act = a.getAdapter(IActuator.class);//使用执行器执行弱类型调用方式
+		act.exeCommand("testMyXmlService");
+		act.exeCommand("testMyAnnoService");
+		act.exeCommand("refMethodInXmlService");
+		act.exeCommand("refXmlServiceByGridge");
+		act.exeCommand("testMyJsonService");
+		
+		List<Class<?>> mys=a2.workbin().exotericalType("my");//通过外部类型分类搜索外部的类型
+		for(Class<?> c:mys){
+			ServiceCollection<?> col=a2.workbin().part(c);//根据类型查找外部服务
+			System.out.println("-----这是按外部指定分类搜到的服务数："+col.size());
+		}
+		a1.unload();//👟载
+		a2.unload();
+	}
+</xmp>
+2.程序集的上下文说明
+程序集的上下文是json文件，为了方便说明直接在上面写了
+<xmp>
+{
+	entryPoint : {//这是入口点，侦听程序集启动和停止事件
+		activators : [{//声明一个活动器，活动器有两种声明方式，一种是在此指定活动器类，一种是将活动器声明为cj服务，但这种方式无传参
+				name : '测试活动器',
+				class : 'your.crop.examples.chip1.Chip1Activator',
+				parameters:{name:'forTest'}
+			}]
+	},
+	assemblyInfo : {//程序集的定义芯片
+		assemblyTitle : "chip2",//程序集名，比较重要
+		assemblyResource:"/",//程序集资源，在使用web应用时有它的规范
+		assemblyDescription : "驿站邻居芯片",
+		assemblyConfiguration : "",//配置的一些说明，不重要
+		assemblyCompany : "",//公司
+		assemblyProduct : "cj.lns.chip2",//一般情况指定下产品也可以
+		assemblyCopyright : "Copyright   2011",//授权
+		assemblyTrademark : "",//这个我也不着是啥，想用就用
+		assemblyCulture : "",//本地化说明，空着也行
+		guid : "A87112A0-7D71-48C5-9584-689FC5E1B783",//必须指定，一般是guid，但也可指定名称，在树于插件体系中，要求唯一性
+		assemblyVersion : "1.0.0.0",
+		assemblyFileVersion : "1.0.0.0"
+	},
+	global:{
+		default:"zh_CN",//程序集的国际化，在程序集的属性目录中会根据它查找相应的语言包，由于ecm在三年前就开发完毕了，隔了这么久，我不看代码也不知道咋用，之后再补充吧
+		desc:"如果系统环境要求各芯片采用的语言本芯片没有，则芯片可采用默认语言"
+		},
+	serviceContainer : {
+		name : "netContainer",//容器名，必须
+		switchFilter:"off",//用于在jss中拦截java服务，由于要匹配服务请求id，因此损耗性能，switchfilter=on为启用，switchfilter=off为关闭
+		jss:[{//声明一个jss模块
+			module:"test",//模块名很重要，它是索引jss服务的关键，如：$.cj.jss.test.xxxJssService
+			package:"your.crop.examples.chip2.jss",//jss服务所在位置，
+			runtimeHome:"",//jss 配置中的runtimeHome属性：它用于指定jss运行时的根目录，不指定则采用系统默认，在：/work/modulename下
+			unzip:"true",//是否将jss服务从程序集包中解压，要配合searchMode使用
+			searchMode:"link",//jss.searchMode=link,inner,both,分别代表资源：链接外部资源、jar内、两者都是，默认是二者都是，当二者都是时，会先找外部，再找包内，如果出现重名，则包外有效包内无效。
+			extName:".jss.js"//指定jss服务文件的扩展名，一般建议.jss.js
+		}],
+		scans : [{//定义了一个cj服务java服务的扫描路径
+					package : "your.crop.examples.chip2",
+					extName : ".class|.json|.xml",
+					exoterical:"true"//是否开放此包，此包内的服务及类型对程序集外可见，见声明外部类型和外部服务的三种方式
+				}]
+
+	}
+}
+</xmp>
+3.cj服务的开发
+	cj服务是对ecm服务的总称，有两种，一种是java服务，一种是jss服务
+	－  java服务功能：属性注入、方法注入、方面注入
+	－ java服务的声明方式：java注解声明法、json声明法、xml注声明法、以上几种的混合声明法
+	－ jss服务的声明
+3.1 外部类型
+	即在程序集外可见的类型，如果其它程序集需要扩展该程序集的此类型，就需要开放类型，开放类型有三种方式：
+	1.在assembly.json中将包声明为开放
+	2.使用package-info.java将包声明为开放，如下：
+<xmp>
+your.crop.examples.chip1/src/your/crop/examples/chip1/external/IDeptmemt.java
+//定义导出包，该包路径下的public类型可被依赖它的程序集访问
+/*
+ * 开放类型的三种方法：
+ * 1.在Assembly.json中声明开放的包
+ * 2.通过package-info.java文件声明开放的包
+ * 3.指定某个类型开放，即在类名前加@CjExotericalType,当然使用xml,json来注解是一样的
+ */
+@CjExotericalType
+package your.crop.examples.chip1.external;
+import cj.studio.ecm.annotation.CjExotericalType;
+</xmp>
+	3.@CjExotericalType注解方式将一个类型声明为开放
+3.2 java服务
+	服务声明、属性、方法三个部分
+	3.2.1 服务声明：
+	标识：服务的唯一标识，在xml为id，在annotation为name，在json中serviceId
+	区间：即：scope有：singleon，multiton，runtime三种区间,其中运行时服务对于java实现的服务来说是在运行时放入容器的服务，如果直接声明为runtime的，与多例一样，对于jss服务，运行时是指请求一次装载一次服务的jss.js文件，即修改随时有效
+	类路径：class="" //指明当前服务的类路径，如果不指将在同级目录下按同名（不包括扩展名）来搜类
+	构造：constructor="newXmlService"//在服务新建时指定构造函数
+	是否外部服务：isExoteric=true，默认为false，即该服务在程序集外部是否可见。
+	桥：桥用于服务方法的拦截，是日志、事务等必用的功能。声明如下：
+	1.annotation方式：
+<xmp>
+your.crop.examples.chip2/src/your/crop/examples/chip2/anno/MyAnnoService.java
+	@CjBridge(aspects = "myAspect1+$.cj.jss.test.JssMyAspect")//方面可以加减，即可是java服务声明的方面也可是jss服务声明的方面
+	@CjService(name = "myAnnoService", constructor = "newMyAnnotation")
+	public class MyAnnoService implements IServiceAfter, IAnnoService {
+</xmp>
+	2.xml方式：
+	<xmp>
+your.crop.examples.chip2/src/your/crop/examples/chip2/xml/MyXmlService.xml
+	isValid默认是有效
+	<bridge aspects="myAspect1+myAspect3+myAspect2-myAspect3" isValid="true">
+	</bridge>
+</xmp>
+	3.json方式：
+	<xmp>
+your.crop.examples.chip2/src/your/crop/examples/chip2/json/MyJsonBridge.json
+	"bridge":{
+        "aspects":"myAspect1",
+        "isValid":"true"
+    },
+	</xmp>
+	3.2.2 属性声明：
+	属性的注入目的有，一是注入值，一是注入服务，一是反向注入，一是注入服务站点
+	1.引用方式：通过服务标识引用、通过服务类型引用、通过调用服务方法引用
+	以下请参见示例工程项目：your.crop.examples.chip2
+	＊ annotation方式：
+<xmp>
+@CjServiceRef(refByName = "myAnnoService", useBridge = UseBridgeMode.forbidden)
+refByName:通过服务标识，对于jss的标识是：$.cj.jss.模块名.jss服务文件相对于jss模块根的位置
+refByType:通过搜索服务类型引用。如：
+	@CjServiceRef(refByType = AnnoObject.class)
+	ServiceCollection<AnnoObject> objs;
+	
+	@CjServiceRef(refByType = AnnoObject.class)
+	AnnoObject obj;
+refByMethod：通过调用方法的返回结果，如下，表示调用服务myXmlService的方法newXmlService：
+	@CjServiceRef(refByName = "myXmlService", refByMethod = "newXmlService")
+	IXmlService myXmlService;
+useBridge：通过桥接引用，桥接是面向方面编程的实现，当通过本属性执行桥服务时，将经过方面的链式调用
+@CjJoinpoint(aspects="myAspect3")//在调用服务myAnnoService时又指定了私有方面myAspect3，私有方面只对本属性的调用有效，不会影响桥服务的方面配置
+	@CjServiceRef(refByName = "myAnnoService",useBridge=UseBridgeMode.auto)
+	static IAnnoService the2;
+</xmp>
+	＊ xml方式：
+<xmp>
+	<property name="name">
+		<value>fuck you</value>
+	</property>
+	<property name="annoService">
+		<ref byName='xxxService'></ref>
+	</property>
+	<property name="map">
+		<!--值描述器：可以为属性注入JAVA基本值，也可以注入map,list等数据-->
+		<!--
+		系统固定的值注入器有：
+		cj.basic:Java基本值注入
+		cj.propfile：将Assembly.properties文件中的属性注入
+		cj.jsonList:将json格式的数组注入，要注入的属性必须是集合类型,在其元素中如果要引用服务，请使用$.号＋服务名来引用服务
+		cj.jsonMap：要注入的属性必须是map类型,这些为系统提供的默认格式化器，在其元素中如果要引用服务，请使用$.号＋服务名来引用服务
+		也可自定义：从ValueParser派生，并声明为cj服务，则服务名即为parser名
+		-->
+		<value parser="cj.jsonMap">{"age1":"333","myObject":"$.myAnnoService"}</value>
+	</property>
+</xmp>
+	<property name="site">
+		<!-- 注入serviceSite -->
+		<serviceSite></serviceSite>
+	</property>
+	＊ json方式：
+	<xmp>
+{
+			"name": "deptment",
+			"refByName": "deptment"
+		},
+		{
+			"name": "byBridge",
+			"refByName": "myJsonBridge",
+			"refByBridge": {
+				"useBridge": "auto",
+				"joinpoint": {
+					"aspects": "+myAspect3"
+				}
+			},
+			"invertInjection":"true"
+		},
+		{
+			"name":"list",
+			"parser":"cj.jsonList",
+			"value":["333","$.myAnnoService"]
+		},
+		{
+			"name":"map",
+			"parser":"cj.jsonMap",
+			"value":{"age1":"333","myObject":"$.myAnnoService"}
+		},
+		{
+			"name":"iocByMyValueParser",
+			"parser":"my.objectParser",
+			"value":"new your.crop.examples.chip2.xml.ShowCreateObjectByValueParser();"
+		},
+		{
+			"name":"site",
+			"serviceSite":"true"
+		},{
+			"name":"byMethod2",
+			"refByMethod":"newService2"
+		},{
+			"name":"byMethod1",
+			"refByMethod":"newService"
+		}
+</xmp>
+	2.值注入：
+	使用parser
+	json:
+	{
+			"name":"map",
+			"parser":"cj.jsonMap",
+			"value":{"age1":"333","myObject":"$.myAnnoService"}
+		}
+	xml:
+	<property name="name">
+		<!--
+		如果采用value元素，则在property下配的其它元素将失效
+		cj.basic:Java基本值注入
+		-->
+		<value parser="cj.basic">fuck you</value>
+	</property>
+	annotation:
+	@CjPropertyValue(parser = "cj.jsonList", value = "['333','$.annoObject']")
+	private List<Object> List;
+	3.服务站点注入：
+<xmp>
+annotation:
+	@CjServiceSite
+	IServiceSite site;
+xml:
+	<property name="site">
+		<!-- 注入serviceSite -->
+		<serviceSite></serviceSite>
+	</property>
+json:
+		{
+			"name":"site",
+			"serviceSite":"true"
+		}	
+</xmp>
+	4.反向注入：
+	将当前服务注入到myJsonBridge中，在myJsonBridge中必须实现IServiceSetter接口
+	{
+			"name": "byBridge",
+			"refByName": "myJsonBridge"
+			"invertInjection":"true"
+		}
+	xml:
+<property name="invertInjectionAnnoService" >
+		<ref  byName="invertInjectionAnnoService"></ref>
+		<invertInjection isForce="true"></invertInjection>
+	</property>
+@CjServiceInvertInjection()
+	@CjServiceRef(refByType = AnnoObject.class)
+	AnnoObject obj;
+	annotation:
+
+	2.1.3 服务方法声明：
+	服务方法非常有用，比如静态工厂，根据注入参数生成对象为属性引用，构造与普通方法声明一样。
+	方法别名：即在服务容器中的索引名，索引规则是哪个服务的哪个方法
+	返回类型：说明服务的类型要按哪个类型来注入服务，默认为当前返回类型来注解，如果反回类型指定的不匹配，则不注入它。
+	绑定的方法名：一班默认是修饰的方法名，对于构造可以显式指定为：<init>
+	方法参数：参数即可注入值也可注入服务
+
+以下是示例：
+annotation:
+<xmp>
+@CjMethod(alias = "newMyAnnotationMMM")
+	public MyAnnoService(@CjMethodArg(value = "44") int mmm) {
+		this.mmm = mmm;
+	}
+
+	@CjMethod(alias = "newMyAnnotation")
+	public MyAnnoService(@CjMethodArg(value = "这是构造注入的TTTT的值") String tttt) {
+		contrustText = tttt;
+		System.out.println("这是构造输出：" + tttt);
+	}
+
+	@CjMethod(alias = "factory")
+	public static MyAnnoService get() {
+		return the;
+	}
+
+	@CjMethod(alias = "createMyService", returnDefinitionId = "annoObject")
+	public AnnoObject createMyService(@CjMethodArg(value = "ddfddfas") String text,
+			@CjMethodArg(ref = "annoObject") Object service) {
+		System.out.println("这是方法参数注入的对象：" + service);
+		System.out.println("这是方法参数注入的值：" + text);
+		AnnoObject o = new AnnoObject();
+		return o;
+	}
+
+	@CjMethod(alias = "createStaticMyService", returnDefinitionType = ".")
+	public static AnnoObject createStaticMyService(@CjMethodArg(value="tttt")String text) {
+		AnnoObject o = new AnnoObject();
+		return o;
+	}
+</xmp>
+
+xml:
+<xmp>
+<!-- 声明一个方法绑定到构造函数，声明的本服务的构造默认执行此方法 -->
+	<!-- 如果bind属性没有或bind=""则视为构造函数或指定bind为<init>，当然在xml中得转义，可以输入&lt;init&gt;即：<init> ，且返回节点失效	-->
+	<!-- 如果方法有参数则argTypes不能省，要准确匹配，否则找不到方法。没有参数则可省去 -->
+	<method  alias="newXmlService"  bind=""  argTypes="int">
+		<arg value="333" ></arg><!-- value,ref -->
+	</method>
+	<method  alias="newService2"  bind="newService" argTypes="java.lang.String,java.lang.String,your.crop.examples.chip2.json.MyJsonService"    >
+		<arg value="433aa4" ></arg><!-- value,ref -->
+		<arg value="test232" ></arg>
+		<arg ref="myJsonService"></arg>
+		<!-- result 如果没有属性，则按返回的实例的类型搜索服务定义注入。 如果有服务定义ID，则将返回对象作为该定义的实例注入.
+		如果为空，则尝试以方法返回类型在服务定义中搜索。二者选一或都指定或为空都行 ，如果服务不存在或非返回类型则方法仍被执行，但返回的实例不会被注入
+		建议指明返回的服务定义id，如果不指定将以返回类型在容器中查找，损耗性能。
+		-->
+		<result byDefinitionId=""  byDefinitionType=""></result>
+	</method>
+	<!-- 演示重载方法和空参数方法 -->
+	<method  alias="newService3"  bind="newService"  >
+	</method>
+</xmp>
+
+json:
+<xmp>
+{
+    		"alias":"newJsonService",
+    		"bind":"<init>",
+    		"argTypes":"int,your.crop.examples.chip2.json.IMyJsonBridge",
+    		"args":[
+                {
+                    "value":"6666"
+               	},
+                {
+                	"ref":"myJsonBridge"
+               	}
+           	]
+    	},{
+    		"alias":"newService",
+    		"bind":"newService",
+    		"argTypes":"",
+    		"args":[
+           	],
+           	"result":{
+           		"byDefinitionId":"",
+           		"byDefinitionType":""
+           	}
+    	},{
+    		"alias":"newService2",
+    		"bind":"newService",
+    		"argTypes":"java.lang.String",
+    		"args":[
+    			{"value":"kiviv"}
+           	],
+           	"result":{
+           		"byDefinitionId":"myJsonBridge",
+           		"byDefinitionType":""
+           	}
+    	},{
+    		"alias":"newService",
+    		"bind":"newService",
+    		"argTypes":"",
+    		"result":{
+           		"byDefinitionId":"",
+           		"byDefinitionType":""
+           	},
+    		"args":[
+           	]
+    	}
+</xmp>
+	2.1.4 桥服务声明：
+xml:
+<xmp>
+<bridge aspects="myAspect1+myAspect3+myAspect2-myAspect3" isValid="true">
+	</bridge>
+</xmp>
+json:
+<xmp>
+"description": "本服务用于XXX，作者",
+	"serviceId": "myJsonService",
+	"class": "",
+	"scope": "singleon",
+	"constructor":"newJsonService",
+	"bridge": {
+		"aspects": "",
+		"isValid": "false"
+	},
+</xmp>
+annotation:
+<xmp>
+@CjBridge(aspects = "myAspect1+$.cj.jss.test.JssMyAspect")
+@CjService(name = "myAnnoService", constructor = "newMyAnnotation")
+public class MyAnnoService{
+</xmp>
+3.2混合服务声明：
+	支持对一个java服务同时采用注解法、json法、xml法来声明，如果存在冲突，注解法优先级最低，而xml优先级最高
+见示例工程：your.crop.examples.chip2/src/your/crop/examples/chip2/mixuture/MixutureService.java
+
+3.2 jss服务
+jss服务类似于nodejs结构，它和java服务可以交互使用，也是开发web的利器之一（在服务器端可以像jquery语法那样解析dom，非编译，即改即用，多线程、支持事务，模块化）
+
+jss服务头：
+服务头是ecm开发jss的规范，其中头的jss对象不能省略，它是头的定义；头还支持声明任意对象，声明的对象可以在本jss中通过head变量来获取，目的是像c++,java语法那样使代码整洁好看，易读。
+jss对像头包括了：服务区间声明：singleon,multiton,runtime,单例模式在程序集启动时装载，全局唯一实例；多例也是在启动时装载，只是每次请求从内存的js对象中复制一份实例；runtime在启动时不装载，每次请求时便装载一次。
+extends：是本jss要实现的接口，它在java中可按接口来调用jss,如果isStronglyJss:true则表明该jss服务一定反回接口类型，而非ScriptObjectMirror对象。
+filter使用它需要在assembly.json中开启过滤器模式switchFilter:"on"，它用于拦截java服务的方法，即此机制实现了以jss代理java的功能
+
+/*
+ * 
+ * 作者：cj
+ * 说明：
+ * filter使用它需要在assembly.json中开启过滤器模式switchFilter:"on"，它用于拦截java服务的方法，即此机制实现了以jss代理java的功能
+ * 由于filter拦截服务请求链路，因此影响性能，一般情况不建议使用服务过滤机制.switchFilter:"off"
+ * <![jss:{
+		scope:'runtime',
+		extends:'your.crop.examples.chip2.jss.IJssPage',
+		isStronglyJss:true,
+		filter:{
+			invalid:'false',
+			pattern:'myAnnoService',
+			interrupter:'doFilter'
+	 	}
+ 	},
+ 	shit:{
+ 		name:"fuck"
+ 	}
+ ]>
+ <![desc:{
+	ttt:'2323',
+	obj:{
+		name:'09skdkdk'
+		}
+* }]>
+*/
+
+jss正文：
+
+
+exports表示该jss对象，因此需要开放给外部的函数必须指定为其成员
+imports表示导入的环境属性，像芯片的信息，jss模块的信息，jss头
+<xmp>
+print('---------------');
+print('module_name:' + imports.module_name);
+print('module_home:' + imports.module_home);
+print('module_ext:' + imports.module_extName);
+print('module_pack:' + imports.module_package);
+print('module_unzip:' + imports.module_unzip);
+print('module_type:' + imports.module_type);
+print('head jss scope:'+imports.head.jss.scope);
+print('head shit name:'+imports.head.shit.name);
+print('location:' + imports.locaction);
+print('source:' + imports.source);
+print('selectKey1:' + imports.selectKey1);
+print('selectKey2:' + imports.selectKey2);
+print('this is jss chip site ' + chip.site());
+var info = chip.info();
+print(info.id);
+print(info.name);
+print(info.version);
+print(info.getProperty('home.dir'));
+print('-----------------end.')
+</xmp>
+
+规范，在开始处写导入包：
+<xmp>
+/*
+ * 
+ * 作者：
+ * 说明：
+ * isStronglyJss:false 指成弱接口，则此jss服务即可按接口调用也可按无接口调用，本文演示无接口的，可以将extends设空或不要
+ * <![jss:{
+		scope:'runtime',
+		extends:'your.crop.examples.chip2.jss.ITestJss',
+		isStronglyJss:false
+ 	},
+ 	shit:{
+ 		name:"fuck"
+ 	}
+ ]>
+ <![desc:{
+	ttt:'2323',
+	obj:{
+		name:'09skdkdk'
+		}
+* }]>
+*/
+
+var String = Java.type('java.lang.String');
+
+exports.doit=function(text){
+	print('--selectKey1:' + imports.selectKey1);
+	print('--selectKey2:' + imports.selectKey2);
+	print('hello world jss '+text);
+	test(text);
+}
+function test(text){
+	var site=chip.site();
+	//jss服务互调
+	var printer=site.getService('$.cj.jss.test.JssPrinter');
+	printer.printHello('0000000'+text);
+}
+</xmp>
+3.3jss服务方面的实现：
+开发一个jss方面：
+<xmp>
+/*
+ * 
+ * 作者：cj
+ * 说明：
+ * 使用jss方面来拦java服务的桥
+ * 
+ * <![jss:{
+		scope:'runtime',
+		extends:'cj.studio.ecm.bridge.IAspect',
+		isStronglyJss:true
+ 	}
+ ]>
+*/
+
+var String = Java.type('java.lang.String');
+
+exports.cut=function(bridge, args,point){
+	print('*****这是jss方面:'+String.format("－－－方面拦截执行方法：%s.%s%s",point.getServiceDefId(),point.getMethodName(),point.getMethodDesc()));
+	return point.cut(bridge, args);
+}
+exports.getCutInterfaces=function(){
+	return null;
+}
+</xmp>
+
+在java服务中使用：
+@CjBridge(aspects = "myAspect1+$.cj.jss.test.JssMyAspect")
+@CjService(name = "myAnnoService", constructor = "newMyAnnotation")
+public class MyAnnoService{	
+</init>
+</Object>
+							</pre>
+						</div>
+						<div class="bottom"></div>
+					</div>
+				</div>
+				<div id="side">
+					<div class="fill"></div>
+					<div class="portlet">
+						<div class="title">
+							<span label>相关</span>
+						</div>
+						<ul class="items">
+			<li><a href="../views/cloud.html" plugin target="_blank">观点：云计算的风潮必然导致云计算机系统的产生</a></li>
+			<li><a href="../views/rensheng.html" plugin target="_blank">人生：关于慈善 新时代中慈善意义之我见</a></li>
+			<li><a href="../views/jishu.html" plugin target="_blank">技术：深入分析Docker镜像原理</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-sub"></div>
+		<div class="col-extra"></div>
+	</div>
+</body>
+</html>

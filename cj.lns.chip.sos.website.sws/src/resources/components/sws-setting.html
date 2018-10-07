@@ -1,0 +1,100 @@
+<script type="text/javascript">
+<!--
+(function(){
+	function openSwsPanel(e) {
+		var url = './service-windows-system/swsSettingPanel.html?action=open&path='
+				+ e;
+		$.ajax({
+			type : 'post',
+			url : url,
+			success : function(data) {
+				$('.sws-setting>.content-panel').html(data);
+				var text = $('.sws-setting #sws-nav-val').val();
+				if (typeof text == 'undefined') {//如果是根则不显示导航图及标题
+					$('.sws-setting>.head>#sws-nav>img').hide();
+					$('.sws-setting>.head>.title').hide();
+					return;
+				}
+				var ret = text.split(';');
+				$('.sws-setting>.head #sws-nav-text').html(ret[1]);
+				$('.sws-setting>.head>.title').html(ret[2]);
+				$('.sws-setting>.head>#sws-nav').attr('onclick',
+						'openSwsPanel(\"' + ret[0] + '\");');
+				$('.sws-setting>.head>#sws-nav>img').show();
+				$('.sws-setting>.head>.title').show();
+			},
+			error : function(e) {
+				alert('error:' + e.responseText);
+			}
+		});
+	};
+	function selectObject(e) {
+		var opp = $(e).find(".opp>input");
+		if (opp.prop('checked')) {
+			opp.prop('checked', false);
+		} else {
+			opp.prop('checked', true);
+		}
+	};
+})();
+
+//-->
+</script>
+<div class="sws-setting bop">
+	<div class="head">
+		<a href="#" id="sws-nav" onclick="openSwsPanel('.://');"><img
+			src="img/iconfont-xiangzuo.svg" plugin><span id="sws-nav-text">服务视窗系统</span></a>
+		<span class="title" ></span>
+	</div>
+	<div class="content-panel">
+		<div class="current" title="默认登录进入的门户" style="margin-left: 40px;"><span>使用的门户：缘份的天空</span></div>
+		<div class="sp-panel">公共门户</div>
+		<ul class="list">
+			<li class="item" onclick="openSwsPanel('openplatform://');"><img
+				src="img/iconfont-picfill.svg" plugin>
+				<div class="main-panel">
+					<div>开放平台</div>
+				</div>
+				<div class="opp">&gt;</div></li>
+			<li class="item"><img src="img/iconfont-repair.svg" plugin>
+				<div class="main-panel">
+					<div>地理微博</div>
+				</div>
+				<div class="opp">&gt;</div></li>
+			<li class="item"><img src="img/iconfont-repair.svg" plugin>
+				<div class="main-panel">
+					<div>动客</div>
+				</div>
+				<div class="opp">&gt;</div></li>
+			<li class="item"><img src="img/iconfont-repair.svg" plugin>
+				<div class="main-panel">
+					<div>缘份的天空</div>
+				</div>
+				<div class="opp">&gt;</div></li>
+		</ul>
+		<div class="sp-panel">后管系统</div>
+		<ul class="list">
+			<li class="item" onclick="openSecurityPanel('backopenplatform://');"><img
+				src="img/iconfont-picfill.svg" plugin>
+				<div class="main-panel">
+					<div>开放平台后管系统</div>
+				</div>
+				<div class="opp">&gt;</div></li>
+			<li class="item"><img src="img/iconfont-repair.svg" plugin>
+				<div class="main-panel">
+					<div>地理微博后管系统</div>
+				</div>
+				<div class="opp">&gt;</div></li>
+			<li class="item"><img src="img/iconfont-repair.svg" plugin>
+				<div class="main-panel">
+					<div>动客后管系统</div>
+				</div>
+				<div class="opp">&gt;</div></li>
+			<li class="item"><img src="img/iconfont-repair.svg" plugin>
+				<div class="main-panel">
+					<div>缘份的天空后管系统</div>
+				</div>
+				<div class="opp">&gt;</div></li>
+		</ul>
+	</div>
+</div>

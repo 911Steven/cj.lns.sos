@@ -1,0 +1,11 @@
+{
+	"sceneTitle":"开放平台－开发者",
+	"sceneDesc":"",
+	"rootRegion":"workbench",
+	"regions":[
+		{
+			"name":"workbench",
+			"plugin":"FE74DDB7-A6BC-4C72-AF09-E03B7D6B1F4E"
+		}
+	]
+}

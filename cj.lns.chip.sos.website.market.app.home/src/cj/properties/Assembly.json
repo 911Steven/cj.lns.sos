@@ -1,0 +1,45 @@
+{
+	entryPoint : {
+		activators : []
+	},
+	assemblyInfo : {
+		assemblyTitle : "swssite",
+		assemblyResource:"resource=/resources",
+		assemblyDescription : "视窗站点",
+		assemblyConfiguration : "",
+		assemblyCompany : "开发者：cj;研发机构：lns平台部",
+		assemblyProduct : "service.home",
+		assemblyCopyright : "Copyright   2011",
+		assemblyTrademark : "",
+		assemblyCulture : "",
+		guid : "swssite",
+		assemblyVersion : "1.0.0.0",
+		assemblyFileVersion : "1.0.0.0",
+		assemblyIcon:"iconfont-xinxi.png"
+	},
+	global:{
+		default:"zh_CN",
+		desc:"如果系统环境要求各芯片采用的语言本芯片没有，则芯片可采用默认语言"
+		},
+	serviceContainer : {
+		name : "netContainer",
+		switchFilter:"off",
+		jss:[{
+			module:"sos",
+			package:"cj.lns.chip.sos.website.market.app.home.jss",
+			unzip:"true",
+			searchMode:"link",
+			extName:".jss.js"
+		}],
+		scans : [{
+					package : "cj.lns.chip.sos.website.market.app.home",
+					extName : ".class|.json|.xml",
+					exoterical:"true"
+				},{
+					package : "cj.lns.common.sos.website.moduleable",
+					extName : ".class|.json|.xml",
+					exoterical:"true"
+				}]
+
+	}
+}

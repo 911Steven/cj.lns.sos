@@ -1,0 +1,133 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<title>云网</title>
+<link href="../../../../css/global.css" type="text/css" rel="stylesheet">
+<link href="../../../../css/pages/portal-viewer.css" type="text/css"
+	rel="stylesheet">
+<script type="text/javascript"
+	src="../../../../js/jquery/jquery-2.1.4.js"></script>
+<style type="text/css">
+#content_inner>.body>pre>img {
+	width: 100%;
+}
+
+.grid-s5m0e5 {
+	height: 11800px;
+}
+#content_inner > .body > pre>.result{
+	font-size: 10px;
+	margin-left: 60px;
+}
+#content_inner > .body > pre>.style1{
+font-size: 10px;
+	margin-left: 60px;
+}
+</style>
+</head>
+<body>
+	<div class="topbar">
+		<ul class="left">
+			<li class="about"><span label>关于</span></li>
+		</ul>
+		<ul class="right">
+			<li class="mine"><a target="_blank"
+				href="../../../../public/register2.html">注册</a></li>
+			<li class="login"><span label>登录</span></li>
+		</ul>
+	</div>
+	<div class="banner">
+		<div class="b-left"></div>
+		<div class="b-center">
+			<div class="logo">
+				<img src="../../../../img/pages/logo.png">
+				<p>云网</p>
+			</div>
+		</div>
+		<div class="b-right"></div>
+	</div>
+	<div class="grid-s5m0e5">
+		<div class="col-main">
+			<div class="main-wrap">
+				<div id="content">
+					<div id="content_inner">
+						<div class="title">
+							<p>ecm 面向连接电子模型开发工具包</p>
+						</div>
+						<div class="subtitle">
+							<ul>
+								<li><span label>作者：</span><span value
+									style="padding-right: 10px;">cj (赵向彬)</span><span label>发布日期：</span><span
+									value>2016年8月19日 3:24</span></li>
+							</ul>
+						</div>
+						<div class="body">
+							<div style="font-family: sans-serif; margin-bottom: 10px;">
+								<span><b>关键词：</b></span>学习 技术 面向连接编程 面向模块编程 面向协议编程 编程思想 结构化 面向对象 <br>
+								java j2ee osgi spring dotnet osgi netty tomcat jetty nodejs jsp php
+								aspx zookeeper docker
+							</div>
+							<div style="font-family: sans-serif; margin-bottom: 10px;">
+								<span><b>摘要：</b></span>是面向连接编程的基础工具包，它兼有spring、osgi、nodejs的功能。支持面向模块开发与部署，热插拔。
+								</div>
+							<div style="font-family: sans-serif; margin-bottom: 10px;">
+								<span><b>正文：</b></span>
+							</div>
+							<pre>
+一、作为服务容器，对服务定义的支持：
+	1.支持注解方式
+	2.支持xml方式
+	3.支持json方式
+	4.支持以上混合定义方式
+	5.支持反向注入
+	6.支持属性值、方法参数值注入，即便是注入代码段也可
+	7.支持任意类方法注入（spring仅支持工厂方法，无聊）
+	8.支持面向方面编程，切面拦截，功能强大，结构简单，甚至支持使用jss服务拦截java方法。简单活用
+	9.支持按类型搜索服务
+	10.支持按外部类的类别搜索服务
+	11.支持适配器对象。适配器对象可转换为任意类型，从而实现了服务的弱类型机制。
+	
+二、作为osgi容器，它以程序集（逻辑上叫芯片）作为支点，支持：
+	1.程序集的加载、启动、停止、卸载。
+	2.程序集之间的类型依赖及扩展
+	3.程序集之间的服务实例的强依赖
+	4.支持外部服务、外部类型，可在程序集外部获取到这些外部组件
+	
+三、作为nodejs容器，它拥有类似于nodejs的语法结构，在cj studio产品中均称之为jss服务，它具有：
+	1.exports导出外部函数（仿nodejs）
+	2.imports导入程序集及模块环境（能得到服务容器）
+	3.head对象，每个jss服务以该头对象声明服务
+	4.支持jss服务与java服务混用
+	5.支持多线程的jss服务
+	6.支持以jss开发web程序
+							</pre>
+						</div>
+						<div class="bottom"></div>
+					</div>
+				</div>
+				<div id="side">
+					<div class="fill"></div>
+					<div class="portlet">
+						<div class="title">
+							<span label>相关</span>
+						</div>
+						<ul class="items">
+				<li><a href="../views/ecm_hello.html" plugin target="_blank">· 从ecm 工具包的 helloworld 入门</a></li>
+		<li><a href="../views/net_hello.html" plugin target="_blank">· 从net 工具包的 helloworld 入门</a></li>
+		<li><a href="../views/intro_net.html" plugin target="_blank">· 介绍： net 通讯开发工具包</a></li>
+		<li><a href="../views/intro_plus.html" plugin target="_blank">· 介绍： plus 模块化、插件化、服务化增强开发工具包</a></li>
+		<li><a href="../views/intro_netdisk.html" plugin target="_blank">· 介绍： netdisk 多维云盘开发工具包</a></li>
+		<li><a href="../views/intro_neuron.html" plugin target="_blank">· 介绍： neuron 分布式连接容器</a></li>
+		<li><a href="../views/intro_netsite.html" plugin target="_blank">· 介绍： netsite 热插拔应用容器</a></li>
+		<li><a href="../views/intro_mdisk.html" plugin target="_blank">· 介绍： mdisk 多维云盘命令行工具</a></li>
+		<li><a href="../views/intro_cjnet.html" plugin target="_blank">· 介绍： cjnet 调试、测试命令行工具</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-sub"></div>
+		<div class="col-extra"></div>
+	</div>
+</body>
+</html>

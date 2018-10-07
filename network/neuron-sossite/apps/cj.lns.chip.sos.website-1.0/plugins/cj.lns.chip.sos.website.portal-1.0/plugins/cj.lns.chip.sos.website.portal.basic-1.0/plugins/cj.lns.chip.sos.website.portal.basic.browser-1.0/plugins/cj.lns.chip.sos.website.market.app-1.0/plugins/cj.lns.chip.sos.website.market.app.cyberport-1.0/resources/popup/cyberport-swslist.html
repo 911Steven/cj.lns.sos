@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>信息港</title>
+<style type="text/css">
+.cyb-panel{
+	height: 100%;
+	width: 100%;
+}
+.visit {
+	padding: 20px 10px 10px 10px;
+}
+
+.visit>.v-list {
+	
+}
+
+.visit>.v-list>li {
+	display: inline-block;
+	padding: 0 2px;
+	text-align: center;
+}
+
+.visit>.v-list>li>p {
+	line-height: 12px;
+}
+
+.visit>.v-list>li>img {
+	width: 25px;
+	height: 25px;
+}
+
+.visit>.v-list>li>span[label] {
+	color: gray;
+}
+.cyb-box{
+	padding: 20px 20px 20px 100px;
+	min-width:400px;
+	min-height: 300px;
+	position: relative;
+}
+.cyb-box>.label{
+	position: absolute;
+	left:0;
+	top:0;
+	bottom: 0;
+	width:100px;
+	border-right:1px solid #ececec;
+	padding-top: 130px;
+	color: gray;
+	text-align: center;
+}
+.cyb-box>.sws-box{
+	padding: 20px;
+	max-height:360px;
+	overflow: auto;
+}
+.cyb-box>.sws-box>li{
+	padding: 10px 20px;
+	display: inline-block;
+	text-align: center;
+	cursor: pointer;
+	position: relative;
+}
+.cyb-box>.sws-box>li>span.tips{
+ background: red none repeat scroll 0 0;
+    border-radius: 50%;
+    color: white;
+    font-size: 10px;
+    line-height: 18px;
+    min-height: 20px;
+    min-width: 20px;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+.cyb-box>.sws-box>li:hover{
+	border:1px solid #ececec;
+}
+.cyb-box>.sws-box>li>img{
+	width:60px;
+	height: 60px;
+}
+</style>
+<script type="text/javascript">
+$(document).ready(function(){
+	var swslist=$('.cyb-box>.sws-box>li');
+	swslist.on('click',function(e){
+		window.location.href='./?swsid='+$(this).attr('swsid');
+	});
+	
+	swslist.each(function(i,e){
+		var swsid=$(e).attr('swsid');
+		var count=$.cj.report[swsid];
+		console.log($.cj);
+		if(typeof count!='undefined'&&count!=0){
+			var t=$(e).find('.tips');
+			t.html(count);
+			t.show();
+		}
+	});
+});
+</script>
+</head>
+<body class="cyb-panel">
+	<div class="visit">
+		<ul class="v-list">
+			<li><span label>正在访问</span></li>
+			<li><span label>&gt;</span></li>
+			<li class="he"><img src="img/app.png" plugin>
+			<p>User1</p></li>
+			<li><span label>&gt;</span></li>
+			<li class="hesws"><img src="img/app.png" plugin>
+			<p>开发平台</p></li>
+		</ul>
+	</div>
+	<div class="cyb-box">
+		<div class="label"><span>我的</span><p>信息港</p></div>
+		<ul class="sws-box">
+			<li><img src="img/app.png" plugin><p>网</p><span style="display:none;" class="tips"></span></li>
+		</ul>
+	</div>
+</body>
+</html>

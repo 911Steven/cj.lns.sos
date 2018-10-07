@@ -1,0 +1,75 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<link rel="stylesheet" type="text/css"
+	href="themes/browser/red/global.css" plugin>
+<link rel="stylesheet" href="themes/browser/red/portal.css" plugin />
+<script type="text/javascript" src="api/jquery/jquery-2.1.4.js" plugin></script>
+<script type="text/javascript" src="api/cj.util.js" plugin></script>
+<script type="text/javascript" src="api/cj.serviceos.js" plugin></script>
+<script type="text/javascript" src="api/socket.io.js" plugin></script>
+<script type="text/javascript" src="api/websocket-main.js" plugin></script>
+<link href="api/video-js-5.10.1/video-js.css" rel="stylesheet" plugin>
+<script src="api/video-js-5.10.1/video.js" plugin></script>
+<!-- If you'd like to support IE8 -->
+<script src="api/video-js-5.10.1/ie8/videojs-ie8.min.js" plugin></script>
+<script>
+	videojs.options.flash.swf = "cjdk/api/video-js-5.10.1/video-js.swf";
+</script>
+</head>
+<body>
+	<div class="startMenu" region="startMenu"></div>
+
+	<div region="workbench" class="workbench">
+		<ul>
+			<li>
+				<div region="menubar" class="menubar"></div>
+			</li>
+			<li>
+				<div class="main">
+					<div class="main-box">
+						<div class="desktop" region="desktop"></div>
+					</div>
+					<div class="main-left" region="portlet" used usage="left">
+						<div class="portlet">
+							<div class="titleBar">
+								<a href="#">访客</a>
+							</div>
+							<div class="content">dd</div>
+						</div>
+						<div class="portlet">
+							<div class="titleBar">
+								<a href="#">访客</a>
+							</div>
+							<div class="content">dd</div>
+						</div>
+						<div class="portlet">
+							<div class="titleBar">
+								<a href="#">访客</a>
+							</div>
+							<div class="content">dd</div>
+						</div>
+
+					</div>
+					<div class="main-right" region="portlet" usage="right">
+						<div class="portlet">
+							<div class="titleBar">
+								<a href="#">访客</a>
+							</div>
+							<div class="content">dd</div>
+						</div>
+						
+					</div>
+				</div>
+				<div style="clear: both;"></div>
+			</li>
+			<li>
+				<div class="sosSiteInfo" region="sosSiteInfo"></div>
+			</li>
+		</ul>
+	</div>
+</body>
+</html>

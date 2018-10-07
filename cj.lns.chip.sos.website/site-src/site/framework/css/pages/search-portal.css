@@ -1,0 +1,285 @@
+html, body {
+	margin: 0;
+	padding: 0;
+	height: 100%;
+}
+.content{
+	padding: 0;
+	height: auto;
+	position: relative;
+}
+.content>.topbar {
+	padding: 5px 20px;
+	position: relative;
+	min-height: 20px;
+}
+.content>.topbar>ul.right{
+	display: inline-block;
+	position: absolute;
+	right:30px;
+	left:50%;
+	top:5px;
+	text-align: right;
+}
+.content>.topbar>ul.left{
+	display: inline-block;
+	position: absolute;
+	left:30px;
+	right:50%;
+	top:5px;
+}
+.content>.topbar>ul.left>li {
+	display: inline-block;
+	padding: 0 10px;
+	cursor: pointer;
+	text-decoration: underline;
+}
+
+.content>.topbar>ul.left>li:hover {
+	color: blue;
+}
+.content>.topbar>ul.right>li {
+	display: inline-block;
+	padding: 0 10px;
+	cursor: pointer;
+	text-decoration: underline;
+}
+
+.content>.topbar>ul.right>li:hover {
+	color: blue;
+}
+.content>.h-zw,
+.content>.banner{
+	margin: 20px 10px;
+	position: relative;
+	padding: 0 80px 0 80px;
+}
+.content>.h-zw>.h-left,
+.content>.banner>.b-left{
+	width:80px;
+	left:0;
+	top:0;
+}
+.content>.h-zw>.h-right,
+.content>.banner>.b-right{
+	width:80px;
+	right:0;
+	top:0;
+}
+.content>.banner>.b-center{
+	position: relative;
+	padding-left: 140px;
+	border-bottom: 1px solid #ff642b;
+}
+.content>.h-zw{
+	min-height: 350px;
+}
+.content>.h-zw>.h-center{
+	position: relative;
+	padding-right: 200px;
+	padding-left: 200px;
+}
+.content>.h-zw>.h-center>.c-left{
+	position: absolute;
+	left:0;
+	top:0;
+	width:190px;
+}
+.content>.h-zw>.h-center>.c-right{
+	position: absolute;
+	right:0;
+	top:0;
+	width:190px;
+}
+.content>.h-zw>.h-center .lets>li{
+	margin-bottom: 10px;
+}
+.content>.h-zw>.h-center .lets>li>.portlet{
+	min-height: 50px;
+}
+.content>.abstract{
+	position: relative;
+	padding: 0 250px;
+}
+.content>.abstract>.a-left{
+	position:absolute;
+	left:0;
+	top:0;
+	width:250px;
+	min-height: 200px;
+}
+.content>.abstract>.a-right{
+	position:absolute;
+	right:0;
+	top:0;
+	width:250px;
+	min-height: 200px;
+}
+.content>.abstract>.a-tabs{
+	
+}
+.content>.abstract>.a-tabs>.tab{
+	display: none;
+}
+.content>.abstract>.a-tabs>.tab-show{
+	display: inline-block;
+}
+.content>.banner{
+	margin-top: 40px;
+}
+.content>.banner>.b-center>.systems>.main{
+	height: 80px;
+}
+.content>.banner>.b-center>.systems>.menu{
+	margin-top: 10px;
+}
+.content>.banner>.b-center>.systems>.menu>.mlist{
+}
+.content>.banner>.b-center>.systems>.menu>.mlist>li{
+	padding: 0 20px;
+	display: inline-block;
+	cursor: pointer;
+	position: relative;
+}
+.content>.banner>.b-center>.systems>.menu>.mlist>li>img[down]{
+	display: none;
+	width: 15px;
+	height: 15px;
+	position: absolute;
+	bottom: -15px;
+	left:50%;
+	margin-left:-8px;
+}
+.content>.banner>.b-center>.systems>.menu>.mlist>.tab-selected>img[down]{
+	display: inline-block;
+}
+.content>.banner>.b-center>.systems>.menu>.mlist>li:hover{
+	color: #ff642b;
+	text-decoration: underline;
+}
+.content>.banner>.b-center>.systems>.menu>.mlist>li>img{
+	width:40px;
+	height: 40px;
+}
+.content>.banner>.b-center>.logo{
+	position: absolute;
+	left:0;
+	top:0;
+	cursor: pointer;
+}
+.content>.banner>.b-center>.logo:hover{
+	color: #ff642b;
+	text-decoration: underline;
+}
+.content>.banner>.b-center>.logo>img{
+	width:80px;
+	height:80px;
+}
+.content>.banner>.b-center>.logo>p{
+	font-size: 24px;
+	color: #ff642b;
+	margin-top: 5px;
+	text-align: center;
+}
+.content>.searcher {
+	width: 100%;
+	margin-top: 80px;
+	text-align: center;
+	display: none;
+}
+.content>.searcher>.s-left{
+	width:100px;
+	height: 1px;
+}
+.content>.searcher>.s-right{
+	width:100px;
+	height: 1px;
+}
+.content>.searcher>.box {
+	width: 500px;
+	display: inline-block;
+}
+
+.content>.searcher>.box>.typed {
+	position: relative;
+	width: 100%;
+}
+
+.content>.searcher>.box>.typed>input {
+	padding: 5px 80px 5px 30px;
+	font-size: 14px;
+	height: 30px;
+	display: block;
+	width: 370px;
+	min-width: 200px;
+	max-width: 500px;
+}
+
+.content>.searcher>.box>.typed>img {
+	position: absolute;
+	left: 5px;
+	top: 10px;
+	display: inline-block;
+	width: 25px;
+}
+
+.content>.searcher>.box>.typed>span {
+	position: absolute;
+	padding: 11px 0;
+	text-align: center;
+	right: 15px;
+	top: 0;
+	display: inline-block;
+	width: 80px;
+	background: #7dacdd;
+	color: white;
+	cursor: pointer;
+}
+
+.content>.searcher>.box>.channels {
+	margin-top: 10px;
+	text-align: left;
+}
+
+.content>.searcher>.box>.channels>li {
+	display: inline-block;
+	padding: 5px 10px;
+	margin: 0 10px;
+	cursor: pointer;
+	line-height: 18px;
+}
+.content>.searcher>.box>.channels>li:hover{
+	color: blue;
+	text-decoration: underline;
+}
+.content>.searcher>.box>.channels>li>img {
+	width: 30px;
+	height: 30px;
+}
+
+.content>.bottombar {
+	text-align: center;
+	padding: 20px;
+	background: #ececec;
+}
+
+.content>.bottombar>p[about]>span {
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+.content>.bottombar>p[about]>span:hover {
+	color: blue;
+}
+.portal{
+	text-align: center;
+	margin: 20px 80px 20px 80px;
+}
+.portal>.lets{
+	
+}
+.portal>.lets>.let{
+	margin: 10px;
+	min-height: 500px;
+	background: white;
+	}

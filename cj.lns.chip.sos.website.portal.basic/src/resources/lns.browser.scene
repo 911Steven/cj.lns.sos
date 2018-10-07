@@ -1,0 +1,37 @@
+{
+	"sceneTitle":"开放平台－开发者",
+	"sceneDesc":"",
+	"layout":"workbench",
+	"regions":[
+		{
+			"name":"workbench",
+			"title":"工作台",
+			"plugin":"workbench"
+		},
+		{
+			"name":"menubar",
+			"title":"菜单栏",
+			"plugin":"menubar"
+		},
+		{
+			"name":"sosSiteInfo",
+			"title":"站点信息",
+			"plugin":"sosSiteInfo"
+		},
+		{
+			"name":"portlet",
+			"title":"栏目",
+			"plugin":"portlet"
+		},
+		{
+			"name":"desktop",
+			"title":"桌面",
+			"plugin":"desktop"
+		},
+		{
+			"name":"startMenu",
+			"title":"开始菜单",
+			"plugin":"startMenu"
+		}
+	]
+}

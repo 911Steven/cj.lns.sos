@@ -1,0 +1,118 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<title>云网</title>
+<link href="../../../../css/global.css" type="text/css" rel="stylesheet">
+<link href="../../../../css/pages/portal-viewer.css" type="text/css"
+	rel="stylesheet">
+<script type="text/javascript"
+	src="../../../../js/jquery/jquery-2.1.4.js"></script>
+<style type="text/css">
+#content_inner>.body>pre>img {
+	width: 100%;
+}
+
+.grid-s5m0e5 {
+	height: 11800px;
+}
+#content_inner > .body > pre>.result{
+	font-size: 10px;
+	margin-left: 60px;
+}
+#content_inner > .body > pre>.style1{
+font-size: 10px;
+	margin-left: 60px;
+}
+</style>
+</head>
+<body>
+	<div class="topbar">
+		<ul class="left">
+			<li class="about"><span label>关于</span></li>
+		</ul>
+		<ul class="right">
+			<li class="mine"><a target="_blank"
+				href="../../../../public/register2.html">注册</a></li>
+			<li class="login"><span label>登录</span></li>
+		</ul>
+	</div>
+	<div class="banner">
+		<div class="b-left"></div>
+		<div class="b-center">
+			<div class="logo">
+				<img src="../../../../img/pages/logo.png">
+				<p>云网</p>
+			</div>
+		</div>
+		<div class="b-right"></div>
+	</div>
+	<div class="grid-s5m0e5">
+		<div class="col-main">
+			<div class="main-wrap">
+				<div id="content">
+					<div id="content_inner">
+						<div class="title">
+							<p>neuron 组建大型神经网络常用策略</p>
+						</div>
+						<div class="subtitle">
+							<ul>
+								<li><span label>作者：</span><span value
+									style="padding-right: 10px;">cj (赵向彬)</span><span label>发布日期：</span><span
+									value>2016年8月19日 21:15</span></li>
+							</ul>
+						</div>
+						<div class="body">
+							<div style="font-family: sans-serif; margin-bottom: 10px;">
+								<span><b>关键词：</b></span>神经元 神经网络
+							</div>
+							<div style="font-family: sans-serif; margin-bottom: 10px;">
+								<span><b>摘要：</b></span>神经元就是用来组建大型神经网络的，它天生就有分布式能力，高度的容灾性。但是对于一个神经网络来说，神经元之间如何穿连起来，存在有许多方案，哪种最简，扩展性最好呢？本文就来探讨一下。
+								</div>
+							<div style="font-family: sans-serif; margin-bottom: 10px;">
+								<span><b>正文：</b></span>
+							</div>
+<pre>
+	在互联网上，概括起来有四种网络：
+	1.以ngnix/apache组织起来的，按请求地址负载网络，称之为“地址匹配网络”，当然，ngnix/apache仅适用于前置到应用的负载
+	2.以协议组织起来的网络，目前许多开源分布式中间件多数都是按协议负载，按协议负载架构清晰，但扩展性不如按地址匹配的模式简洁
+	3.按网络目标组织起来的网络，也叫硬路由，这种扩展性特别不好，但有时却很有必要。
+	4.以上混合模式。
+	神经网络支持以上4种模式，甚至更多，因为它更为灵活，对接非常方便。
+	目前这个视窗平台采用的是以协议为主，其它为辅的神经网络架构。
+	
+	平台使用了5台机，启动了19个神经元节点，从层次上来看，分别是：
+	<p class='style1'>
+	前置神经元－>			应用神经元->						中间神经元（有两层）->	应用神经元
+	reception-device		neuron-device(1-n个)				(1-n个)->network1
+	reception-sossite   		neuron-sossite(1-n个)				(1-n个)->network2
+						neuron-im(即时消息推送1-n个)		(1-n个)->network1
+						neuron-sosdb(远程服务1-n个)			(1-n个)->network2
+						neuron-csc(云计算主机1-n个)			(1-n个)->network2
+						</p>
+	由上面可以看出，中间神经元的作用是将应用神经元连接起来，降低应用之间的耦合度。
+	
+	每添加一个应用神经元，实际上只要连向中间神经元即可，非常方便，像这样的接法，接1000台机都没问题。目前只是小规范使用，所以只将12个中间神经元节点放在了一台机上，实际上要是有钱可以一个中间神经元节点一台机，这样可接入的应用神经元数目更多。
+</pre>
+						</div>
+						<div class="bottom"></div>
+					</div>
+				</div>
+				<div id="side">
+					<div class="fill"></div>
+					<div class="portlet">
+						<div class="title">
+							<span label>相关</span>
+						</div>
+						<ul class="items">
+		<li><a href="../../portlet-00002-coding/views/intro_neuron.html" plugin target="_blank">· 介绍： neuron 分布式连接容器</a></li>
+		<li><a href="../views/neuron_hello.html" plugin target="_blank">· 神经元连接 helloword 入门</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-sub"></div>
+		<div class="col-extra"></div>
+	</div>
+</body>
+</html>

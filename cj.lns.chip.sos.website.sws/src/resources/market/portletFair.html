@@ -1,0 +1,53 @@
+<script type="text/javascript">
+<!--
+(function(){
+	$('.portlet-list .list').delegate('.item', 'click', function() {
+		var url='./servicews/market/mountPortlet.html';
+		var box = $(this).find('.opp>input')
+		var portletId=$(this).attr('portletId');
+		var provider=$(this).attr('provider');
+		var category=$(this).attr('category');
+		if (box.prop('checked')) {
+			$.get(url,{
+				action:'unmount',
+				portletId:portletId,
+				provider:provider,
+				category:category
+				
+			},function(){
+				box.prop('checked', false);
+			}).error(function(e1,e2,e3){
+				alert(e1+' '+e2+' '+e3);
+			});
+		} else {
+			$.get(url,{
+				action:'mount',
+				portletId:portletId,
+				provider:provider,
+				category:category
+			},function(){
+				box.prop('checked', true);
+			}).error(function(e1,e2,e3){
+				alert(e1+' '+e2+' '+e3);
+			});
+		}
+	});
+	
+})();
+
+//-->
+</script>
+<div class="portlet-list bop">
+	<div class="content-panel">
+		<div class="sp-panel">用于管理您的视窗系统，启用或停止</div>
+		<ul class="list">
+			<li class="item" portletId="security"><img portletimg src="img/iconfont-picfill.svg" plugin>
+				<div class="main-panel">
+					<div portletname ></div>
+				</div>
+				<div class='opp'>
+					<input name="selectedPortlet"  type="checkbox">
+				</div></li>
+		</ul>
+	</div>
+</div>

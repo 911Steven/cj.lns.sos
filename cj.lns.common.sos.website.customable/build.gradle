@@ -1,0 +1,190 @@
+sourceSets { 
+	 main { 
+	 	java{
+	 		srcDir "$projectDir/src"
+	 	}
+	 	resources{
+		 	srcDir "$projectDir/src"
+		 }
+	 } 
+ 	}
+ 	sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+ 	tasks.withType(JavaCompile) {  
+        options.encoding = "UTF-8"  
+    } 
+ repositories { 
+	 flatDir(dirs: "../../global/lib") 
+ } 
+
+dependencies {
+	compile fileTree(dir: '../global/lib', includes: ['*.jar'])
+	compile fileTree(dir: '../global/cjtools', includes: ['*.jar'])
+	compile project(':cj.lns.chip.sos.website');
+	//compile('org.hibernate:hibernate-annotations:3.5.6-Final');
+	//compile('mysql:mysql-connector-java:5.1.36');
+	//compile('org.eclipse.persistence:javax.persistence:2.1.0');
+	//compile('org.eclipse.persistence:org.eclipse.persistence.jpa:2.6.1');
+	//compile('org.eclipse.persistence:eclipselink:2.6.1');
+	compile fileTree('src/cj/references');
+}
+//gradle.taskGraph.whenReady {taskGraph ->
+//    if (taskGraph.hasTask(release)) {
+//        version = '1.0'
+//    } else {
+//        version = '1.0-SNAPSHOT'
+//    }
+//}
+ 	task releaseToSosWebsiteCommon(type: Copy) {
+ 	dependsOn "build"
+ 	 from 'build/libs/'
+	     into '../cj.lns.chip.sos.website/common'
+	     include '**/*.jar'
+ 	}
+ 	task releaseToSosWebsite(type: Copy) {
+ 	dependsOn "build"
+ 	 from 'build/libs/'
+	     into '../cj.lns.chip.sos.website/src/cj/refembeds'
+	     include '**/*.jar'
+ 	}
+ 	task releaseToSosSws(type: Copy) {
+ 	dependsOn "build"
+ 	 from 'build/libs/'
+	     into '../cj.lns.chip.sos.website.sws/src/cj/refembeds'
+	     include '**/*.jar'
+ 	}
+ 	task releaseToSosWorkspace(type: Copy) {
+ 	dependsOn "build"
+ 	 from 'build/libs/'
+	     into '../cj.lns.chip.sos.website.workspace/src/cj/refembeds'
+	     include '**/*.jar'
+ 	}
+ 	task releaseToSosFramework(type: Copy) {
+ 	dependsOn "build"
+ 	 from 'build/libs/'
+	     into '../cj.lns.chip.sos.website.market.app.framework/src/cj/refembeds'
+	     include '**/*.jar'
+ 	}
+ 	task releaseToSosStartMenu(type: Copy) {
+ 	dependsOn "build"
+ 	 from 'build/libs/'
+	     into '../cj.lns.chip.sos.website.startmenu/src/cj/refembeds'
+	     include '**/*.jar'
+ 	}
+ 	task releaseToSosPortlets(type: Copy) {
+ 	dependsOn "build"
+ 	 from 'build/libs/'
+	     into '../cj.lns.chip.sos.website.market.portlet/src/cj/refembeds'
+	     include '**/*.jar'
+ 	}
+ 	task releaseToSosPortletBasic(type: Copy) {
+ 	dependsOn "build"
+ 	 from 'build/libs/'
+	     into '../cj.lns.chip.sos.website.market.portlet.basic/src/cj/refembeds'
+	     include '**/*.jar'
+ 	}
+ 	task releaseToSosMenu(type: Copy) {
+ 	dependsOn "build"
+ 	 from 'build/libs/'
+	     into '../cj.lns.chip.sos.website.market.menu/src/cj/refembeds'
+	     include '**/*.jar'
+ 	}
+ 	task releaseToSosMenuBASIC(type: Copy) {
+ 	dependsOn "build"
+ 	 from 'build/libs/'
+	     into '../cj.lns.chip.sos.website.market.menu.basic/src/cj/refembeds'
+	     include '**/*.jar'
+ 	}
+ 	task releaseToSosApp(type: Copy) {
+ 	dependsOn "build"
+ 	 from 'build/libs/'
+	     into '../cj.lns.chip.sos.website.market.app/src/cj/refembeds'
+	     include '**/*.jar'
+ 	}
+ 	task releaseToSosAppcontrolpanel(type: Copy) {
+ 	dependsOn "build"
+ 	 from 'build/libs/'
+	     into '../cj.lns.chip.sos.website.market.app.controlpanel/src/cj/refembeds'
+	     include '**/*.jar'
+ 	}
+   task releaseToSossecurity(type: Copy) {
+ 	dependsOn "build"
+ 	 from 'build/libs/'
+	     into '../cj.lns.chip.sos.website.security/src/cj/refembeds'
+	     include '**/*.jar'
+ 	}
+  task releaseToPortal(type: Copy) {
+ 	dependsOn "build"
+ 	 from 'build/libs/'
+	     into '../cj.lns.chip.sos.website.portal/src/cj/refembeds'
+	     include '**/*.jar'
+ 	}
+ 	task releaseToPortalbasic(type: Copy) {
+ 	dependsOn "build"
+ 	 from 'build/libs/'
+	     into '../cj.lns.chip.sos.website.portal.basic/src/cj/refembeds'
+	     include '**/*.jar'
+ 	}
+ 	task releaseToPortalbasicBrowser(type: Copy) {
+ 	dependsOn "build"
+ 	 from 'build/libs/'
+	     into '../cj.lns.chip.sos.website.portal.basic.browser/src/cj/refembeds'
+	     include '**/*.jar'
+ 	}
+ 	task releaseToAuth(type: Copy) {
+ 	dependsOn "build"
+ 	 from 'build/libs/'
+	     into '../cj.lns.chip.sos.website.auth/src/cj/refembeds'
+	     include '**/*.jar'
+ 	}
+ 	task releaseToWorkbench(type: Copy) {
+ 	dependsOn "build"
+ 	 from 'build/libs/'
+	     into '../cj.lns.chip.sos.website.workbench/src/cj/refembeds'
+	     include '**/*.jar'
+ 	}
+ 	task releaseToDesktop(type: Copy) {
+ 	dependsOn "build"
+ 	 from 'build/libs/'
+	     into '../cj.lns.chip.sos.website.desktop/src/cj/refembeds'
+	     include '**/*.jar'
+ 	}
+ 	task releaseTosossiteinfo(type: Copy) {
+ 	dependsOn "build"
+ 	 from 'build/libs/'
+	     into '../cj.lns.chip.sos.website.sossiteinfo/src/cj/refembeds'
+	     include '**/*.jar'
+ 	}
+ 	task releaseToPortlet(type: Copy) {
+ 	dependsOn "build"
+ 	 from 'build/libs/'
+	     into '../cj.lns.chip.sos.website.portlet/src/cj/refembeds'
+	     include '**/*.jar'
+ 	}
+ 	task releaseToCyberportApp(type: Copy) {
+ 	dependsOn "build"
+ 	 from 'build/libs/'
+	     into '../cj.lns.chip.sos.website.market.app.cyberport/src/cj/refembeds'
+	     include '**/*.jar'
+ 	}
+ 	task releaseToHomeApp(type: Copy) {
+ 	dependsOn "build"
+ 	 from 'build/libs/'
+	     into '../cj.lns.chip.sos.website.market.app.home/src/cj/refembeds'
+	     include '**/*.jar'
+ 	}
+ 	task releaseToContactApp(type: Copy) {
+ 	dependsOn "build"
+ 	 from 'build/libs/'
+	     into '../cj.lns.chip.sos.website.market.app.contact/src/cj/refembeds'
+	     include '**/*.jar'
+ 	}
+ 	 	task releaseToMenubar(type: Copy) {
+ 	dependsOn "build"
+ 	 from 'build/libs/'
+	     into '../cj.lns.chip.sos.website.menubar/src/cj/refembeds'
+	     include '**/*.jar'
+ 	}
+ 	 task release(type: Copy) {
+     dependsOn "releaseToSosWebsite","releaseToContactApp","releaseToSosWebsiteCommon","releaseToMenubar","releaseToPortal","releaseToPortalbasic","releaseToPortalbasicBrowser","releaseToSosSws","releaseToSosWorkspace","releaseToSosFramework","releaseToSosStartMenu","releaseToSosPortlets","releaseToSosPortletBasic","releaseToSosMenu","releaseToSosMenuBASIC","releaseToSosApp","releaseToSosAppcontrolpanel","releaseToSossecurity","releaseToWorkbench","releaseToAuth","releaseToDesktop","releaseTosossiteinfo","releaseToPortlet","releaseToCyberportApp","releaseToHomeApp"
+ 	}

@@ -1,0 +1,575 @@
+<script type="text/javascript" src="js/json2.js" />
+<script type="text/javascript" src="js/jquery/ajaxfileupload.js" />
+<script type="text/javascript" src="develop/js/myspace.js" plugin />
+<style>
+<!--
+.cube {
+	
+}
+
+.cube>.dims {
+	
+}
+
+.cube>.dims>ul>li {
+	margin: 10px 0;
+	position: relative;
+	font-size: 12px;
+	padding: 5px 0;
+}
+
+.cube>.dims>ul>li.path {
+	height: 40px;
+}
+
+.cube>.dims>ul>li.path>input {
+	width: 100%;
+	height: 100%;
+	padding: 5px;
+}
+
+.cube>.dims>ul>li.cdate, .cube>.dims>ul>li.type {
+	border-bottom: 1px solid white;
+	padding-left: 50px;
+}
+
+.cube>.dims>ul>li.cdate>.left, .cube>.dims>ul>li.type>.left {
+	position: absolute;
+	top: 5px;
+	left: 0;
+}
+
+.cube>.dims>ul>li.cdate>.left>span[label], .cube>.dims>ul>li.type>.left>span[label]
+	{
+	cursor: pointer;
+}
+
+.cube>.dims>ul>li.cdate>.left>span[label]:hover, .cube>.dims>ul>li.type>.left>span[label]:hover
+	{
+	text-decoration: underline;
+}
+
+.cube>.dims>ul>li.cdate>.right {
+	position: relative;
+}
+
+.cube>.dims>ul>li.type>.right>span[value] {
+	cursor: pointer;
+	display: inline-block;
+	margin-right: 10px;
+	padding: 0 10px;
+}
+
+.cube>.dims>ul>li.type>.right>span[value]:hover {
+	text-decoration: underline;
+}
+
+.cube>.show {
+	
+}
+
+.cube>.show>.finder {
+	background: #f5f5f5;
+	position: relative;
+}
+
+.cube>.show>.finder>.box {
+	float: left;
+	width: 100%;
+}
+
+.cube>.show>.finder>.folder {
+	float: left;
+	width: 510px;
+	margin-left: -100%;
+	background: white;
+}
+
+.cube>.show>.finder>.box>.detail {
+	margin-left: 515px;
+	background: white;
+}
+
+.cube>.show>.finder>.folder>.toolbar {
+	position: relative;
+	border-bottom: 1px solid #ececec;
+	padding: 10px;
+}
+
+.cube>.show>.finder>.folder>.toolbar>div {
+	display: inline-block;
+}
+
+.cube>.show>.finder>.folder>.toolbar>div[op] {
+	display: inline-block;
+	position: absolute;
+	right: 10px;
+	top: 10px;
+}
+
+.cube>.show>.finder>.folder>.toolbar>div[op]>span {
+	padding: 0 10px;
+	cursor: pointer;
+}
+
+.cube>.show>.finder>.folder>.toolbar>div[op]>span:hover {
+	text-decoration: underline;
+}
+
+.cube>.show>.finder>.folder>.toolbar>div[folder] {
+	color: gray;
+}
+
+.cube>.show>.finder>.folder>.toolbar>div[folder] span {
+	padding-right: 5px;
+}
+
+.cube>.show>.finder>.folder>.items {
+	padding: 0 10px;
+}
+
+.cube>.show>.finder>.folder>.items>.parentdir, .cube>.show>.finder>.folder>.items>.file
+	{
+	position: relative;
+	padding: 5px 0 5px 45px;
+}
+
+.cube>.show>.finder>.folder>.items>.parentdir>img, .cube>.show>.finder>.folder>.items>.file>img
+	{
+	width: 30px;
+	height: 30px;
+	position: absolute;
+	left: 0;
+	top: 10px;
+	cursor: pointer;
+}
+
+.cube>.show>.finder>.folder>.items>.parentdir>.op, .cube>.show>.finder>.folder>.items>.file>.op
+	{
+	position: absolute;
+	display: inline-block;
+	right: 10px;
+	top: 5px;
+	right: 10px;
+	display: none;
+}
+
+.cube>.show>.finder>.folder>.items>.parentdir>.op>span, .cube>.show>.finder>.folder>.items>.file>.op>span
+	{
+	display: inline-block;
+	padding: 0 10px;
+	cursor: pointer;
+}
+
+.cube>.show>.finder>.folder>.items>.file>.op>span[rename] {
+	display: none;
+}
+
+.cube>.show>.finder>.folder>.items>.parentdir>.op>span:hover, .cube>.show>.finder>.folder>.items>.file>.op>span:hover
+	{
+	background: #ececec;
+}
+
+.cube>.show>.finder>.folder>.items>.parentdir>ul>li[t]>span[label],
+	.cube>.show>.finder>.folder>.items>.file>ul>li[t]>span[label] {
+	cursor: pointer;
+	font-weight: bold;
+	width: 400px;
+	display: inline-block;
+	word-wrap: break-word;
+	word-break: break-all;
+}
+
+.cube>.show>.finder>.folder>.items>.parentdir>ul>li[t]>span[label]:hover,
+	.cube>.show>.finder>.folder>.items>.file>ul>li[t]>span[label]:hover {
+	text-decoration: underline;
+}
+
+.cube>.show>.finder>.folder>.items>.parentdir>ul>li[b], .cube>.show>.finder>.folder>.items>.file>ul>li[b]
+	{
+	border-bottom: 1px solid #ececec;
+}
+
+.cube>.show>.finder>.folder>.items>.parentdir>ul>li[b]>ul>li, .cube>.show>.finder>.folder>.items>.file>ul>li[b]>ul>li
+	{
+	display: inline-block;
+}
+
+.cube>.show>.finder>.folder>.items>.parentdir>ul>li[b]>ul>li>span, .cube>.show>.finder>.folder>.items>.file>ul>li[b]>ul>li>span
+	{
+	display: inline-block;
+	margin-right: 5px;
+	color: gray;
+}
+
+.cube>.show>.title {
+	margin-bottom: 5px;
+}
+
+.cube>.show>.title>span {
+	display: inline-block;
+	margin-right: 5px;
+}
+
+.cube>.show>.finder>.box>.detail>div {
+	margin: 0;
+}
+
+.cube>.show>.finder>.box>.detail>.preview {
+	text-align: center;
+	padding-top: 10px;
+}
+
+.cube>.show>.finder>.box>.detail>.preview>.area {
+	cursor: pointer;
+	text-align: center;
+}
+
+
+.cube>.show>.finder>.box>.detail>.preview>.area>.media {
+	width: 90%;
+	margin: 0 auto;
+}
+
+.cube>.show>.finder>.box>.detail>.preview>.area>.media>img {
+	width: 100%;
+}
+
+.cube>.show>.finder>.box>.detail>.preview>.area>.media>video {
+	width: 100%;
+}
+.cube>.show>.finder>.box>.detail>.preview>.area>.media>pre {
+	font-family: Helvetica, 'Hiragino Sans GB', 'Microsoft Yahei', '微软雅黑',
+		Arial, sans-serif;
+	white-space: pre-wrap; /* css-3 */
+	white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
+	white-space: -pre-wrap; /* Opera 4-6 */
+	white-space: -o-pre-wrap; /* Opera 7 */
+	word-wrap: break-word; /* Internet Explorer 5.5+ */
+	text-align: left;
+}
+.cube>.show>.finder>.box>.detail>.preview>.area>.title {
+	font-weight: bold;
+	font-size: 14px;
+	margin: 10 auto;
+	width: 90%;
+	word-break: break-all;
+	text-decoration: underline;
+}
+
+.cube>.show>.finder>.box>.detail>.preview>.count {
+	border-bottom: 1px solid #ececec;
+}
+
+.cube>.show>.finder>.box>.detail>.preview>.count>li {
+	display: inline-block;
+	padding: 2px 10px;
+	cursor: pointer;
+}
+
+.cube>.show>.finder>.box>.detail>.preview>.count>li>span {
+	padding: 0 4px;
+}
+
+.cube>.show>.finder>.box>.detail>.preview>.count>li>span[value] {
+	text-decoration: underline;
+}
+
+.cube>.show>.finder>.box>.detail>.preview>.op>li {
+	display: inline-block;
+	padding: 4px 10px;
+	cursor: pointer;
+}
+
+.cube>.show>.finder>.box>.detail>.preview>.op>li[share] {
+	display: none;
+}
+
+.cube>.show>.finder>.box>.detail>.preview>.op>li:hover {
+	text-decoration: underline;
+}
+
+.cube>.show>.finder>.box>.detail>.view {
+	
+}
+
+.cube>.show>.finder>.box>.detail>.view>ul>li {
+	margin: 5px;
+}
+
+.cube>.show>.finder>.box>.detail>.view>ul>li>span {
+	display: inline-block;
+	margin-right: 4px;
+}
+
+.cube>.show>.finder>.box>.detail>.view>ul>li>span[label] {
+	width: 58px;
+	color: gray;
+	font-weight: bold;
+}
+
+.cube>.show>.finder>.box>.detail>.view>ul>li[coord]>ul {
+	margin-left: 58px;
+}
+
+.cube>.show>.finder>.box>.detail>.view>ul>li[coord]>ul>li {
+	
+}
+
+.cube>.show>.finder>.box>.detail>.view>ul>li[coord]>ul>li>span {
+	display: inline-block;
+	margin-right: 5px;
+}
+
+.cube>.show>.finder>.box>.detail>.view>ul>li[coord]>ul>li>span[label] {
+	width: 68px;
+}
+
+.year>li>.month {
+	position: absolute;
+	left: 0;
+	top: 21px;
+	background: #f5f5f5;
+	height: 50px;
+	min-width: 400px;
+	padding: 10px 8px;
+	z-index: 9999999;
+}
+
+.year>li>.month>li>.day {
+	position: absolute;
+	left: 0;
+	top: 21px;
+	background: #ececec;
+	height: 50px;
+	min-width: 400px;
+	padding: 10px 8px;
+	z-index: 9999999;
+}
+
+.year>li>.month>li, .year>li>.month>li>.day>li, .year>li {
+	display: inline-block;
+	position: relative;
+}
+
+.year>li>.month>li>span, .year>li>.month>li>.day>li>span, .year>li>span
+	{
+	display: inline-block;
+	padding: 0 5px;
+	cursor: pointer;
+}
+
+.year ul {
+	display: none;
+}
+
+.year>li>.month>li>span:hover, .year>li>.month>li>.day>li>span:hover,
+	.year>li>span:hover {
+	text-decoration: underline;
+}
+
+.cube .popup {
+	position: absolute;
+	width: 400px;
+	height: 250px;
+	background: #f5f5f5;
+	z-index: 999999;
+	left: 50%;
+	top: 40px;
+	margin-left: -150px;
+	padding: 10px;
+}
+
+.cube .popup>.op {
+	right: 10px;
+	top: 0;
+	position: absolute;
+}
+
+.cube .popup>.op>span {
+	padding: 2px 10px;
+	cursor: pointer;
+	background: #ececec;
+	display: inline-block;
+}
+
+.cube .popup>.op>span:hover {
+	border: 1px solid white;
+}
+
+.cube .popup>input {
+	height: 40px;
+	width: 100%;
+	padding: 5px;
+	display: inline-block;
+	margin-top: 20px;
+}
+.cube .popup>textarea{
+	display: inline-block;
+	width:100%;
+	height: 180px;
+	margin-top: 10px;
+	padding: 5px;
+	resize:none;
+}
+-->
+</style>
+<div class="cube">
+	<div class="dims">
+		<ul>
+			<li class="path" title="路径"><input value="/"></li>
+			<li class="type">
+				<div class="left">
+					<span label>类型</span>
+				</div>
+				<div class="right">
+					<span value>doc</span> <span value>txt</span> <span value>zip</span>
+				</div>
+			</li>
+			<li class="cdate">
+				<div class="left">
+					<span label>日期</span>
+				</div>
+				<div class="right">
+					<ul class="year">
+						<li title="年"><span>2005</span>
+							<ul class="month" title="月份">
+								<li><span>1</span>
+									<ul class="day" title="日">
+										<li><span>1</span></li>
+										<li><span>8</span></li>
+										<li><span>20</span></li>
+										<li><span>21</span></li>
+									</ul></li>
+								<li><span>2</span>
+									<ul class="day">
+										<li><span>1</span></li>
+										<li><span>8</span></li>
+										<li><span>20</span></li>
+										<li><span>21</span></li>
+									</ul></li>
+								<li><span>3</span></li>
+								<li><span>4</span></li>
+								<li><span>5</span></li>
+							</ul></li>
+						<li><span>2006</span>
+							<ul class="month">
+								<li><span>1</span>
+									<ul class="day">
+										<li><span>1</span></li>
+										<li><span>8</span></li>
+										<li><span>20</span></li>
+										<li><span>21</span></li>
+									</ul></li>
+								<li><span>2</span></li>
+								<li><span>3</span></li>
+								<li><span>4</span></li>
+								<li><span>5</span></li>
+							</ul></li>
+						<li><span>2007</span></li>
+					</ul>
+				</div>
+			</li>
+		</ul>
+	</div>
+	<div class="show">
+		<div class="title">
+			<span label>我的电影</span>➤<span value>{’createDate’:’2015/10/23’,’fileType’:’doc’,’dir’:’/我的文件/电影}</span>
+		</div>
+		<div class="finder">
+
+
+			<div class="box">
+				<div class="detail">
+					<div class="preview">
+						<div class="area">
+							<div class="media">
+								<img src="./swssite/develop/img/file.svg">
+							</div>
+							<div class="title">
+								<span>怒海争峰.mov</span>
+							</div>
+						</div>
+						<ul class="count">
+							<li downloads title=""><span label>downloads</span>(<span
+								value>100</span>)</li>
+							<li visitors><span label>visitors</span>(<span value>100</span>)</li>
+						</ul>
+						<ul class="op">
+							<li share><span label>分享</span></li>
+							<li download title="注意：如果能预览的无需下载，有：图片、音视频等"><span label>下载</span></li>
+						</ul>
+					</div>
+					<div class="view">
+						<ul>
+							<li space><span label>占用空间</span><span value>10</span><span
+								unit>字节</span></li>
+							<li size><span label>实际大小</span><span value>88</span><span
+								unit>字节</span></li>
+							<li per><span label>占用比率</span><span value>88</span><span
+								unit>%</span></li>
+							<li coord><span label>坐标</span>
+								<ul>
+									<li createDate><span label>创建日期</span><span value>2005/10/3</span></li>
+									<li updateDate><span label>更新日期</span><span value>2005/10/3</span></li>
+									<li fileType><span label>文件类型</span><span value>/doc</span></li>
+									<li path><span label>路径</span><span value>/doc</span></li>
+								</ul></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="folder">
+				<div class="toolbar">
+					<div folder>
+						<span label>文件夹</span><span value>12</span><span unit>个</span></span><span
+							folder><span label>文件数</span><span value>110</span><span
+							unit>个</span>
+					</div>
+					<div op>
+						<span tool='upload'>上传</span><span tool='newfolder'>新建文件夹</span><span
+							tool='newfile'>新建文件</span>
+					</div>
+				</div>
+				<ul class="items">
+					<li class="parentdir"><img src="./swssite/develop/img/up.svg">
+						<ul>
+							<li t><span label>..</span></li>
+							<li b><ul>
+									<li desc><span label>父目录</span></li>
+								</ul></li>
+						</ul></li>
+					<li class="file"><img
+						src="./cyberportApp/develop/img/file.svg">
+						<ul>
+							<li t><span label>怒海争峰.mov</span></li>
+							<li b><ul>
+									<li space><span label>所占空间：</span><span value>0.23</span><span
+										unit>G</span></li>
+									<li files><span label>包含：</span><span value>240</span><span
+										unit>个文件</span></li>
+									<li cdate><span label>创建时间：</span><span value>2015-12-23
+											12:33</span></li>
+								</ul></li>
+						</ul> <span class="op"><span rename title="重命名">R</span><span
+							remove title="删除">X</span></span></li>
+					<li class="file"><img
+						src="./cyberportApp/develop/img/file.svg">
+						<ul>
+							<li t><span label>怒海争峰.mov</span></li>
+							<li b><ul>
+									<li space><span label>所占空间：</span><span value>0.23</span><span
+										unit>G</span></li>
+									<li files><span label>包含：</span><span value>240</span><span
+										unit>个文件</span></li>
+									<li cdate><span label>创建时间：</span><span value>2015-12-23
+											12:33</span></li>
+								</ul></li>
+						</ul> <span class="op"><span rename title="重命名">R</span><span
+							remove title="删除">X</span></span></li>
+				</ul>
+			</div>
+			<div style="clear: both;" />
+		</div>
+	</div>
+</div>

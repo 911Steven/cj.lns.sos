@@ -1,0 +1,45 @@
+<html>
+<title></title>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="../css/global.css" />
+<link rel="stylesheet" href="css/answer.css" plugin/>
+<script type="text/javascript" src="../js/jquery/jquery-2.1.4.js"></script>
+<script type="text/javascript">
+(function(){
+	function auth(){
+		var answer=$('#answer').val();
+		var askId=$('#ask option:selected').val();
+		var swsid=$('#ask').attr('swsid');
+		var owner=$('#ask').attr('owner');
+		var service="./servicews/authAnswer.html?action=auth";
+		$.post(service,{
+			answer:answer,
+			askId:askId,
+			swsid:swsid,
+			owner:owner
+		},function(data){
+			window.location.href='./?swsid=6666666106';
+		})
+		.error(function(e){
+			alert('您没猜对答案');
+		});
+	}
+})();
+</script>
+</head>
+<body>
+	<div class="center">
+	<div class="desc">猜对问题可进入</div>
+	<ul class="pad">
+		<li><select name="ask" id="ask">
+				<option selected="" value="123">123</option>
+				<option selected="" value="456">456</option>
+				<option selected="" value="789">789</option>
+		</select></li>
+		<li><input id="answer" type="text"></li>
+		<li><input type="button" value="确认" onclick="auth();"></li>
+	</ul>
+	</div>
+</body>
+</html>

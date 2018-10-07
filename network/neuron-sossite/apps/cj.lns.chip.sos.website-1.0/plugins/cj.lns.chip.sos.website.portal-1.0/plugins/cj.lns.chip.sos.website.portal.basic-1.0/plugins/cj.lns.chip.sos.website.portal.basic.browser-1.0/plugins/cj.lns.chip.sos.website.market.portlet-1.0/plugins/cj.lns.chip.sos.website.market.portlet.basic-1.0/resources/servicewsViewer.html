@@ -1,0 +1,87 @@
+<style>
+<!--
+.portlet[swsviewer] {
+	min-height: 40px;
+	background: white;
+}
+.portlet[swsviewer]>.face{
+	position: relative;
+	padding-left: 70px;
+}
+.portlet[swsviewer]>.face>img {
+	position: absolute;
+	width: 40px;
+	height: 40px;
+	-moz-border-radius: 50%; /* Gecko browsers */
+	-webkit-border-radius: 50%; /* Webkit browsers */
+	border-radius: 50%;
+	cursor: pointer;
+	left: 20px;
+	top: 0;
+}
+
+.portlet[swsviewer]>.face>.name {
+	position: relative;
+	font-weight: bold;
+	font-size: 16px;
+	color: white;
+	text-shadow: 2px 2px 5px #333333;
+	cursor: pointer;
+	margin-top: 10px;
+}
+
+.portlet[swsviewer]>.visitor {
+	margin-top: 10px;
+	text-align: center;
+}
+
+.portlet[swsviewer]>.visitor>li {
+	margin: 5px 0;
+	padding: 0 2px;
+	display: inline-block;
+}
+
+.portlet[swsviewer]>.visitor>li>p, .portlet[swsviewer]>.visitor>li>span
+	{
+	cursor: pointer;
+}
+
+.portlet[swsviewer]>.visitor>li>p:hover, .portlet[swsviewer]>.visitor>li>span:hover
+	{
+	cursor: pointer;
+	text-decoration: underline;
+}
+
+.portlet[swsviewer]>.visitor>li>span[label] {
+	display: inline-block;
+	padding-right: 2px;
+	color: gray;
+}
+
+.portlet[swsviewer]>.face>p[swstype] {
+	color: gray;
+}
+.portlet[swsviewer]>.face>p[swstype]>span[label] {
+	padding-right: 4px;
+	display: inline-block;
+}
+.portlet[swsviewer]>.face>p[swstype]>span[value] {
+	padding-left: 4px;
+	display: inline-block;
+}
+-->
+</style>
+<div swsviewer style="background: white;" class="portlet">
+	<div class="face">
+		<img src='img/2.jpg'>
+		<p class="name">大洋网</p>
+		<p swstype><span label>类型</span>:<span value>个人视窗</span></p>
+	</div>
+	<ul class="visitor" style='display: none;'>
+		<li public><span label>公众</span>
+			<p value>100</p></li>
+		<li browse><span label>来访</span>
+			<p value>100</p></li>
+
+	</ul>
+</div>

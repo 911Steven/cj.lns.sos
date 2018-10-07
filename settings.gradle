@@ -1,0 +1,11 @@
+
+include "cj.lns.chip.sos.service", "cj.lns.chip.sos.service.builder", "cj.lns.chip.sos.service.db","cj.lns.chip.sos.service.framework","cj.lns.chip.sos.service.sws","cj.lns.chip.sos.service.user"
+include "cj.lns.chip.sos.supersws","cj.lns.chip.sos.supersws.start"
+include "cj.lns.chip.sos.website"
+include "cj.lns.chip.sos.website.auth","cj.lns.chip.sos.website.desktop","cj.lns.chip.sos.website.market.app","cj.lns.chip.sos.website.market.app.contact"
+include "cj.lns.chip.sos.website.market.app.controlpanel","cj.lns.chip.sos.website.market.app.cyberport","cj.lns.chip.sos.website.market.app.framework"
+include "cj.lns.chip.sos.website.market.app.home","cj.lns.chip.sos.website.market.menu","cj.lns.chip.sos.website.market.menu.basic","cj.lns.chip.sos.website.market.portlet","cj.lns.chip.sos.website.market.portlet.basic"
+include "cj.lns.chip.sos.website.menubar","cj.lns.chip.sos.website.portal","cj.lns.chip.sos.website.portal.basic","cj.lns.chip.sos.website.portal.basic.browser","cj.lns.chip.sos.website.portal.basic.mobile","cj.lns.chip.sos.website.portlet"
+include "cj.lns.chip.sos.website.resource","cj.lns.chip.sos.website.security","cj.lns.chip.sos.website.sossiteinfo","cj.lns.chip.sos.website.startmenu"
+include "cj.lns.chip.sos.website.sws","cj.lns.chip.sos.website.user","cj.lns.chip.sos.website.workbench"
+include "cj.lns.common.sos.service.info","cj.lns.common.sos.service.model","cj.lns.common.sos.service.moduleable","cj.lns.common.sos.website.customable","cj.lns.common.sos.website.moduleable"

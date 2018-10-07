@@ -1,0 +1,167 @@
+<script type="text/javascript" src="js/servicewsSetting.js" plugin />
+<style>
+<!--
+.sceneset>.content-panel>.scene>.item>.scenepanel {
+	
+}
+
+.sceneset>.content-panel>.scene>.item>.scenepanel>li {
+	margin: 5px auto;
+}
+
+.sceneset>.content-panel>.scene>.item>.scenepanel>li>span[label] {
+	display: inline-block;
+	width: 60px;
+	margin-right: 10px;
+	text-align: right;
+	color: gray;
+	text-align: right;
+}
+
+.sceneset>.content-panel>.scene>.item>.scenepanel>li>span[value] {
+	display: inline-block;
+	margin-left: 10px;
+}
+
+.sceneset>.content-panel>.scene>.item>.scenepanel>li>ul[regions] {
+	margin-left: 80px;
+}
+
+.sceneset>.content-panel>.scene>.item>.scenepanel>li>ul[regions]>li {
+	margin: 5px auto;
+}
+
+.sceneset>.content-panel>.scene>.item>.scenepanel>li>ul[regions]>li[region]>ul>li>span[label]
+	{
+	display: inline-block;
+	width: 60px;
+	margin-right: 10px;
+	text-align: right;
+	color: gray;
+	text-align: right;
+}
+
+.sceneset>.content-panel>.scene>.item>.scenepanel>li>ul[regions]>li[region]>ul>li>span[value]
+	{
+	display: inline-block;
+	margin-left: 10px;
+}
+.sceneset>.content-panel>.wall>.shower{
+	text-align: center;
+}
+.sceneset>.content-panel>.wall>.shower>div[box] {
+	position: relative;
+}
+
+.sceneset>.content-panel>.wall>.shower>div[box]>img {
+	max-width: 80%;
+	height:400px;
+}
+
+.sceneset>.content-panel>.wall>.shower>div[box]>span[set] {
+	color: blue;
+	background: #f5f5f5;
+	position: absolute;
+	right: 10px;
+	top: -20px;
+	padding: 0 20px;
+	cursor: pointer;
+}
+.sceneset>.content-panel>.wall>.shower>div[box]>span[set]:hover{
+	color: white;
+	background: red;
+}
+.sceneset>.content-panel>.wall>.pics{
+	text-align: center;
+}
+.sceneset>.content-panel>.wall>.pics>ul>li {
+	display: inline-block;
+	padding: 20px;
+}
+
+.sceneset>.content-panel>.wall>.pics>ul>li>img {
+	width: auto;
+	max-width: 160px;
+	height: 80px;
+}
+
+.sceneset>.content-panel>.wall>.pics>ul>li:hover {
+	background: #f5f5f5;
+	border: 1px solid #ececec;
+}
+-->
+</style>
+
+<div class="sws-setting bop sceneset">
+	<div class="content-panel">
+		<div class="sp-panel" style='display: none;'>
+			场景<br>场景基本信息
+		</div>
+		<ul class="list scene" style='display: none;'>
+			<li class="item"><ul class="scenepanel">
+					<li><span label>场景名</span>:<span value>开放平台－开发者</span></li>
+					<li><span label>布局器</span>:<span value>workbench</span></li>
+					<li><span label>画布</span>:<span value>lns.browser.canvas</span></li>
+					<li><span label>描述</span>:<span value>比</span></li>
+					<li><span label>区域</span>:
+						<ul regions>
+							<li region>
+								<ul>
+									<li name><span label>区域标识</span>:<span value>workbench</span></li>
+									<li title><span label>区域名称</span>:<span value>工作台</span></li>
+									<li bind><span label>绑定插件</span>:<span value>workbench</span></li>
+								</ul>
+							</li>
+							<li region>
+								<ul>
+									<li name><span label>区域标识</span>:<span value>workbench</span></li>
+									<li title><span label>区域名称</span>:<span value>工作台</span></li>
+									<li bind><span label>绑定插件</span>:<span value>workbench</span></li>
+								</ul>
+							</li>
+						</ul></li>
+				</ul></li>
+		</ul>
+		<div class="sp-panel">
+			皮肤<br>用于妆扮视窗
+		</div>
+		<ul class="list themes">
+			<li class="item theme"><img src="img/iconfont-picfill.svg" plugin>
+				<div class="main-panel">
+					<div>金属灰</div>
+				</div>
+				<div class="opp">
+					<input name='themeOption' type="radio">
+				</div></li>
+			<li class="item theme"><img src="img/iconfont-repair.svg" plugin>
+				<div class="main-panel">
+					<div>橘黄</div>
+				</div>
+				<div class="opp">
+					<input name='themeOption' type="radio">
+				</div></li>
+			<li class="item theme"><img src="img/iconfont-repair.svg" plugin>
+				<div class="main-panel">
+					<div>海天蓝</div>
+				</div>
+				<div class="opp">
+					<input name='themeOption' type="radio">
+				</div></li>
+		</ul>
+		<div class="sp-panel">
+			墙纸<br>设置桌面背景
+		</div>
+		<ul class="list wall">
+			<li class="item shower"><div box>
+					<img src='img/1.jpg'><span set>设为墙纸</span>
+				</div></li>
+			<li class="item pics">
+				<ul>
+					<li><img src='img/2.jpg'></li>
+					<li><img src='img/3.jpg'></li>
+				</ul>
+			</li>
+		</ul>
+
+	</div>
+</div>

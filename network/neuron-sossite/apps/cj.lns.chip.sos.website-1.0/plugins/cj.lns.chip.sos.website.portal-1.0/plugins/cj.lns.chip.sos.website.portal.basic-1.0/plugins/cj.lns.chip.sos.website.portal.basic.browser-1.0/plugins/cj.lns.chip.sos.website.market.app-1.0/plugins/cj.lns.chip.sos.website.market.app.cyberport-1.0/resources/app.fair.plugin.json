@@ -1,0 +1,35 @@
+/*
+"category":"site.dynamic",
+	"apps":[
+		{
+			"id":"site.dynamic.develop.like",
+			"name":"我关注的",
+			"position":"toolbar.win.app",
+			"icon":"./cyberportApp/develop/img/file.svg",
+			"command":"./cyberportApp/develop/like.html",
+			"platform":"develop",
+			"sort":"1",
+			"menus":[
+				{
+					"id":"site.dynamic.develop.dynamic",
+					"name":"主页·动态",
+					"cmd":"app://-5",
+					"icon":"#",
+					"desc":""
+				}
+			],
+			"target":"_self",
+			"desc":"我关注的",
+			"acl":[
+				"allow allUsers visible",
+				"allow allUsers mountable",
+				"deny guestUsers mountable"
+			]
+		}
+	]
+*/
+{
+	"category":"site.dynamic",
+	"apps":[
+	]
+}

@@ -1,0 +1,39 @@
+package cj.lns.chip.sos.service.sws.security.remote.parameter;
+
+import java.math.BigInteger;
+
+import cj.lns.chip.sos.service.framework.IRemoteParameters;
+import cj.lns.chip.sos.service.framework.annotation.CjRemoteParameter;
+
+public class PermissionIdParameters implements IRemoteParameters {
+	@CjRemoteParameter(must = true, usage = "令牌")
+	String cjtoken;
+	@CjRemoteParameter(must = true, usage = "许可标识")
+	BigInteger permissionId;
+	@CjRemoteParameter(must = true, usage = "视窗号")
+	BigInteger swsid;
+	@Override
+	public String cjtoken() {
+		// TODO Auto-generated method stub
+		return cjtoken;
+	}
+	
+	@Override
+	public void cjtoken(String cjtoken) {
+		// TODO Auto-generated method stub
+		this.cjtoken=cjtoken;
+	}
+	
+	public BigInteger getPermissionId() {
+		return permissionId;
+	}
+	public void setPermissionId(BigInteger permissionId) {
+		this.permissionId = permissionId;
+	}
+	public BigInteger getSwsid() {
+		return swsid;
+	}
+	public void setSwsid(BigInteger swsid) {
+		this.swsid = swsid;
+	}
+}

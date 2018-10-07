@@ -1,0 +1,515 @@
+<script type="text/javascript" src="microblog/js/index.js" plugin/>
+<style>
+<!--
+.home-panel {
+	
+}
+
+.home-panel>.art-ul {
+	
+}
+
+.home-panel>.art-ul>.article {
+	background: white;
+	margin-top:10px;
+	margin-bottom: 15px;
+	padding: 10px;
+}
+
+.home-panel>.art-ul>.article>.head {
+	position: relative;
+	padding-right: 100px;
+}
+
+.home-panel>.art-ul>.article>.head>.left {
+	position: relative;
+	padding-left: 50px;
+}
+
+.home-panel>.art-ul>.article>.head>.right {
+	position: absolute;
+	width: 100px;
+	top: 0;
+	right: 0;
+	text-align: right;
+}
+
+.home-panel>.art-ul>.article>.head>.left>img {
+	width: 40px;
+	height: 40px;
+	position: absolute;
+	top: 2px;
+	left: 0;
+	cursor: pointer;
+}
+
+.home-panel>.art-ul>.article>.head>.left>ul>li[name] {
+	cursor: pointer;
+}
+
+.home-panel>.art-ul>.article>.head>.left>ul>li[name]:hover {
+	text-decoration: underline;
+	color: #6d8ba7;
+}
+.home-panel>.art-ul>.article>.head>.left>ul>li[sign]>span[label]{
+	color: gray;
+}
+.home-panel>.art-ul>.article>.head>.left>ul>li[sign]>span[source]{
+	cursor: pointer;
+}
+.home-panel>.art-ul>.article>.head>.left>ul>li[sign]>span[source]:hover{
+	text-decoration: underline;
+	color: #6d8ba7;
+}
+.home-panel>.art-ul>.article>.head>.left>img:hover {
+	border: 1px solid white;
+}
+
+.home-panel>.art-ul>.article>.head>.right>ul>.browser {
+	cursor: pointer;
+}
+
+.home-panel>.art-ul>.article>.head>.right>ul>.browser:hover {
+	border: 1px solid white;
+}
+
+.home-panel>.art-ul>.article>.head>.right>ul>.browser>img {
+	width: 20px;
+	height: 20px;
+	vertical-align: middle;
+	padding-right: 5px;
+}
+
+.home-panel>.art-ul>.article>.head>.right>ul>.browser>span[label],
+	.home-panel>.art-ul>.article>.head>.right>ul>.browser>span[end] {
+	color: gray;
+	vertical-align: middle;
+	padding: 0 2px;
+}
+
+.home-panel>.art-ul>.article>.head>.right>ul>.browser>span[value] {
+	vertical-align: middle;
+}
+
+.home-panel>.art-ul>.article>.body>.title {
+	font-size: 14px;
+	padding: 10px 0;
+	font-weight: bold;
+}
+
+.home-panel>.art-ul>.article>.body>.content {
+	text-indent: 2em;
+}
+
+.home-panel>.art-ul>.article>.body>.content>p>.extends {
+	padding: 0 10px;
+	cursor: pointer;
+	color: #6d8ba7;
+}
+
+.home-panel>.art-ul>.article>.body>.content>p>.extends:hover {
+	border: 1px solid white;
+}
+
+.home-panel>.art-ul>.article>.body>.pics {
+	text-align: center;
+	padding: 10px 0;
+}
+
+.home-panel>.art-ul>.article>.body>.pics>.show {
+	background: white;
+	height: 200px;
+}
+
+.home-panel>.art-ul>.article>.body>.pics>.show>img {
+	height: 100%;
+	max-width: 600px;
+	cursor: pointer;
+}
+
+.home-panel>.art-ul>.article>.body>.pics>.items {
+	
+}
+
+.home-panel>.art-ul>.article>.body>.pics>.items>li {
+	display: inline-block;
+	padding: 10px;
+	cursor: pointer;
+	padding: 10px;
+}
+
+.home-panel>.art-ul>.article>.body>.pics>.items>li:hover {
+	background: white;
+}
+
+.home-panel>.art-ul>.article>.body>.pics>.items>li>img {
+	width: 60px;
+	height: 60px;
+}
+
+.home-panel>.art-ul>.article>.body>.attachment {
+	margin: 10px 0;
+}
+
+.home-panel>.art-ul>.article>.body>.attachment>ul>li {
+	padding: 0 10px;
+	cursor: pointer;
+	display: inline-block;
+	text-align: center;
+	font-size: 10px;
+}
+
+.home-panel>.art-ul>.article>.body>.attachment>ul>li:hover {
+	border: 1px solid #ececec;
+}
+
+.home-panel>.art-ul>.article>.body>.attachment>ul>li>img {
+	width: 20px;
+	height: 20px;
+}
+
+.home-panel>.art-ul>.article>.body>.attachment>ul>li>p[name] {
+	line-height: 15px;
+}
+
+.home-panel>.art-ul>.article>.body>.op {
+	background: #f5f5f5;
+	margin-bottom: 10px;
+}
+
+.home-panel>.art-ul>.article>.body>.op>ul {
+	text-align: center;
+}
+
+.home-panel>.art-ul>.article>.body>.op>ul>li {
+	display: inline-block;
+	padding: 0 10px;
+	cursor: pointer;
+	height: 30px;
+	padding-top: 5px;
+}
+
+.home-panel>.art-ul>.article>.body>.op>ul>li:hover {
+	border-left: 1px solid white;
+	border-right: 1px solid white;
+}
+
+.home-panel>.art-ul>.article>.body>.op>ul>li>img {
+	width: 20px;
+	height: 20px;
+	vertical-align: middle;
+}
+
+.home-panel>.art-ul>.article>.body>.op>ul>li>span[label] {
+	padding: 0 4px;
+	vertical-align: middle;
+}
+
+.home-panel>.art-ul>.article>.body>.op>ul>li>span[value] {
+	vertical-align: middle;
+}
+
+.home-panel>.art-ul>.article>.body>.forum {
+	
+}
+
+.home-panel>.art-ul>.article>.body>.forum>.great {
+	
+}
+
+.home-panel>.art-ul>.article>.body>.forum>.great>img.g-main {
+	width: 30px;
+	height: 30px;
+	cursor: pointer;
+}
+
+.home-panel>.art-ul>.article>.body>.forum>.great>img.g-main:hover {
+	border: 1px solid #ececec;
+}
+
+.home-panel>.art-ul>.article>.body>.forum>.great>.faces {
+	display: inline-block;
+}
+
+.home-panel>.art-ul>.article>.body>.forum>.great>.faces>li {
+	padding: 0 4px;
+	cursor: pointer;
+	display: inline-block;
+}
+
+.home-panel>.art-ul>.article>.body>.forum>.great>.faces>li>img {
+	width: 30px;
+	height: 30px;
+}
+
+.home-panel>.art-ul>.article>.body>.forum>.great>.faces>li>img:hover {
+	border: 1px solid #ececec;
+}
+
+.home-panel>.art-ul>.article>.body>.forum>.threads {
+	font-size: 11px;
+}
+
+.home-panel>.art-ul>.article>.body>.forum>.threads>li {
+	margin: 0;
+}
+
+.forum-panel {
+	display: inline-block;
+}
+
+.forum-panel>.ctx>p[talk] {
+	display: inline-block;
+}
+
+.forum-panel>.ctx>span[name], .forum-panel>.ctx>span[to] {
+	cursor: pointer;
+	color: #6D8BA7;
+	padding-right: 5px;
+}
+
+.forum-panel>.ctx>span[name]:hover, .forum-panel>.ctx>span[to]:hover {
+	color: #003159;
+}
+
+.forum-panel>.ctx>span[name], .forum-panel>.ctx>span[symbol] {
+	padding-right: 5px;
+}
+
+.forum-panel>.ctx>span[name]:hover, .forum-panel>.ctx>span[to]:hover {
+	text-decoration: underline;
+}
+
+.forum-panel>.ctx>span[name], .forum-panel>.op>span[time] {
+	padding-right: 10px;
+}
+
+.forum-panel>.ctx>span[name], .forum-panel>.op>span[reply], .forum-panel>.ctx>span[name],
+	.forum-panel>.op>span[close] {
+	padding-right: 10px;
+	text-decoration: underline;
+	cursor: pointer;
+	color: #6D8BA7;
+}
+
+.forum-panel>.ctx>span[name]:hover, .forum-panel>.op>span[reply]:hover,
+	.forum-panel>.ctx>span[name]:hover {
+	color: #003159;
+}
+
+.forum-panel>.follows {
+	margin-top: 2px;
+}
+
+.forum-panel>.follows>ul>li {
+	margin: 0;
+}
+
+.home-panel>.art-ul>.article>.body>.forum>.threads>li>img, .forum-panel>.follows>ul>li>img
+	{
+	width: 25px;
+	height: 25px;
+	vertical-align: top;
+	padding-top: 6px;
+	padding-right: 5px;
+	cursor: pointer;
+}
+
+.home-panel>.art-ul>.article>.body>.forum>.threads>li>img:hover,
+	.forum-panel>.follows>ul>li>img:hover {
+	border-right: 1px solid white;
+}
+
+.home-panel>.art-ul>.article>.body>.forum>.threads>.extends>span[more] {
+	text-decoration: underline;
+	cursor: pointer;
+	color: #6D8BA7;
+}
+
+.home-panel>.art-ul>.article>.body>.forum>.threads>.extends>span[more]:hover
+	{
+	color: #003159;
+}
+-->
+</style>
+<div class="home-panel">
+	<ul class="art-ul">
+		<li class="article">
+			<div class="head">
+				<div class="left">
+					<img src="img/1.jpg">
+					<ul>
+						<li name>Carocean</li>
+						<li sign><span label>来自：</span><span source>文章</span></li>
+					</ul>
+				</div>
+				<div class="right">
+					<ul>
+						<li class="browser"><img src="img/see-01.svg"><span
+							label>浏览&nbsp;(</span><span value>50</span><span end>)</span></li>
+						<li class="date">4-3 12:23</li>
+					</ul>
+				</div>
+			</div>
+			<ul class="body">
+				<li class="title"><span label>习近平对福建滑坡抢险救援工作作出指示</span></li>
+				<li class="content">
+					<p>新华社北京5月8日电
+						5月8日5时许，福建三明市泰宁县开善乡发生山体滑坡，造成池潭水电厂1座办公楼被冲垮、1座项目工地住宿工棚被埋压。截至12时，已造成7人受伤，另有34人失踪。</p>
+					<p>
+						灾害发生后，党中央、国务院高度重视。中共中央总书记、国家主席、中央军委主席习近平立即作出重要指示，要求福建省和相关部门迅速组织力量开展抢险救援<span
+							class="extends">展开...</span>
+					</p>
+				</li>
+				<li class="pics">
+					<div class="show">
+						<img src="img/5.jpg">
+					</div>
+					<ul class="items">
+						<li><img src="img/1.jpg"></li>
+						<li><img src="img/2.jpg"></li>
+						<li><img src="img/3.jpg"></li>
+						<li><img src="img/4.jpg"></li>
+					</ul>
+				</li>
+				<li class="attachment"><ul>
+						<li><img src="./swssite/microblog/img/file.svg">
+							<p name>开发文档.doc</p></li>
+						<li><img src="./swssite/microblog/img/file.svg">
+							<p name>开发文档2.doc</p></li>
+					</ul></li>
+				<li class="op">
+					<ul>
+						<li><img src="img/forum.svg"><span label>评论</span><span
+							value>(20)</span></li>
+						<li><img src="img/transfer.svg"><span label>转发</span></li>
+						<li><img src="img/shared.svg"><span label>分享</span></li>
+						<li><img src="img/follow.svg"><span label>关注</span><span
+							value>(20)</span></li>
+						<li><img src="img/great.svg"><span label>赞</span><span
+							value>(20)</span></li>
+					</ul>
+				</li>
+				<li class="forum">
+					<div class="great">
+						<img class="g-main" src="img/great.svg">
+						<ul class="faces">
+							<li><img src="img/2.jpg"></li>
+							<li><img src="img/3.jpg"></li>
+							<li><img src="img/4.jpg"></li>
+						</ul>
+					</div>
+					<ul class="threads">
+						<li class="thread"><img src="img/5.jpg">
+							<ul class="forum-panel">
+								<li class="ctx"><span name>会飞的猪</span><span symbol>:</span>
+									<p talk>波哥哥，晚上要跑哈子步了</p></li>
+								<li class="op"><span time>4-3 12:45</span> <span reply>回复</span>
+									<span close>X</span></li>
+								<li class="follows">
+									<ul>
+										<li><img src="img/3.jpg">
+											<ul class="forum-panel">
+												<li class="ctx"><span name>开心的人</span><span symbol>:</span><span
+													to>小张</span>
+													<p talk>那天你干啥了</p></li>
+												<li class="op"><span time>4-4 2:45</span> <span reply>回复</span>
+													<span close>X</span></li>
+											</ul></li>
+										<li><img src="img/2.jpg">
+											<ul class="forum-panel">
+												<li class="ctx"><span name>开心的人</span><span symbol>:</span><span
+													to>小张</span>
+													<p talk>那天你干啥了</p></li>
+												<li class="op"><span time>4-4 2:45</span> <span reply>回复</span>
+													<span close>X</span></li>
+											</ul></li>
+									</ul>
+								</li>
+							</ul></li>
+						<li class="thread"><img src="img/5.jpg">
+							<ul class="forum-panel">
+								<li class="ctx"><span name>会飞的猪</span><span symbol>:</span>
+									<p talk>波哥哥，晚上要跑哈子步了</p></li>
+								<li class="op"><span time>4-3 12:45</span> <span reply>回复</span>
+									<span close>X</span></li>
+								<li class="follows">
+									<ul>
+										<li><img src="img/3.jpg">
+											<ul class="forum-panel">
+												<li class="ctx"><span name>开心的人</span><span symbol>:</span><span
+													to>小张</span>
+													<p talk>那天你干啥了</p></li>
+												<li class="op"><span time>4-4 2:45</span> <span reply>回复</span>
+													<span close>X</span></li>
+											</ul></li>
+										<li><img src="img/2.jpg">
+											<ul class="forum-panel">
+												<li class="ctx"><span name>开心的人</span><span symbol>:</span><span
+													to>小张</span>
+													<p talk>那天你干啥了</p></li>
+												<li class="op"><span time>4-4 2:45</span> <span reply>回复</span>
+													<span close>X</span></li>
+											</ul></li>
+									</ul>
+								</li>
+							</ul></li>
+						<li class="extends"><span more>更多...</span></li>
+					</ul>
+				</li>
+			</ul>
+		</li>
+		<li class="article">
+			<div class="head">
+				<div class="left">
+					<img src="img/1.jpg">
+					<ul>
+						<li>Carocean</li>
+						<li>在要飞的季节里</li>
+					</ul>
+				</div>
+				<div class="right">
+					<ul>
+						<li class="browser"><img src="img/see-01.svg"><span
+							label>浏览&nbsp;(</span><span value>50</span><span end>)</span></li>
+						<li class="date">4-3 12:23</li>
+					</ul>
+				</div>
+			</div>
+			<ul class="body">
+				<li class="title"><span label>习近平对福建滑坡抢险救援工作作出指示</span></li>
+				<li class="content">
+					<p>新华社北京5月8日电
+						5月8日5时许，福建三明市泰宁县开善乡发生山体滑坡，造成池潭水电厂1座办公楼被冲垮、1座项目工地住宿工棚被埋压。截至12时，已造成7人受伤，另有34人失踪。</p>
+					<p>
+						灾害发生后，党中央、国务院高度重视。中共中央总书记、国家主席、中央军委主席习近平立即作出重要指示，要求福建省和相关部门迅速组织力量开展抢险救援<span
+							class="extends">展开...</span>
+					</p>
+				</li>
+				<li class="pics">
+					<div class="show">
+						<img src="img/5.jpg">
+					</div>
+					<ul class="items">
+						<li><img src="img/1.jpg"></li>
+						<li><img src="img/2.jpg"></li>
+						<li><img src="img/3.jpg"></li>
+						<li><img src="img/4.jpg"></li>
+					</ul>
+				</li>
+				<li class="op">
+					<ul>
+						<li><img src="img/forum.svg"><span label>评论</span></li>
+						<li><img src="img/transfer.svg"><span label>转发</span></li>
+						<li><img src="img/shared.svg"><span label>分享</span></li>
+						<li><img src="img/follow.svg"><span label>关注</span></li>
+						<li><img src="img/great.svg"><span label>赞</span></li>
+					</ul>
+				</li>
+				<li class="forum">
+					<div>评论</div>
+				</li>
+			</ul>
+		</li>
+	</ul>
+</div>

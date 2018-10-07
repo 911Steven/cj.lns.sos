@@ -1,0 +1,83 @@
+<style>
+<!--
+.p-list{
+}
+.p-list>.p-docs{
+}
+.p-list>.p-docs>.doc{
+	padding: 10px;
+	border-bottom:1px solid #ececec;
+	position: relative;
+}
+.p-list>.p-docs>.doc>span[remove]{
+	padding: 5px 10px;
+	display: inline-block;
+	position:absolute;
+	bottom: 10px;
+	right:10px;
+	display: none;
+	cursor: pointer;
+}
+.p-list>.p-docs>.doc>span[edit]{
+	padding: 5px 10px;
+	display: inline-block;
+	position:absolute;
+	bottom: 10px;
+	right:40px;
+	display: none;
+	cursor: pointer;
+}
+.p-list>.p-docs>.doc>span[remove]:hover{
+	background: #ececec;
+}
+.p-list>.p-docs>.doc>span[edit]:hover{
+	background: #ececec;
+}
+.p-list>.p-docs>.doc>ul>li{
+	margin: 10px 0;
+}
+.p-list>.p-docs>.doc>ul>li[title]{
+	font-size: 20px;
+	font-weight:bold;
+	color: blue;
+}
+.p-list>.p-docs>.doc>ul>li[desc]{
+	color: gray;
+}
+.p-list>.p-docs>.doc>ul>li[desc]>span{
+	padding-right: 10px;
+}
+.p-list>.p-docs>.doc>ul>li[cnt]{
+}
+.p-list>.p-docs>.doc>ul>li[cnt]>pre{
+	margin-bottom: 10px;
+	font-family: Helvetica, "Hiragino Sans GB", "Microsoft Yahei", "微软雅黑",
+		Arial, sans-serif;
+	font-size: 14px;
+	line-height: 30px;
+	white-space: pre-wrap;
+	word-wrap: break-word;
+}
+.p-list>.p-docs>.doc>ul>li[cnt]>span[extends]{
+	color: blue;
+	cursor: pointer;
+	padding: 5px 10px 5p 0;
+}
+.p-list>.p-docs>.doc>ul>li[cnt]>span[extends]:hover{
+	text-decoration: underline;
+}
+-->
+</style>
+<div class="p-list">
+	<ul class="p-docs">
+		<li class="doc">
+			<ul>
+				<li title>标题</li>
+				<li desc><span label>发布时间</span><span value>23:00</span></li>
+				<li cnt><pre>正文</pre><span extends>展开...</span></li>
+			</ul>
+			<span edit title="编辑">E</span>
+			<span remove title="删除">X</span>
+		</li>
+	</ul>
+</div>

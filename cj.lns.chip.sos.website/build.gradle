@@ -1,0 +1,38 @@
+sourceSets { 
+	 main { 
+	 	java{
+	 		srcDir "$projectDir/src"
+	 	}
+	 	resources{
+		 	srcDir "$projectDir/site-src"
+		 }
+	 } 
+ 	}
+ 	sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+ 	tasks.withType(JavaCompile) {  
+        options.encoding = "UTF-8"  
+    } 
+ repositories { 
+	 flatDir(dirs: "../global/lib") 
+ } 
+
+dependencies {
+compile group: 'org.jsoup', name: 'jsoup', version: '1.8.1'
+	compile('org.mongodb:mongo-java-driver:3.0.2');
+	compile fileTree(dir: '../global/lib', includes: ['*.jar'])
+	compile fileTree(dir: '../global/cjtools', includes: ['*.jar'])
+	compile fileTree('src/cj/references')
+	compile fileTree('src/cj/refembeds')
+}
+ 	task releaseToTerminusOpenPlatform(type: Copy) {
+ 	dependsOn "build"
+ 	 from 'build/libs/'
+	     into '../network/neuron-sossite/apps/cj.lns.chip.sos.website-1.0'
+	     include '**/*.jar'
+ 	}
+ 	
+ 	 task release(type: Copy) {
+     dependsOn "releaseToTerminusOpenPlatform"
+ 	}
+ 	

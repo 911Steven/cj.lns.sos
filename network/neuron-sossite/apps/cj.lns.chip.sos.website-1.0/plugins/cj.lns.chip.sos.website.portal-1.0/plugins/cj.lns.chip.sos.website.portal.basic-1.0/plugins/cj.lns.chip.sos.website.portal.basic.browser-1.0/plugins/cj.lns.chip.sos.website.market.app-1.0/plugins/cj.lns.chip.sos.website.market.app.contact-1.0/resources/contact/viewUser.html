@@ -1,0 +1,160 @@
+<style>
+<!--
+.u-view {
+	overflow: scroll;
+	height: 100%;
+	margin-top: -35px;
+}
+
+.u-pic {
+	height: 160px;
+	position: relative;
+	background-image: url(./contact/img/back.jpg);
+	background-repeat: no-repeat;
+	background-attachment: scroll;
+	background-size: 100% auto;
+}
+
+.u-pic>ul {
+	text-align: center;
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 20px;
+	bottom: 0;
+	font-size: 14px;
+}
+
+.u-pic>ul>li.u-profile>img {
+	width: 40px;
+	height: 40px;
+	border: 1px solid white;
+}
+
+.u-pic>ul>li.u-op {
+	margin-top: 10px;
+}
+
+.u-pic>ul>li.u-op>a {
+	padding: 4px 10px;
+	font-size: 12px;
+	margin: 5px 4px;
+}
+
+.u-pic>ul>li.u-op>a:hover {
+	color: black;
+	background-color: #f5f5f5;
+}
+.u-pic>ul>li.u-op>a[if='on']:hover {
+	color: #ececec;
+	background-color: none;
+}
+.u-pic>ul>li.u-op>a[a='friend'] {
+	position: relative;
+}
+
+.u-pic>ul>li.u-op>a[a='friend']>ul {
+	background-color: #f5f5f5;
+	position: absolute;
+	top: 20px;
+	left: 0;
+	font-size: 12px;
+	display: none;
+	color: black;
+	padding-top: 15px;
+}
+
+.u-pic>ul>li.u-op>a[a='friend']>ul>li {
+	padding: 2px 10px;
+	white-space:nowrap;
+	text-align: left;
+}
+
+.u-pic>ul>li.u-op>a[a='friend']>ul>li:hover {
+	background-color: #ececec;
+}
+
+.u-de {
+	display: none;
+}
+-->
+</style>
+<script type="text/javascript">
+<!--
+	(function() {
+		var op = $('.u-view>.u-pic>ul>li.u-op');
+		op.delegate('a', 'click', function() {
+			var who = $(this).attr('a');
+			var ifon = $(this).attr('if');
+			var uid=$('.u-view').attr('uid');
+			if ('public' == who) {
+				//on表示已关注
+				if ('on' == ifon) {
+					return;
+				}
+				//添加到公众组
+				$.get('./contact/addUserToGroup.service', {
+					gid:'-100',
+					uid:uid
+				}, function(d) {
+					alert('成功添加到分组');
+				}).error(function(e) {
+					alert(e.status + ' ' + e.responseText);
+				});
+				return;
+			}
+			if ('friend' == who) {
+				//后台渲染页面时加载组
+				var group = $(this).find('ul');
+				group.show();
+				group.children('li').on('click', function() {
+					if ('on' == ifon) {
+						group.hide();
+						return;//表示已关不，因此不必
+					}
+					var gid = $(this).attr('gid');
+					group.hide();
+					//添加到指定组
+					$.get('./contact/addUserToGroup.service', {
+						gid:gid,
+						uid:uid
+					}, function(d) {
+						alert('成功添加到分组');
+					}).error(function(e) {
+						alert(e.status + ' ' + e.responseText);
+					});
+					
+				});
+				return;
+			}
+		});
+		var friend = op.children("a[a='friend']");
+		friend.hover(function() {
+		}, function() {
+			$(this).find('ul').hide();
+		});
+	})();
+//-->
+</script>
+<div class="u-view">
+	<div class="u-pic">
+		<ul>
+			<li class='u-profile'><img src="./contact/img/head.jpg">
+				<div nickname>carocean</div>
+				<div text>这样的风吹不过</div></li>
+			<li class='u-op'><a href='#' a='public' if='off'>关注为公众</a><a
+				href='#' a='friend' if='off'>添加为好友
+					<ul>
+						<li gid='1'>我的同事1</li>
+						<li gid='2'>我的同事2</li>
+					</ul>
+			</a></li>
+		</ul>
+	</div>
+	<ul class="u-de">
+		<li class="u-item">
+			<div>图片区</div>
+		</li>
+		
+	</ul>
+</div>

@@ -1,0 +1,450 @@
+<script type="text/javascript" src="develop/js/openarticle.js" plugin />
+<style>
+<!--
+.o-art {
+	background: white;
+}
+
+.o-art>.o-box {
+	padding-top: 20px;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-bottom: 10px;
+}
+
+.o-art>.o-box>.title {
+	font-size: 22px;
+	font-weight: bold;
+	text-align: left;
+	color: #0000CC;
+}
+
+.o-art>.o-box>.desc {
+	color: gray;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+.o-art>.o-box>.desc>span {
+	padding-right: 10px;
+}
+
+.o-art>.o-box>.desc>span[visits] {
+	cursor: pointer;
+}
+
+.o-art>.o-box>.desc>span[visits]:hover {
+	text-decoration: underline;
+}
+
+.o-art>.o-box>.desc>span[visits]>img {
+	width: 20px;
+	height: 20px;
+	vertical-align: middle;
+	padding-right: 5px;
+}
+
+.o-art>.o-box>.op {
+	background: #f5f5f5;
+	margin-bottom: 10px;
+	margin-top: 10px;
+}
+
+.o-art>.o-box>.op>ul {
+	text-align: center;
+}
+
+.o-art>.o-box>.op>ul>li {
+	display: inline-block;
+	padding: 0 10px;
+	cursor: pointer;
+	height: 30px;
+	padding-top: 5px;
+}
+
+.o-art>.o-box>.op>ul>li:hover {
+	border-left: 1px solid white;
+	border-right: 1px solid white;
+}
+
+.o-art>.o-box>.op>ul>li>img {
+	width: 20px;
+	height: 20px;
+	vertical-align: middle;
+}
+
+.o-art>.o-box>.op>ul>li>span[label] {
+	padding: 0 4px;
+	vertical-align: middle;
+}
+
+.o-art>.o-box>.op>ul>li>span[value] {
+	vertical-align: middle;
+}
+
+.o-art>.o-box>.media {
+	margin: 30px 0;
+}
+
+.o-art>.o-box>.media>ul>.pics {
+	text-align: center;
+	padding: 10px 0;
+}
+
+.o-art>.o-box>.media>ul>.pics>.show {
+	background: white;
+	height: 200px;
+}
+
+.o-art>.o-box>.media>ul>.pics>.show>img {
+	height: 100%;
+	max-width: 600px;
+	cursor: pointer;
+}
+
+.o-art>.o-box>.media>ul>.pics>.show>video {
+	height: 100%;
+	width: 100%;
+}
+
+.o-art>.o-box>.media>ul>.pics>.items {
+	vertical-align: middle;
+}
+
+.o-art>.o-box>.media>ul>.pics>.items>li {
+	display: inline-block;
+	padding: 10px;
+	cursor: pointer;
+	padding: 10px;
+	vertical-align: middle;
+}
+
+.o-art>.o-box>.media>ul>.pics>.items>li:hover {
+	background: white;
+}
+
+.o-art>.o-box>.media>ul>.pics>.items>li>img {
+	width: 60px;
+	height: 60px;
+	vertical-align: middle;
+}
+
+.o-art>.o-box>.media>ul>.pics>.items>li>video {
+	width: 60px;
+	height: 60px;
+	vertical-align: middle;
+}
+
+.o-art>.o-box>.media>ul>.attachment {
+	margin: 10px 0;
+}
+
+.o-art>.o-box>.media>ul>.attachment>ul>li {
+	padding: 0 10px;
+	cursor: pointer;
+	display: inline-block;
+	text-align: center;
+	font-size: 10px;
+}
+
+.o-art>.o-box>.media>ul>.attachment>ul>li:hover {
+	border: 1px solid #ececec;
+}
+
+.o-art>.o-box>.media>ul>.attachment>ul>li>img {
+	width: 20px;
+	height: 20px;
+}
+
+.o-art>.o-box>.media>ul>.attachment>ul>li>p[name] {
+	line-height: 15px;
+}
+
+.o-art>.o-box>.content {
+	margin: 30px 0;
+}
+
+.o-art>.o-box>.content>pre {
+	font-size: 14px;
+	line-height: 30px;
+	font-family: Helvetica, 'Hiragino Sans GB', 'Microsoft Yahei', '微软雅黑',
+		Arial, sans-serif;
+	white-space: pre-wrap; /* css-3 */
+	white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
+	white-space: -pre-wrap; /* Opera 4-6 */
+	white-space: -o-pre-wrap; /* Opera 7 */
+	word-wrap: break-word; /* Internet Explorer 5.5+ */
+}
+
+.o-art>.o-box>.content>p {
+	margin: 10px 0;
+}
+
+.o-art>.o-box>.forum {
+	
+}
+
+.o-art>.o-box>.forum>.great {
+	
+}
+
+.o-art>.o-box>.forum>.great>img.g-main {
+	width: 30px;
+	height: 30px;
+	cursor: pointer;
+}
+
+.o-art>.o-box>.forum>.great>img.g-main:hover {
+	border: 1px solid #ececec;
+}
+
+.o-art>.o-box>.forum>.great>.faces {
+	display: inline-block;
+}
+
+.o-art>.o-box>.forum>.great>.faces>li {
+	padding: 0 4px;
+	cursor: pointer;
+	display: inline-block;
+}
+
+.o-art>.o-box>.forum>.great>.faces>li>img {
+	width: 30px;
+	height: 30px;
+}
+
+.o-art>.o-box>.forum>.great>.faces>li>img:hover {
+	border: 1px solid #ececec;
+}
+
+.o-art>.o-box>.forum>.threads {
+	font-size: 11px;
+}
+
+.o-art>.o-box>.forum>.threads>li {
+	margin: 0;
+}
+
+.forum-panel {
+	display: inline-block;
+}
+
+.forum-panel>.ctx>p[talk] {
+	display: inline-block;
+}
+
+.forum-panel>.ctx>span[name], .forum-panel>.ctx>span[to] {
+	cursor: pointer;
+	color: #6D8BA7;
+	padding-right: 5px;
+}
+
+.forum-panel>.ctx>span[name]:hover, .forum-panel>.ctx>span[to]:hover {
+	color: #003159;
+}
+
+.forum-panel>.ctx>span[name], .forum-panel>.ctx>span[symbol] {
+	padding-right: 5px;
+}
+
+.forum-panel>.ctx>span[name]:hover, .forum-panel>.ctx>span[to]:hover {
+	text-decoration: underline;
+}
+
+.forum-panel>.ctx>span[name], .forum-panel>.op>span[time] {
+	padding-right: 10px;
+}
+
+.forum-panel>.ctx>span[name], .forum-panel>.op>span[reply], .forum-panel>.ctx>span[name],
+	.forum-panel>.op>span[close] {
+	padding-right: 10px;
+	text-decoration: underline;
+	cursor: pointer;
+	color: #6D8BA7;
+}
+.forum-panel>.op>span[close]{
+	display: none;
+}
+.forum-panel>.ctx>span[name]:hover, .forum-panel>.op>span[reply]:hover,
+	.forum-panel>.ctx>span[name]:hover {
+	color: #003159;
+}
+
+.forum-panel>.follows {
+	margin-top: 2px;
+}
+
+.forum-panel>.follows>ul>li {
+	margin: 0;
+}
+
+.o-art>.o-box>.forum>.threads>li>img, .forum-panel>.follows>ul>li>img {
+	width: 25px;
+	height: 25px;
+	vertical-align: top;
+	padding-top: 6px;
+	padding-right: 5px;
+	cursor: pointer;
+}
+
+.o-art>.o-box>.forum>.threads>li>img:hover, .forum-panel>.follows>ul>li>img:hover
+	{
+	border-right: 1px solid white;
+}
+.o-art>.o-box>.forum>.bottom{
+	margin-top: 10px;
+}
+.o-art>.o-box>.forum>.bottom>.extends{
+	text-align: right;
+	display: none;
+}
+.o-art>.o-box>.forum>.bottom>.extends>span[more] {
+	text-decoration: underline;
+	cursor: pointer;
+	color: #6D8BA7;
+}
+
+.o-art>.o-box>.forum>.bottom>.extends>span[more]:hover {
+	color: #003159;
+}
+
+.o-art>.o-box>.forum>.bottom>.typed {
+	position: relative;
+}
+
+.o-art>.o-box>.forum>.bottom>.typed>span[value]>textarea {
+	width: 100%;
+	height: 60px;
+	font-size: 12px;
+	border: 1px solid #cecece;
+	padding: 5px;
+	resize: none;
+}
+
+.o-art>.o-box>.forum>.bottom>.typed>span[label] {
+	color: gray;
+	position: absolute;
+	left: 10px;
+	top: 20px;
+}
+.o-art > .o-box > .op > ul > li[action=share]{
+	display: none;
+}
+-->
+</style>
+<div class="o-art">
+	<ul class="o-box">
+		<li class="title"><span label>浙江台州一架战机坠落纫机厂房顶 飞行员跳伞</span></li>
+		<li class="desc"><span pubdate>2015年10月21日 22:00</span><span
+			visits><img src="img/see-01.svg"><span label>浏览
+					(10)</span></span></li>
+		<li class="media"><ul>
+				<li class="pics">
+					<div class="show">
+						<img src="img/5.jpg">
+					</div>
+					<ul class="items">
+						<li><img src="img/1.jpg"></li>
+						<li><img src="img/2.jpg"></li>
+						<li><img src="img/3.jpg"></li>
+						<li><img src="img/4.jpg"></li>
+					</ul>
+				</li>
+				<li class="attachment"><ul>
+						<li><img src="./swssite/develop/img/file.svg">
+							<p name>开发文档.doc</p></li>
+						<li><img src="./swssite/develop/img/file.svg">
+							<p name>开发文档2.doc</p></li>
+					</ul></li>
+			</ul></li>
+		<li class="content"><p>【一架战机坠落台州
+				飞行员跳伞】据@新台州，今晚8时许，浙江台州市椒江区下陈村杰克缝纫机厂房顶被一架战斗机掉下砸在屋顶引发火灾，目前火势还在控制中，飞行员跳伞无恙。去年12月17日，一架战机也曾在台州坠毁。据@新台州
+				今晚大概19:20，台州椒江下陈街道发生战斗机坠落。所幸飞行员跳伞安全降落，厂房是空的，没有人员伤亡。</p>
+			<p>#军报快讯#【海军一架飞机在夜间训练中失事坠毁】海军新闻发言人梁阳5月11日发布消息，今晚19时30分，海军东海舰队航空兵一架战斗机在进行夜间训练时失事，坠毁于浙江台州附近一家缝纫机厂厂区，造成部分建筑损毁，根据目前掌握情况无人员伤亡，飞行员成功跳伞。海军和东海舰队迅速组织力量正在进行事故善后处置，事故原因有待进一步调查核实。</p>
+		</li>
+
+
+		<li class="op">
+			<ul>
+				<li action='forum'><img src="img/forum.svg"><span label>评论</span><span
+					value>(20)</span></li>
+				<li action='share'><img src="img/shared.svg"><span label>分享</span></li>
+				<li action='follow'><img src="img/follow.svg"><span label>关注</span><span
+					value>(20)</span></li>
+				<li action='great'><img src="img/great.svg"><span label>赞</span><span
+					value>(20)</span></li>
+			</ul>
+		</li>
+		<li class="forum">
+			<div class="great">
+				<img class="g-main" src="img/great.svg">
+				<ul class="faces">
+					<li face><img src="img/2.jpg"></li>
+					<li face><img src="img/3.jpg"></li>
+					<li face><img src="img/4.jpg"></li>
+				</ul>
+			</div>
+			<ul class="threads">
+				<li class="thread"><img src="img/5.jpg">
+					<ul class="forum-panel">
+						<li class="ctx"><span name face>会飞的猪</span><span symbol>:</span>
+							<p talk>波哥哥，晚上要跑哈子步了</p></li>
+						<li class="op"><span time>4-3 12:45</span> <span reply>回复</span>
+							<span close>X</span></li>
+						<li class="follows">
+							<ul>
+								<li><img src="img/3.jpg">
+									<ul class="forum-panel">
+										<li class="ctx"><span name face>开心的人</span><span symbol>:</span><span
+											to face>小张</span>
+											<p talk>那天你干啥了</p></li>
+										<li class="op"><span time>4-4 2:45</span> <span reply>回复</span>
+											<span close>X</span></li>
+									</ul></li>
+								<li><img src="img/2.jpg">
+									<ul class="forum-panel">
+										<li class="ctx"><span name face>开心的人</span><span symbol>:</span><span
+											to face>小张</span>
+											<p talk>那天你干啥了</p></li>
+										<li class="op"><span time>4-4 2:45</span> <span reply>回复</span>
+											<span close>X</span></li>
+									</ul></li>
+							</ul>
+						</li>
+					</ul></li>
+				<li class="thread"><img src="img/5.jpg">
+					<ul class="forum-panel">
+						<li class="ctx"><span name>会飞的猪</span><span symbol>:</span>
+							<p talk>波哥哥，晚上要跑哈子步了</p></li>
+						<li class="op"><span time>4-3 12:45</span> <span reply>回复</span>
+							<span close>X</span></li>
+						<li class="follows">
+							<ul>
+								<li><img src="img/3.jpg">
+									<ul class="forum-panel">
+										<li class="ctx"><span name>开心的人</span><span symbol>:</span><span
+											to>小张</span>
+											<p talk>那天你干啥了</p></li>
+										<li class="op"><span time>4-4 2:45</span> <span reply>回复</span>
+											<span close>X</span></li>
+									</ul></li>
+								<li><img src="img/2.jpg">
+									<ul class="forum-panel">
+										<li class="ctx"><span name>开心的人</span><span symbol>:</span><span
+											to>小张</span>
+											<p talk>那天你干啥了</p></li>
+										<li class="op"><span time>4-4 2:45</span> <span reply>回复</span>
+											<span close>X</span></li>
+									</ul></li>
+							</ul>
+						</li>
+					</ul></li>
+			</ul>
+			<ul class="bottom">
+				<li class="extends"><span more>更多评论...</span></li>
+				<li class="typed"><span value><textarea></textarea></span><span
+					label>输入评论，回撤上屏...</span></li>
+			</ul>
+		</li>
+	</ul>
+</div>

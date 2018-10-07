@@ -1,0 +1,193 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<title>云网</title>
+<link href="../../../../css/global.css" type="text/css" rel="stylesheet">
+<link href="../../../../css/pages/portal-viewer.css" type="text/css"
+	rel="stylesheet">
+<script type="text/javascript"
+	src="../../../../js/jquery/jquery-2.1.4.js"></script>
+<style type="text/css">
+#content_inner>.body>pre>img {
+	width: 100%;
+}
+
+.grid-s5m0e5 {
+	height: 11800px;
+}
+#content_inner > .body > pre>.result{
+	font-size: 10px;
+	margin-left: 60px;
+}
+#content_inner > .body > pre>.style1{
+font-size: 10px;
+	margin-left: 60px;
+}
+</style>
+</head>
+<body>
+	<div class="topbar">
+		<ul class="left">
+			<li class="about"><span label>关于</span></li>
+		</ul>
+		<ul class="right">
+			<li class="mine"><a target="_blank"
+				href="../../../../public/register2.html">注册</a></li>
+			<li class="login"><span label>登录</span></li>
+		</ul>
+	</div>
+	<div class="banner">
+		<div class="b-left"></div>
+		<div class="b-center">
+			<div class="logo">
+				<img src="../../../../img/pages/logo.png">
+				<p>云网</p>
+			</div>
+		</div>
+		<div class="b-right"></div>
+	</div>
+	<div class="grid-s5m0e5">
+		<div class="col-main">
+			<div class="main-wrap">
+				<div id="content">
+					<div id="content_inner">
+						<div class="title">
+							<p>从net 工具包的 helloworld 入门</p>
+						</div>
+						<div class="subtitle">
+							<ul>
+								<li><span label>作者：</span><span value
+									style="padding-right: 10px;">cj (赵向彬)</span><span label>发布日期：</span><span
+									value>2016年8月19日 3:24</span></li>
+							</ul>
+						</div>
+						<div class="body">
+							<div style="font-family: sans-serif; margin-bottom: 10px;">
+								<span><b>关键词：</b></span>学习 技术 面向连接编程 面向模块编程 面向协议编程 编程思想 结构化 面向对象 <br>
+								java j2ee osgi spring dotnet osgi netty tomcat jetty nodejs jsp php
+								aspx zookeeper docker
+							</div>
+							<div style="font-family: sans-serif; margin-bottom: 10px;">
+								<span><b>摘要：</b></span>
+								本文让咱大概对net工具包有个初步的认识，大概有这么几步：
+								<br>
+								1. 如没不知道怎么搭建开发环境，且参考<a target="_blank" href="ecm_hello.html" plugin style="text-decoration: underline;color: blue;">《从ecm 工具包的 helloworld 入门》</a> 搭建开发环境<br>
+								2. hello world graph的实现，参见工程中的TestNetGraphMain<br>
+								3. 本地测试
+								<br><br>
+								说明：本例以接触方式调用graph，如不清楚什么是接触方式，请参见<a target="_blank" href="../../portlet-00001-show/views/ecm.html" style="color: blue;text-decoration: underline;">面向连接编程思想</a>
+							</div>
+							<div style="font-family: sans-serif; margin-bottom: 10px;">
+								<span><b>正文：</b></span>
+							</div>
+							<pre>
+一. hello world graph。
+	它依赖net工具包（在工程中已有）
+	<p class="style1">
+	public class TestNetGraphMain {
+
+	public static void main(String[] args) throws CircuitException {
+		testExeHelloworldByObType();
+	}
+
+	static void testExeHelloworldByObType() throws CircuitException {
+		
+		IAssembly a = Assembly.loadAssembly(
+				"/Users/carocean/studio/examples/build/your.crop.examples.net/your.crop.examples.net-1.0.jar");
+		a.start();
+		Object obj = a.workbin().part("helloWorld");
+		IGraph g = (IGraph) obj;
+		if(!g.isInit()){
+			g.initGraph();
+		}
+		IPin input=g.in("input");
+		Frame frame=new Frame("get /helloworld hlwd/1.0");
+		Circuit circuit=new Circuit("hlwd/1.0 200 ok");
+		input.flow(frame, circuit);
+	}
+
+
+}
+	</p>
+二. graph实现
+<p class="style1">@CjService(name = "helloWorld", isExoteric = true)
+public class MyHelloWorldGraph extends Graph {
+	@Override
+	protected String defineAcceptProptocol() {
+		return ".*";//指定graph的可接受协议
+	}
+
+	@Override
+	protected GraphCreator newCreator() {
+		// graph的构建器，很重要
+		return new MyHelloWorldCreator();
+	}
+
+	@Override
+	protected void build(final GraphCreator c) {
+		//构建了两个端子，输入输出
+		c.newWirePin("input", Access.input).plugLast("mySink",
+				c.newSink("mySink"));
+		c.newWirePin("output", Access.output);
+	}
+
+
+
+	
+}</p>	
+三. graph creator的实现
+<p class="style1">
+class MyHelloWorldCreator extends GraphCreator {
+	@Override
+	protected IProtocolFactory newProtocol() {
+		// 指定常量工厂，即：graph所实现协议的代码表或常量表
+		return AnnotationProtocolFactory.factory(IHelloProtocol.class);
+	}
+
+	@Override
+	protected ISink createSink(String sink) {
+		// 根据sink名创建sink
+		return new MySink();
+	}
+}</p>
+四. 创建sink
+<p class="style1">
+public class MySink implements ISink {
+		@Override
+		public void flow(Frame frame,Circuit circuit, IPlug plug) throws CircuitException {
+			System.out.println("--------------hello world!-----------");
+			System.out.println(frame);
+			System.out.println("--------------end!-----------");
+		}
+	}</p>
+							</pre>
+						</div>
+						<div class="bottom"></div>
+					</div>
+				</div>
+				<div id="side">
+					<div class="fill"></div>
+					<div class="portlet">
+						<div class="title">
+							<span label>相关</span>
+						</div>
+						<ul class="items">
+				<li><a href="../views/ecm_hello.html" plugin target="_blank">· 从ecm 工具包的 helloworld 入门</a></li>
+		<li><a href="../views/intro_ecm.html" plugin target="_blank">· 介绍： ecm 面向连接电子模型开发工具包</a></li>
+		<li><a href="../views/intro_net.html" plugin target="_blank">· 介绍： net 通讯开发工具包</a></li>
+		<li><a href="../views/intro_plus.html" plugin target="_blank">· 介绍： plus 模块化、插件化、服务化增强开发工具包</a></li>
+		<li><a href="../views/intro_netdisk.html" plugin target="_blank">· 介绍： netdisk 多维云盘开发工具包</a></li>
+		<li><a href="../views/intro_neuron.html" plugin target="_blank">· 介绍： neuron 分布式连接容器</a></li>
+		<li><a href="../views/intro_netsite.html" plugin target="_blank">· 介绍： netsite 热插拔应用容器</a></li>
+		<li><a href="../views/intro_mdisk.html" plugin target="_blank">· 介绍： mdisk 多维云盘命令行工具</a></li>
+		<li><a href="../views/intro_cjnet.html" plugin target="_blank">· 介绍： cjnet 调试、测试命令行工具</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-sub"></div>
+		<div class="col-extra"></div>
+	</div>
+</body>
+</html>

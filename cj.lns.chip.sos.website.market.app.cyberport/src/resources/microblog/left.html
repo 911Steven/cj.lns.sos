@@ -1,0 +1,80 @@
+<style>
+<!--
+.dvp-fx{
+background: white;
+}
+.dvp-fx>.title {
+	border-bottom: 1px solid #ececec;
+	padding: 2px 10px;
+	color: gray;
+}
+
+.dvp-fx>.persons {
+	padding-left: 6px;
+}
+
+.dvp-fx>.persons>.person {
+	margin: 5px;
+	position: relative;
+	padding-left: 36px;
+}
+
+.dvp-fx>.persons>.person>img {
+	width: 30px;
+	height: 30px;
+	position: absolute;
+	top: 8px;
+	left: 0;
+	cursor: pointer;
+}
+
+.dvp-fx>.persons>.person>ul>li[name] {
+	cursor: pointer;
+}
+
+.dvp-fx>.persons>.person>ul>li[name]:hover {
+	text-decoration: underline;
+}
+
+.dvp-fx>.persons>.person>ul>li[sign] {
+	font-size: 10px;
+}
+.dvp-fx>.persons>.person>ul>li[sign]>span[dynamic]{
+	display: inline-block;
+	padding-right: 4px;
+	color: gray;
+}
+.dvp-fx>.persons>.person>ul>li[sign]>span[spliter]{
+	display: inline-block;
+	padding-right: 4px;
+	color: gray;
+}
+-->
+</style>
+<div class="portlet dvp-fx">
+	<div class="title">
+		<span label>动态发现</span>
+	</div>
+	<ul class="persons">
+		<li class="person"><img src="img/3.jpg">
+			<ul>
+				<li name>Carocean</li>
+				<li sign><span dynamic>动态</span><span spliter>:</span>刚刚注册</li>
+			</ul></li>
+		<li class="person"><img src="img/3.jpg">
+			<ul>
+				<li name>Carocean</li>
+				<li sign><span dynamic>动态</span>:<span text>刚刚上线</span></li>
+			</ul></li>
+		<li class="person"><img src="img/3.jpg">
+			<ul>
+				<li name>Carocean</li>
+				<li sign><span dynamic>动态</span>:<span text>进入您的地圈</span></li>
+			</ul></li>
+		<li class="person"><img src="img/3.jpg">
+			<ul>
+				<li name>Yily</li>
+				<li sign><span dynamic>动态</span>:<span text>正在浏览你</span></li>
+			</ul></li>
+	</ul>
+</div>

@@ -1,0 +1,56 @@
+<style>
+<!--
+.cg-panel {
+	margin: 20px 30px;
+}
+
+.cg-panel>ul>li {
+	margin: 10px 0;
+}
+
+.cg-panel>ul>li>span {
+	text-align: left;
+	color: gray;
+	display: block;
+}
+
+.cg-panel>ul>li>input {
+	border: 1px solid #cecece;
+	padding: 4px;
+	width: 280px;
+}
+
+.cg-panel>ul>li>textarea {
+	border: 1px solid #cecece;
+	width: 280px;
+	padding: 8px;
+	font-size: 12px;
+	resize: none;
+	display: inline-block;
+}
+
+.cg-panel>.op {
+	margin-top: 10px;
+}
+
+.cg-panel>.op>.save {
+	margin-top: 10px;
+	margin-right: 20px;
+}
+
+-->
+</style>
+<script type="text/javascript" src="/js/createChatGroup.js" plugin>
+	
+</script>
+<div class="cg-panel">
+	<ul>
+		<li label="num"><span>群号:</span><input type="text" readonly="readonly" disabled="disabled"></li>
+		<li label="pic"><input type="button" value="上传头像"></li>
+		<li label="name"><span>群名称:</span><input type="text"></li>
+		<li label=introduce><span>简介:</span> <textarea rows="12" cols=""></textarea></li>
+	</ul>
+	<div class="op">
+		<a class="save" href="#">保存</a><a class="ret" href="#">返回</a>
+	</div>
+</div>

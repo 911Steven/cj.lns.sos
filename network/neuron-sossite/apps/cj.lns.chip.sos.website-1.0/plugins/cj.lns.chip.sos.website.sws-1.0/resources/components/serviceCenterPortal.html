@@ -1,0 +1,505 @@
+<script type="text/javascript" src="js/serviceCenterPortal.js" plugin>
+	
+</script>
+<style>
+<!--
+.sc-panel {
+	position: relative;
+	height: 100%;
+	width: 100%;
+}
+
+.sc-panel>.header {
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	height: 50px;
+	background: #ececec;
+}
+
+.sc-panel>.content {
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 50px;
+	bottom: 50px;
+	padding: 0 10px;
+	overflow: auto;
+}
+
+.sc-panel>.footer {
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	height: 50px;
+	background: #f5f5f5;
+}
+
+.sc-panel>.header>div[title] {
+	font-size: 16px;
+	font-weight: bold;
+	text-align: center;
+	height: 100%;
+	padding: 10px 0;
+}
+
+.sc-panel>.header>.slider {
+	position: absolute;
+	right: 20px;
+	top: 26px;
+}
+
+.sc-panel>.header>.slider>li {
+	display: inline-block;
+	padding: 2px 8px;
+	cursor: pointer;
+}
+
+.sc-panel>.header>.slider>li:hover {
+	text-decoration: underline;
+	background: white;
+}
+
+.sc-panel>.header>.panel {
+	position: absolute;
+	left: 0;
+	top: 50px;
+	right: 0;
+	min-height: 100px;
+	background: white;
+	z-index: 99999999;
+	border-bottom: 1px solid #ececec;
+	display: none;
+}
+
+.sc-panel>.footer>.typed {
+	position: absolute;
+	left: 10px;
+	top: 10px;
+	right: 100px;
+	bottom: 10px;
+}
+
+.sc-panel>.footer>.typed>input {
+	width: 100%;
+	height: 100%;
+	padding: 4px 50px 4px 4px;
+}
+
+.sc-panel>.footer>.typed>span {
+	display: inline-block;
+	position: absolute;
+	right: 1px;
+	top: 1px;
+	bottom: 1px;
+	width: 50px;
+	cursor: pointer;
+	background: #f5f5f5;
+	text-align: center;
+	padding: 4px 0;
+}
+
+.sc-panel>.footer>.typed>span:hover {
+	color: red;
+}
+
+.sc-panel>.footer>.op {
+	position: absolute;
+	right: 0;
+	top: 10px;
+	width: 100px;
+	right: 0;
+	bottom: 10px;
+	text-align: center;
+}
+
+.sc-panel>.footer>.op>li {
+	display: inline-block;
+	padding: 0 5px;
+	cursor: pointer;
+	text-align: center;
+}
+
+.sc-panel>.footer>.op>li>img {
+	width: 20px;
+	height: 20px;
+}
+
+.sc-panel>.footer>.op>li:hover {
+	text-decoration: underline;
+}
+
+.sc-panel>.footer>.op>li>p {
+	color: gray;
+	line-height: 16px;
+	font-size: 10px;
+}
+
+.sc-panel>.content>.response {
+	margin: 30px 50px;
+}
+
+.sc-panel>.content>.response>.header {
+	text-align: center;
+	color: gray;
+	position: relative;
+}
+
+.sc-panel>.content>.response>.header>.face[left] {
+	position: absolute;
+	left: -40px;
+	top: 0;
+	cursor: pointer;
+}
+
+.sc-panel>.content>.response>.header>.face[left]>img {
+	width: 30px;
+	height: 30px;
+	-moz-border-radius: 15px; /* Gecko browsers */
+	-webkit-border-radius: 15px; /* Webkit browsers */
+	border-radius: 15px;
+}
+
+.sc-panel>.content>.response>.header>.face[left]>p {
+	display: inline-block;
+}
+
+.sc-panel>.content>.response>.header>.face[right] {
+	position: absolute;
+	right: -40px;
+	top: 0;
+	cursor: pointer;
+}
+
+.sc-panel>.content>.response>.header>.face[right]>img {
+	width: 30px;
+	height: 30px;
+	-moz-border-radius: 15px; /* Gecko browsers */
+	-webkit-border-radius: 15px; /* Webkit browsers */
+	border-radius: 15px;
+}
+
+.sc-panel>.content>.response>.header>.face[right]>p {
+	display: inline-block;
+}
+
+.sc-panel>.content>.response>.body {
+	border: 1px solid #ececec;
+	padding: 10px;
+	position: relative;
+}
+
+.sc-panel>.content>.response>.body a {
+	text-decoration: underline;
+	color: blue;
+	padding: 0 4px;
+}
+
+.sc-panel>.content>.response[type=style1]>.body {
+	padding-left: 150px;
+}
+
+.sc-panel>.content>.response[type=style1]>.body>p {
+	text-align: center;
+	position: absolute;
+	left: 0;
+	top: 50%;
+	margin-top: -50px;
+	width: 140px;
+	height: 140px;
+}
+
+.sc-panel>.content>.response[type=style1]>.body>p>img {
+	width: auto;
+	height: 100px;
+}
+
+.sc-panel>.content>.response[type=style1]>.body>.items>li {
+	padding: 10px 0;
+}
+
+.sc-panel>.content>.response[type=style1]>.body>.items>li>img {
+	width: 30px;
+	height: 30px;
+}
+
+.sc-panel>.content>.response[type=style2]>.body {
+	padding-left: 10px;
+}
+
+.sc-panel>.content>.response[type=style2]>.body>p {
+	text-align: center;
+	width: auto;
+	height: 140px;
+}
+
+.sc-panel>.content>.response[type=style2]>.body>p>img {
+	width: auto;
+	height: 100%;
+}
+
+.sc-panel>.content>.response[type=style2]>.body>.items>li {
+	padding: 4px 0;
+}
+
+.sc-panel>.content>.response[type=style2]>.body>.items>li>img {
+	width: 28px;
+	height: 28px;
+}
+
+.sc-panel>.header>.panel {
+	padding: 10px;
+	background: #f5f5f5;
+}
+
+.sc-panel>.header>.panel[item=service] {
+	padding-left: 100px;
+}
+
+.sc-panel>.header>.panel[item=service]>span[spliter] {
+	display: inline-block;
+	position: absolute;
+	top: 33px;
+	left: 0;
+	right: 0;
+	height: 1px;
+	border-bottom: 1px solid #ececec;
+}
+
+.sc-panel>.header>.panel[item=service]>span[m] {
+	position: absolute;
+	left: 40px;
+	top: 12px;
+	display: inline-block;
+	text-align: center;
+}
+
+.sc-panel>.header>.panel[item=service] span[m] {
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+.sc-panel>.header>.panel[item=service] span[m]:hover {
+	color: red;
+}
+
+.sc-panel>.header>.panel[item=service]>ul {
+	display: inline-block;
+}
+
+.sc-panel>.header>.panel[item=service]>ul>li {
+	display: inline-block;
+	padding: 2px 15px;
+}
+
+.sc-panel>.header>.panel[item=service]>ul>li>span[m] {
+	display: inline-block;
+	margin-bottom: 10px;
+}
+
+.sc-panel>.header>.panel[item=call]>ul>li {
+	padding: 2px 10px;
+	cursor: pointer;
+	display: inline-block;
+	text-align: center;
+}
+
+.sc-panel>.header>.panel[item=call]>ul>li:hover {
+	background: #f5f5f5;
+}
+
+.sc-panel>.header>.panel[item=call]>ul>li>img {
+	width: 40px;
+	height: 40px;
+}
+
+.sc-panel>.header>.panel[item=intr]>div[logo] {
+	text-align: center;
+}
+
+.sc-panel>.header>.panel[item=intr]>div[logo]>p[name] {
+	text-align: center;
+	font-size: 16px;
+	margin: 10px 0;
+}
+
+.sc-panel>.header>.panel[item=intr]>div[logo]>img {
+	max-width: 120px;
+	width: auto;
+	height: 80px;
+}
+
+.sc-panel>.header>.panel[item=intr]>ul>li {
+	padding: 5px 10px;
+}
+
+.sc-panel>.header>.panel[item=intr]>ul>li>span {
+	color: gray;
+	font-weight: bold;
+	display: inline-block;
+	margin-bottom: 4px;
+	border-bottom: 1px solid #ececec;
+}
+
+.sc-panel>.header>.panel[item=intr]>ul>li>div {
+	padding-left: 20px;
+}
+-->
+</style>
+<div class="sc-panel">
+	<div class="header">
+		<div title>南方电网</div>
+		<ul class="slider">
+			<li item="service"><span label>服务</span></li>
+			<li item="intr"><span label>介绍</span></li>
+			<li item="call"><span label>客服</span></li>
+		</ul>
+		<div class="panel" item="service">
+			<span m>欢迎</span> <span spliter></span>
+			<ul>
+				<li><span m>服务1</span>
+					<ul>
+						<li><span m>服务1.1</span></li>
+						<li><span m>服务1.2</span></li>
+						<li><span m>服务1.3</span></li>
+						<li><span m>服务1.4</span></li>
+					</ul></li>
+				<li><span m>服务1</span>
+					<ul>
+						<li><span m>服务1.1</span></li>
+						<li><span m>服务这就是好东西</span></li>
+						<li><span m>服务1.3</span></li>
+						<li><span m>服务1.4</span></li>
+					</ul></li>
+				<li><span m>服务1</span>
+					<ul>
+						<li><span m>服务1.1</span></li>
+						<li><span m>服务1.2</span></li>
+						<li><span m>服务1.3</span></li>
+						<li><span m>服务1.4</span></li>
+					</ul></li>
+				<li><span m>服务1</span>
+					<ul>
+						<li><span m>服务1.1</span></li>
+						<li><span m>服务1.2</span></li>
+						<li><span m>服务1.3</span></li>
+						<li><span m>服务1.4</span></li>
+					</ul></li>
+			</ul>
+		</div>
+		<div class="panel" item="intr">
+			<div logo>
+				<img src="img/callcenter.svg"> <p>南方电网
+
+				</p>
+
+			</div>
+			<ul>
+				<li><span>地址</span>
+					<p>天河区开发大道15号</p></li>
+				<li><span>电话</span>
+					<p>28383838</p></li>
+				<li><span>传真</span>
+					<p>28383838</p></li>
+				<li><span>主页</span>
+					<p><a href="http://www.baidu.com" target="_blank">http://www.baidu.com</a></p></li>
+				<li><span>简介</span>
+					<p>中国南方电网有限责任公司（英文：China Southern Power Grid Company
+						Limited），于2002年12月29日正式挂牌成立并开始运作。公司经营范围为广东、广西、云南、贵州和海南五省（区），负责投资、建设和经营管理南方区域电网，经营相关的输配电业务。公司职工总数31.4万人。2009年，公司完成售电量5239亿千瓦时，西电东送电量1156亿千瓦时，营业收入3136亿元，公司资产总额达4425亿元。2005年公司跻身全球500强企业后，排名逐年累计上升了131位，2009年列第185位，2011年列149位。2013年《财富》世界500强排名第134名</p></li>
+			</ul>
+		</div>
+		<div class="panel" item="call">
+			<ul>
+				<li><img src="img/3.jpg">
+					<p>
+						<span>赵向彬</span>
+					</p></li>
+				<li><img src="img/4.jpg">
+					<p>
+						<span>李正</span>
+					</p></li>
+			</ul>
+		</div>
+	</div>
+	<div class="content">
+		<div class="response" type="text">
+			<div class="header">
+				<div class="face" left>
+					<img src="img/5.jpg">
+					<p>南方电网</p>
+				</div>
+				<span time>2016年10月21日 3:00</span>
+			</div>
+			<div class="body">
+				欢迎<a href="#">赵向彬</a>登录客服中心，由<a href="#">人工客服a</a>向您服务.
+			</div>
+		</div>
+		<div class="response" type="text">
+			<div class="header">
+				<div class="face" right>
+					<p>我</p>
+					<img src="img/3.jpg">
+
+				</div>
+				<span time>2016年10月21日 13:00</span>
+			</div>
+			<div class="body">您的装机单因［电信设备缺货］原因提出改约：6月30日下午，
+				属实请回复1,不属实或师傅没有联系过请回复2.</div>
+		</div>
+		<div class="response" type="style1">
+			<div class="header">
+				<div class="face" left>
+					<img src="img/4.jpg">
+					<p>客服a</p>
+				</div>
+				<span time>2016年10月21日 14:00</span>
+			</div>
+			<div class="body">
+				<p>
+					<img src="img/4.jpg">
+				</p>
+				<ul class="items">
+					<li><img src="img/2.jpg"> <span href>审计署:1.51亿扶贫资金被冒领或违规使用</span></li>
+					<li><img src="img/2.jpg"> <span href>审计署:1.51亿扶贫资金被冒领或违规使用</span></li>
+					<li><img src="img/2.jpg"> <span href>审计署:1.51亿扶贫资金被冒领或违规使用</span></li>
+					<li><img src="img/2.jpg"> <span href>审计署:1.51亿扶贫资金被冒领或违规使用</span></li>
+					<li><img src="img/2.jpg"> <span href>审计署:1.51亿扶贫资金被冒领或违规使用</span></li>
+				</ul>
+			</div>
+		</div>
+		<div class="response" type="style2">
+			<div class="header">
+				<div class="face" left>
+					<img src="img/4.jpg">
+					<p>客服a</p>
+				</div>
+				<span time>2016年10月21日 14:00</span>
+			</div>
+			<div class="body">
+				<p>
+					<img src="img/4.jpg">
+				</p>
+				<ul class="items">
+					<li><img src="img/2.jpg"> <span href>欢迎光临</span></li>
+					<li><img src="img/2.jpg"> <span href>审计署:1.51亿扶贫资金被冒领或违规使用</span></li>
+					<li><img src="img/2.jpg"> <span href>审计署:1.51亿扶贫资金被冒领或违规使用</span></li>
+					<li><img src="img/2.jpg"> <span href>审计署:1.51亿扶贫资金被冒领或违规使用</span></li>
+					<li><img src="img/2.jpg"> <span href>审计署:1.51亿扶贫资金被冒领或违规使用</span></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="footer">
+		<div class="typed">
+			<input> <span>发送</span>
+		</div>
+		<ul class="op">
+			<li><img src="img/xiangce.svg">
+				<p>图片</p></li>
+			<li><img src="img/iconfont-file.svg">
+				<p>文件</p></li>
+		</ul>
+	</div>
+</div>

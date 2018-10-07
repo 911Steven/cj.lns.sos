@@ -1,0 +1,103 @@
+/*
+			"id":"menuFair",
+			"name":"开放服务",
+			"position":"win.controlpanel",
+			"icon":"./controlPanelApp/img/services.svg",
+			"command":"/servicews/market/menuSettingPanel.html",
+			"sort":"2",
+			"target":"_self",
+			"sort":"3",
+			"desc":"企业或组织对外或对下游视窗用户提供的服务，如果是下游视窗用户，则在其官方服务菜单中列出服务",
+			"acl":[
+				"allow sosUsers mountable",
+				"allow basicswsUsers mountable",
+				"allow orgUsers mountable",
+				"allow sosUsers visible",
+				"allow basicswsUsers visible",
+				"allow orgUsers visible",
+				"deny guestUsers visible",
+				"deny guestUsers mountable"
+			]
+		},{
+			"id":"aboat",
+			"name":"关于",
+			"position":"win.controlpanel",
+			"icon":"./controlPanelApp/img/about.svg",
+			"command":"/servicews/market/aboatSettingPanel.html",
+			"sort":"5",
+			"target":"_self",
+			"desc":"版本 开发商 主机",
+			"acl":[
+				"allow allUsers visible",
+				"allow allUsers mountable",
+				"deny guestUsers mountable"
+			]
+		}
+
+
+
+
+*/
+{
+	"category":"control.panel",
+	"apps":[
+		{
+			"id":"security",
+			"name":"安全隐私",
+			"position":"win.controlpanel",
+			"icon":"./controlPanelApp/img/security.svg",
+			"command":"/security/",
+			"sort":"0",
+			"target":"_self",
+			"desc":"信息网关、应用、菜单等",
+			"acl":[
+				"allow allUsers visible",
+				"allow allUsers mountable",
+				"deny guestUsers mountable"
+			]
+		},{
+			"id":"servicewsSetting",
+			"name":"个性化设置",
+			"position":"win.controlpanel",
+			"icon":"./controlPanelApp/img/profile.svg",
+			"command":"/servicews/components/servicewsSetting.html",
+			"sort":"1",
+			"target":"_self",
+			"desc":"布局、主题",
+			"acl":[
+				"allow allUsers visible",
+				"allow allUsers mountable",
+				"deny guestUsers mountable"
+			]
+		},{
+			"id":"appFair",
+			"name":"应用",
+			"position":"win.controlpanel",
+			"icon":"./img/kaifangpingtai.svg",
+			"command":"/servicews/market/appSettingPanel.html",
+			"sort":"2",
+			"target":"_self",
+			"desc":"启用或停用应用",
+			"acl":[
+				"allow allUsers visible",
+				"allow allUsers fixed",
+				"allow allUsers mountable",
+				"deny guestUsers mountable"
+			]
+		},{
+			"id":"portletFair",
+			"name":"栏目",
+			"position":"win.controlpanel",
+			"icon":"./controlPanelApp/img/portlet.svg",
+			"command":"/servicews/market/portletSettingPanel.html",
+			"sort":"4",
+			"target":"_self",
+			"desc":"启用或停用栏目",
+			"acl":[
+				"allow allUsers visible",
+				"allow allUsers mountable",
+				"deny guestUsers mountable"
+			]
+		}
+	]
+}

@@ -1,0 +1,23 @@
+<div>
+	<img src="../img/2.jpg"  />
+	<!-- 
+	1.请求平台：/
+	2.请求单独的一个插件：
+		2.1 框架的控件：/framework/FE74DDB7-A6BC-4C72-AF09-E03B7D6B1F4E/
+		2.2 主题控件： /theme/FE74DDB7-A6BC-4C72-AF09-E03B7D6B1F4E/
+		2.3 应用插件： /app/FE74DDB7-A6BC-4C72-AF09-E03B7D6B1F4E/
+	3.请求插件资源:
+		原则是解析到系统插件名，之后由末端系统插件自定索引规则。
+		/theme/FE74DDB7-A6BC-4C72-AF09-E03B7D6B1F4E/img/1.jpg
+		/app/FE74DDB7-A6BC-4C72-AF09-E03B7D6B1F4E/img/1.jpg
+		/desktop/img/1.jpg
+		
+		http://localhost:8080/sos/app/FE74DDB7-A6BC-4C72-AF09-E03B7D6B1F4E/pages/index.app 正常加载时上下文
+		如果是ajax请求，则当前上下文还是http://localhost:8080/sos/
+	
+	插件资源类型：app,framework,theme此三类不必在界面上标识，在当前插件加载文档时为之自动加上，因为当前插件知道是什么类型。
+	1.在请求文档时解析文档并将引用的资源生成全路径
+	2.请求资源时则可定位到插件，并交由插件处理相关资源
+	 -->
+	 dd
+</div>

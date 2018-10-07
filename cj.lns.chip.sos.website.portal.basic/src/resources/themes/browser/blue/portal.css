@@ -1,0 +1,279 @@
+body {
+	background-color: rgba(183, 218, 251, 0.9);
+	/*img/background-default.jpg为主题默认背景名，定义新主题时名称不得修改，应一致*/
+	background-image: url("img/background-default.jpg");
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-attachment: fixed;
+	filter: alpha(opacity = 40);
+	-moz-opacity: 0.4;
+}
+.box-shadow {
+	-moz-box-shadow: 3px 4px 5px rgba(150, 150, 150, 0.6); /*firefox*/
+	-webkit-box-shadow: 3px 4px 5px rgba(150, 150, 150, 0.6); /*webkit*/
+	box-shadow: 3px 4px 5px rgba(150, 150, 150, 0.6); /*opera或ie9*/
+}
+
+.popup-panel {
+	display: none;
+	position: absolute;
+	margin-right: -1px;
+	right: 60px;
+	top: 0;
+	min-height: 100px;
+	min-width: 200px;
+	background: rgba(152, 204, 252, 0.8) none repeat scroll 0 0 !important;
+	/*实现FF背景透明，文字不透明*/
+	filter: Alpha(opacity = 80);
+	background: #fff; /*实现IE背景透明*/
+	z-index: 999999999999;
+	-moz-box-shadow: -3px 4px 5px rgba(150, 150, 150, 0.8); /*firefox*/
+	-webkit-box-shadow: -3px 4px 5px rgba(150, 150, 150, 0.8); /*webkit*/
+	box-shadow: -3px 4px 5px rgba(150, 150, 150, 0.8);
+	position: absolute; /*opera或ie9*/
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	border:1px solid rgba(150, 150, 150, 0.1);
+	-moz-border-radius: 5px;
+}
+
+.startMenu {
+	position: fixed;
+	right: 10px;
+	top: 10%;
+	max-height: 70%;
+	width: 60px;
+	min-height: 160px;
+	z-index: 9999999999;
+}
+
+.startMenu a {
+	font-size: 10px;
+}
+
+.workbench {
+	width: 100%;
+	top: 30px;
+}
+
+
+
+.workbench .menubar[region='menubar'] {
+	height: 30px;
+	display:block;
+	background-color:rgba(152, 204, 252, .8);
+	margin-bottom: 20px;
+	box-shadow: -3px 4px 5px rgba(150, 150, 150, 0.8);
+}
+
+.workbench>ul>li>.main {
+	padding: 0 80px 0 70px;
+	min-height: 300px;
+}
+
+.workbench>ul>li>.main >.main-box {
+	float: left;
+	width: 100%;
+}
+.workbench>ul>li>.main>.main-box>.desktop {
+	margin-left: 200px; /*与col-sub产生10像素距离*/
+	margin-right: 200px; /*与col-extra产生10像素距离*/
+	height: auto;
+}
+
+.workbench>ul>li>.main >.main-left {
+	position: static;
+	float: left;
+	width: 190px;
+	height: auto;
+	margin-left: -100%;
+	margin-left: -100%;
+	padding-top: 35px;
+}
+
+.workbench>ul>li>.main>.main-right {
+	float: left;
+	width: 190px;
+	height: auto;
+	margin-left: 0;
+	position:absolute;
+	right:80px;
+	top:50px;
+	padding-top: 35px;
+}
+
+.workbench .sosSiteInfo {
+	min-height: 40px;
+}
+
+
+.portlet {
+	border: 1px solid rgba(248, 248, 255, 0.8);
+	background: rgba(248, 248, 255, 0.8);
+	min-height: 200px;
+	margin-bottom: 10px;
+}
+
+.bop {
+	height: auto;
+}
+
+.bop>.head {
+	height: 30px;
+}
+
+.bop>.head>.title {
+	text-align: center;
+	border-left: 1px solid #DBDBEA;
+	padding-left: 20px;
+	display: none;
+}
+
+.bop>.head>a {
+	padding: 5px 30px;
+	font-weight: bold;
+}
+
+.bop>.head>a>img {
+	width: 15px;
+	height: 15px;
+	margin-right: 4px;
+	padding-top: 8px;
+	display: none;
+}
+
+.bop>.content-panel {
+	height: auto;
+}
+
+.bop>.content-panel>.list {
+	background-color: #fff;
+	border: 1px solid #DBDBEA;
+	padding-left: 20px;
+}
+
+.bop>.content-panel>.sp-panel {
+	padding: 18px 10px 2px 10px;
+	font-size: 12px;
+	color: rgba(152, 204, 252, 1);
+}
+
+.bop>.content-panel>.list>.item {
+	position: relative;
+	padding: 0 0 0 45px;
+}
+
+.bop>.content-panel>.list>.item:last-child>.main-panel {
+	border-bottom: none;
+}
+
+.bop>.content-panel>.list>.item>img {
+	width: 35px;
+	height: 35px;
+	position: absolute;
+	left: 4px;
+	top: 8px;
+}
+
+.bop>.content-panel>.list>.item>.main-panel {
+	border-bottom: 1px solid #DBDBEA;
+	height: 50px;
+	cursor: pointer;
+}
+
+.bop>.content-panel>.list>.item>.main-panel:hover {
+	background-color: #EEEEEE;
+}
+
+.bop>.content-panel>.list>.item>.detail>li {
+	padding: 15px 10px 15px 0;
+	margin-left: 10px;
+	border-bottom: 1px solid #DBDBEA;
+	position: relative;
+}
+
+.bop>.content-panel>.list>.item>.detail>li:last-child {
+	border-bottom: none;
+}
+
+.bop>.content-panel>.list>.item>.detail>li:hover {
+	background-color: #EEEEEE;
+	cursor: pointer;
+}
+
+.bop>.content-panel>.list>.item>.detail>li .opp {
+	position: absolute;
+	top: 14px;
+	right: 40px;
+	font-size: 14px;
+}
+
+.bop>.content-panel>.list>.item>.main-panel>div {
+	padding-top: 14px;
+}
+
+.bop>.content-panel>.list>.item>.opp {
+	position: absolute;
+	top: 14px;
+	right: 40px;
+	font-size: 14px;
+}
+.user-face{
+	position:absolute;
+	left:0;
+	top:40px;
+	z-index:9999999999;
+	width:550px;
+	height:450px;
+	border:1px solid rgba(152, 204, 252, .8);
+	background: white;
+}
+/*以下是主题的定义，原理是覆盖组件的皮肤，不考虑兼容像ie6那种低级浏览器*/
+.windows > .win-content{
+	background: rgba(152, 204, 252, 0.8) !important;
+}
+.startMenu .fourth > .right{
+	background: rgba(152, 204, 252, 0.8) !important;
+}
+.cyberport-box{
+	background: rgba(233, 244, 254, 1) !important;
+}
+.cyberport-box > .content > .left{
+	background: rgba(213,234,253, 1) !important;
+}
+.cyberport-box > .content{
+	background: none !important;
+}
+.cyberport-box > .content > .right > .apps > .app{
+	background: rgba(213,234,253, 1) !important;
+	border: none  !important;
+}
+.app-popup{
+	background: rgba(213,234,253, 1) !important;
+	
+}
+.pub-panel{
+	background:none !important;
+}
+.popup-panel{
+	background: rgba(213,234,253, 1) !important;
+}
+.contact-panel{
+	background: rgba(213,234,253, 1) !important;
+}
+.contact-panel > .ct-my > .card{
+	background: rgba(198,226,252, 1) !important;
+}
+.pub-panel .a-t-box > .a-t-box-a,
+.app-popup .a-t-box > .a-t-box-a{
+	border: 1px solid #D5EAFD  !important;
+}
+.pub-panel .a-t-box > .a-t-box-a:hover,
+.app-popup .a-t-box > .a-t-box-a:hover{
+	border: 1px solid blue  !important;
+}
+.sws-panel{
+	background:none !important;
+}

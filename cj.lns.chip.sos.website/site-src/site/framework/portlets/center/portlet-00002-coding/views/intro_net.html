@@ -1,0 +1,219 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<title>云网</title>
+<link href="../../../../css/global.css" type="text/css" rel="stylesheet">
+<link href="../../../../css/pages/portal-viewer.css" type="text/css"
+	rel="stylesheet">
+<script type="text/javascript"
+	src="../../../../js/jquery/jquery-2.1.4.js"></script>
+<style type="text/css">
+#content_inner>.body>pre>img {
+	width: 100%;
+}
+
+.grid-s5m0e5 {
+	height: 11800px;
+}
+#content_inner > .body > pre>.result{
+	font-size: 10px;
+	margin-left: 60px;
+}
+#content_inner > .body > pre>.style1{
+font-size: 10px;
+	margin-left: 60px;
+}
+</style>
+</head>
+<body>
+	<div class="topbar">
+		<ul class="left">
+			<li class="about"><span label>关于</span></li>
+		</ul>
+		<ul class="right">
+			<li class="mine"><a target="_blank"
+				href="../../../../public/register2.html">注册</a></li>
+			<li class="login"><span label>登录</span></li>
+		</ul>
+	</div>
+	<div class="banner">
+		<div class="b-left"></div>
+		<div class="b-center">
+			<div class="logo">
+				<img src="../../../../img/pages/logo.png">
+				<p>云网</p>
+			</div>
+		</div>
+		<div class="b-right"></div>
+	</div>
+	<div class="grid-s5m0e5">
+		<div class="col-main">
+			<div class="main-wrap">
+				<div id="content">
+					<div id="content_inner">
+						<div class="title">
+							<p>net 通讯开发工具包</p>
+						</div>
+						<div class="subtitle">
+							<ul>
+								<li><span label>作者：</span><span value
+									style="padding-right: 10px;">cj (赵向彬)</span><span label>发布日期：</span><span
+									value>2016年8月19日 3:24</span></li>
+							</ul>
+						</div>
+						<div class="body">
+							<div style="font-family: sans-serif; margin-bottom: 10px;">
+								<span><b>关键词：</b></span>学习 技术 面向连接编程 面向模块编程 面向协议编程 编程思想 结构化 面向对象 <br>
+								java j2ee osgi spring dotnet osgi netty tomcat jetty nodejs jsp php
+								aspx zookeeper docker
+							</div>
+							<div style="font-family: sans-serif; margin-bottom: 10px;">
+								<span><b>摘要：</b></span>net工具包支持非触接连接基础包，它提供了Graph基类，并提供了WebsiteGraph这种支持web应用的graph。它还提供了通讯能力，实现有：
+								1.以netty为基础的nio，支持协议有：udt/tcp/http
+								2.直接以java nio为基础的rio，支持同步和异步，协议有：rio-udt/rio-tcp/rio-http
+								</div>
+							<div style="font-family: sans-serif; margin-bottom: 10px;">
+								<span><b>正文：</b></span>
+							</div>
+							<pre>
+一、Graph基类，它是非接触连接的基础类，实现了流式处理
+	涉及的类有：GraphCreate,IPin,ISink,IPlug等
+	Graph使用GraphCreate组装一个图，一个图有输入端子和输出端子，这两类端子在Graph外是可见的；还有一种内部端子，在Graph之外不可见。
+	流的方向性：graph.in('input')->graph.sinks->graph.out('output')
+	每个sink对流的处理接口是：
+	public void flow(frame,circuit,plug){
+		//TODO
+	}
+	其中frame是请求侦，circuit代表一个正在执行的当前回路，即当前执行序。plug是将sink插入到pin上时产生的插头，插头具有调度能力，可以主动回馈、跳跃、分支或顺行。插头还有伺服能力，能通过plug.site()获取芯片中的服务和所在graph的相关内容。
+二、WebsiteGraph，它实现了全部的web应用协议，放弃了jsp这种拉圾,对于页面代码再也不用编译。对于页面的逻辑实现，开发者可以用java类开发，也可按jss(是js文件)来开发，也可混合使用。
+	因此，该组件实现了可以按nodejs语法来写页面。
+	在使用时，开发者可需从WebsiteGraph派生你的graph，而后声明为cj服务即可。
+	我们看一个websiteGraph的上下文配置，拿平台的website实现作为案例，其下是其根程序集的上下文：
+	<p class='style1'>{
+	entryPoint : {
+		activators : [
+		              {
+		            	  name:"服务操作系统启动器",
+		            	  class:"cj.lns.chip.sos.website.ServiceOSActivator",
+		            	  parameters:{}
+		              }
+			]
+	},
+	assemblyInfo : {
+		assemblyTitle : "serviceos",
+		assemblyResource:"site=/site;http.root=$(site)/framework;http.jss=$(site)/jss/http;ws.jss=$(site)/jss/ws;resource=/resources",
+		assemblyDescription : "服务操作系统",
+		assemblyConfiguration : "",
+		assemblyCompany : "开发者：cj;研发机构：lns平台部",
+		assemblyProduct : "cj.lns.chip.sos.website",
+		assemblyCopyright : "Copyright   2011",
+		assemblyTrademark : "",
+		assemblyCulture : "",
+		guid : "serviceos",
+		assemblyVersion : "1.0.0.0",
+		assemblyFileVersion : "1.0.0.0",
+		readme:"/readme.txt",
+		assemblyIcon:"plugin-noicon-default.icon"
+	},
+	global:{
+		default:"zh_CN",
+		desc:"如果系统环境要求各芯片采用的语言本芯片没有，则芯片可采用默认语言"
+		},
+	serviceContainer : {
+		name : "netContainer",
+		switchFilter:"off",
+		jss:[{
+			module:"portlets",
+			package:"site.framework.portlets",
+			runtimeHome:"/work/",
+			unzip:"true",
+			searchMode:"link",
+			extName:".jss.js"
+		}],
+		scans : [{
+					package : "cj.lns.chip.sos.website",
+					extName : ".class|.json|.xml",
+					exoterical:"true"
+				},{
+					package : "cj.lns.common.sos.website.moduleable",
+					extName : ".class|.json|.xml",
+					exoterical:"true"
+				}]
+
+	}
+}</p>
+	我们看到，serviceContainer.jss一项声明了jss服务模块。
+			assemblyInfo.assemblyResource指明了web资源位置，其中的ws代表的是http5的websocket的支持
+			
+三、nio net
+	所有nio基于NettyServer和NettyClient类
+	比如tcp协议，以下是为代码，在使用时根据实际的api来实现：<p class='style1'>
+	TcpNettyServer server=new TcpNettyServer();
+	server.start('localhost','8080');
+	server.buildNetGraph().netoutput().plug('testsink',new ISink(){
+		function flow(frame,circuit,plug){
+			print(frame);
+		}
+	})
+	TcpNettyClient client=new TcpNettyClient();
+	client.connect('localhost','8080',new ICallback(){
+		void build(g){
+		//构建sink链
+		}
+	})
+	//发送请求
+	client.buildNetGraph().netinput().flow(frame,circuit);</p>
+四、rio net
+	所有rio基于BaseClientRIO,BaseServerRIO
+	比如tcp协议，以下是为代码，在使用时根据实际的api来实现：<p class='style1'>
+	rio net的输入输出端子是电缆线，多通道，其客户端支持连接池，即向同一远程目标可以建立多个连接，默认是1个
+	TcpCjNetServer server=new TcpCjNetServer();
+	server.start('localhost','8080');
+	server.buildNetGraph().netoutput().plug('testsink',new ISink(){
+		function flow(frame,circuit,plug){
+			print(frame);
+		}
+	})
+	TcpCjNetClient client=new TcpCjNetClient();
+	client.connect('localhost','8080',new ICallback(){
+		void build(g){
+		//构建sink链
+		}
+	})
+	//发送请求，默认是异步发送，如果要同步返回，可使用：
+	//frame.head(NetConstans.FRAME_HEADKEY_CIRCUIT_SYNC,'true');
+	//frame.head(NetConstans.FRAME_HEADKEY_CIRCUIT_SYNC_TIMEOUT,'3600');//同步超时时间
+	//frame.head(NetConstans.FRAME_HEADKEY_CIRCUIT_SYNC_TIMEOUT,'3600');//同步超时时间
+	//frame.head(NetConstans.FRAME_HEADKEY_CIRCUIT_ASYNC_TIMEOUT,'1200');//同步等待超时后异步通知超时时间,使用此功能需要在回路中设置回馈点来接收
+	client.buildNetGraph().netinput().flow(frame,circuit);</p>
+							</pre>
+						</div>
+						<div class="bottom"></div>
+					</div>
+				</div>
+				<div id="side">
+					<div class="fill"></div>
+					<div class="portlet">
+						<div class="title">
+							<span label>相关</span>
+						</div>
+						<ul class="items">
+				<li><a href="../views/ecm_hello.html" plugin target="_blank">· 从ecm 工具包的 helloworld 入门</a></li>
+		<li><a href="../views/net_hello.html" plugin target="_blank">· 从net 工具包的 helloworld 入门</a></li>
+		<li><a href="../views/intro_ecm.html" plugin target="_blank">· 介绍： ecm 面向连接电子模型开发工具包</a></li>
+		<li><a href="../views/intro_plus.html" plugin target="_blank">· 介绍： plus 模块化、插件化、服务化增强开发工具包</a></li>
+		<li><a href="../views/intro_netdisk.html" plugin target="_blank">· 介绍： netdisk 多维云盘开发工具包</a></li>
+		<li><a href="../views/intro_neuron.html" plugin target="_blank">· 介绍： neuron 分布式连接容器</a></li>
+		<li><a href="../views/intro_netsite.html" plugin target="_blank">· 介绍： netsite 热插拔应用容器</a></li>
+		<li><a href="../views/intro_mdisk.html" plugin target="_blank">· 介绍： mdisk 多维云盘命令行工具</a></li>
+		<li><a href="../views/intro_cjnet.html" plugin target="_blank">· 介绍： cjnet 调试、测试命令行工具</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-sub"></div>
+		<div class="col-extra"></div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,55 @@
+sourceSets { 
+	 main { 
+	 	java{
+	 		srcDir "$projectDir/src"
+	 	}
+	 	resources{
+		 	srcDir "$projectDir/src"
+		 }
+	 } 
+ 	}
+ 	sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+ 	tasks.withType(JavaCompile) {  
+        options.encoding = "UTF-8"  
+    } 
+ repositories { 
+	 flatDir(dirs: "../../global/lib") 
+ } 
+
+dependencies {
+	
+	compile project(':cj.lns.chip.sos.service');
+	//compile project(':cj.lns.platform:cj.lns.common.sos.service.persistence');
+	//compile project(':cj.lns.platform:cj.lns.common.sos.service.info');
+	//compile('org.hibernate:hibernate-annotations:3.5.6-Final');
+	//compile('mysql:mysql-connector-java:5.1.36');
+	//compile('org.eclipse.persistence:javax.persistence:2.1.0');
+	//compile('org.eclipse.persistence:org.eclipse.persistence.jpa:2.6.1');
+	//compile('org.eclipse.persistence:eclipselink:2.6.1');
+	compile fileTree('src/cj/references');
+	compile fileTree('src/cj/refembeds');
+	compile fileTree(dir: '../global/lib', includes: ['*.jar'])
+	compile fileTree(dir: '../global/cjtools', includes: ['*.jar'])
+}
+//gradle.taskGraph.whenReady {taskGraph ->
+//    if (taskGraph.hasTask(release)) {
+//        version = '1.0'
+//    } else {
+//        version = '1.0-SNAPSHOT'
+//    }
+//}
+ 	task releaseToTerminusOpenPlatform(type: Copy) {
+ 	dependsOn "build"
+ 	 from 'build/libs/'
+	     into '../network/neuron-sosdb/apps/cj.lns.chip.sos.service-1.0/plugins/cj.lns.chip.sos.service.framework-1.0'
+	     include '**/*.jar'
+	     rename { String fileName ->
+        fileName.replace('.jar', '.plugin')//修改，使之输出为插件的扩展名。
+    	}
+ 	}
+ 	
+ 	 task release(type: Copy) {
+     dependsOn "releaseToTerminusOpenPlatform"
+ 	}
+ 	

@@ -1,0 +1,176 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<title>云网</title>
+<link href="../../../../css/global.css" type="text/css" rel="stylesheet">
+<link href="../../../../css/pages/portal-viewer.css" type="text/css"
+	rel="stylesheet">
+<script type="text/javascript"
+	src="../../../../js/jquery/jquery-2.1.4.js"></script>
+<style type="text/css">
+#content_inner>.body>pre>img {
+	width: 100%;
+}
+
+.grid-s5m0e5 {
+	height: 11800px;
+}
+#content_inner > .body > pre>.result{
+	font-size: 10px;
+	margin-left: 60px;
+}
+#content_inner > .body > pre>.style1{
+font-size: 10px;
+	margin-left: 60px;
+}
+</style>
+</head>
+<body>
+	<div class="topbar">
+		<ul class="left">
+			<li class="about"><span label>关于</span></li>
+		</ul>
+		<ul class="right">
+			<li class="mine"><a target="_blank"
+				href="../../../../public/register2.html">注册</a></li>
+			<li class="login"><span label>登录</span></li>
+		</ul>
+	</div>
+	<div class="banner">
+		<div class="b-left"></div>
+		<div class="b-center">
+			<div class="logo">
+				<img src="../../../../img/pages/logo.png">
+				<p>云网</p>
+			</div>
+		</div>
+		<div class="b-right"></div>
+	</div>
+	<div class="grid-s5m0e5">
+		<div class="col-main">
+			<div class="main-wrap">
+				<div id="content">
+					<div id="content_inner">
+						<div class="title">
+							<p>cjnet 调试、测试命令行工具</p>
+						</div>
+						<div class="subtitle">
+							<ul>
+								<li><span label>作者：</span><span value
+									style="padding-right: 10px;">cj (赵向彬)</span><span label>发布日期：</span><span
+									value>2016年8月19日 18:40</span></li>
+							</ul>
+						</div>
+						<div class="body">
+							<div style="font-family: sans-serif; margin-bottom: 10px;">
+								<span><b>关键词：</b></span>调试工具 net cjnet
+							</div>
+							<div style="font-family: sans-serif; margin-bottom: 10px;">
+								<span><b>摘要：</b></span>用于调试神经元应用和netsite应用，模仿客户端发起请求调用。
+								<br><a href="downloads/cjnet.zip" plugin style="color: blue;text-decoration: underline;">下载cjnet</a>如欲使用最新版本且到开发平台中下载
+								</div>
+							<div style="font-family: sans-serif; margin-bottom: 10px;">
+								<span><b>正文：</b></span>
+							</div>
+							<pre>
+一、cjnet与远程服务器（可能是神经元的net也可能是netsite的net)的连接
+<p class='style1'>CJdeMacBook-Pro:cjnet carocean$ sh cjnet.sh -m
+
+usage: cjnet
+ -d,--debug <arg>          调试命令行程序集时使用，需指定以下jar包所在目录
+                           cj.studio.ecm.chip.cjnet
+ -h,--host <arg>           必须指定远程地址，格式：-h ip:port
+ -l,--log                  充许网络日志输出到控制台
+ -m,--man                  帮助
+ -P <property=value>       设置客户端连接属性,格式为：-Pproperty=value
+ -t,--tranprotocol <arg>   指定传输协议，支持：
+                           udt,tcp,http,websocket,udp,local
+ -T <poolPropName=value>   设置客户端连接池属性，
+                           工作线程数-Twork=n,池最大大小-Tmax=n,
+                           池空间数-Tidle=n,
+                           池最小数-Tmin=n,
+                           超时时间-Ttimeout=n
+                           
+ <b>连接远程神经元：8085 rio-tcp服务器</b> 
+ CJdeMacBook-Pro:cjnet carocean$ sh cjnet.sh -h localhost:8085 -t rio-tcp
+
+
+answer:
+        line:   connect / NET/1.1
+        head:
+                url=/
+                command=connect
+                protocol=NET/1.1
+        param:
+                无参数
+
+-----------------------------无内容--------------------------
+localhost:8085 >
+                         
+</p>
+二、请求侦的发送
+<p class='style1'>localhost:8085 >get -m
+usage: get
+ -c,--content           侦的内容。
+ -C <headName=value>    设置回路的头,格式为：-CHheadName=value
+ -H <headName=value>    设置侦的头，格式：
+                        -Hheadname=value
+ -m,--man               帮助
+ -P <paramName=value>   设置侦的参数,格式为：-Pparamname=value
+ -s,--sync              指定为同步发送消息.默认是异步发送。
+                        如果是同步，消息将在命令窗口中交替显示，
+                        如果是异步，消息在到达时随机显示
+ -t,--protocol <arg>    侦的请求头包含的协议。
+ -u,--url <arg>         侦的请求头包含的url。
+ 
+ <b>发送请求：</b>
+ localhost:8086 >get -u / -t http/1.1 -Hcj-circuit-sync=true
+sync answer:
+
+        line:   piggyback / HTTP/1.1
+        head:
+                protocol=HTTP/1.1
+                status=200
+                command=piggyback
+                message=ok
+                Content-Length=25598
+                Set-Cookie=CJTOKEN=7754D188978B94AD306BAFFB5BFB1B45; Expires=Mon, 27 Apr 2048 12:45:38 GMT; Path=/;
+                url=/
+        param:
+                无参数
+
+---------------------content----------------------------
+内容太长，略
+---------------------end----------------------------
+ </p>
+							</pre>
+						</div>
+						<div class="bottom"></div>
+					</div>
+				</div>
+				<div id="side">
+					<div class="fill"></div>
+					<div class="portlet">
+						<div class="title">
+							<span label>相关</span>
+						</div>
+						<ul class="items">
+				<li><a href="../views/ecm_hello.html" plugin target="_blank">· 从ecm 工具包的 helloworld 入门</a></li>
+		<li><a href="../views/net_hello.html" plugin target="_blank">· 从net 工具包的 helloworld 入门</a></li>
+		<li><a href="../views/intro_ecm.html" plugin target="_blank">· 介绍： ecm 面向连接电子模型开发工具包</a></li>
+		<li><a href="../views/intro_net.html" plugin target="_blank">· 介绍： net 通讯开发工具包</a></li>
+		<li><a href="../views/intro_plus.html" plugin target="_blank">· 介绍： plus 模块化、插件化、服务化增强开发工具包</a></li>
+		<li><a href="../views/intro_netdisk.html" plugin target="_blank">· 介绍： netdisk 多维云盘开发工具包</a></li>
+		<li><a href="../views/intro_neuron.html" plugin target="_blank">· 介绍： neuron 分布式连接容器</a></li>
+		<li><a href="../views/intro_netsite.html" plugin target="_blank">· 介绍： netsite 热插拔应用容器</a></li>
+		<li><a href="../views/intro_mdisk.html" plugin target="_blank">· 介绍： mdisk 多维云盘命令行工具</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-sub"></div>
+		<div class="col-extra"></div>
+	</div>
+</body>
+</html>

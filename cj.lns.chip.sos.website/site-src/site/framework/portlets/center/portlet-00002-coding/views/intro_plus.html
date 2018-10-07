@@ -1,0 +1,867 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<title>云网</title>
+<link href="../../../../css/global.css" type="text/css" rel="stylesheet">
+<link href="../../../../css/pages/portal-viewer.css" type="text/css"
+	rel="stylesheet">
+<script type="text/javascript"
+	src="../../../../js/jquery/jquery-2.1.4.js"></script>
+<style type="text/css">
+#content_inner>.body>pre>img {
+	width: 100%;
+}
+
+.grid-s5m0e5 {
+	height: 21800px;
+}
+#content_inner > .body > pre>.result{
+	font-size: 10px;
+	margin-left: 60px;
+}
+#content_inner > .body > pre>.style1{
+font-size: 10px;
+	margin-left: 60px;
+}
+</style>
+</head>
+<body>
+	<div class="topbar">
+		<ul class="left">
+			<li class="about"><span label>关于</span></li>
+		</ul>
+		<ul class="right">
+			<li class="mine"><a target="_blank"
+				href="../../../../public/register2.html">注册</a></li>
+			<li class="login"><span label>登录</span></li>
+		</ul>
+	</div>
+	<div class="banner">
+		<div class="b-left"></div>
+		<div class="b-center">
+			<div class="logo">
+				<img src="../../../../img/pages/logo.png">
+				<p>云网</p>
+			</div>
+		</div>
+		<div class="b-right"></div>
+	</div>
+	<div class="grid-s5m0e5">
+		<div class="col-main">
+			<div class="main-wrap">
+				<div id="content">
+					<div id="content_inner">
+						<div class="title">
+							<p>plus 模块化、插件化、服务化增强开发工具包</p>
+						</div>
+						<div class="subtitle">
+							<ul>
+								<li><span label>作者：</span><span value
+									style="padding-right: 10px;">cj (赵向彬)</span><span label>发布日期：</span><span
+									value>2016年8月19日 3:24</span></li>
+							</ul>
+						</div>
+						<div class="body">
+							<div style="font-family: sans-serif; margin-bottom: 10px;">
+								<span><b>关键词：</b></span>学习 技术 面向连接编程 面向模块编程 面向协议编程 编程思想 结构化 面向对象 <br>
+								java j2ee osgi spring dotnet osgi netty tomcat jetty nodejs jsp php
+								aspx zookeeper docker
+							</div>
+							<div style="font-family: sans-serif; margin-bottom: 10px;">
+								<span><b>摘要：</b></span>为了方便开发者构建大型软件系统，此增强包提供了程序集的组装标准，实现了大型网站的插件化（父子树形插件组织）、模块化（使得每个插件可以开发标准的web组件）、
+								远程服务标准（类似于webservice的实现，它以json为基本协议,且命令行化，更容易开发或让第三方对接）、以及云计算机芯片的开发标准。<br>
+								总之，增强包适合于‘面向连接编程’的高级开发者使用，菜鸟不容易撑握其中的奥妙。<br>
+								本文只用于列出它能做什么，至于具体的学习，请到“开发平台”中看例程和资料
+								</div>
+							<div style="font-family: sans-serif; margin-bottom: 10px;">
+								<span><b>正文：</b></span>
+							</div>
+							<pre>
+一、程序集的依赖结构，即插件化
+<p style="style1">
+ 支持按目录结构加载程序集，如下：
+ assembly root dir
+                assembly root.plugin
+                plugins dir
+                        assembly1 dir
+                                assembly1.plugin
+                                plugins dir
+                                        assembly1.1 dir
+                                                assembly1.1.plugin
+                                                plugins
+                        assembly2 dir
+                                assembly2.plugin
+                                plugins dir
+                                        assembly2.1 dir
+                                                assembly2.1.plugin
+                                                plugins  dir    
+ 由子级向上依赖。
+ 
+ 功能：
+ 2.加载根
+ 3.停止根
+ 4.安装：如将assembly2安装到root,则按guid定位到程序集，并创建相对路径，如：/assembly root/plugins/assembly2/
+ 5.卸载：如将assembly2从root卸载，则删除相对路径，如：/assembly root/plugins/assembly2/
+ -安装时根据程序集guid定位，因此在此过程会检测guid列表是否有重复的程序集，相同id则视为同一芯片的不同版本。
+ -每个程序集均有一个注册表，指明依来的程序集的guid
+ 
+ 因此可像eclipse那样，支持开发者为自己的软件系统搭建插件市场。
+ </p>
+二、模块化
+	模块化就是将指定的某个插件模块化，好处是被模块化的插件可以使用访问插件的上下游插件，并可以互相通讯。它是将一个大的web系统分成模块去组装的一种优秀的架构。
+	website的模块化要在当前插件中的cj.refembeds目录中嵌入两个包：cj.lns.common.sos.website.moduleable-1.0.jar（模块化功能包）及cj.lns.common.sos.website.customable-1.0.jar(为模块提供web组件)
+	然后就可以在插件内任意代码处，通过ServiceosWebsiteModule.get()得到当前模块。
+	如果是远程服务模块，要在当前插件中的cj.refembeds目录中嵌入:cj.lns.common.sos.service.moduleable-1.0.jar
+	然后就可以在插件内任意代码处，通过ServiceosServiceModule.get()得到当前模块。
+	
+	无论是web模块还是远程服务模块，其get方法均返回了类似的接口：IModule,该接口定义如下：
+	<p class='style1'>package cj.studio.ecm.plugins.moduleable;
+
+import cj.studio.ecm.IChip;
+import cj.studio.ecm.graph.CircuitException;
+import cj.studio.ecm.graph.IPin;
+/**
+ * 模块
+ * 定义：一个插件即是一个模块
+ * －模块提供当前芯片服务和根插件中所有子插件共享的服务
+ * －根据模块的依赖关系，提供上下游模块的输入输出端子，端子间的连接由插件开发者设定。
+ * 
+ * 注意：必须声明为外部服务
+ * @author carocean
+ *
+ */
+public interface IModule {
+	/**
+	 * 模块上下文
+	 * @return
+	 */
+	IModuleContext context()throws CircuitException;
+	/**
+	 * 向上游模块输出
+	 * pin名为当前程序集标识
+	 * @return
+	 */
+	IPin out();
+	/**
+	 * 接收上游模块的输入
+	 * pin名为当前程序集标识
+	 * @return
+	 */
+	IPin in();
+	/**
+	 * 下游模块的下行端子
+	 * @param name 为下游插件的程序集标识
+	 * @return
+	 */
+	IPin downriver(String name);
+	/**
+	 * 下游模块的芯片
+	 * @param name 为下游插件的程序集标识
+	 * @return
+	 */
+	IChip subordinateChip(String name);
+	String[] enumSubordinateChipId();
+	String[] enumDownriver();
+	/**
+	 * 下游模块的上行端子
+	 * @param name 为下游插件的程序集标识
+	 * @return
+	 */
+	IPin upriver(String name);
+	String[] enumUpriver();
+	/**
+	 * 服务站点
+	 * －当前芯片站点
+	 * －根插件注入的在所有子插件中共享的称之为核心的服务
+	 * @return
+	 */
+	IModuleServiceProvider site();
+	/**
+	 * 当前插件的芯片
+	 * @return
+	 */
+	IChip chip();
+	
+}
+	</p>
+三、远程服务标准
+	先前提了大型远程服务软件系统的插件化（树形插件体系）的模块化，本节略去此说明，主要讲下远程服务的开发及客户端对远程服务的描述查看（开发者可以有对比的体验下与传统的webservice谁优谁劣）
+	先看如何定义一个远程服务，比如视窗服务的定义：
+	<p class="style1">
+	//视窗模板在FrameworkRemote中定义
+@CjExotericalType(typeName = "remoteService")//在主插件中可以按typeName来搜索远程服务
+@CjRemoteService(usage = "视窗实例服务。")//在客户端会列出该远程服务的用法
+@CjBridge(aspects = "logging+transaction")//注入当前服务的方面，即：打印日志＋数据库的事务
+@CjService(name = "/sws/instance", isExoteric = true)//name是客户端可见的远程服务地址
+public class ServicewsRemote implements IRemoteService, IEntityManagerable {
+	private EntityManager em;//jpa的实体管理器
+
+	@Override
+	public void setEntityManager(EntityManager em) {
+		this.em = em;
+	}
+
+	@CjTransaction(unitName = "sosdb")//远程服务模块化提供的事务注解
+	//远程服务方法的声明，在客户端可以见到
+	@CjRemoteMethod(usage = "为视窗设置默认应用", returnContentType = "text/json", returnUsage = "200成功,404不存在")
+	//parameters是参数类，在客户端能看到参数表及说明
+	//返回RemoteResult是客户端可以接收到的响应结果。
+	public RemoteResult setDefaultApp(SetDefaultAppParameters parameters)
+			throws CircuitException {
+		String jpql = "update SwsPortalConf as g set g.defaultAppId=:appId where g.swsId=:swsId";
+		Query q = em.createQuery(jpql);
+		q.setParameter("swsId", parameters.getSwsid());
+		q.setParameter("appId", parameters.getAppId());
+		int i = q.executeUpdate();
+		RemoteResult result = null;
+		if (i == 1) {
+			result = new RemoteResult(200, "成功设置");
+		} else {
+			result = new RemoteResult(500, "失败,可能视窗不存在");
+		}
+		return result;
+	}
+
+	@CjTransaction(unitName = "sosdb")
+	@CjRemoteMethod(usage = "获取视窗框架配置", returnContentType = "text/json", returnUsage = "200成功,404不存在")
+	public RemoteResult getServicewsSummary(
+			GetServicewsSummaryParameters parameters) throws CircuitException {
+		String jpql = "select si,u  from SwsInfo si,SosUser u where si.owner=u.userCode and si.id=:swsid";
+		Query q = em.createQuery(jpql);
+		q.setParameter("swsid", parameters.getSwsid());
+		try {
+			Object o = q.getSingleResult();
+			ServicewsSummary sum = new ServicewsSummary();
+			Object[] arr = (Object[]) o;
+			SwsInfo si = (SwsInfo) arr[0];
+			em.refresh(si);
+			SosUser u = (SosUser) arr[1];
+			em.refresh(u);
+			sum.setHeadPic(u.getHead());
+			sum.setInheritId(si.getInheritId());
+			sum.setNickName(sum.getNickName());
+			sum.setFaceImg(si.getFaceImg());
+			sum.setPortalId(si.getUsePortal());
+			sum.setSwsDesc(si.getDescription());
+			sum.setSwsid(si.getId());
+			sum.setSwsName(si.getName());
+			sum.setLevel(si.getLevel());
+			SosUserInfo ui = new SosUserInfo();
+			ui.setCreatetime(u.getCreatetime());
+			ui.setHead(u.getHead());
+			ui.setId(u.getId());
+			ui.setNickName(u.getNickName());
+			ui.setRealName(u.getRealName());
+			ui.setSex(u.getSex());
+			ui.setSignatureText(u.getSignatureText());
+			ui.setBriefing(u.getBriefing());
+			ui.setStatus(u.getStatus());
+			ui.setUserCode(u.getUserCode());
+			sum.setOwner(ui);
+			RemoteResult rr = new RemoteResult(200, "ok");
+			rr.content().writeBytes(new Gson().toJson(sum).getBytes());
+			return rr;
+		} catch (NoResultException e) {
+			RemoteResult result = new RemoteResult(404,
+					String.format("视窗没有配置信息%s", parameters.getSwsid()));
+			return result;
+		}
+	}
+	}
+	</p>
+	
+	好了，现在使用cjnet工具查看远程服务的描述：
+	<p class="style1">localhost:10000 >index -t sos/1.0 -Hcj-circuit-sync=true -u /serviceOS/sws/instance/  -Pcjtoken=sss
+sync answer:
+
+	line:	piggyback / SOS/1.0
+	head:
+		protocol=SOS/1.0
+		status=200
+		Content-Type=text/json
+		content-chartset=utf-8
+		command=piggyback
+		message=ok
+		Content-Length=6288
+		url=/
+	param:
+		无参数
+
+---------------------content----------------------------
+{
+    "path":"/sws/instance/",
+    "usage":"视窗实例服务。",
+    "indexMethod":"index",
+    "methods":[
+        {
+            "name":"changeSwsBackground",
+            "usage":"为视窗换背景图，或背景色",
+            "returnUsage":"返回视窗",
+            "returnDataType":"text/json",
+            "returnChartset":"utf-8",
+            "parameters":[
+                {
+                    "name":"cjtoken",
+                    "must":"true",
+                    "usage":"令牌"
+                },
+                {
+                    "name":"background",
+                    "must":"true",
+                    "usage":"背景配置信息，为背景定义的css格式，如:{backgroup:}"
+                },
+                {
+                    "name":"swsid",
+                    "must":"true",
+                    "usage":"视窗标识"
+                }
+            ]
+        },
+        {
+            "name":"findSwsAtPortal",
+            "usage":"查找用户在指定portal下的视窗",
+            "returnUsage":"返回视窗",
+            "returnDataType":"text/json",
+            "returnChartset":"utf-8",
+            "parameters":[
+                {
+                    "name":"cjtoken",
+                    "must":"true",
+                    "usage":"令牌"
+                },
+                {
+                    "name":"userCode",
+                    "must":"true",
+                    "usage":"用户统一标识"
+                },
+                {
+                    "name":"portalId",
+                    "must":"true",
+                    "usage":"框架标识"
+                }
+            ]
+        },
+        {
+            "name":"getServicewsOwner",
+            "usage":"获取视窗的模板标识",
+            "returnUsage":"200成功,404不存在",
+            "returnDataType":"text/json",
+            "returnChartset":"utf-8",
+            "parameters":[
+                {
+                    "name":"cjtoken",
+                    "must":"true",
+                    "usage":"令牌"
+                },
+                {
+                    "name":"swsid",
+                    "must":"true",
+                    "usage":"视窗标识"
+                }
+            ]
+        },
+        {
+            "name":"changeSwsScene",
+            "usage":"为视窗换场景",
+            "returnUsage":"返回视窗",
+            "returnDataType":"text/json",
+            "returnChartset":"utf-8",
+            "parameters":[
+                {
+                    "name":"cjtoken",
+                    "must":"true",
+                    "usage":"令牌"
+                },
+                {
+                    "name":"sceneName",
+                    "must":"true",
+                    "usage":"场景名"
+                },
+                {
+                    "name":"swsid",
+                    "must":"true",
+                    "usage":"视窗标识"
+                }
+            ]
+        },
+        {
+            "name":"getAnotherSwsids",
+            "usage":"获取指定视窗相同基础视窗下的指定目标用户的子视窗列表",
+            "returnUsage":"200成功,404不存在",
+            "returnDataType":"text/json",
+            "returnChartset":"utf-8",
+            "parameters":[
+                {
+                    "name":"cjtoken",
+                    "must":"true",
+                    "usage":"令牌"
+                },
+                {
+                    "name":"sourceSwsid",
+                    "must":"true",
+                    "usage":"源视窗"
+                },
+                {
+                    "name":"toUser",
+                    "must":"true",
+                    "usage":"目标用户"
+                }
+            ]
+        },
+        {
+            "name":"getSwsPortalInfo",
+            "usage":"获取视窗的框架信息(不包含菜单、栏目、应用、弹出菜单）",
+            "returnUsage":"返回视窗",
+            "returnDataType":"text/json",
+            "returnChartset":"utf-8",
+            "parameters":[
+                {
+                    "name":"cjtoken",
+                    "must":"true",
+                    "usage":"令牌"
+                },
+                {
+                    "name":"swsid",
+                    "must":"true",
+                    "usage":"视窗标识"
+                }
+            ]
+        },
+        {
+            "name":"getServicewstid",
+            "usage":"获取视窗的模板标识",
+            "returnUsage":"200成功,404不存在",
+            "returnDataType":"text/json",
+            "returnChartset":"utf-8",
+            "parameters":[
+                {
+                    "name":"cjtoken",
+                    "must":"true",
+                    "usage":"令牌"
+                },
+                {
+                    "name":"swsid",
+                    "must":"true",
+                    "usage":"视窗标识"
+                }
+            ]
+        },
+        {
+            "name":"getServicePortalConfig",
+            "usage":"获取视窗框架配置",
+            "returnUsage":"200成功,404不存在",
+            "returnDataType":"text/json",
+            "returnChartset":"utf-8",
+            "parameters":[
+                {
+                    "name":"cjtoken",
+                    "must":"true",
+                    "usage":"令牌"
+                },
+                {
+                    "name":"swsid",
+                    "must":"true",
+                    "usage":"视窗标识"
+                }
+            ]
+        },
+        {
+            "name":"isOwner",
+            "usage":"判断用户是否是指定视窗的持有人",
+            "returnUsage":"404表示否,200存在，内容：视窗信息",
+            "returnDataType":"text/json",
+            "returnChartset":"utf-8",
+            "parameters":[
+                {
+                    "name":"cjtoken",
+                    "must":"true",
+                    "usage":"令牌"
+                },
+                {
+                    "name":"userCode",
+                    "must":"true",
+                    "usage":"用户统一标识，判断它是否是视窗持有者"
+                },
+                {
+                    "name":"swsid",
+                    "must":"true",
+                    "usage":"视窗标识"
+                }
+            ]
+        },
+        {
+            "name":"setDefaultApp",
+            "usage":"为视窗设置默认应用",
+            "returnUsage":"200成功,404不存在",
+            "returnDataType":"text/json",
+            "returnChartset":"utf-8",
+            "parameters":[
+                {
+                    "name":"cjtoken",
+                    "must":"true",
+                    "usage":"令牌"
+                },
+                {
+                    "name":"swsid",
+                    "must":"true",
+                    "usage":"视窗标识"
+                },
+                {
+                    "name":"appId",
+                    "must":"true",
+                    "usage":"应用物理标识"
+                }
+            ]
+        },
+        {
+            "name":"getbasicSws",
+            "usage":"获取视窗的基础视窗，如果本身就是基础视窗和上级视窗，则返回空",
+            "returnUsage":"200成功,404不存在",
+            "returnDataType":"text/json",
+            "returnChartset":"utf-8",
+            "parameters":[
+                {
+                    "name":"cjtoken",
+                    "must":"true",
+                    "usage":"令牌"
+                },
+                {
+                    "name":"swsid",
+                    "must":"true",
+                    "usage":"视窗标识"
+                }
+            ]
+        },
+        {
+            "name":"assignNewSws",
+            "usage":"为用户分配新视窗，即从指定视窗拷贝",
+            "returnUsage":"返回视窗",
+            "returnDataType":"text/json",
+            "returnChartset":"utf-8",
+            "parameters":[
+                {
+                    "name":"cjtoken",
+                    "must":"true",
+                    "usage":"令牌"
+                },
+                {
+                    "name":"userCode",
+                    "must":"true",
+                    "usage":"用户标识"
+                },
+                {
+                    "name":"swsId",
+                    "must":"true",
+                    "usage":"已分配的视窗号"
+                },
+                {
+                    "name":"inheritId",
+                    "must":"true",
+                    "usage":"要继承的视窗id"
+                }
+            ]
+        },
+        {
+            "name":"getServicewsSummary",
+            "usage":"获取视窗框架配置",
+            "returnUsage":"200成功,404不存在",
+            "returnDataType":"text/json",
+            "returnChartset":"utf-8",
+            "parameters":[
+                {
+                    "name":"cjtoken",
+                    "must":"true",
+                    "usage":"令牌"
+                },
+                {
+                    "name":"swsid",
+                    "must":"true",
+                    "usage":"视窗标识"
+                }
+            ]
+        },
+        {
+            "name":"getServicewsFace",
+            "usage":"获取用户的视窗face信息",
+            "returnUsage":"200成功,json list",
+            "returnDataType":"text/json",
+            "returnChartset":"utf-8",
+            "parameters":[
+                {
+                    "name":"cjtoken",
+                    "must":"true",
+                    "usage":"令牌"
+                },
+                {
+                    "name":"userCode",
+                    "must":"true",
+                    "usage":"用户标识"
+                }
+            ]
+        },
+        {
+            "name":"findServicews",
+            "usage":"按条件查询视窗列表",
+            "returnUsage":"200成功",
+            "returnDataType":"text/json",
+            "returnChartset":"utf-8",
+            "parameters":[
+                {
+                    "name":"cjtoken",
+                    "must":"true",
+                    "usage":"令牌"
+                },
+                {
+                    "name":"level",
+                    "must":"false",
+                    "usage":"视窗级别，默认为所有视窗类型"
+                },
+                {
+                    "name":"skip",
+                    "must":"true",
+                    "usage":"分页开始"
+                },
+                {
+                    "name":"limit",
+                    "must":"true",
+                    "usage":"分页大小"
+                },
+                {
+                    "name":"swsid",
+                    "must":"false",
+                    "usage":"按视窗号查"
+                },
+                {
+                    "name":"swsName",
+                    "must":"false",
+                    "usage":"按视窗名模糊查找"
+                }
+            ]
+        },
+        {
+            "name":"getServicewsBody",
+            "usage":"获取视窗简介及视窗的存储空间信息",
+            "returnUsage":"200成功,404不存在",
+            "returnDataType":"text/json",
+            "returnChartset":"utf-8",
+            "parameters":[
+                {
+                    "name":"cjtoken",
+                    "must":"true",
+                    "usage":"令牌"
+                },
+                {
+                    "name":"swsid",
+                    "must":"true",
+                    "usage":"视窗标识"
+                }
+            ]
+        },
+        {
+            "name":"getServiceosDefaultTemplate",
+            "usage":"获取服务操作系统默认模板号,在注册用户时以此作为默认选项的",
+            "returnUsage":"返回视窗",
+            "returnDataType":"text/json",
+            "returnChartset":"utf-8",
+            "parameters":[
+                {
+                    "name":"cjtoken",
+                    "must":"true",
+                    "usage":"令牌"
+                },
+                {
+                    "name":"userCode",
+                    "must":"true",
+                    "usage":"用户统一标识"
+                },
+                {
+                    "name":"portalId",
+                    "must":"true",
+                    "usage":"框架标识"
+                }
+            ]
+        },
+        {
+            "name":"changeSwsTheme",
+            "usage":"为视窗换主题",
+            "returnUsage":"返回视窗",
+            "returnDataType":"text/json",
+            "returnChartset":"utf-8",
+            "parameters":[
+                {
+                    "name":"cjtoken",
+                    "must":"true",
+                    "usage":"令牌"
+                },
+                {
+                    "name":"themeName",
+                    "must":"true",
+                    "usage":"主题名"
+                },
+                {
+                    "name":"swsid",
+                    "must":"true",
+                    "usage":"视窗标识"
+                }
+            ]
+        }
+    ]
+}
+---------------------content--end-----------------------</p>
+四、云计算机芯片开发标准：
+	云计算机芯片是跨终端的一种应用，将来支持在所有os平台和移动终端上使用。就是一处开发，到处运行的概念，在应用上它类似于微信的公共号，但和它大大的不同，因为它运行在用户的高度抽像、自管理的云计算机上。
+	云计算机芯片开发的步揍大概有这么几步：
+	1.开发芯片
+	2.发送芯片到云计算平台的服务市场
+	3.在你的云计算机中安装芯片
+	4.在云计算机中绑定芯片到服务菜单或表单工具
+	5.在云计算机的服务窗口中测试芯片
+	
+	云计算芯片提供两种服务，一种绑定到菜单的服务（包括了bflow和site)，用于绑定到服务菜单，在服务窗口的内容区使用；一种是表单工具性服务，在用户的发送按钮下的工具栏中出现，用户选中了某个工具，在填完且单后，点发送时将提供到它的云计算机的这个芯片中处理。
+	
+	用法：
+	1.从CscGraph派生
+	<p class="style1">
+	assembly.json
+{
+	entryPoint : {
+		activators : []
+	},
+	assemblyInfo : {
+		assemblyTitle : "example",
+		assemblyResource:"resource=/web",//web资源路径
+		assemblyDescription : "喂",
+		assemblyConfiguration : "",
+		assemblyCompany : "逻辑界公司出品",
+		assemblyProduct : "cj.cloud.computer.example",
+		assemblyCopyright : "Copyright   2011",
+		assemblyTrademark : "",
+		assemblyCulture : "",
+		guid : "9A80BDAD-4817-422E-8002-FF0921AD3573",
+		assemblyVersion : "1.0.0.0",
+		assemblyFileVersion : "1.0.0.0",
+		assemblyIcon:"app.svg"
+	},
+	global:{
+		default:"zh_CN",
+		desc:"如果系统环境要求各芯片采用的语言本芯片没有，则芯片可采用默认语言"
+		},
+	serviceContainer : {
+		name : "netContainer",
+		switchFilter:"off",
+		jss:[{//使用jss服务
+			module:"csc",//模块是csc是云计算机系统要求的
+			package:"widgets",//jss.js文件所在的根目录
+			unzip:"true",
+			searchMode:"link",
+			extName:".jss.js"
+		}],
+		scans : [{
+					package : "cj.lns.chip.sos.csc.example",
+					extName : ".class|.json|.xml",
+					exoterical:"true"
+				}]
+
+	}
+}	
+实现一个csc图
+@CjService(name = "cj.neuron.app", isExoteric = true)
+public class ExampleCscGraph extends CscGraph {
+	
+	
+}</p>
+	2.那么即可开发一个csc组件
+	<p class='style1'>/*
+ * 功能：演示
+ * 版本：1.0
+ * 作者：cj
+ * extends可以实现一种类型，此类型将可在java中通过调用服务提供器的.getServices(type)获取到。这样在java代码中直接使用接口间接的调用到jss实现
+ * 注意使用extends的限制：
+ * 1.jss必须实现该接口的方法，而且一定是导出方法，即声明为exports.method=function格式
+ * 如果未有正确实现extends接口方法，则返回为null
+ * 
+ * extends的调用参考RefJssService类中的用例
+ * 
+ * 芯片内服务有三种：
+ * －－ tool：工具，位于服务台发送按钮下的工具栏，由工具绑定，提供表单服务
+ * －－ site:站点，即第三方web3.0网站（第三方开发），服务菜单绑定，点击采单将跳转到站点
+ * －－ bflow：业务流程，提供功能性、流程性、交互性服务，由第三方开发。
+ * <![jss:{
+		scope:'runtime',
+		extends:'cj.lns.chip.sos.csc.ICsc'
+ 	}
+ ]>
+ <![csc:{//这是在云计算机中可以列出显示给用户的说明
+	type:'tool',//说明是表单工具，只能在计算机服务窗口的工具列表中列出
+	title:'测试',//工具显示的标题
+	usage:'用法'//说明或用法
+ * }]>
+ */
+//var imports = new JavaImporter(java.io, java.lang)导入类型的范围，单个用Java.type
+var Frame = Java.type('cj.studio.ecm.frame.Frame');
+var FormData = Java.type('cj.studio.ecm.frame.FormData');
+var FieldData = Java.type('cj.studio.ecm.frame.FieldData');
+var Circuit = Java.type('cj.studio.ecm.frame.Circuit');
+var String = Java.type('java.lang.String');
+var CircuitException = Java.type('cj.studio.ecm.graph.CircuitException');
+var Gson = Java.type('cj.ultimate.gson2.com.google.gson.Gson');
+var StringUtil = Java.type('cj.ultimate.util.StringUtil');
+var Document = Java.type('org.jsoup.nodes.Document');
+var Jsoup = Java.type('org.jsoup.Jsoup');
+var System = Java.type('java.lang.System');
+var TupleDocument = Java.type('cj.lns.chip.sos.cube.framework.TupleDocument');
+
+exports.definition=function(){
+	return imports;
+}
+
+exports.flow=function(frame,circuit,plug,ctx){
+	print('example----'+frame+'----'+imports);
+	
+	var visitor=ctx.visitor();//每一个来访服务窗口的用户
+	var user='';
+	var doc=null;
+	if(visitor!=null){
+		user=visitor.getVisitor();
+		 doc = ctx.html("/index.html",
+				"/?csc_resource_path=/"+user+"/helloworld/");
+		var v=doc.select('.hello>p[visit]>span');
+		v.html(visitor.getVisitor());
+	}else{
+		 doc = ctx.html("/index.html",
+				"/");
+	}
+	
+	circuit.content().writeBytes(doc.toString().getBytes());
+}</p>
+							</pre>
+						</div>
+						<div class="bottom"></div>
+					</div>
+				</div>
+				<div id="side">
+					<div class="fill"></div>
+					<div class="portlet">
+						<div class="title">
+							<span label>相关</span>
+						</div>
+						<ul class="items">
+				<li><a href="../views/ecm_hello.html" plugin target="_blank">· 从ecm 工具包的 helloworld 入门</a></li>
+		<li><a href="../views/net_hello.html" plugin target="_blank">· 从net 工具包的 helloworld 入门</a></li>
+		<li><a href="../views/intro_ecm.html" plugin target="_blank">· 介绍： ecm 面向连接电子模型开发工具包</a></li>
+		<li><a href="../views/intro_net.html" plugin target="_blank">· 介绍： net 通讯开发工具包</a></li>
+		<li><a href="../views/intro_netdisk.html" plugin target="_blank">· 介绍： netdisk 多维云盘开发工具包</a></li>
+		<li><a href="../views/intro_neuron.html" plugin target="_blank">· 介绍： neuron 分布式连接容器</a></li>
+		<li><a href="../views/intro_netsite.html" plugin target="_blank">· 介绍： netsite 热插拔应用容器</a></li>
+		<li><a href="../views/intro_mdisk.html" plugin target="_blank">· 介绍： mdisk 多维云盘命令行工具</a></li>
+		<li><a href="../views/intro_cjnet.html" plugin target="_blank">· 介绍： cjnet 调试、测试命令行工具</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-sub"></div>
+		<div class="col-extra"></div>
+	</div>
+</body>
+</html>

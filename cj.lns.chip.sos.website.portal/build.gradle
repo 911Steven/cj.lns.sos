@@ -1,0 +1,47 @@
+sourceSets { 
+	 main { 
+	 	java{
+	 		srcDir "$projectDir/src"
+	 	}
+	 	resources{
+		 	srcDir "$projectDir/src"
+		 }
+	 } 
+ 	}
+ 	sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+ 	tasks.withType(JavaCompile) {  
+        options.encoding = "UTF-8"  
+    } 
+ repositories { 
+	 flatDir(dirs: "../global/lib") 
+ } 
+
+dependencies {
+	compile fileTree(dir: '../global/lib', includes: ['*.jar'])
+	compile fileTree(dir: '../global/cjtools', includes: ['*.jar'])
+	compile project(':cj.lns.chip.sos.website');
+	//compile('mysql:mysql-connector-java:5.1.36');
+	compile fileTree('src/cj/references')
+}
+//gradle.taskGraph.whenReady {taskGraph ->
+//    if (taskGraph.hasTask(release)) {
+//        version = '1.0'
+//    } else {
+//        version = '1.0-SNAPSHOT'
+//    }
+//}
+ 	task releaseToTerminusOpenPlatform(type: Copy) {
+ 	dependsOn "build"
+ 	 from 'build/libs/'
+	     into '../network/neuron-sossite/apps/cj.lns.chip.sos.website-1.0/plugins/cj.lns.chip.sos.website.portal-1.0'
+	     include '**/*.jar'
+	     rename { String fileName ->
+        fileName.replace('.jar', '.plugin')//修改，使之输出为插件的扩展名。
+    	}
+ 	}
+ 	
+ 	 task release(type: Copy) {
+     dependsOn "releaseToTerminusOpenPlatform"
+ 	}
+ 	

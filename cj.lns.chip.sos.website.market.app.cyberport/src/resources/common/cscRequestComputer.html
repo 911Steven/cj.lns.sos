@@ -1,0 +1,190 @@
+<style>
+<!--
+.r-computer {
+	height: auto;
+	background: white;
+	padding: 10px;
+}
+
+.r-computer>.title {
+	padding: 10px 0;
+}
+
+.r-computer>.title>span {
+	display: inline-block;
+}
+
+.r-computer>.title>p {
+	color: gray;
+	border-bottom: 1px solid #ececec;
+}
+
+.r-computer>.detail {
+	
+}
+
+.r-computer>.detail>li {
+	padding: 5px 0;
+}
+
+.r-computer>.detail>.owneris>span[slabel] {
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+.r-computer>.detail>.config {
+	
+}
+
+.r-computer>.detail>.host>.config {
+	background: #f5f5f5;
+	margin-top: 5px;
+	padding: 10px;
+}
+
+.r-computer>.detail>.host>.config>ul>li {
+	padding: 10px;
+}
+
+.r-computer>.detail>.host>.config>ul>li.port>ul {
+	border: 1px solid white;
+}
+
+.r-computer>.detail>.host>.config>ul>li.port>ul>li {
+	padding: 10px;
+}
+.r-computer>.detail>.host>.config>ul>li.port>ul>li >span[assign]{
+	display: inline-block;
+	padding: 0 15px;
+	margin-left: 10px;
+	text-decoration: underline;
+	cursor: pointer;
+}
+.r-computer>.detail>.host>.config>ul>li.port>ul>li >span[assign]:hover{
+	color: blue;
+}
+.r-computer>.op {
+	margin: 20px;
+	text-align: center;
+}
+
+.r-computer>.op>span[build] {
+	padding: 10px 20px;
+	background: #f5f5f5;
+	cursor: pointer;
+}
+
+.r-computer>.op>span[build]:hover {
+	background: blue;
+	color: white;
+}
+
+.r-computer span[label] {
+	padding-right: 5px;
+}
+
+.r-computer input, .r-computer select {
+	padding-right: 5px;
+	padding-left: 10px;
+}
+-->
+</style>
+<script type="text/javascript">
+<!--
+(function(){
+	$('.r-computer > .detail > .host>select').change(function(e){
+		$.get('./cyberportApp/common/cscSelectHost.html',{
+			hostid:$(this).val()
+		},function(html){
+			$('.r-computer > .detail > .host > .config').html(html);
+		}).error(function(e){
+			alert(e.responseText);
+		});
+	});
+	$('.r-computer > .op > span[build]').on('click',function(e){
+		var the=$(this);
+		var oldText=the.html();
+		var nrport=$('.r-computer > .detail > .host > .config > ul > li.port > ul > li[nrport]>input').val();
+		if(parseInt(nrport)<1024){
+			alert('神经元端口必须从1024开始');
+			return;
+		}
+		the.html('开始构建，可能需要几分钟，请稍候...');
+		$.post('./cyberportApp/common/cscBuildComputer.service',{
+			owneris:$('.r-computer > .detail > .owneris>input:checked').attr('select'),
+			hostid:$('.r-computer > .detail > .host>select').val(),
+			hostpt:$('.r-computer > .detail > .host > .config > ul > .protocol>select').val(),
+			pcpt:$('.r-computer > .detail > .host > .config > ul > li.port > ul > li[pt]>select').val(),
+			pchost:$('.r-computer > .detail > .host > .config > ul > li.port > ul > li[pchost]>input').val(),
+			pcport:$('.r-computer > .detail > .host > .config > ul > li.port > ul > li[pcport]>input').val(),
+			docker:$('.r-computer > .detail > .host > .config > ul > li.port > ul > li[images]>select').val(),
+			nrport:nrport
+		},function(data){
+			the.html('构建成功,正在开机，请稍候...');
+			$.post('./cyberportApp/common/cscRunComputer.service',{
+				
+			},function(data){
+				the.html('成功开机');
+				the.parent('.op').append("<p>"+data+"</p>");
+				$.cj.App.openApp('appi://site.computer.common.csc.mycomputer');
+			}).error(function(e){
+				alert(e.responseText);
+				the.html('尝试再次构建');
+			});
+		}).error(function(e){
+			alert(e.responseText);
+			the.html('尝试再次构建');
+		});
+	});
+})();
+//-->
+</script>
+<div class="r-computer">
+	<div class="title">
+		<span>云计算机申请窗口</span>
+		<p>如果您不是开发者，按默认申请即可，如果是开发者，可根据情况选择配置</p>
+	</div>
+	<ul class="detail">
+		<li class="owneris"><span label>您是：</span><span slabel>一般用户</span><input
+			name="owneris" select='user' type="radio"  title="一般用户可以拥有云计算机，提供服务台功能，从服务市场安装服务" checked="checked"><span
+			slabel>开发者</span><input name="owneris" select='developer' title="开发者可以向服务市场发布服务"
+			type="radio"></li>
+		<li class="host"><span label>云主机：</span><select>
+				<option value="volvo">主机1</option>
+				<option value="volvo">主机2</option>
+				<option value="volvo">主机3</option>
+				<option value="volvo">主机4</option>
+		</select>
+			<div class="config">
+				<ul>
+					<li class="computerCount"><span label>该主机上已有云计算机数：</span><span value title="尽量选个少的主机性能当然就好些了哦" style="text-decoration: underline;cursor: pointer;">10</span></li>
+					<li class="protocol" title="想让平台通过什么协议与您的云计算机互动消息"><span label>主机服务协议：</span><select>
+							<option value="volvo">rio-tcp</option>
+							<option value="volvo">http</option>
+							<option value="volvo">rio-udt</option>
+					</select></li>
+					<li class="port"
+						title="说明：目前平台财力有限，不能出口儿到公网，仅能使用平台提供的物理主机服务，对于将云计算机部署到自己机房的需求暂无法支持。"><span
+						label>云计算机配置：</span>
+						<ul>
+							<li images><span label>克隆源：</span><select>
+									<option value="ubuntu-neuron">绿色版云计算机</option>
+							</select></li>
+							<li pt><span label>协议：</span><select>
+									<option value="rio-tcp">rio-tcp</option>
+									<option value="rio-udt">rio-udt</option>
+									<option value="http">http</option>
+							</select></li>
+							<li pchost><span label>域名或IP：</span><input type="text" readonly="readonly"
+								value="localhost"></li>
+							<li pcport title="云计算机外部接口"><span label>接口：</span><input type="text" value="" readonly="readonly" required="required"><span
+								assign style="display: none;">分配端口</span></li>
+							<li nrport title="云计算机神经元端口，端口必须从1024开始"><span label>端口：</span><input type="text" value="1024" required="required" ></li>
+						</ul></li>
+				</ul>
+			</div></li>
+	</ul>
+	<div class="op">
+		<span build title="100天内免费">开始构建云计算机</span>
+	</div>
+</div>

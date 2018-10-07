@@ -1,0 +1,498 @@
+<script src="/js/linker.js" type="text/javascript" plugin>
+</script>
+<style>
+<!--
+.linkerContainer {
+	position: absolute;
+	right: 100px;
+	top: -10px;
+	min-width: 650px;
+	min-height: 550px;
+}
+
+.l-c {
+	padding-right: 200px;
+	position: relative;
+	background: #f5f5f5;
+}
+
+.l-c>.left {
+	height: 100%;
+	position: relative;
+}
+
+.l-c>.left>.cnt {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 160px;
+	background: white;
+	padding: 10px;
+	overflow: auto;
+}
+
+.l-c>.left>.filter {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	height: 160px;
+	bottom: 0;
+	border-top: 1px solid #cecece;
+}
+
+.l-c>.right {
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 200px;
+	bottom: 0;
+	border-left: 1px solid #cecece;
+}
+
+.l-c>.right>.options {
+	position: absolute;
+	top: 0;
+	height: 40px;
+	right: 0;
+	left: 0;
+}
+
+.l-c>.right>.options>.title {
+	position: absolute;
+	left: 10px;
+	bottom: 0px;
+	display: inline-block;
+	color: gray;
+}
+
+.l-c>.right>.options>.op {
+	display: inline-block;
+	position: absolute;
+	right: 15px;
+	bottom: 0;
+}
+
+.l-c>.right>.options>.op>a {
+	font-weight: bold;
+}
+
+.l-c>.right>.users {
+	border-top: 1px solid #cecece;
+	position: absolute;
+	top: 40px;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	position: absolute;
+	overflow: auto;
+}
+
+.l-c>.right>.users>li {
+	padding-left: 25px;
+	cursor: pointer;
+	position: relative;
+	margin: 5px 0;
+}
+
+.l-c>.right>.users>li:hover {
+	background: white;
+}
+
+.l-c>.right>.users>li>img {
+	width: 25px;
+	height: 25px;
+	position: absolute;
+	top: 5px;
+	left: 0;
+	-moz-border-radius: 50%; /* Gecko browsers */
+	-webkit-border-radius: 50%; /* Webkit browsers */
+	border-radius: 50%;
+}
+
+.l-c>.right>.users>li>.intro {
+	display: inline-block;
+	margin-left: 10px;
+}
+
+.l-c>.right>.users>li>.intro>li {
+	margin: 0;
+	padding: 0;
+	line-height: 18px;
+	font-size: 10px;
+}
+
+.l-c>.right>.users>li>.intro>li.f1 {
+	font-weight: bold;
+}
+
+.l-c>.right>.users>li>.intro>li.f2 {
+	color: gray;
+}
+
+.l-c>.left>.filter>.options {
+	
+}
+
+.l-c>.left>.filter>.options>ul {
+	margin-left: 10px;
+}
+
+.l-c>.left>.filter>.options>ul>li {
+	float: left;
+	margin: 5px;
+	padding: 3px 10px;
+	text-align: center;
+	cursor: pointer;
+}
+
+.l-c>.left>.filter>.options>ul>li:hover {
+	background: white;
+}
+
+.l-c>.left>.filter>.options>ul>li>img {
+	width: 26px;
+	height: 26px;
+}
+
+.l-c>.left>.filter>.options>ul>li>p {
+	line-height: 16px;
+	color: gray;
+}
+
+.l-c>.left>.filter>.sender {
+	padding-right: 0px;
+	position: relative;
+	background: #f5f5f5;
+}
+
+.l-c>.left>.filter>.sender>div {
+	padding-right: 20px;
+	margin: 4px 4px 0 4px;
+	height: 66px;
+	border: 1px solid #cecece;
+}
+
+.l-c>.left>.filter>.sender>div>textarea {
+	height: 100%;
+	width: 100%;
+	resize: none;
+	font-size: 12px;
+	outline: none;
+	border: none;
+	padding: 4px 8px 4px 4px;
+}
+
+.l-c>.left>.filter>.sender>ul {
+	width: 20px;
+	position: absolute;
+	right: 4px;
+	top: 5px;
+	bottom: 0;
+	padding: 0;
+	text-align: left;
+	display: inline-block;
+	padding: 0;
+}
+
+.l-c>.left>.filter>.sender>ul>li {
+	padding: 3px;
+}
+
+.l-c>.left>.filter>.sender>ul>li>input[type="radio"] {
+	border: none;
+}
+
+.l-c>.left>.filter>.set {
+	padding: 4px;
+	height: 20px;
+	position: relative;
+}
+
+.l-c>.left>.filter>.set>div {
+	position: absolute;
+	right: 10px;
+	top: 4px;
+}
+
+.l-c>.left>.filter>.set>div>span {
+	padding-left: 10px;
+}
+
+.l-c>.left>.filter>.set>div>span>label {
+	padding-right: 5px;
+	color: gray;
+}
+
+.l-c>.left>.cnt>.msg {
+	margin: 16px 0;
+}
+
+.l-c>.left>.cnt>.msg>.time {
+	color: gray;
+	text-align: center;
+}
+
+.l-c>.left>.cnt>.msg>.box-other {
+	position: relative;
+	padding-right: 65px;
+	padding-left: 65px;
+}
+
+.l-c>.left>.cnt>.msg>.box-other>.person {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 50px;
+	color: gray;
+	font-size: 10px;
+	cursor: pointer;
+}
+
+.l-c>.left>.cnt>.msg>.box-other>.person>img {
+	width: 35px;
+	height: 35px;
+	-moz-border-radius: 50%; /* Gecko browsers */
+	-webkit-border-radius: 50%; /* Webkit browsers */
+	border-radius: 50%;
+}
+
+.l-c>.left>.cnt>.msg>.box-me {
+	position: relative;
+	padding-right: 65px;
+	padding-left: 65px;
+}
+
+.l-c>.left>.cnt>.msg>.box-me>.person {
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 50px;
+	color: gray;
+	font-size: 10px;
+	cursor: pointer;
+}
+
+.l-c>.left>.cnt>.msg>.box-me>.person>img {
+	width: 35px;
+	height: 35px;
+	-moz-border-radius: 50%; /* Gecko browsers */
+	-webkit-border-radius: 50%; /* Webkit browsers */
+	border-radius: 50%;
+}
+
+.tag-right {
+	border: 1px solid rgba(236, 236, 236, 1); position : relative;
+	padding: 5px;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	position: relative;
+}
+
+.tag-right>em {
+	display: block;
+	border-width: 15px;
+	position: absolute;
+	right: -30px;
+	top: 10px;
+	border-style: dashed dashed dashed solid;
+	border-color: transparent transparent transparent rgba(236, 236, 236, 1);
+	font-size: 0;
+	line-height: 0;
+}
+
+.tag-right>span {
+	display: block;
+	border-width: 15px;
+	position: absolute;
+	right: -29px;
+	top: 10px;
+	border-style: dashed dashed dashed solid;
+	border-color: transparent transparent transparent white;
+	font-size: 0;
+	line-height: 0;
+}
+
+.tag-left {
+	border: 1px solid rgba(236, 236, 236, 1);
+	position: relative;
+	padding: 5px;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+}
+
+.tag-left>em {
+	display: block;
+	border-width: 15px;
+	position: absolute;
+	left: -30px;
+	top: 10px;
+	border-style: dashed solid dashed dashed;
+	border-color: transparent rgba(236, 236, 236, 1) transparent transparent;
+	font-size: 0;
+	line-height: 0;
+}
+
+.tag-left>span {
+	display: block;
+	border-width: 15px;
+	position: absolute;
+	left: -29px;
+	top: 10px;
+	border-style: dashed solid dashed dashed;
+	border-color: transparent white transparent transparent;
+	font-size: 0;
+	line-height: 0;
+}
+-->
+</style>
+<div class="l-c">
+	<div class="left">
+		<ul class="cnt">
+			<li class="msg">
+				<div class="time">9:35</div>
+				<div class="box-other">
+					<div class="person">
+						<img src="img/1.jpg">
+						<p>会飞的猪</p>
+					</div>
+					<div class="tag-left">
+						<em></em> <span></span>
+						<div>战略计划 · 叫做定向搜索引擎，把现在互联网各大知名站点作为内容，解析并整合进lns，实现互动能力。由此打造lns的电影、电商、游戏、新闻等平台。比如整合飘花、琪琪等资源，并可开放这些服务，成为资源提供商，提供给第三方开发。 收取一定的费用，如果建立运营商账号，以备未来有纠纷时付给内容提供商 · 自营平台有：广告、地理微博、常规微博、聊天交友、新农合等。依托地理微博实现房地产专业互动网点，并定向索引搜房等知名房地产门户 ·之后的运营，每个阶段定向或自营打一仗，不停的打仗。 </div>
+					</div>
+				</div>
+			</li>
+			<li class="msg">
+				<div class="time">10:20</div>
+				<div class="box-me">
+					<div class="person">
+						<img src="img/5.jpg">
+						<p>吃饭的妞</p>
+					</div>
+					<div class="tag-right">
+						<em></em> <span></span>
+						<div>实现互动能力。由此打造lns的电影、电商、游戏、新闻等平台。比如整合飘花、琪琪等资源，并可开放这些服务</div>
+					</div>
+				</div>
+			</li>
+		</ul>
+		<ul class="filter">
+			<li class="set"><div>
+					<span><label>全部</label><input type="checkbox" checked="checked" disabled="disabled"/></span><span
+						title="二人对话仍会被公开，如私聊请点击该用户在新窗口中对话" id="select-user"><label>对话 &gt;</label><a
+						href="#"></a></span>
+				</div></li>
+			<li class="sender"><div>
+					<textarea type="text"></textarea>
+				</div>
+				<ul>
+					<li title="回撤直接发送"><input name="radio2" type="radio"></li>
+					<li title="控制键＋回撤发送"><input name="radio2" checked="checked" type="radio"></li>
+				</ul></li>
+			<li class="options">
+				<ul>
+					<li><img alt="" src="img/xiangce.svg">
+						<p>图片</p></li>
+					<li><img alt="" src="img/iconfont-weiktv.svg">
+						<p>录音</p></li>
+					<li><img alt="" src="img/kaishi.svg">
+						<p>录像</p></li>
+					<li><img alt="" src="img/iconfont-file.svg">
+						<p>文件</p></li>
+				</ul>
+				<div style="clear: both;"></div>
+			</li>
+		</ul>
+	</div>
+	<div class="right">
+		<div class="options">
+			<span class="title">联系人(18人)</span><span class="op"><a
+				href="#">邀请...</a></span>
+		</div>
+		<ul class="users">
+			<li><img alt="" src="img/1.jpg">
+				<ul class="intro">
+					<li class="f1">carocean</li>
+					<li class="f2">天天向上</li>
+				</ul></li>
+			<li><img alt="" src="img/2.jpg">
+				<ul class="intro">
+					<li class="f1">会飞的猪</li>
+					<li class="f2">人生无常</li>
+				</ul></li>
+			<li><img alt="" src="img/1.jpg">
+				<ul class="intro">
+					<li class="f1">carocean</li>
+					<li class="f2">天天向上</li>
+				</ul></li>
+			<li><img alt="" src="img/2.jpg">
+				<ul class="intro">
+					<li class="f1">会飞的猪</li>
+					<li class="f2">人生无常</li>
+				</ul></li>
+			<li><img alt="" src="img/1.jpg">
+				<ul class="intro">
+					<li class="f1">carocean</li>
+					<li class="f2">天天向上</li>
+				</ul></li>
+			<li><img alt="" src="img/2.jpg">
+				<ul class="intro">
+					<li class="f1">会飞的猪</li>
+					<li class="f2">人生无常</li>
+				</ul></li>
+			<li><img alt="" src="img/1.jpg">
+				<ul class="intro">
+					<li class="f1">carocean</li>
+					<li class="f2">天天向上</li>
+				</ul></li>
+			<li><img alt="" src="img/2.jpg">
+				<ul class="intro">
+					<li class="f1">会飞的猪</li>
+					<li class="f2">人生无常</li>
+				</ul></li>
+			<li><img alt="" src="img/1.jpg">
+				<ul class="intro">
+					<li class="f1">carocean</li>
+					<li class="f2">天天向上</li>
+				</ul></li>
+			<li><img alt="" src="img/2.jpg">
+				<ul class="intro">
+					<li class="f1">会飞的猪</li>
+					<li class="f2">人生无常</li>
+				</ul></li>
+			<li><img alt="" src="img/1.jpg">
+				<ul class="intro">
+					<li class="f1">carocean</li>
+					<li class="f2">天天向上</li>
+				</ul></li>
+			<li><img alt="" src="img/2.jpg">
+				<ul class="intro">
+					<li class="f1">会飞的猪</li>
+					<li class="f2">人生无常</li>
+				</ul></li>
+			<li><img alt="" src="img/1.jpg">
+				<ul class="intro">
+					<li class="f1">carocean</li>
+					<li class="f2">天天向上</li>
+				</ul></li>
+			<li><img alt="" src="img/2.jpg">
+				<ul class="intro">
+					<li class="f1">会飞的猪</li>
+					<li class="f2">人生无常</li>
+				</ul></li>
+			<li><img alt="" src="img/1.jpg">
+				<ul class="intro">
+					<li class="f1">carocean</li>
+					<li class="f2">天天向上</li>
+				</ul></li>
+			<li><img alt="" src="img/2.jpg">
+				<ul class="intro">
+					<li class="f1">会飞的猪</li>
+					<li class="f2">人生无常</li>
+				</ul></li>
+		</ul>
+	</div>
+</div>

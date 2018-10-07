@@ -1,0 +1,284 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<title>云网</title>
+<link href="../../../../css/global.css" type="text/css" rel="stylesheet">
+<link href="../../../../css/pages/portal-viewer.css" type="text/css"
+	rel="stylesheet">
+<script type="text/javascript"
+	src="../../../../js/jquery/jquery-2.1.4.js"></script>
+<style type="text/css">
+#content_inner>.body>pre>img {
+	width: 100%;
+}
+
+.grid-s5m0e5 {
+	height: 11800px;
+}
+#content_inner > .body > pre>.result{
+	font-size: 10px;
+	margin-left: 60px;
+}
+#content_inner > .body > pre>.style1{
+font-size: 10px;
+	margin-left: 60px;
+}
+</style>
+</head>
+<body>
+	<div class="topbar">
+		<ul class="left">
+			<li class="about"><span label>关于</span></li>
+		</ul>
+		<ul class="right">
+			<li class="mine"><a target="_blank"
+				href="../../../../public/register2.html">注册</a></li>
+			<li class="login"><span label>登录</span></li>
+		</ul>
+	</div>
+	<div class="banner">
+		<div class="b-left"></div>
+		<div class="b-center">
+			<div class="logo">
+				<img src="../../../../img/pages/logo.png">
+				<p>云网</p>
+			</div>
+		</div>
+		<div class="b-right"></div>
+	</div>
+	<div class="grid-s5m0e5">
+		<div class="col-main">
+			<div class="main-wrap">
+				<div id="content">
+					<div id="content_inner">
+						<div class="title">
+							<p>神经元连接 helloword 入门</p>
+						</div>
+						<div class="subtitle">
+							<ul>
+								<li><span label>作者：</span><span value
+									style="padding-right: 10px;">cj (赵向彬)</span><span label>发布日期：</span><span
+									value>2016年8月19日 19:15</span></li>
+							</ul>
+						</div>
+						<div class="body">
+							<div style="font-family: sans-serif; margin-bottom: 10px;">
+								<span><b>关键词：</b></span>神经元 神经网络
+							</div>
+							<div style="font-family: sans-serif; margin-bottom: 10px;">
+								<span><b>摘要：</b></span>本文使开发者简单感受一下神经元的作用:<br>
+								1.<a href="../downloads/neuron.zip" plugin style="color:blue;text-decoration: underline;">神经元下载</a><br>
+								2.<a href="../downloads/cj.test.website-1.0.zip" plugin style="color:blue;text-decoration: underline;">cj.test.website-1.0.zip 芯片下载</a><br>
+								根据步zou一步一步来<br>
+								</div>
+							<div style="font-family: sans-serif; margin-bottom: 10px;">
+								<span><b>正文：</b></span>
+							</div>
+<pre>
+一、咱先用神经元连接下淘宝试试
+	咱有个要求，以浏览器连接到神经元，由神经元将请求转发给淘宝（这是最简单的神经元功能，转发请求），运用此功能，将来的云计算机芯片的开发者可以采集这些公网网站，并可对它们的document任意的加工处理，再返回给用户。
+	1.先在神经元中建立一个http server net，端口为8888
+	<p class='style1'>  sc >start taobao -t http -h localhost:8888                                                   
+  sc >ls
+
+------------服务器信息－－－－－－－－－
+        服务名:taobao
+        地址:localhost
+        端口:8888
+        协议:http
+        状态:listening
+        属性:
+                bossThreadCount:1
+                heartbeatInterval:1000
+                workThreadCount:0
+
+        ------------------------
+    <b>添加一个群簇</b>
+      ct >adadd taobao -as 淘宝 -mt netName -ac taobao
+  ct >ls
+    平衡算法------------------------
+
+    群簇------------------------1
+      群簇名:taobao
+        别名:淘宝
+        平衡算法:cjhash
+        匹配模式:netName
+        接受:taobao
+        信道类型:unicast
+        信道插件:-
+        插件表达式:-
+        群簇用途:-
+        有效目标:(0个)
+        无效目标:(0个)
+
+        ------------------------
+      <b>添加一个远程目标，指向淘宝</b>
+        ct >ad taobao1 -in taobao -h http://www.taobao.com:80 -t rio-http
+  ct >ls
+    平衡算法------------------------
+
+    群簇------------------------1
+      群簇名:taobao
+        别名:淘宝
+        平衡算法:cjhash
+        匹配模式:netName
+        接受:taobao
+        信道类型:unicast
+        信道插件:-
+        插件表达式:-
+        群簇用途:-
+        有效目标:(1个)
+            名称:taobao1
+                地址:http://www.taobao.com
+                端口:80
+                协议:rio-http
+                实例:非共享
+                属性:
+
+        无效目标:(0个)
+
+        ------------------------
+        <b>然后在进入监控：命令rp，输入：</b>
+        rp >ls -t
+    taobao      0---------------------------------------------------
+        信道号               信道类型            群簇名               是否包含共享目标                错误
+        
+        <b>接着在浏览器地址栏上输入：http://localhost:8888  ,在回到神经元监控窗口会看到：</b>
+          rp >A     b7333546        unicast taobao  无共享目标 
+                属性 ->       create-by=cm.cluster,select-simple=http,is-prior=true,remote-address=/127.0.0.1:57409,
+                        目标名               协议          主机          端口          状态          主线程               工作线程            目标实例
+                0       taobao1 rio-http        http://www.taobao.com   80      listening       null    null    357176743
+
+R       b7333546        unicast taobao  无共享目标 
+                属性 ->       create-by=cm.cluster,select-simple=http,is-prior=true,remote-address=/127.0.0.1:57409,
+                        目标名               协议          主机          端口          状态          主线程               工作线程            目标实例
+                0       taobao1 rio-http        http://www.taobao.com   80      listening       null    null    357176743
+                
+         <b>我们看到请求时自动增加了一个信道，在请求完成后又关闭了信道，此时淘宝的页面已显示。</b>
+        </p>
+二、接下来我们部署website芯片
+   1.将下载的     cj.test.website-1.0.zip解压，并放到neuron/apps目录下
+   2.进入neuron的命令行app>下，我这是因为当前neuron还在运行，所以刷新了一下：refresh，则程序集自动加载
+   <p class='style1'> >app
+  app >ls
+    默认应用是：无
+  app >refresh
+2828609 [main] INFO  cj.studio.ecm.script.JssServiceInstanceFactory  - 发现web芯片website-1.0.0.0，尝试解压
+2828740 [main] INFO  cj.studio.ecm.script.JssServiceInstanceFactory  - 解压web芯片website-1.0.0.0，到：
+/Users/carocean/Downloads/neuron/apps/cj.test.website-1.0/work/site
+2828742 [main] INFO  cj.studio.ecm.script.JssModule  - 解压到jss模块目录,
+        位置：/Users/carocean/Downloads/neuron/apps/cj.test.website-1.0/work/modules/services1/cj/test/website/jss。
+2828743 [main] INFO  cj.studio.ecm.script.JssServiceInstanceFactory  - 模块services2的包cj.test.website.jss3不存在，或为空包。
+2828744 [main] INFO  cj.studio.ecm.script.JssModule  - 解压到jss模块目录,
+        位置：/Users/carocean/Downloads/neuron/apps/cj.test.website-1.0/work/site/jss/ws。
+2828811 [main] INFO  cj.studio.ecm.script.JssModule  - 解压到jss模块目录,
+        位置：/Users/carocean/Downloads/neuron/apps/cj.test.website-1.0/work/site/jss/http。
+2828939 [main] INFO  cj.studio.ecm.script.JssModule  - 解压到jss模块目录,
+        位置：/Users/carocean/Downloads/neuron/apps/cj.test.website-1.0/work/modules/services1/cj/test/website/jss。
+---------------
+module_name:services1
+module_home:/Users/carocean/Downloads/neuron/apps/cj.test.website-1.0/work/modules/services1/cj/test/website/jss
+module_ext:.jss.js
+module_pack:cj.test.website.jss
+module_unzip:true
+module_type:logic
+head jss scope:runtime
+head shit name:fuck
+location:dept/Test.jss.js
+source:link
+selectKey1:$.cj.jss.services1.dept.Test
+selectKey2:$.cj.jss.services1['dept.Test']
+this is jss chip site cj.studio.ecm.context.ModuleSite$ServiceSite@5d25e6bb
+3AD05D29-80AE-440B-AC52-C9D8150F9797
+website
+1.0.0.0
+/Users/carocean/Downloads/neuron/apps/cj.test.website-1.0
+-----------------end.
+{head=[object Object], module_home=/Users/carocean/Downloads/neuron/apps/cj.test.website-1.0/work/modules/services1/cj/test/website/jss, proxy=null, module_type=logic, selectKey2=$.cj.jss.services1['dept.Test'], selectKey1=$.cj.jss.services1.dept.Test, module_package=cj.test.website.jss, module_name=services1, source=link, module_unzip=true, module_extName=.jss.js, locaction=dept/Test.jss.js}
+by call do test.page:sss
+__________)_))cj.test.website.RefJssService@192f2f27
+2829164 [main] INFO  cj.studio.ecm.net.web.WebSiteGraph  - webSiteGraph[chipName:website]已初始化...
+    刷新完毕
+    
+    <b>现在在ls下</b>
+    app >ls
+    程序集：website
+        进程号：website
+        标识：3AD05D29-80AE-440B-AC52-C9D8150F9797
+        版本：1.0.0.0
+        公司：cj工作室
+        产品：cj.test.website
+        说明：cj工作室出品，lns平台制造
+        Graph：
+                接受协议：HTTP/1.1
+                输入端子：
+                        端子：input  导线
+                                连接到的服务器：
+                                        -
+                输出端子：
+                        端子：output 导线
+                                连接到的服务器：
+                                        -
+                                连接到的群簇：
+                                        -
+
+    默认应用是：无
+    <b>好，我们看到进程号是website，那么该芯片的请求上下文就是/website/了。现在你在地址栏中还访问不到该芯片，需要与net进行连接。
+     <br>
+     1.将它的input端子接入taobao那个http server net上<br>
+     2.将它的output端子也接入到http server net，因为该用例将演示http5 的websocket，因此它要主动向客户端输出。<br>
+     连接后如图：
+    </b>
+  app >input website.input -n taobao
+  app >output website.output -n taobao
+  app >ls
+    程序集：website
+        进程号：website
+        标识：3AD05D29-80AE-440B-AC52-C9D8150F9797
+        版本：1.0.0.0
+        公司：cj工作室
+        产品：cj.test.website
+        说明：cj工作室出品，lns平台制造
+        Graph：
+                接受协议：HTTP/1.1
+                输入端子：
+                        端子：input  导线
+                                连接到的服务器：
+                                        taobao  
+                输出端子：
+                        端子：output 导线
+                                连接到的服务器：
+                                        taobao
+                                连接到的群簇：
+                                        -
+
+    默认应用是：无
+  <b>好了，接下来访问：http://localhost:8888/website/ <br>我们看到页面已经出来了</b>
+  <b>然后在页面上点：ws连接初始化,打开http5 websocket</b>
+  <b>点：ws读readme by jss widget ,文本框中出现内容，这是请求稍带</b>
+  <b>点：ws读2.txt by java widget，文本框中变换了内容。这是websocket主动推送</b>
+  <b>由于应用截取了原先配置的面向淘宝群簇的连接，所以先前的淘宝也就打不开了，如果想同时用这个net打开淘宝，那就得使用插件来调度了，本文只是粗浅的介绍下神经元的使用方法，因此不再往下深入介绍。</b>
+    </p>
+</pre>
+						</div>
+						<div class="bottom"></div>
+					</div>
+				</div>
+				<div id="side">
+					<div class="fill"></div>
+					<div class="portlet">
+						<div class="title">
+							<span label>相关</span>
+						</div>
+						<ul class="items">
+		<li><a href="../../portlet-00002-coding/views/intro_neuron.html" plugin target="_blank">· 介绍： neuron 分布式连接容器</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-sub"></div>
+		<div class="col-extra"></div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,33 @@
+[{
+	"categoryId":"system",
+	"categoryName":"系统安全",
+	"desc":"信息网关、控制面板",
+	"sort":"0"
+},{
+	"categoryId":"gateway",
+	"categoryName":"信息网关",
+	"desc":"网关用于拦截和过滤信息收发",
+	"sort":"1"
+},{
+	"categoryId":"application",
+	"categoryName":"应用",
+	"desc":"应用程序",
+	"sort":"2"
+},
+{
+	"categoryId":"menu",
+	"categoryName":"菜单",
+	"desc":"菜单资源",
+	"sort":"3"
+},{
+	"categoryId":"portlet",
+	"categoryName":"栏目",
+	"desc":"栏目资源",
+	"sort":"4"
+},{
+	"categoryId":"position",
+	"categoryName":"桌面",
+	"desc":"按桌面位置列出菜单、应用和栏目",
+	"sort":"5"
+}
+]

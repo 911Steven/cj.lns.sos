@@ -1,0 +1,32 @@
+/*
+,{
+		"id":"geoGroup",
+		"name":"地圈",
+		"position":"toolbar.win.contact",
+		"icon":"img/set.svg",
+		"command":"./contact/geoGroup.html",
+		"sort":"2",
+		"desc":"地理微博地圈"
+	}
+
+*/
+
+[
+	{
+		"id":"contact.group",
+		"name":"分组",
+		"position":"toolbar.win.contact",
+		"icon":"img/set.svg",
+		"command":"./contact/userGroup.html",
+		"sort":"0",
+		"desc":"联系人分组"
+	},{
+		"id":"chartGroup",
+		"name":"群组",
+		"position":"toolbar.win.contact",
+		"icon":"img/set.svg",
+		"command":"./contact/chatGroup.html",
+		"sort":"1",
+		"desc":"聊天群"
+	}
+]

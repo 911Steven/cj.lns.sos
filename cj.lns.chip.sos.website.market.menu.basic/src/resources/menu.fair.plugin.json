@@ -1,0 +1,19 @@
+{
+	"category":"test",
+	"menus":[
+		{
+			"id":"jd",
+			"name":"京东商城大分类菜单",
+			"position":"servicewsPanel",
+			"icon":"./servicews/img/iconfont-security.svg",
+			"command":"http://jd.com/",
+			"target":"_self",
+			"desc":"京东",
+			"acl":[
+				"allow allUsers visible",
+				"allow allUsers mountable",
+				"deny guestUsers mountable"
+			]
+		}
+	]
+}

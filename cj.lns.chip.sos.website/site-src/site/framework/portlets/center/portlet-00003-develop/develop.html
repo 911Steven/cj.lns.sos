@@ -1,0 +1,75 @@
+<style name="develop">
+<!--
+.portlet[type=develop] {
+	background: white;
+	/*border: 1px solid #fb9d7b;*/
+	padding: 10px;
+}
+
+.portlet[type=develop]>.d-pics {
+	font-weight: bold;
+}
+
+.portlet[type=develop]>.d-pics>.d-show {
+	text-align: center;
+}
+
+.portlet[type=develop]>.d-pics>.d-show>img {
+	width: 80%;
+}
+
+.portlet[type=develop]>.d-pics>.d-items {
+	text-align: center;
+}
+
+.portlet[type=develop]>.d-pics>.d-items>li {
+	display: inline-block;
+	margin: 10px;
+	cursor: pointer;
+}
+
+.portlet[type=develop]>.d-pics>.d-items>li:hover {
+	border: 1px solid #fb9d7b;
+}
+
+.portlet[type=develop]>.d-pics>.d-items>li>img {
+	height: 60px;
+	max-width: 80px;
+}
+.portlet[type=develop]>.d-arts>li{
+	margin: 5px 10px;
+	font-weight: bold;
+}
+-->
+</style>
+<script type="text/javascript" name='develop' src="js/develop.js" plugin>
+	
+</script>
+<div class="portlet" type="develop">
+	<div class="d-pics">
+		<div class="d-show">
+			<img src="img/network.jpg" plugin>
+			<p class="title">神经元组成的大型分布式神经网络部分切图</p>
+		</div>
+		<ul class="d-items">
+			<li><img src="img/neuron1.jpg" plugin>
+				<p class="title">神经元net流</p></li>
+			<li><img src="img/neuron2.jpg" plugin>
+				<p class="title">神经元单双播网络</p></li>
+			<li><img src="img/neuron3.jpg" plugin>
+				<p class="title">神经元的内部功能</p></li>
+			<li><img src="img/network.jpg" plugin>
+				<p class="title">神经网络</p></li>
+				<li><img src="img/neuron-moniter.png" plugin>
+				<p class="title">神经元的即时监控</p></li>
+				<li><img src="img/neuron-cluster.png" plugin>
+				<p class="title">神经元的群簇</p></li>
+				<li><img src="img/neuron-app.png" plugin>
+				<p class="title">神经元的应用管理</p></li>
+		</ul>
+	</div>
+	<ul class="d-arts">
+		<li><a href="views/neuron_hello.html" plugin target="_blank">· 神经元连接 helloword 入门</a></li>
+		<li><a href="views/network_hello.html" plugin target="_blank">· neuron 组建大型神经网络常用策略</a></li>
+	</ul>
+</div>

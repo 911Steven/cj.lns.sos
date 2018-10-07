@@ -1,0 +1,9 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="gray/framework.css" theme />
+</head>
+<body region="workbench" >
+	<div region="globalMenu">menu</div>
+	<div region="desktop">desktop</div>
+</body></html>

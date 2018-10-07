@@ -1,0 +1,77 @@
+<style portlet='terminal'>
+<!--
+.portlet[type=terminal] {
+	background: white;
+	padding: 10px;
+}
+
+.portlet[type=terminal]>.title {
+	color: gray;
+	border-bottom: 1px solid #ececec;
+}
+
+.portlet[type=terminal]>.apps {
+	margin-top: 20px;
+}
+
+.portlet[type=terminal]>.apps>li {
+	margin: 4px 0;
+	display: inline-block;
+	padding: 0 5px;
+	text-align: center;
+	cursor: pointer;
+}
+
+.portlet[type=terminal]>.apps>li>img {
+	width: 30px;
+	height: 30px;
+}
+
+.portlet[type=terminal]>.apps>li:hover {
+	border: 1px solid #fb9d7b;
+}
+
+.portlet[type=terminal]>.desc {
+	color: gray;
+	margin-top: 10px;
+}
+-->
+</style>
+<script type="text/javascript">
+<!--
+(function(){
+	var right=$('.content > .h-zw > .h-center > .c-right');
+	right.undelegate('.portlet[type="terminal"] > .apps > li','click');
+	right.delegate('.portlet[type="terminal"] > .apps > li','click',function(e){
+		var type=$(this).attr('type');
+		switch(type){
+		case "andriod":
+			var src=$(this).find('a').attr('href');
+			$(this).append("<iframe style='display:none;' src='"+src+"'></iframe>");
+			break;
+		case "iphone":
+			var src=$(this).find('a').attr('href');
+			$(this).append("<iframe style='display:none;' src='"+src+"'></iframe>");
+			break;
+		}
+	});
+})();
+//-->
+</script>
+<div class="portlet" type="terminal">
+	<div class="title">终端应用</div>
+	<ul class="apps">
+		<li type="andriod"><img src="img/andriod.svg" plugin>
+			<p><a href="app/cj.apk" plugin>cj for andriod</a></p></li>
+		<li type="iphone"><img src="img/iphone.svg" plugin>
+			<p><a href="app/cj.app.zip" plugin>cj for iphone</a></p></li>
+		<!-- <li type="pad"><img src="img/iphone.svg" plugin>
+			<p>cj for pad</p></li><li type="mac"><img src="img/mac.svg" plugin>
+			<p>cj for mac</p></li>
+		<li type="ubuntu"><img src="img/mac.svg" plugin>
+			<p>cj for ubuntu</p></li>
+		<li type="windows"><img src="img/windows.svg" plugin>
+			<p>cj for windows</p></li> -->
+	</ul>
+	<p class="desc">目前面向各平台的终端仍在紧张开发中，可以下载原型试用</p>
+</div>

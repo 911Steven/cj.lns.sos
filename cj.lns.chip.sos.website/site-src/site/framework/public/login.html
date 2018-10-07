@@ -1,0 +1,76 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="../css/global.css" />
+<link rel="stylesheet" href="../css/login.css" />
+<script type="text/javascript" src="../js/jquery/jquery-2.1.4.js"></script>
+<script type="text/javascript">
+$(document).keydown(function (event) {
+    if(event.keyCode==13){
+    	$('#enter').trigger('click');
+    }
+});
+	function login(form) {
+		String
+		url = "../pages/loginService";
+		var jqxhr = $.post(
+				url,
+				{
+					account : form.find("input[name='account']").val(),
+					password : form.find("input[name='password']").val()
+				},
+				function(data) {
+					data = $.parseJSON(data.replace(/\'/g, "\""));
+					if(data.hasDefaultSws=='true'){//尝试访问视窗
+						window.location.href = '../?swsid=' + data.defaultSwsId;//视窗的打开就是谁访问这个视窗
+					}else{//打开视窗列表
+						window.location.href='../auth/listServicews.html?owner='+form.find("input[name='account']").val();
+					}
+					
+				})
+		.error(function(e) {
+			if(e.status!=200){
+				alert(e.status+' '+e.statusText);
+			}
+		});
+	}
+</script>
+</head>
+<body>
+	<div class="logo">
+		<img src="../img/dongke.svg" />
+	</div>
+	<div class="login-panel">
+		<ul class="top" style="display: none;">
+			<li><a href="#">新闻</a></li>
+			<li><a href="#">新闻</a></li>
+			<li><a href="#">新闻</a></li>
+			<li><a href="#">新闻</a></li>
+		</ul>
+		<div class="bottom" style="display: none;">
+			<ul>
+				<li><img src="#" /><br /> <span>android</span></li>
+				<li><img src="#" /><br /> <span>iphone</span></li>
+			</ul>
+			<div style="clear: both;"></div>
+			<div>Copyright © 2005 - 2015 CJ.All Rights Reserved.</div>
+			<div>西捷公司 版权所有 粤网文[2011]xxx-xxx号</div>
+		</div>
+
+		<div class="label">密码登录</div>
+		<div style="clear: both;"></div>
+		<ul id="form" class="form">
+			<li><input name="account" type="text" value="账号/视窗号"
+				onblur="javascript:if(this.value=='')this.value='账号/视窗号';"
+				onfocus="javascript:if(this.value=='账号/视窗号')this.value='';"></li>
+			<li><input name="password" type="password"></li>
+			<li><input id="enter" class="button" type="button" value="登录"
+				onclick="login($('#form'));"></li>
+		</ul>
+		<ul class="register">
+			<li><a href="./register2.html">注册新账号</a></li>
+			<li title="qq账号登录" style="display: none;"><a href="#"><img src="#"></a></li>
+		</ul>
+	</div>
+</body>
+</html>

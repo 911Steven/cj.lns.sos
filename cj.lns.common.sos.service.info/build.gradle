@@ -1,0 +1,71 @@
+sourceSets { 
+	 main { 
+	 	java{
+	 		srcDir "$projectDir/src"
+	 	}
+	 	resources{
+		 	srcDir "$projectDir/src"
+		 }
+	 } 
+ 	}
+ 	sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+ 	tasks.withType(JavaCompile) {  
+        options.encoding = "UTF-8"  
+    } 
+ repositories { 
+	 flatDir(dirs: "../../global/lib") 
+ } 
+
+dependencies {
+	compile fileTree(dir: '../global/lib', includes: ['*.jar'])
+	compile fileTree(dir: '../global/cjtools', includes: ['*.jar'])
+	compile project(':cj.lns.chip.sos.service');
+	//compile('org.hibernate:hibernate-annotations:3.5.6-Final');
+	//compile('mysql:mysql-connector-java:5.1.36');
+	//compile('org.eclipse.persistence:javax.persistence:2.1.0');
+	//compile('org.eclipse.persistence:org.eclipse.persistence.jpa:2.6.1');
+	//compile('org.eclipse.persistence:eclipselink:2.6.1');
+	compile fileTree('src/cj/references');
+}
+//gradle.taskGraph.whenReady {taskGraph ->
+//    if (taskGraph.hasTask(release)) {
+//        version = '1.0'
+//    } else {
+//        version = '1.0-SNAPSHOT'
+//    }
+//}
+ 	task releaseToSosServiceCommon(type: Copy) {
+ 	dependsOn "build"
+ 	 from 'build/libs/'
+	     into '../cj.lns.chip.sos.service/common'
+	     include '**/*.jar'
+ 	}
+ 	task releaseToBuilder(type: Copy) {
+ 	dependsOn "build"
+ 	 from 'build/libs/'
+	     into '../cj.lns.chip.sos.service.builder/src/cj/refembeds'
+	     include '**/*.jar'
+ 	}
+ 	task releaseToFramework(type: Copy) {
+ 	dependsOn "build"
+ 	 from 'build/libs/'
+	     into '../cj.lns.chip.sos.service.framework/src/cj/refembeds'
+	     include '**/*.jar'
+ 	}
+ 	task releaseToSws(type: Copy) {
+ 	dependsOn "build"
+ 	 from 'build/libs/'
+	     into '../cj.lns.chip.sos.service.sws/src/cj/refembeds'
+	     include '**/*.jar'
+ 	}
+ 	task releaseToUser(type: Copy) {
+ 	dependsOn "build"
+ 	 from 'build/libs/'
+	     into '../cj.lns.chip.sos.service.user/src/cj/refembeds'
+	     include '**/*.jar'
+ 	}
+ 	 task release(type: Copy) {
+     dependsOn "releaseToSosServiceCommon","releaseToBuilder","releaseToFramework","releaseToSws","releaseToUser"
+ 	}
+ 	

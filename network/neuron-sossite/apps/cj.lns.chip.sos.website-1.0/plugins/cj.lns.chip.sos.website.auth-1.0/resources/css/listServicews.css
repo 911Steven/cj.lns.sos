@@ -1,0 +1,234 @@
+body {
+	margin: 0;
+	padding: 0;
+	background-image: url("../../img/background/hill.jpg");
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	filter:
+		"progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale')";
+	-moz-background-size: 100% 100%;
+	background-size: 100% 100%;
+	height: 100%;
+}
+
+.win-title {
+	position: absolute;
+	height: 80px;
+	top: 0;
+	left: 0;
+	right: 0;
+}
+
+.win-title>span {
+	margin-top:38px;
+	font-size: 16px;
+	color: gray;
+	background: #e0e0e0;
+	display: block;
+	padding-top: 10px;
+	padding-left: 80px;
+	height: 30px;
+	font-weight: bold;
+}
+
+.sws-win {
+	position: absolute; 
+	top:80px;
+	left:0;
+	right:0;
+	bottom:0;
+	padding-left : 300px;
+	padding-right: 410px;
+	min-height: 400px;
+}
+
+.sws-win>.left {
+	left: 60px;
+	top: 0;
+	bottom: 0; 
+	background: rgba(237,237,237,0.98);
+	position: absolute;
+	width: 240px;
+	border-right: 1px solid #cecece;
+}
+
+.sws-win>.left>.tips {
+	padding: 10px 20px;
+}
+
+.sws-win>.left>.tips>li {
+	margin: 20px 0;
+}
+
+.sws-win>.left>.tips>li>span.label {
+	padding-right: 20px;
+	width: 80px;
+	display: inline-block;
+	text-align: right;
+	color: gray;
+}
+
+.sws-win>.left>.tips>li>span.unit {
+	display: inline-block;
+	padding-left: 2px;
+}
+
+.sws-win>.center {
+	background: rgba(237,237,237,0.9);
+	height: 100%;
+	overflow: auto;
+	position: relative;
+}
+.sws-win>.popup{
+	display: none;
+	position: absolute;
+	top:0px;
+	left:0;
+	bottom: 0px;
+	right:0;
+	background:rgba(127,127,127,0.9);
+}
+.sws-win>.popup>.box{
+	left:230px;
+	top:20px;
+	bottom:20;
+	right:200px;
+	position:absolute;
+	background: #f5f5f5;
+		 -webkit-box-shadow:0 0 10px rgba(162, 162, 162, .8);  
+  -moz-box-shadow:0 0 10px rgba(162, 162, 162, .8);  
+  box-shadow:0 0 10px rgba(162, 162, 162, .8);  
+}
+.sws-win>.center>.kind{
+	padding: 10px;
+}
+.sws-win>.center>.kind>.bar{
+	position: relative;
+	border-bottom: 1px solid #cecece;
+	margin-top: 10px;
+}
+.sws-win>.center>.kind>.bar>.title{
+	font-size: 14px;
+	font-weight: bold;
+	color: gray;
+}
+.sws-win>.center>.kind>.bar>.op{
+	position: absolute;
+	right:10px;
+	bottom:0;
+	padding: 6px 20px 2px 20px;
+}
+.sws-win>.center>.kind>.bar>.op>a{
+	color: blue;
+	text-decoration: underline;
+}
+.sws-win>.center>.kind>.list{
+	padding: 10px 10px;
+}
+.sws-win>.center>.kind>.list>li{
+	padding: 10px 20px;
+	text-align:center;
+	cursor:pointer;
+	float: left;
+}
+.sws-win>.center>.kind>.list>li:hover{
+	background: #cecece;
+}
+.sws-win>.center>.kind>.list>li>img{
+	width:60px;
+	height: 60px;
+}
+.sws-win>.center>.kind>.list>li>p{
+	font-weight: bold;
+	line-height: 16px;
+}
+.sws-win>.right {
+	right: 60px;
+	bottom: 0;
+	top: 0;
+	width: 350px;
+	background: rgba(237,237,237,0.92);
+	position: absolute;
+	border-left: 1px solid #cecece;
+	display: none;
+}
+.sws-win>.right>.face{
+	text-align: center;
+	padding: 10px;
+	margin-top: 20px;
+}
+.sws-win>.right>.face>img{
+	width:120px;
+	height:120px;
+	border: 2px solid white;
+	cursor: pointer;
+}
+.sws-win>.right>.face>img:hover{
+	border: 2px solid gray;
+}
+.sws-win>.right>.face>p{
+	font-size: 14px;
+	font-weight: bold;
+}
+.sws-win>.right>.detail{
+	margin: 20px;
+}
+.sws-win>.right>.detail>li{
+	margin: 5px 0;
+}
+.sws-win>.right>.detail>li>span[label]{
+	width:80px;
+	display: inline-block;
+	text-align: left;
+	font-weight: bold;
+}
+.sws-win>.right>.detail>li>span[value]{
+	display: inline-block;
+	margin-right: 5px;
+}
+.sws-win>.right>.detail>.extra{
+	border-top: 1px solid #cecece;
+}
+.sws-win>.right>.detail>.extra>ul>li{
+	margin: 3px 0;
+}
+.sws-win>.right>.detail>.extra>ul>li>span[label]{
+	width:80px;
+	display: inline-block;
+	text-align: left;
+	font-weight: bold;
+}
+.sws-win>.right>.detail>.extra>ul>li>span[value]{
+	display: inline-block;
+	margin-right: 5px;
+}
+.sws-win>.right>.detail>.extra>ul>li[intro]{
+}
+.sws-win>.right>.detail>.extra>ul>li[intro]>p{
+	text-indent: 2em;
+	overflow: auto;
+	height: 60px;
+}
+.sws-win>.right>.op{
+	margin: 20px;
+	text-align: center;
+}
+.sws-win>.right>.op>span{
+	padding: 10px;
+}
+.sws-win>.right>.op>span>a{
+	background: white;
+	cursor:pointer;
+	display: inline-block;
+	padding: 5px 30px;
+}
+.sws-win>.right>.op>span>a:hover{
+	border:1px solid white;
+}
+.sws-win>.right>.op>span>input{
+	padding: 10px;
+	cursor: pointer;
+}
+.sws-win>.right>.op>span>span{
+	padding-left: 4px;
+}

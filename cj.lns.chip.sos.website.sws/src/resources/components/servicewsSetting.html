@@ -1,0 +1,84 @@
+<script type="text/javascript" src="js/servicewsSetting.js" plugin />
+<style>
+<!--
+.sws-setting>.content-panel>.portal>.item>.basic {
+	
+}
+
+.sws-setting>.content-panel>.portal>.item>.basic>li {
+	margin: 10px auto;
+}
+
+.sws-setting>.content-panel>.portal>.item>.basic>li>span[label] {
+	display: inline-block;
+	width: 50px;
+	margin-right: 10px;
+	color: gray;
+	text-align: right;
+}
+
+.sws-setting>.content-panel>.portal>.item>.basic>li>span[value] {
+	display: inline-block;
+	margin-left: 15px;
+}
+.bop > .content-panel > .list > .item > .main-panel > div.scenedef{
+	padding-top: 2px;
+}
+.bop > .content-panel > .list > .item > .main-panel > div.scenedef>p>span[device],
+.bop > .content-panel > .list > .item > .main-panel > div.scenedef>p>span[title]{
+	padding-right: 10px;
+}
+.bop > .content-panel > .list > .item > .main-panel > div.scenedef>p>span[label]{
+	display: inline-block;
+	padding-right: 5px;
+	color: gray;
+}
+-->
+</style>
+<div class="sws-setting bop">
+	<div class="content-panel">
+		<div class="sp-panel">
+			架构<br>基本信息
+		</div>
+		<ul class="list portal">
+			<li class="item">
+				<ul class="basic">
+					<li num><span label>架构号</span>:<span value></span></li>
+					<li name><span label>架构名</span>:<span value></span></li>
+					<li version><span label>版本</span>:<span value></span></li>
+					<li org><span label>开发机构</span>:<span value></span></li>
+					<li desc><span label>说明</span>:<span value></span></li>
+				</ul>
+			</li>
+		</ul>
+		<div class="sp-panel scenelabel">
+			场景<br>即视窗运行环境<span usedscene
+				style="display: inline-block; padding-left: 10px; color: red;">当前启用的场景：<span></span></span>
+
+		</div>
+		<ul class="list scene">
+			<li class="item" scene=''
+				opencontent='./servicews/components/sceneSetting.html'><img
+				src="img/iconfont-picfill.svg" plugin>
+				<div class="main-panel">
+					<div class="scenedef">
+						<p table><span name>名</span></p>
+						<p col><span title>场景名</span><span label>适用设备类型</span>:<span device>适用设备</span></p>
+					</div>
+				</div>
+				<div class="opp">&gt;</div></li>
+			<li class="item" scene=''><img src="img/iconfont-repair.svg"
+				plugin>
+				<div class="main-panel">
+					<div>场景2</div>
+				</div>
+				<div class="opp">&gt;</div></li>
+			<li class="item"><img src="img/iconfont-repair.svg" plugin>
+				<div class="main-panel">
+					<div>场景3</div>
+				</div>
+				<div class="opp">&gt;</div></li>
+		</ul>
+
+	</div>
+</div>

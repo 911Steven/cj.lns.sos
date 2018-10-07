@@ -1,0 +1,45 @@
+{
+	entryPoint : {
+		activators : []
+	},
+	assemblyInfo : {
+		assemblyTitle : "cyberportApp",
+		assemblyResource:"resource=/resources",
+		assemblyDescription : "信心港",
+		assemblyConfiguration : "",
+		assemblyCompany : "开发者：cj;研发机构：lns平台部",
+		assemblyProduct : "cj.lns.chip.sos.website.apps.cyberport",
+		assemblyCopyright : "Copyright   2011",
+		assemblyTrademark : "",
+		assemblyCulture : "",
+		guid : "cyberportApp",
+		assemblyVersion : "1.0.0.0",
+		assemblyFileVersion : "1.0.0.0",
+		assemblyIcon:"app.svg"
+	},
+	global:{
+		default:"zh_CN",
+		desc:"如果系统环境要求各芯片采用的语言本芯片没有，则芯片可采用默认语言"
+		},
+	serviceContainer : {
+		name : "netContainer",
+		switchFilter:"off",
+		jss:[{
+			module:"sos",
+			package:"cj.lns.chip.sos.website.market.app.cyberport.jss",
+			unzip:"true",
+			searchMode:"link",
+			extName:".jss.js"
+		}],
+		scans : [{
+					package : "cj.lns.chip.sos.website.market.app.cyberport",
+					extName : ".class|.json|.xml",
+					exoterical:"true"
+				},{
+					package : "cj.lns.common.sos.website.moduleable",
+					extName : ".class|.json|.xml",
+					exoterical:"true"
+				}]
+
+	}
+}

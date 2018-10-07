@@ -1,0 +1,33 @@
+<style>
+<!--
+.cscTips {
+	height: 100%;
+	background: white;
+	padding: 40px 10px;
+	text-align: center;
+}
+
+.cscTips>p>a {
+	color: red;
+	padding: 0 10px;
+	font-size: 14px;
+}
+-->
+</style>
+<script type="text/javascript">
+(function(){
+	$('.cscTips>p>a').on('click',function(e){
+		var win=$(this).parents('.win-content');
+		$.get('./cyberportApp/common/cscRequestComputer.html',{},function(html){
+			win.html(html);
+		}).error(function(e){
+			alert(e.responseText);
+		});
+	});
+})();
+</script>
+<div class="cscTips">
+	<p>
+		如欲使用云计算机功能，请<a href='#'>开通云计算机</a>
+	</p>
+</div>

@@ -1,0 +1,487 @@
+<html>
+<head>
+<script type="text/javascript" src="js/cyberport-popup.js" plugin></script>
+<style type="text/css">
+.cyberport-box {
+	min-width: 200px;
+	min-height: 350px;
+	height: 100%;
+	background-color: rgba(238, 238, 238, 1);
+}
+
+.cyberport-box>.bottom {
+	height: 70px;
+	position: relative;
+	padding-left: 80px;
+	border-top: 1px solid #DBDBEA;
+}
+
+.cyberport-box>.bottom>a {
+	display: inline-block;
+	position: absolute;
+	top: 10px;
+	left: 0;
+	width: 60px;
+	text-align: center;
+}
+
+.cyberport-box>.bottom>a>img {
+	width: 50px;
+	height: 50px;
+}
+
+.cyberport-box>.bottom>ul.desc {
+	bottom: 10px;
+	position: absolute;
+}
+
+.cyberport-box>.bottom>ul.desc>li {
+	font-size: 12px;
+	color: gray;
+}
+
+.cyberport-box>.bottom>ul.others {
+	bottom: 10px;
+	right: 10px;
+	position: absolute;
+}
+
+.cyberport-box>.bottom>ul.others>li.sws {
+	float: left;
+	text-align: center;
+	padding-bottom: 4px;
+	padding-left: 15px;
+	padding-right: 15px;
+	cursor: pointer;
+	position: relative;
+	padding-left: 15px;
+}
+
+.cyberport-box>.bottom>ul.others>li.sws:hover {
+	border-bottom: 1px solid white;
+}
+
+.cyberport-box>.bottom>ul.others>li.sws>img {
+	width: 35px;
+	height: 35px;
+	padding: 0;
+	margin: 0;
+}
+
+.cyberport-box>.bottom>ul.others>li.sws>p {
+	padding: 0;
+	margin: 0;
+	line-height: 8px;
+	color: gray;
+	font-size: 12px;
+}
+
+.cyberport-box>.bottom>ul.others>li.sws>span.tips {
+	position: absolute;
+	top: 0px;
+	min-height: 20px;
+	line-height: 18px;
+	min-width: 20px;
+	font-size: 10px;
+	right: 0px;
+	color: white;
+	-moz-border-radius: 50%; /* Gecko browsers */
+	-webkit-border-radius: 50%; /* Webkit browsers */
+	border-radius: 50%;
+	background: red;
+	right: 0px;
+	font-size: 10px;
+	min-width: 20px;
+}
+
+.cyberport-box>.content {
+	background: #f5f5f5;
+	height: 400px;
+	position: relative;
+	padding-right: 380px;
+}
+
+.cyberport-box>.content>.left {
+	min-height: 350px;
+	height: 100%;
+	min-width: 100px;
+	background-color: rgba(238, 238, 238, 1);
+}
+
+.cyberport-box>.content>.left>.cyb-sws {
+	padding: 10px;
+	text-align: center;
+}
+
+.cyberport-box>.content>.left>.cyb-sws>.session {
+	display: inline-block;
+	cursor: pointer;
+}
+
+.cyberport-box>.content>.left>.cyb-sws>.session>img {
+	width: 60px;
+	height: 60px;
+}
+
+.cyberport-box>.content>.left>.cyb-sws>.session>p.title {
+	font-size: 12px;
+	color: gray;
+}
+
+.cyberport-box>.content>.left>.cyb-sws>ul.tips {
+	margin-top: 20px;
+}
+
+.cyberport-box>.content>.left>.cyb-sws>ul.tips>li {
+	margin: 10px;
+	cursor: pointer;
+}
+
+.cyberport-box>.content>.left>.cyb-sws>ul.tips>li:hover {
+	border-bottom: 1px solid #f5f5f5;
+}
+
+.cyberport-box>.content>.left>.cyb-sws>ul.tips>li>span {
+	color: gray;
+	font-weight: bold;
+	font-size: 12px;
+}
+
+.cyberport-box>.content>.left>.cyb-sws>ul.tips>li>p[c] {
+	color: red;
+}
+
+.cyberport-box>.content>.right {
+	position: absolute;
+	top: 0;
+	right: 0;
+	padding-right: 10px;
+	bottom: 0;
+	width: 360px;
+	overflow: auto;
+}
+
+.cyberport-box>.content>.right>.apps {
+	
+}
+
+.cyberport-box>.content>.right>.apps>.app {
+	margin: 10px 0;
+	background: white;
+}
+
+.cyberport-box>.content>.right>.apps>.app>.head {
+	position: relative;
+	padding-left: 45px;
+	cursor: pointer;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	border: 1px solid white;
+}
+
+.cyberport-box>.content>.right>.apps>.app>.head:hover {
+	background: #f5f5f5;
+	border: 1px solid white;
+}
+
+.cyberport-box>.content>.right>.apps>.app>.head>img {
+	position: absolute;
+	left: 0;
+	top: 10px;
+	height: 45px;
+	width: 45px
+}
+
+.cyberport-box>.content>.right>.apps>.app>.head>ul.detail {
+	font-size: 12px;
+}
+
+.cyberport-box>.content>.right>.apps>.app>.head>ul.detail>li {
+	margin: 5px;
+}
+
+.cyberport-box>.content>.right>.apps>.app>.head>ul.detail>li:first-child
+	{
+	font-weight: bold;
+}
+.cyberport-box>.content>.right>.apps>.app>.head>ul.detail>li[appText]{
+width:200px; 
+white-space:nowrap; 
+text-overflow:ellipsis; 
+-o-text-overflow:ellipsis; 
+overflow: hidden; 
+
+}
+.cyberport-box>.content>.right>.apps>.app>.head>ul.tips {
+	position: absolute;
+	right: 10px;
+	top: 10px;
+	text-align: right;
+}
+
+.cyberport-box>.content>.right>.apps>.app>.head>ul.tips>li.cal>span {
+	background: red;
+	-moz-border-radius: 50%; /* Gecko browsers */
+	-webkit-border-radius: 50%; /* Webkit browsers */
+	border-radius: 50%;
+	min-width: 20px;
+	min-height: 20px;
+	line-height:20px;
+	text-align:center;
+	padding:1px;
+	display:inline-block;
+	font-size: 10px;
+	color: white;
+}
+
+.cyberport-box>.content>.right>.apps>.app>.box {
+	padding-left: 40px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	display: none;
+}
+
+.cyberport-box>.content>.right>.apps>.app>.box>.item {
+	position: relative;
+	padding-left: 40px;
+	cursor: pointer;
+}
+
+.cyberport-box>.content>.right>.apps>.app>.box>.item:hover {
+	background: #f5f5f5;
+}
+
+.cyberport-box>.content>.right>.apps>.app>.box>.item>img {
+	position: absolute;
+	left: 0;
+	top: 6px;
+	height: 35px;
+	width: 35px
+}
+
+.cyberport-box>.content>.right>.apps>.app>.box>.item>ul.detail {
+	font-size: 12px;
+	border-bottom: 1px solid #cecece;
+}
+
+.cyberport-box>.content>.right>.apps>.app>.box>.item>ul.detail>li {
+	margin: 5px;
+}
+
+.cyberport-box>.content>.right>.apps>.app>.box>.item>ul.detail>li:first-child
+	{
+	font-weight: bold;
+}
+.cyberport-box>.content>.right>.apps>.app>.box>.item>ul.detail>li[ltext]{
+width:186px; 
+white-space:nowrap; 
+text-overflow:ellipsis; 
+-o-text-overflow:ellipsis; 
+overflow: hidden; 
+
+}
+.cyberport-box>.content>.right>.apps>.app>.box>.item>ul.tips {
+	position: absolute;
+	right: 10px;
+	top: 5px;
+	text-align: right;
+}
+
+.cyberport-box>.content>.right>.apps>.app>.box>.item>ul.tips>li.cal>span
+	{
+	background: red;
+	-moz-border-radius: 50%; /* Gecko browsers */
+	-webkit-border-radius: 50%; /* Webkit browsers */
+	border-radius: 50%;
+	min-width: 20px;
+	min-height: 20px;
+	line-height:20px;
+	text-align:center;
+	display:inline-block;
+	padding: 0px;
+	font-size: 10px;
+	color: white;
+}
+.cyberport-box>.content>.right>.apps>.app>.box>.item>span.del{
+	position: absolute;
+	left:-35px;
+	padding:13px 14px;
+	top:2px;
+	display: none;
+}
+.cyberport-box>.content>.right>.apps>.app>.box>.item>span.del:hover{
+	color: red;
+}
+</style>
+
+
+</head>
+<body>
+	<div class="cyberport-box">
+		<div class="content">
+			<div class="left">
+				<div class="cyb-sws">
+					<a class="session" title="按默认的会话列表方式列出"> <img src="img/iconfont-yonghuxinxi.svg"
+						plugin>
+						<p class="title">开发平台</p>
+					</a>
+					<ul class="tips" title="按消息摘要列表方式显示">
+						<li inbox><span>收件箱</span>
+							<p c>10</p></li>
+						<li outbox><span>发件箱</span>
+							<p>10</p></li>
+						<li drafts style="display: none;"><span>任务</span>
+							<p c>10</p></li>
+						<li c trash><span>网关</span>
+							<p>100</p></li>
+					</ul>
+				</div>
+			</div>
+			<div class="right">
+				<ul class="apps" id="cyb-apps">
+					<li class="app" id="cyb-app">
+						<div class="head">
+							<img src="img/iconfont-yonghuxinxi.svg" plugin>
+							<ul class="detail">
+								<li appCode>会话</li>
+								<li appText><span>小李：</span><span>请来了，我不知道啊</span></li>
+							</ul>
+							<ul class="tips">
+								<li class="cal"><span>5</span>
+								<li>
+								<li class="time">9:40
+								<li>
+							</ul>
+						</div>
+						<ul class="box">
+							<li class="item"><span class="del">X</span><img src="img/iconfont-yonghuxinxi.svg"
+								plugin>
+								<ul class="detail">
+									<li ltitle>小李</li>
+									<li ltext><span></span><span>请来了，我不知道啊</span></li>
+								</ul>
+								<ul class="tips">
+									<li class="cal"><span>20</span>
+									<li>
+									<li class="time">9:40
+									<li>
+								</ul></li>
+							<li class="item"><img src="img/iconfont-yonghuxinxi.svg"
+								plugin>
+								<ul class="detail">
+									<li>梦阳</li>
+									<li><span></span><span>请来了，我不知道啊</span></li>
+								</ul>
+								<ul class="tips">
+									<li class="cal"><span>20</span>
+									<li>
+									<li>9:40
+									<li>
+								</ul></li>
+						</ul>
+					</li>
+					<li class="app">
+						<div class="head">
+							<img src="img/iconfont-yonghuxinxi.svg" plugin>
+							<ul class="detail">
+								<li>地圈</li>
+								<li><span>小李：</span><span>我来了</span></li>
+							</ul>
+							<ul class="tips">
+								<li class="cal"><span>100</span>
+								<li>
+								<li>9:40
+								<li>
+							</ul>
+						</div>
+						<ul class="box">
+							<li class="item"><img src="img/iconfont-yonghuxinxi.svg"
+								plugin>
+								<ul class="detail">
+									<li>会话</li>
+									<li><span>小李：</span><span>请来了，我不知道啊</span></li>
+								</ul>
+								<ul class="tips">
+
+									<li class="cal"><span>20</span>
+									<li>
+									<li>9:40
+									<li>
+								</ul></li>
+							<li class="item"><img src="img/iconfont-yonghuxinxi.svg"
+								plugin>
+								<ul class="detail">
+									<li>会话</li>
+									<li><span>小李：</span><span>请来了，我不知道啊</span></li>
+								</ul>
+								<ul class="tips">
+									<li class="cal"><span>20</span>
+									<li>
+									<li>9:40
+									<li>
+								</ul></li>
+						</ul>
+					</li>
+					<li class="app">
+						<div class="head">
+							<img src="img/iconfont-yonghuxinxi.svg" plugin>
+							<ul class="detail">
+								<li>微博</li>
+								<li><span>小李：</span><span>请来了，我不知道啊</span></li>
+							</ul>
+							<ul class="tips">
+								<li class="cal"><span>100</span>
+								<li>
+								<li>9:40
+								<li>
+							</ul>
+						</div>
+						<ul class="box">
+							<li class="item"><img src="img/iconfont-yonghuxinxi.svg"
+								plugin>
+								<ul class="detail">
+									<li>会话</li>
+									<li><span>小李：</span><span>请来了，我不知道啊</span></li>
+								</ul>
+								<ul class="tips">
+									<li class="cal"><span>20</span>
+									<li>
+									<li>9:40
+									<li>
+								</ul></li>
+							<li class="item"><img src="img/iconfont-yonghuxinxi.svg"
+								plugin>
+								<ul class="detail">
+									<li>会话</li>
+									<li><span>小李：</span><span>请来了，我不知道啊</span></li>
+								</ul>
+								<ul class="tips">
+									<li class="cal"><span>20</span>
+									<li>
+									<li>9:40
+									<li>
+								</ul></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="bottom">
+			<a href="#"><img src="img/iconfont-yonghuxinxi.svg" plugin></a>
+			<ul class="desc">
+				<li>信箱(Carocean)</li>
+				<li>您的信息快递</li>
+			</ul>
+			<ul class="others">
+				<li class="sws" title="点击将切换当前视窗"><img
+					src="img/iconfont-yonghuxinxi.svg" plugin>
+					<p>电器城</p> <span class="tips">150</span></li>
+				<li class="sws" title="点击将切换当前视窗"><img
+					src="img/iconfont-yonghuxinxi.svg" plugin>
+					<p>新农合</p> <span class="tips">1</span></li>
+			</ul>
+			<div style="clear: both;"></div>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,298 @@
+{
+	"category":"site.portal",
+	"apps":[
+		{
+			"id":"site.portal.develop.pub.article",
+			"name":"发文",
+			"position":"toolbar.win.publish",
+			"icon":"./swssite/develop/img/pubarticle.svg",
+			"command":"./swssite/develop/pubArticle.html",
+			"platform":"develop",
+			"sort":"0",
+			"target":"_self",
+			"desc":"上传或展示我的芯片",
+			"acl":[
+				"allow allUsers visible",
+				"allow allUsers mountable",
+				"deny guestUsers mountable"
+			],
+			"menus":[
+				{
+					"id":"site.portal.develop.myarticle",
+					"name":"博客",
+					"cmd":"appi://site.portal.develop.myarticle",
+					"icon":"#",
+					"desc":"",
+					"visible":"isOwner"
+				}
+			],
+			"portal":{
+				"right":"./swssite/develop/pubArticleRight.html"
+			}
+		},
+		{
+			"id":"site.portal.develop.pub.product",
+			"name":"发产品",
+			"position":"toolbar.win.publish",
+			"icon":"./swssite/develop/img/uploadfile.svg",
+			"command":"./swssite/develop/openProduct.html",
+			"platform":"develop",
+			"sort":"0",
+			"target":"_self",
+			"desc":"上传芯片或程序",
+			"acl":[
+				"allow allUsers visible",
+				"allow allUsers mountable",
+				"deny guestUsers mountable"
+			],
+			"menus":[
+				{
+					"id":"site.portal.develop.myproduct",
+					"name":"产品",
+					"cmd":"appi://site.portal.develop.myproduct",
+					"icon":"#",
+					"desc":""
+				}
+			]
+		},{
+			"id":"site.portal.develop.myarticle",
+			"name":"博客",
+			"position":"toolbar.win.app",
+			"icon":"./swssite/develop/img/article.svg",
+			"command":"./swssite/develop/myarticle.html",
+			"platform":"develop",
+			"sort":"-2",
+			"menus":[
+			{
+					"id":"site.portal.home",
+					"name":"主页·站点",
+					"cmd":"app://-1",
+					"icon":"#",
+					"desc":""
+				},{
+					"id":"site.portal.develop.pub.article",
+					"name":"发布",
+					"cmd":"appi://site.portal.develop.pub.article",
+					"icon":"#",
+					"desc":"",
+					"visible":"isOwner"
+				}
+			],
+			"portal":{
+				"right":"./swssite/develop/pubDatePortlet.html"
+			},
+			"target":"_self",
+			"desc":"技术文档",
+			"acl":[
+				"allow allUsers visible",
+				"allow allUsers mountable",
+				"deny guestUsers mountable"
+			]
+		},
+		{
+			"id":"site.portal.develop.myproduct",
+			"name":"产品",
+			"position":"toolbar.win.app",
+			"icon":"./swssite/develop/img/store.svg",
+			"command":"./swssite/develop/myproduct.html",
+			"platform":"develop",
+			"sort":"-1",
+			"menus":[
+				{
+					"id":"site.portal.develop.home.site",
+					"name":"主页·站点",
+					"cmd":"app://-1",
+					"icon":"./swssite/img/home.svg",
+					"desc":""
+				},
+				{
+					"id":"site.portal.develop.home.pubproduct",
+					"name":"发布",
+					"cmd":"appi://site.portal.develop.pub.product",
+					"icon":"./swssite/develop/img/uploadfile.svg",
+					"desc":"",
+					"visible":"isOwner"
+				}
+			],
+			"portal":{
+			},
+			"target":"_self",
+			"desc":"上传或展示我的芯片",
+			"acl":[
+				"allow allUsers visible",
+				"allow allUsers mountable",
+				"deny guestUsers mountable"
+			]
+		},{
+			"id":"site.portal.develop.myspace",
+			"name":"视窗空间",
+			"position":"toolbar.win.app",
+			"icon":"./swssite/develop/img/file.svg",
+			"command":"./swssite/develop/myspace.html",
+			"platform":"develop",
+			"sort":"0",
+			"menus":[
+				{
+					"id":"site.portal.home",
+					"name":"主页·站点",
+					"cmd":"app://-1",
+					"icon":"#",
+					"desc":""
+				}
+			],
+			"portal":{
+				"left":"./swssite/develop/cubeOutlookLeft.html"
+			},
+			"target":"_self",
+			"desc":"当前视窗空间",
+			"acl":[
+				"allow allUsers visible",
+				"allow allUsers mountable",
+				"deny guestUsers mountable"
+			]
+		},{
+			"id":"site.portal.develop.homespace",
+			"name":"主空间",
+			"position":"toolbar.win.app",
+			"icon":"./swssite/develop/img/file.svg",
+			"command":"./swssite/develop/myspace.html?cube=home",
+			"platform":"develop",
+			"sort":"0",
+			"menus":[
+				{
+					"id":"site.portal.home",
+					"name":"主页·站点",
+					"cmd":"app://-1",
+					"icon":"#",
+					"desc":""
+				}
+			],
+			"portal":{
+				"left":"./swssite/develop/cubeOutlookLeft.html?cube=home"
+			},
+			"target":"_self",
+			"desc":"主空间",
+			"acl":[
+				"allow allUsers visible",
+				"allow allUsers mountable",
+				"deny guestUsers mountable"
+			]
+		},{
+			"id":"site.portal.microblog.pub.article",
+			"name":"发文",
+			"position":"toolbar.win.publish",
+			"icon":"./swssite/microblog/img/pubarticle.svg",
+			"command":"./swssite/microblog/pubArticle.html",
+			"platform":"microblog",
+			"sort":"0",
+			"target":"_self",
+			"desc":"上传或展示我的芯片",
+			"acl":[
+				"allow allUsers visible",
+				"allow allUsers mountable",
+				"deny guestUsers mountable"
+			],
+			"menus":[
+				{
+					"id":"site.portal.microblog.myarticle",
+					"name":"博客",
+					"cmd":"appi://site.portal.microblog.myarticle",
+					"icon":"#",
+					"desc":""
+				}
+			],
+			"portal":{
+				"right":"./swssite/microblog/pubArticleRight.html"
+			}
+		},
+		{
+			"id":"site.portal.microblog.myarticle",
+			"name":"博客",
+			"position":"toolbar.win.app",
+			"icon":"./swssite/microblog/img/article.svg",
+			"command":"./swssite/microblog/myarticle.html",
+			"platform":"microblog",
+			"sort":"-2",
+			"menus":[
+			{
+					"id":"site.portal.home",
+					"name":"主页·站点",
+					"cmd":"app://-1",
+					"icon":"#",
+					"desc":""
+				},{
+					"id":"site.portal.microblog.pub.article",
+					"name":"发布",
+					"cmd":"appi://site.portal.microblog.pub.article",
+					"icon":"#",
+					"desc":"",
+					"visible":"isOwner"
+				}
+			],
+			"portal":{
+				"right":"./swssite/microblog/pubDatePortlet.html"
+			},
+			"target":"_self",
+			"desc":"技术文档",
+			"acl":[
+				"allow allUsers visible",
+				"allow allUsers mountable",
+				"deny guestUsers mountable"
+			]
+		},{
+			"id":"site.portal.microblog.myspace",
+			"name":"视窗空间",
+			"position":"toolbar.win.app",
+			"icon":"./swssite/microblog/img/file.svg",
+			"command":"./swssite/microblog/myspace.html",
+			"platform":"microblog",
+			"sort":"0",
+			"menus":[
+				{
+					"id":"site.portal.home",
+					"name":"主页·站点",
+					"cmd":"app://-1",
+					"icon":"#",
+					"desc":""
+				}
+			],
+			"portal":{
+				"left":"./swssite/microblog/cubeOutlookLeft.html"
+			},
+			"target":"_self",
+			"desc":"当前视窗空间",
+			"acl":[
+				"allow allUsers visible",
+				"allow allUsers mountable",
+				"deny guestUsers mountable"
+			]
+		},{
+			"id":"site.portal.microblog.homespace",
+			"name":"主空间",
+			"position":"toolbar.win.app",
+			"icon":"./swssite/microblog/img/file.svg",
+			"command":"./swssite/microblog/myspace.html?cube=home",
+			"platform":"microblog",
+			"sort":"0",
+			"menus":[
+				{
+					"id":"site.portal.home",
+					"name":"主页·站点",
+					"cmd":"app://-1",
+					"icon":"#",
+					"desc":""
+				}
+			],
+			"portal":{
+				"left":"./swssite/microblog/cubeOutlookLeft.html?cube=home"
+			},
+			"target":"_self",
+			"desc":"主空间",
+			"acl":[
+				"allow allUsers visible",
+				"allow allUsers mountable",
+				"deny guestUsers mountable"
+			]
+		}
+	]
+}

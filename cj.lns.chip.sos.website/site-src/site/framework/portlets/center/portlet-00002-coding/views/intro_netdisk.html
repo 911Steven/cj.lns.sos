@@ -1,0 +1,147 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<title>云网</title>
+<link href="../../../../css/global.css" type="text/css" rel="stylesheet">
+<link href="../../../../css/pages/portal-viewer.css" type="text/css"
+	rel="stylesheet">
+<script type="text/javascript"
+	src="../../../../js/jquery/jquery-2.1.4.js"></script>
+<style type="text/css">
+#content_inner>.body>pre>img {
+	width: 100%;
+}
+
+.grid-s5m0e5 {
+	height: 11800px;
+}
+
+#content_inner>.body>pre>.result {
+	font-size: 10px;
+	margin-left: 60px;
+}
+
+#content_inner>.body>pre>.style1 {
+	font-size: 10px;
+	margin-left: 60px;
+}
+</style>
+</head>
+<body>
+	<div class="topbar">
+		<ul class="left">
+			<li class="about"><span label>关于</span></li>
+		</ul>
+		<ul class="right">
+			<li class="mine"><a target="_blank"
+				href="../../../../public/register2.html">注册</a></li>
+			<li class="login"><span label>登录</span></li>
+		</ul>
+	</div>
+	<div class="banner">
+		<div class="b-left"></div>
+		<div class="b-center">
+			<div class="logo">
+				<img src="../../../../img/pages/logo.png">
+				<p>云网</p>
+			</div>
+		</div>
+		<div class="b-right"></div>
+	</div>
+	<div class="grid-s5m0e5">
+		<div class="col-main">
+			<div class="main-wrap">
+				<div id="content">
+					<div id="content_inner">
+						<div class="title">
+							<p>netdisk 多维云盘开发工具包</p>
+						</div>
+						<div class="subtitle">
+							<ul>
+								<li><span label>作者：</span><span value
+									style="padding-right: 10px;">cj (赵向彬)</span><span label>发布日期：</span><span
+									value>2016年8月19日 3:24</span></li>
+							</ul>
+						</div>
+						<div class="body">
+							<div style="font-family: sans-serif; margin-bottom: 10px;">
+								<span><b>关键词：</b></span>多维 立方体 结构化数据 非结构化数据 云存储<br> mongodb
+							</div>
+							<div style="font-family: sans-serif; margin-bottom: 10px;">
+								<span><b>摘要：</b></span>netdisk可以看成mongodb的一个增强工具包，它实现了用户空间配额、orm映射、类sql的查询、文件的存储、多维的方案等功能。
+								<br>本包提供开发者使用多维云盘的能力，如果想作为成品或进行云盘的管理和测试请使用mdisk命令行工具
+							</div>
+							<div style="font-family: sans-serif; margin-bottom: 10px;">
+								<span><b>正文：</b></span>
+							</div>
+							<pre>
+本文简要说明netdisk的使用
+	简要来说，一个mongodb实例可以被分成多个网盘netdisk,每个netdisk拥有一个或多个cube（即存储方案），其中只有一个名为home的cube，home在netdisk是主cube.
+	而每个cube里，包含两种数据，一种是结构化数据，称之为tuple，不定数目；一种是非结构化数据，在每个cube.fileSystem()中得到，即每个cube有一个文件系统。
+	记住，不论是tuple还是文件都是多维的，因此都有多维的api
+1.创建、销毁云盘接口<p class="style1">
+INetDisk disk=NetDisk.create(client, name, userName, password, info)//创建一个网盘
+INetDisk disk=NetDisk.open(client, name, userName, password)//认证打开网盘
+INetDisk disk=NetDisk.trustOpen(client, name)//授信打开网盘</p>
+2.cube的使用
+<p class="style1">
+ICube cube=disk.cube("cubename");
+ICube cube=disk.home();
+//以下是查询一个叫“department"的tuple
+IQuery<Department> q=cube.createQuery("select {'tuple':'*'} from tuple department your.crop.Department where {'tuple.name':'?(name)'}");
+q.setParameter('name','研发部');
+List<Department> list=q.getResultList();
+for(IDocument<Department> doc:list){
+	System.out.println(doc.docid());
+	System.out.println(doc.tuple());
+}
+//以下是保存一个部门：
+Department dpt=new Department();
+cube.saveDoc('department',new TupleDocument(dtp));
+
+//以下是访问文件系统
+FileSystem fs=cube.fileSystem();
+DirectoryInfo dir=fs.dir("/test");//打开一个目录
+dir.listFiles();//列出文件
+
+FileInfo file=fs.openFile("/test/b.txt", OpenMode.openOrNew, OpenShared.off);//打开一个文件
+IReader reader=file.reader(0);//从位置0开始读取文件数据
+reader.read(buf);
+reader.seek(100);//定位到100开始读
+reader.read(buf);
+reader.close();
+IWriter writer=file.writer(0);//从位置0开始写入数据
+writer.write(buf);
+writer.close();
+								</p>
+							</pre>
+						</div>
+						<div class="bottom"></div>
+					</div>
+				</div>
+				<div id="side">
+					<div class="fill"></div>
+					<div class="portlet">
+						<div class="title">
+							<span label>相关</span>
+						</div>
+						<ul class="items">
+								<li><a href="../views/ecm_hello.html" plugin target="_blank">· 从ecm 工具包的 helloworld 入门</a></li>
+		<li><a href="../views/net_hello.html" plugin target="_blank">· 从net 工具包的 helloworld 入门</a></li>
+		<li><a href="../views/intro_ecm.html" plugin target="_blank">· 介绍： ecm 面向连接电子模型开发工具包</a></li>
+		<li><a href="../views/intro_net.html" plugin target="_blank">· 介绍： net 通讯开发工具包</a></li>
+		<li><a href="../views/intro_plus.html" plugin target="_blank">· 介绍： plus 模块化、插件化、服务化增强开发工具包</a></li>
+		<li><a href="../views/intro_neuron.html" plugin target="_blank">· 介绍： neuron 分布式连接容器</a></li>
+		<li><a href="../views/intro_netsite.html" plugin target="_blank">· 介绍： netsite 热插拔应用容器</a></li>
+		<li><a href="../views/intro_mdisk.html" plugin target="_blank">· 介绍： mdisk 多维云盘命令行工具</a></li>
+		<li><a href="../views/intro_cjnet.html" plugin target="_blank">· 介绍： cjnet 调试、测试命令行工具</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-sub"></div>
+		<div class="col-extra"></div>
+	</div>
+</body>
+</html>

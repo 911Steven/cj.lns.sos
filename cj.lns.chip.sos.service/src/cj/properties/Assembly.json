@@ -1,0 +1,38 @@
+{
+	entryPoint : {
+		activators : [
+		              {
+		            	  name:"服务操作系统启动器",
+		            	  class:"cj.lns.chip.sos.service.ServiceOSActivator",
+		            	  parameters:{}
+		              }
+			]
+	},
+	assemblyInfo : {
+		assemblyTitle : "serviceOS",
+		assemblyResource:"/",
+		assemblyDescription : "服务操作系统服务芯片",
+		assemblyConfiguration : "",
+		assemblyCompany : "开发者：cj;研发机构：lns平台部",
+		assemblyProduct : "cj.lns.chip.sos.service",
+		assemblyCopyright : "Copyright   2011",
+		assemblyTrademark : "",
+		assemblyCulture : "",
+		guid : "48598D43-94AA-402E-BF56-1D03051D4B2F",
+		assemblyVersion : "1.0.0.0",
+		assemblyFileVersion : "1.0.0.0"
+	},
+	global:{
+		default:"zh_CN",
+		desc:"如果系统环境要求各芯片采用的语言本芯片没有，则芯片可采用默认语言"
+		},
+	serviceContainer : {
+		name : "netContainer",
+		scans : [{
+					package : "cj.lns.chip.sos.service",
+					extName : ".class|.json|.xml",
+					exoterical:"true"
+				}]
+
+	}
+}

@@ -1,0 +1,53 @@
+/*
+,{
+			"id":"feed",
+			"name":"ECM编程",
+			"icon":"./servicews/img/iconfont-security.svg",
+			"position":"desktop.right",
+			"contentUrl":"/basicPortlet/develop.html",
+			"sort":"1",
+			"target":"_self",
+			"desc":"ECM编程",
+			"acl":[
+				"allow allUsers visible",
+				"allow allUsers mountable",
+				"deny guestUsers mountable"
+			]
+		}
+*/
+{
+	"category":"portlet.sws",
+	"portlets":[
+		{
+			"id":"servicews.owner",
+			"name":"持有人",
+			"icon":"./basicPortlet/img/let.svg",
+			"position":"desktop.left",
+			"useTemplate":"none",
+			"contentUrl":"/basicPortlet/servicewsOwner.html",
+			"sort":"-1",
+			"target":"_self",
+			"desc":"持有人信息",
+			"acl":[
+				"allow allUsers visible",
+				"allow allUsers mountable",
+				"deny guestUsers mountable"
+			]
+		},{
+			"id":"servicews.viewer",
+			"name":"视窗",
+			"useTemplate":"none",
+			"icon":"./basicPortlet/img/let.svg",
+			"position":"desktop.left",
+			"contentUrl":"/basicPortlet/servicewsViewer.html",
+			"sort":"0",
+			"target":"_self",
+			"desc":"视窗信息",
+			"acl":[
+				"allow allUsers visible",
+				"allow allUsers mountable",
+				"deny guestUsers mountable"
+			]
+		}
+	]
+}

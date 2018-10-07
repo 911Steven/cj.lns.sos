@@ -1,0 +1,327 @@
+<style>
+<!--
+.ug-panel {
+	position: relative;
+	padding-top: 30px;
+}
+
+.ug-panel>.ug-tool {
+	position: absolute;
+	top: 0;
+	right: 0;
+	left: 0;
+	height: 30px;
+	border-bottom: 1px solid #c8c8c8;
+	text-align: right;
+	padding-right: 10px;
+}
+
+.ug-panel>.ug-tool>span>a {
+	font-size: 12px;
+	padding: 2px 20px;
+}
+
+.ug-panel>.ug-g-list {
+	overflow: auto;
+	height: 340px;
+	padding: 10px;
+}
+
+.ug-panel>.ug-g-list>.ug-g-box {
+	padding: 5px 0;
+}
+
+.ug-panel>.ug-g-list>.ug-g-box>.ug-g-pad {
+	cursor: pointer;
+	position: relative;
+	margin-bottom: 5px;
+}
+
+.ug-panel>.ug-g-list>.ug-g-box>.ug-g-pad>.ug-g-name {
+	padding: 4px 10px 4px 5px;
+}
+
+.ug-panel>.ug-g-list>.ug-g-box>.ug-g-pad>.ug-g-on {
+	position: absolute;
+	right: 20px;
+	top: 5px;
+	display: inline-block;
+}
+
+.ug-panel>.ug-g-list>.ug-g-box>.ug-g-pad>span[del] {
+	display: none;
+	position: absolute;
+	top: 5px;
+	right: 60px;
+	padding: 0 10px;
+}
+
+.ug-panel>.ug-g-list>.ug-g-box>.ug-g-pad>span[del]:hover {
+	background-color: #ececec;
+}
+
+.ug-panel>.ug-g-list>.ug-g-box>.ug-g-pad>img {
+	width: 15px;
+	height: 15px;
+}
+
+.ug-panel>.ug-g-list>.ug-g-box>.ug-g-u-list {
+	padding-left: 5px;
+	display: none;
+}
+
+.ug-panel>.ug-g-list>.ug-g-box>.ug-g-u-list>.ug-g-u-user {
+	cursor: pointer;
+	position: relative;
+	padding-left: 60px;
+	padding-bottom: 0px;
+	margin: 5px 0;
+}
+
+.ug-panel>.ug-g-list>.ug-g-box>.ug-g-u-list>.ug-g-u-user:hover {
+	background-color: #f5f5f5;
+}
+
+.ug-panel>.ug-g-list>.ug-g-box>.ug-g-u-list>.ug-g-u-user>img {
+	width: 40px;
+	height: 40px; border 1px solid #ededed;
+	position: absolute;
+	left: 15px;
+	top: 6px;
+	bottom: 0;
+}
+
+.ug-panel>.ug-g-list>.ug-g-box>.ug-g-u-list>.ug-g-u-user>.ug-g-u-d>li {
+	padding: 2px 4px;
+}
+
+.ug-panel>.ug-g-list>.ug-g-box>.ug-g-u-list>.ug-g-u-user>.ug-g-u-d>li:last-child
+	{
+	color: gray;
+}
+
+.ug-panel>.ug-g-list>.ug-g-box>.ug-g-u-list>li.ug-g-u-user>span[del] {
+	position: absolute;
+	top: 5px;
+	right: 18px;
+	padding: 0px 10px;
+	display: none;
+}
+
+.ug-panel>.ug-g-list>.ug-g-box>.ug-g-u-list>li.ug-g-u-user>span[del]:hover
+	{
+	background-color: #ececec;
+}
+-->
+</style>
+<script type="text/javascript">
+<!--
+(function() {
+		function doHover(parentGroupLi) {
+			var userli = parentGroupLi.find('.ug-g-u-list>li');
+			userli.hover(function() {
+				$(this).children('span[del]').show();
+				return false;
+			}, function() {
+				$(this).children('span[del]').hide();
+				return false;
+			});
+			userli.find('span[del]').on('click', function() {
+				var e = $(this).parent('li.ug-g-u-user');
+				var cid = e.attr('cid');
+				$.get('./contact/delUser.service', {
+					cid : cid
+				}, function(data) {
+					e.remove();
+				}).error(function(e) {
+					alert(e.status + ' ' + e.responseText);
+				});
+				return false;
+			});
+			userli.on('click',function(){
+				var the = $(this);
+				var linkerurl = "./servicews/session/chatroom.service";
+				$.getJSON(linkerurl, {
+					'uid' : the.attr('uid'),
+					'cid' : the.attr('cid'),
+				}, function(session) {
+					var openurl = "./servicews/session/openSession.html";
+					$.get(openurl, {
+						sid : session.sid
+					}, function(html) {
+						the.showWin(html, null, session);
+					});
+				});
+				return false;
+			});
+		}
+		;
+		$('.ug-panel>.ug-g-list>.ug-g-box>.ug-g-pad[toggleGroup]').on(
+				'click',
+				function() {
+					var img = $(this).children('img');
+					var src = img.attr('src');
+					var prev = src.replace('img/iconfont-you.svg', '').replace(
+							'img/iconfont-xia.svg', '');
+					var li = $(this).parent('.ug-g-box');
+					if (img.attr('flag') == 'you') {
+						img.attr('flag', 'xia')
+						img.attr('src', prev + 'img/iconfont-you.svg');
+						li.children('ul.ug-g-u-list').hide();
+					} else {
+						li.children('ul.ug-g-u-list').remove();
+						var gid = li.attr('gid');
+						$.get('./contact/GetContactsByGroupId.service', {
+							gid : gid,
+						}, function(data) {
+							img.attr('flag', 'you');
+							img.attr('src', prev + 'img/iconfont-xia.svg');
+							li.append(data);
+							li.children('ul.ug-g-u-list').show();
+							doHover(li);
+						}).error(function(e) {
+							alert(e.status + ' ' + e.responseText);
+						});
+					}
+					//$(this).parent().children('.ug-g-u-list').toggle();
+				});
+		$('.ug-panel>.ug-tool').delegate('span', 'click', function(e) {
+			var the = $(this);
+			var action = the.attr('action');
+			var cnt = the.parents('.ug-panel').children('.ug-g-list');
+			if ('c' == action) {
+				$.get('./contact/searchUsers.html', {}, function(data) {
+					cnt.html(data);
+				}).error(function(e) {
+					alert(e.status + ' ' + e.responseText);
+				});
+				return;
+			}
+			if ('g' == action) {
+				$.get('./contact/addGroup.html', {}, function(data) {
+					cnt.html(data);
+				}).error(function(e) {
+					alert(e.status + ' ' + e.responseText);
+				});
+				return;
+			}
+		});
+
+		$('.ug-panel>.ug-g-list>.ug-g-box>.ug-g-pad').hover(function() {
+			$(this).children('span[del]').show();
+		}, function() {
+			$(this).children('span[del]').hide();
+		});
+		$('.ug-panel>.ug-g-list>.ug-g-box>.ug-g-pad>span[del]').on('click',
+				function() {
+					var e = $(this).parents('.ug-g-box');
+					var gid = e.attr('gid');
+					$.get('./contact/delGroup.service', {
+						gid : gid
+					}, function(data) {
+						e.remove();
+					}).error(function(e) {
+						alert(e.status + ' ' + e.responseText);
+					});
+					return false;
+				});
+})();
+//-->
+</script>
+<div class="ug-panel">
+	<div class="ug-tool">
+		<span action='c'><a href="#">添加联系人</a></span><span action='g'><a
+			href="#">添加分组</a></span>
+	</div>
+	<ul class="ug-g-list">
+		<li class="ug-g-box">
+			<div class="ug-g-pad" toggleGroup>
+				<img src="img/iconfont-you.svg" plugin><span class="ug-g-name">我的好友</span><span
+					class="ug-g-on"><label on>66</label>/<label count>99</label></span><span
+					title="删除该组，组内联系人将移至公众分组" del>X</span>
+			</div>
+			<ul class="ug-g-u-list">
+				<li class="ug-g-u-user"><img src="img/head.jpg" plugin><span
+					title="删除联系人" del>X</span>
+					<ul class="ug-g-u-d">
+						<li>提拉米苏</li>
+						<li>深夜不想睡觉，早晨不想起床</li>
+					</ul></li>
+				<li class="ug-g-u-user"><img src="img/head.jpg" plugin>
+					<ul class="ug-g-u-d">
+						<li>pill</li>
+						<li>遇见你 是最美丽的意外</li>
+					</ul></li>
+			</ul>
+		</li>
+		<li class="ug-g-box">
+			<div class="ug-g-pad" toggleGroup>
+				<img src="img/iconfont-you.svg" plugin><span class="ug-g-name">我的同事</span><span
+					class="ug-g-on">66/99</span>
+			</div>
+			<ul class="ug-g-u-list">
+				<li class="ug-g-u-user"><img src="img/head.jpg" plugin>
+					<ul class="ug-g-u-d">
+						<li>提拉米苏</li>
+						<li>深夜不想睡觉，早晨不想起床</li>
+					</ul></li>
+				<li class="ug-g-u-user"><img src="img/head.jpg" plugin>
+					<ul class="ug-g-u-d">
+						<li>pill</li>
+						<li>遇见你 是最美丽的意外</li>
+					</ul></li>
+			</ul>
+		</li>
+		<li class="ug-g-box">
+			<div class="ug-g-pad" toggleGroup>
+				<img src="img/iconfont-you.svg" plugin><span class="ug-g-name">公众</span><span
+					class="ug-g-on">66/99</span>
+			</div>
+			<ul class="ug-g-u-list">
+				<li class="ug-g-u-user"><img src="img/head.jpg" plugin>
+					<ul class="ug-g-u-d">
+						<li>提拉米苏</li>
+						<li>深夜不想睡觉，早晨不想起床</li>
+					</ul></li>
+				<li class="ug-g-u-user"><img src="img/head.jpg" plugin>
+					<ul class="ug-g-u-d">
+						<li>pill</li>
+						<li>遇见你 是最美丽的意外</li>
+					</ul></li>
+			</ul>
+		</li>
+		<li class="ug-g-box">
+			<div class="ug-g-pad" toggleGroup title="自交友网导入的用户">
+				<img src="img/iconfont-you.svg" plugin><span class="ug-g-name">交友网</span><span
+					class="ug-g-on">66/99</span>
+			</div>
+			<ul class="ug-g-u-list">
+				<li class="ug-g-u-user"><img src="img/head.jpg" plugin>
+					<ul class="ug-g-u-d">
+						<li>提拉米苏</li>
+						<li>深夜不想睡觉，早晨不想起床</li>
+					</ul></li>
+				<li class="ug-g-u-user"><img src="img/head.jpg" plugin>
+					<ul class="ug-g-u-d">
+						<li>pill</li>
+						<li>遇见你 是最美丽的意外</li>
+					</ul></li>
+				<li class="ug-g-u-user"><img src="img/head.jpg" plugin>
+					<ul class="ug-g-u-d">
+						<li>pill</li>
+						<li>遇见你 是最美丽的意外</li>
+					</ul></li>
+				<li class="ug-g-u-user"><img src="img/head.jpg" plugin>
+					<ul class="ug-g-u-d">
+						<li>pill</li>
+						<li>遇见你 是最美丽的意外</li>
+					</ul></li>
+				<li class="ug-g-u-user"><img src="img/head.jpg" plugin>
+					<ul class="ug-g-u-d">
+						<li>pill</li>
+						<li>遇见你 是最美丽的意外</li>
+					</ul></li>
+			</ul>
+		</li>
+	</ul>
+</div>

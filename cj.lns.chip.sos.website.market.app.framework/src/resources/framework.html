@@ -1,0 +1,198 @@
+
+<style type="text/css">
+/* common styling */
+.fr-menu {
+	width: 100%;
+	height: 30px;
+	top:40px;
+	position: absolute;
+	margin: 0;
+	font-size: 11px;
+	margin: 20px auto;
+	background: #fff;
+	overflow: visible;
+}
+
+.fr-menu ul {
+	padding: 0;
+	margin: 0;
+	list-style-type: none;
+}
+
+.fr-menu ul li {
+	float: left;
+	border-left: 1px solid #eee;
+	width: 106px;
+}
+
+.fr-menu ul li a, .fr-menu ul li a:visited {
+	display: block;
+	float: left;
+	width: 101px;
+	text-decoration: none;
+	padding: 0 0 0 5px;
+	height: 30px;
+	line-height: 30px;
+	color: #000;
+}
+
+.fr-menu ul li ul {
+	display: none;
+}
+/* specific to non IE browsers */
+.fr-menu ul li:hover a {
+	color: #fff;
+	background: gray;
+}
+
+.fr-menu ul li:hover ul {
+	display: block;
+	position: absolute;
+	width: 749px;
+	top: 30px;
+	left: 0;
+	color: #fff;
+}
+
+.fr-menu ul li:hover ul.right_side li {
+	float: right;
+	border: 0;
+	border-left: 1px solid #eee;
+}
+
+.fr-menu ul li:hover ul.left_side li {
+	float: left;
+	border: 0;
+	border-left: 1px solid #eee;
+}
+
+.fr-menu ul li:hover ul li a.hide {
+	color: #fff;
+}
+
+.fr-menu ul li:hover ul li:hover a.hide {
+	background: #b3ab79;
+	color: #fff;
+}
+
+.fr-menu ul li:hover ul li ul {
+	display: none;
+}
+
+.fr-menu ul li:hover ul li a {
+	display: block;
+	background: ##b3ab79;
+	color: #fff;
+}
+
+.fr-menu ul li:hover ul li a:hover {
+	color: #000;
+}
+
+.fr-menu ul li:hover ul li:hover ul {
+	display: block;
+	position: absolute;
+	left: 0;
+	top: 30px;
+	color: #000;
+	background: #dfc184;
+}
+
+.fr-menu ul li:hover ul.right li {
+	float: right;
+}
+
+.fr-menu ul li:hover ul li:hover a.hide {
+	background: #dfc184;
+	color: #000;
+}
+
+.fr-menu ul li:hover ul li:hover ul li a {
+	background: #dfc184;
+	color: #000;
+}
+
+.fr-menu ul li:hover ul li:hover ul li a:hover {
+	color: #fff;
+}
+
+.fr-part {
+	width: 100%;
+	position: relative;
+	padding-top: 100px;
+}
+
+.fr-part>.fr-content {
+	width: 100%;
+	height: 100%;
+	border: none;
+}
+.fr-part>.fr-tool{
+	position: absolute;
+	top: 20px;
+	height: 30xp;
+	text-align: center;
+	left: 10px;
+	right:10px;
+}
+.fr-part>.fr-tool>a{
+border-bottom: 1px solid #cecece;
+padding: 10px;
+}
+.fr-part>.fr-tool>a:hover{
+border: 1px solid #cecece;
+}
+</style>
+<script type="text/javascript">
+<!--
+	var es=$('.fr-part>.fr-menu li[openM]');
+	es.on('click',function(){
+		var url=$(this).attr('openM');
+		$('#fr-content').attr('src',url);
+	});
+	$('.fr-part>.fr-tool[action]>a').on('click',function(){
+		var url=$(this).parent('[action]').attr('action');
+		$('.fr-part>.fr-tool[action]>a').html('正在同步...');
+		$.ajax({
+            type : 'post',
+            url : url,
+            success : function(data) {
+              $('.fr-part>.fr-tool[action]>a').html('同步成功');
+            },
+            error : function(e) {
+            	 $('.fr-part>.fr-tool[action]>a').html('同步失败');
+                alert(e.responseText);
+            }
+        });
+	});
+//-->
+</script>
+<div class="fr-part">
+	<div class="fr-tool" action='./sosFramework/?action=sync'><a href="#">同步到市场</a></div>
+	<div class="fr-menu">
+		<ul>
+			<li><a class="hide" href="#">主页</a>
+			<li><a class="hide" href="#">本地系统</a>
+				<ul>
+					<li openM="./sosFramework/frameworkInfo.html"><a href="#" title="">插件</a></li>
+					<li><a href="#" title="">框架</a></li>
+					<li><a href="#" title="">安装插件</a></li>
+				</ul> <!--[if lte IE 6]>
+			</td></tr></table>
+			</a>
+			<![endif]--></li>
+			<li><a class="hide" href="#">主机</a>
+				<ul>
+					<li><a href="#" title="Cross browser fixed layout">应用市场管理</a></li>
+					<li><a href="#" title="Cross browser fixed layout">插件市场管理</a></li>
+					<li><a href="#" title="Cross browser fixed layout">服务号</a></li>
+					<li><a href="#" title="Cross browser fixed layout">lns云计算资源管理</a>
+						<ul class="left_side">
+							<li><a href="#" title="Styling forms">终点站</a></li>
+							<li><a href="#" title="Removing active/focus borders">工作站</a></li>
+						</ul></li>
+				</ul></li>
+		</ul>
+	</div>
+	<iframe class="fr-content" id="fr-content" src="./sosFramework/frameworkInfo.html"></iframe>
+</div>

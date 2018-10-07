@@ -1,0 +1,219 @@
+.cyberport-box {
+	min-width: 200px;
+	min-height: 350px;
+	height: 100%;
+	background-color: rgba(238, 238, 238, 1);
+}
+
+.cyberport-box>.bottom {
+	height: 70px;
+	position: relative;
+	padding-left: 80px;
+	border-top: 1px solid #DBDBEA;
+}
+
+.cyberport-box>.bottom>a {
+	display: inline-block;
+	position: absolute;
+	top: 10px;
+	left: 0;
+	width: 60px;
+	text-align: center;
+}
+
+.cyberport-box>.bottom>a>img {
+	width: 50px;
+	height: 50px;
+}
+
+.cyberport-box>.bottom>ul.desc {
+	bottom: 10px;
+	position: absolute;
+}
+
+.cyberport-box>.bottom>ul.desc>li {
+	font-size: 12px;
+	color: gray;
+}
+
+.cyberport-box>.bottom>ul.others {
+	bottom: 10px;
+	right: 10px;
+	position: absolute;
+}
+
+.cyberport-box>.bottom>ul.others>li.sws {
+	float: left;
+	text-align: center;
+	padding-bottom: 4px;
+	padding-left: 15px;
+	padding-right: 15px;
+	cursor: pointer;
+	position: relative;
+	padding-left: 15px;
+}
+
+.cyberport-box>.bottom>ul.others>li.sws:hover {
+	border-bottom: 1px solid white;
+}
+
+.cyberport-box>.bottom>ul.others>li.sws>img {
+	width: 35px;
+	height: 35px;
+	padding: 0;
+	margin: 0;
+}
+
+.cyberport-box>.bottom>ul.others>li.sws>p {
+	padding: 0;
+	margin: 0;
+	line-height: 8px;
+	color: gray;
+	font-size: 12px;
+}
+
+.cyberport-box>.bottom>ul.others>li.sws>span.tips {
+	position: absolute;
+	top: 0px;
+	min-height: 20px;
+	line-height: 18px;
+	min-width: 20px;
+	font-size: 10px;
+	right: 0px;
+	color: white;
+	-moz-border-radius: 50%; /* Gecko browsers */
+	-webkit-border-radius: 50%; /* Webkit browsers */
+	border-radius: 50%;
+	background: red;
+	right: 0px;
+	font-size: 10px;
+	min-width: 20px;
+}
+
+.cyberport-box>.content {
+	background-color: #FAFAF3;
+	height: 400px;
+	position: relative;
+	padding-right: 380px;
+}
+
+.cyberport-box>.content>.left {
+	min-height: 350px;
+	height: 100%;
+	min-width: 100px;
+	background-color: rgba(238, 238, 238, 1);
+}
+
+.cyberport-box>.content>.left>.cyb-sws {
+	padding: 10px;
+	text-align: center;
+}
+
+.cyberport-box>.content>.left>.cyb-sws>img {
+	width: 60px;
+	height: 60px;
+}
+
+.cyberport-box>.content>.left>.cyb-sws>p.title {
+	font-size: 12px;
+	color: gray;
+}
+
+.cyberport-box>.content>.left>.cyb-sws>ul.tips {
+	margin-top: 20px;
+}
+
+.cyberport-box>.content>.left>.cyb-sws>ul.tips>li {
+	margin: 10px;
+	cursor: pointer;
+}
+
+.cyberport-box>.content>.left>.cyb-sws>ul.tips>li:hover {
+	border-bottom: 1px solid #f5f5f5;
+}
+
+.cyberport-box>.content>.left>.cyb-sws>ul.tips>li>span {
+	color: gray;
+	font-size: 12px;
+}
+
+.cyberport-box>.content>.left>.cyb-sws>ul.tips>li>p {
+	color: red;
+}
+
+.cyberport-box>.content>.right {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	padding-left: 10px;
+	width: 360px;
+}
+
+.cyberport-box>.content>.right>.apps {
+	
+}
+
+.cyberport-box>.content>.right>.apps>.app {
+	margin: 10px 5px;
+}
+
+.cyberport-box>.content>.right>.apps>.app>.head {
+	position: relative;
+	padding-left: 40px;
+}
+
+.cyberport-box>.content>.right>.apps>.app>.head>img {
+	position: absolute;
+	left: 0;
+	top: 0; width : 40px;
+	height: 40px;
+	width: 40px
+}
+
+.cyberport-box>.content>.right>.apps>.app>.head>ul.detail {
+	font-size: 12px;
+}
+
+.cyberport-box>.content>.right>.apps>.app>.head>ul.detail>li {
+	margin: 5px;
+}
+
+.cyberport-box>.content>.right>.apps>.app>.head>span.tips {
+	position: absolute;
+	right: 10px;
+	top:50%;
+}
+.cyberport-box>.content>.right>.apps>.app>.box {
+	padding-left: 40px;
+}
+.cyberport-box>.content>.right>.apps>.app>.box>.item{
+	position: relative;
+	padding-left: 50px;
+}
+.cyberport-box>.content>.right>.apps>.app>.box>.item>img {
+	position: absolute;
+	left: 0;
+	top: 0; 
+	height: 30px;
+	width: 30px
+}
+
+.cyberport-box>.content>.right>.apps>.app>.box>.item>ul.detail {
+	font-size: 12px;
+}
+
+.cyberport-box>.content>.right>.apps>.app>.box>.item>ul.detail>li {
+	margin: 5px;
+}
+
+.cyberport-box>.content>.right>.apps>.app>.box>.item>span.tips {
+	position: absolute;
+	right: 10px;
+	top:50%;
+}
+
+
+
+
+

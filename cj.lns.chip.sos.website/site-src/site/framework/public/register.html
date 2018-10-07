@@ -1,0 +1,144 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="../css/global.css" />
+<link rel="stylesheet" href="../css/register.css" />
+<script type="text/javascript" src="../js/jquery/jquery-2.1.4.js"></script>
+<script type="text/javascript" src="../js/json2.js"></script>
+<script type="text/javascript" src="../js/register.js"></script>
+</head>
+<body>
+	<div class="register">
+		<div class="flow">
+			<ul>
+				<li class="selected" flow="1">1.&gt;创建账户</li>
+				<li flow="2">2.&gt;网盘空间</li>
+				<li flow="3">3.&gt;选择视窗</li>
+				<li flow="4">4.&gt;头像</li>
+			</ul>
+			<div style="clear: both;"></div>
+			<div class="op">
+				<ul id="flow">
+					<li flow="next">下一步</li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="content"></div>
+		<div style="display: none;" flows>
+			<div flowId="1">
+				<ul>
+					<li id="accountName"><label>账户名</label><span><input
+							required="required" type="text"></span></li>
+					<li id="nickName"><label>昵称</label><span><input
+							required="required" type="text"></span></li>
+					<li id="sex"><label>性别</label><span>男<input name="sex"
+							value="male" type="radio">女<input name="sex"
+							checked="checked" value="female" type="radio"></span></li>
+					<li id="password"><label>密码</label><span><input
+							required="required" type="password"></span></li>
+					<li><label>确认</label><span><input type="password"
+							required="required"></span></li>
+				</ul>
+
+			</div>
+			<div flowId="2">
+				<div class="disk">
+					<div class="d-f1">
+						<span>网盘总量：</span><input id="diskSize" type="text" value="5"><span>G</span>
+					</div>
+					<div class="d-f2" title="主存用来存储您的照片、文档等信息">
+						<span>主存大小：</span><input id="homeSize" type="text" value="1"><span>G</span>
+					</div>
+					<div class="d-f3" title="该总量被视窗均分">
+						<span>视窗总大小：</span><span id="swsSize">4</span><span>G</span>
+					</div>
+
+				</div>
+			</div>
+			<div flowId="3">
+				<div class="c-left">
+					<ul name="swsTemplateList">
+						<li swsId="8882323933"><img src="../img/myhome.svg"><br>
+							<span class="swsName">动客视窗</span><span class="swsSelect"><input
+								type="checkbox"></span></li>
+						<li swsId="75482323922"><img src="../img/youxi.svg"><br>
+							<span class="swsName">新农合视窗</span><span class="swsSelect"><input
+								type="checkbox"></span></li>
+					</ul>
+					<div style="clear: both;"></div>
+				</div>
+				<div class="c-right" id="cright">
+					<div class="c-r-t">
+						<p style="font-weight: bold;">
+							<span id="swsName" style="font-size: 18px;">选中的视窗</span> 模板
+						</p>
+						<p name="desc" style="padding-left: 10px; color: gray;">从模板继承并定义新视窗</p>
+					</div>
+					<div class="cr-body">
+						<div>
+							<p>生成视窗号</p>
+							<p style="color: gray; padding-left: 10px;">前三位从6到9,中四位用于用户助记，其后是系统随机号</p>
+						</div>
+						<ul class="cr-swsNum" id="swsNum">
+							<li>
+								<ul class="updown">
+									<li class="up" first='1'><img src="../img/iconfont-up.svg"></li>
+									<li><input type="text" maxlength="1" value="6"></li>
+									<li class="down" first='1'><img
+										src="../img/iconfont-down.png"></li>
+								</ul>
+							</li>
+							<li><ul class="updown">
+									<li class="up"><img src="../img/iconfont-up.svg"></li>
+									<li><input type="text" maxlength="1" value="6"></li>
+									<li class="down"><img src="../img/iconfont-down.png"></li>
+								</ul></li>
+							<li><ul class="updown">
+									<li class="up"><img src="../img/iconfont-up.svg"></li>
+									<li><input type="text" maxlength="1" value="6"></li>
+									<li class="down"><img src="../img/iconfont-down.png"></li>
+								</ul></li>
+							<li class="spliter"></li>
+							<li>
+								<ul class="updown">
+									<li class="up"><img src="../img/iconfont-up.svg"></li>
+									<li><input type="text" maxlength="1" value="6"></li>
+									<li class="down"><img src="../img/iconfont-down.png"></li>
+								</ul>
+							</li>
+							<li><ul class="updown">
+									<li class="up"><img src="../img/iconfont-up.svg"></li>
+									<li><input type="text" maxlength="1" value="6"></li>
+									<li class="down"><img src="../img/iconfont-down.png"></li>
+								</ul></li>
+							<li><ul class="updown">
+									<li class="up"><img src="../img/iconfont-up.svg"></li>
+									<li><input type="text" maxlength="1" value="6"></li>
+									<li class="down"><img src="../img/iconfont-down.png"></li>
+								</ul></li>
+							<li><ul class="updown">
+									<li class="up"><img src="../img/iconfont-up.svg"></li>
+									<li><input type="text" maxlength="1" value="6"></li>
+									<li class="down"><img src="../img/iconfont-down.png"></li>
+								</ul></li>
+							<li class="auto"><input type="text" readonly="readonly"
+								value="系统生成"></li>
+							<li class="genNum" title="产生号"></li>
+						</ul>
+						<div style="clear: both;"></div>
+					</div>
+				</div>
+			</div>
+			<div flowId="4">
+				<div class="head">
+					<img src="../img/headphoto.gif">
+					<div class="upload">
+						<input type="file" id="file" name="myfile">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

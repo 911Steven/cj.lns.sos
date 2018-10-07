@@ -1,0 +1,295 @@
+<script type="text/javascript" src="js/swsowner.js" plugin />
+<style>
+<!--
+.sws-cnt-o {
+	height: 100%;
+	position: relative;
+}
+
+.sws-cnt-o>.o-owner {
+	position: absolute;
+	left: 0;
+	width: 250px;
+	top: 0;
+	bottom: 0;
+	padding: 10px;
+	overflow: auto;
+}
+
+.sws-cnt-o>.o-pic {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	left: 260px;
+	padding-top: 260px;
+}
+
+.sws-cnt-o>.o-pic>span[set] {
+	position: absolute;
+	z-index: 9999999;
+	top: 10px;
+	right: 20px;
+	background: red;
+	padding: 1px 10px;
+	cursor: pointer;
+}
+
+.sws-cnt-o>.o-pic>span[set]:hover {
+	color: white;
+}
+
+.sws-cnt-o>.o-pic>img {
+	position: absolute;
+	top: 0;
+	left: 15px;
+	right: 0;
+	height: 260px;
+	width: 260px;
+}
+
+.sws-cnt-o>.o-owner>.o-card {
+	padding-left: 10px;
+}
+
+.sws-cnt-o>.o-owner>.o-card>ul>li {
+	margin-bottom: 10px;
+}
+
+.sws-cnt-o>.o-owner>.o-card>ul>li>span[label] {
+	color: gray;
+}
+
+.sws-cnt-o>.o-owner>.o-card>ul>li>span[text] {
+	font-size: 14px;
+	font-weight: bold;
+	padding-left: 10px;
+}
+
+.sws-cnt-o>.o-owner>.o-sections {
+	
+}
+
+.sws-cnt-o>.o-owner>.o-sections>ul>li {
+	margin: 10px 0;
+	position: relative;
+}
+
+.sws-cnt-o>.o-owner>.o-sections>ul>li>span {
+	position: absolute;
+	top: 4px;
+	left: 0px;
+	color: gray;
+	border-bottom: 1px solid gray;
+}
+
+.sws-cnt-o>.o-owner>.o-sections>ul>li>div {
+	padding-right: 5px;
+}
+.sws-cnt-o>.o-owner>.o-sections>ul>li[sws]{
+}
+.sws-cnt-o>.o-owner>.o-sections>ul>li[sws]>p{
+	border-bottom: 1px solid #ececec;
+	color: gray;
+}
+.sws-cnt-o>.o-owner>.o-sections>ul>li[sws]>a {
+	display: block;
+	padding: 5px 10px 5px 5px;
+	font-size: 12px;
+	text-align: center;
+}
+.sws-cnt-o>.o-owner>.o-sections>ul>li[sws]>a>img {
+	width: 35px;
+	height: 35px;
+}
+.sws-cnt-o>.o-owner>.o-sections>ul>li[sws]>ul{
+	padding-left: 10px;
+}
+
+.sws-cnt-o>.o-pic>.o-pic-sels {
+	width: 100%;
+	margin: 10px 10px 10px 25px;
+	height: 100px;
+	overflow: auto;
+}
+
+.sws-cnt-o>.o-pic>.o-pic-sels>li {
+	float: left;
+	padding: 5px 10px;
+	border: 1px solid #c2c2c2;
+	cursor: pointer;
+}
+
+.sws-cnt-o>.o-pic>.o-pic-sels>li:hover {
+	border: 1px solid red;
+}
+
+.sws-cnt-o>.o-pic>.o-pic-sels>li>img {
+	width: 40px;
+	height: 40px;
+}
+
+.sws-cnt-o>.o-pic>.o-sin {
+	padding: 15px;
+	position: relative;
+	padding-top: 30px;
+	margin-top: 10px;
+}
+
+.sws-cnt-o>.o-pic>.o-sin>span[label] {
+	position: absolute;
+	top: 4px;
+	left: 15px;
+	color: gray;
+	border-bottom: 1px solid gray;
+}
+
+.sws-cnt-o>.o-pic>.o-sin>span[editor] {
+	position: absolute;
+	top: 4px;
+	right: 15px;
+	padding: 0 15px;
+	cursor: pointer;
+}
+
+.sws-cnt-o>.o-pic>.o-sin>span[editor]:hover {
+	background: #f5f5f5;
+}
+
+.sws-cnt-o>.o-owner>.o-sections>ul>li[sws]>ul>li {
+	margin-bottom: 10px;
+	padding-left: 60px;
+	position: relative;
+}
+
+.sws-cnt-o>.o-owner>.o-sections>ul>li[sws]>ul>li>span[label] {
+	position: absolute;
+	left: 0;
+	top: 0;
+	color: gray;
+	display: inline-block;
+	width: 60px;
+	text-align: justify;
+	text-justify: inter-ideograph;
+}
+
+.sws-cnt-o>.o-owner>.o-sections>ul>li[sws]>ul>li>ul>li {
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	width: 200px;
+}
+
+.sws-cnt-o>.o-pic>.o-sin>textarea {
+	width: 100%;
+	height: 40px;
+	padding: 4px;
+	font-size: 12px;
+	resize: none;
+}
+.sws-cnt-o>.o-owner>.o-briefing>pre{
+	padding: 10px;
+	 font-family: Helvetica,"Hiragino Sans GB","Microsoft Yahei","微软雅黑",Arial,sans-serif;
+    font-size: 12px;
+    line-height: 24px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+.sws-cnt-o>.o-owner>.o-briefing>textarea {
+	width: 100%;
+	height: 80px;
+	padding: 4px;
+	font-size: 12px;
+	resize: none;
+}
+-->
+</style>
+
+<div class='sws-cnt-o'>
+	<ul class="o-owner">
+		<li class="o-card">
+			<ul>
+				<li username><span label>用户：</span><span text>zhaoxb</span></li>
+				<li nick><span label>昵称：</span><span text>Carocean</span></li>
+				<li sex><span label>性别：</span><span text>女</span></li>
+			</ul>
+		</li>
+		<li class='o-briefing'><span title>个人简介</span>
+			<pre>原名：赵向彬 毕业于北京化工大学 面向连接编程之父</pre>
+		</li>
+		<li class='o-sections'><span title>视窗</span>
+			<ul swslist>
+				<li sws><a href="#"><img src="img/iconfont-weibo.svg"
+						plugin><br /> <span bottom>动客</span><br /> <span type
+						style='color: gray;'>类型</span> </a>
+					<p>
+						<span label>视窗动态：</span>
+					</p>
+					<ul>
+						<li product><span label>产品：</span>
+							<ul>
+								<li><span item>工在地有了</span></li>
+							</ul></li>
+						<li article><span label>博客：</span>
+							<ul>
+								<li><span item>工在地有了</span></li>
+							</ul></li>
+						<li shuoshuo><span label>说说：</span>
+							<ul>
+								<li><span item>工在地有了</span></li>
+							</ul></li>
+						<li myspace><span label>视窗空间：</span>
+							<ul>
+								<li><span item>工在地有了</span></li>
+							</ul></li>
+						<li homespace><span label>主空间：</span>
+							<ul>
+								<li><span item>工在地有了</span></li>
+							</ul></li>
+					</ul></li>
+				<li sws><a href="#"><img src="img/iconfont-weibo.svg"
+						plugin><br /> <span bottom>动客</span><br /> <span type
+						style='color: gray;'>类型</span> </a>
+					<p>
+						<span label>视窗动态：</span>
+					</p>
+					<ul>
+						<li product><span label>产品：</span>
+							<ul>
+								<li><span item>工在地有了</span></li>
+							</ul></li>
+						<li article><span label>博客：</span>
+							<ul>
+								<li><span item>工在地有了</span></li>
+							</ul></li>
+						<li shuoshuo><span label>说说：</span>
+							<ul>
+								<li><span item>工在地有了</span></li>
+							</ul></li>
+						<li myspace><span label>视窗空间：</span>
+							<ul>
+								<li><span item>工在地有了</span></li>
+							</ul></li>
+						<li homespace><span label>主空间：</span>
+							<ul>
+								<li><span item>工在地有了</span></li>
+							</ul></li>
+					</ul></li>
+			</ul></li>
+	</ul>
+	<div class='o-pic'>
+		<span set>设为头像</span> <img display src="img/pic.gif" plugin>
+		<ul class="o-pic-sels">
+			<li><img src="img/pic.gif" plugin></li>
+			<li><img src="img/head.jpg" plugin></li>
+			<li><img src="img/baner.jpg" plugin></li>
+			<li><img src="img/pic.gif" plugin></li>
+		</ul>
+		<div style='clear: both;' />
+		<div class="o-sin">
+			<span label>个人签名：</span>
+			<p>螓首蛾眉，巧笑倩兮，美目盼兮</p>
+		</div>
+	</div>
+</div>
+

@@ -1,0 +1,29 @@
+[
+	{
+		"categoryId":"control.panel",
+		"categoryName":"控制面板应用",
+		"categoryIcon":"/img/chat.svg",
+		"desc":"控制面板应用"
+	},
+	{
+		"categoryId":"site.portal",
+		"categoryName":"站点应用",
+		"categoryIcon":"/img/mail.svg",
+		"desc":""
+	},{
+		"categoryId":"site.dynamic",
+		"categoryName":"动态应用",
+		"categoryIcon":"/img/dao.svg",
+		"desc":""
+	},{
+		"categoryId":"site.computer",
+		"categoryName":"云计算应用",
+		"categoryIcon":"/img/dao.svg",
+		"desc":""
+	},{
+		"categoryId":"system.framework",
+		"categoryName":"框架应用",
+		"categoryIcon":"/img/mail.svg",
+		"desc":""
+	}
+]

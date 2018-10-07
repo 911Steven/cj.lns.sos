@@ -1,0 +1,546 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<title>云网</title>
+<link href="../../../../css/global.css" type="text/css" rel="stylesheet">
+<link href="../../../../css/pages/portal-viewer.css" type="text/css"
+	rel="stylesheet">
+<script type="text/javascript"
+	src="../../../../js/jquery/jquery-2.1.4.js"></script>
+<style type="text/css">
+#content_inner>.body>pre>img {
+	width: 100%;
+}
+
+.grid-s5m0e5 {
+	height: 21800px;
+}
+#content_inner > .body > pre>.result{
+	font-size: 10px;
+	margin-left: 60px;
+}
+#content_inner > .body > pre>.style1{
+font-size: 10px;
+	margin-left: 60px;
+}
+</style>
+</head>
+<body>
+	<div class="topbar">
+		<ul class="left">
+			<li class="about"><span label>关于</span></li>
+		</ul>
+		<ul class="right">
+			<li class="mine"><a target="_blank"
+				href="../../../../public/register2.html">注册</a></li>
+			<li class="login"><span label>登录</span></li>
+		</ul>
+	</div>
+	<div class="banner">
+		<div class="b-left"></div>
+		<div class="b-center">
+			<div class="logo">
+				<img src="../../../../img/pages/logo.png">
+				<p>云网</p>
+			</div>
+		</div>
+		<div class="b-right"></div>
+	</div>
+	<div class="grid-s5m0e5">
+		<div class="col-main">
+			<div class="main-wrap">
+				<div id="content">
+					<div id="content_inner">
+						<div class="title">
+							<p>neuron 分布式连接容器</p>
+						</div>
+						<div class="subtitle">
+							<ul>
+								<li><span label>作者：</span><span value
+									style="padding-right: 10px;">cj (赵向彬)</span><span label>发布日期：</span><span
+									value>2016年8月19日 17:01</span></li>
+							</ul>
+						</div>
+						<div class="body">
+							<div style="font-family: sans-serif; margin-bottom: 10px;">
+								<span><b>关键词：</b></span>神经网络 神经元 分布式
+							</div>
+							<div style="font-family: sans-serif; margin-bottom: 10px;">
+								<span><b>摘要：</b></span>神经元是搭建神经网络的节点容器，也是个命令行工具，它用于部署应用，连接其它神经元，有信息的接收、加工、转换、输出能力，有后续神经元的自动发现能力，
+								适用于大型分布式系统或网站
+								<br>
+								<a href="downloads/neuron.zip" plugin style="color: blue;text-decoration: underline;">下载神经元体验</a> ，如果欲得到最新版本，请求开发平台的产品中下载
+								</div>
+							<div style="font-family: sans-serif; margin-bottom: 10px;">
+								<span><b>正文：</b></span>
+							</div>
+							<pre>
+一、神经元工具目录总览：
+<p class='style1'>CJdeMacBook-Pro:neuron-sossite2 carocean$ ls -l
+total 17664
+drwxr-xr-x   5 carocean  staff      170  8  9 22:15 apps 神经元的应用目录
+-rw-r--r--   1 carocean  staff   214407  8 11 17:00 cj.lns.chip.sns.neuron-1.0.jar 神经元核心包
+-rw-r--r--   1 carocean  staff     4399  8 11 16:57 cj.lns.chip.sns.neuron.start-1.0.jar 神经元核心包
+drwxr-xr-x  10 carocean  staff      340  8 11 17:03 conf 神经元配置
+drwxr-xr-x   3 carocean  staff      102  3  7 15:31 logs 日志目录
+-rw-r--r--   1 carocean  staff  8453802  8 11 16:57 neuron-1.0.jar 神经元核心包
+-rw-r--r--   1 carocean  staff      145  3 13 12:51 neuron.bat  windows神经元启动入口脚本
+-rwxrwxrwx   1 carocean  staff      129  3 13 12:50 neuron.sh linux神经元启动入口脚本
+-rw-------   1 carocean  staff    34439  8 10 22:28 nohup.out
+drwxr-xr-x   4 carocean  staff      136  3 20 00:19 plugins 神经元的插件目录
+drwxr-xr-x   3 carocean  staff      102  5 15 10:42 work 神经元的工作临时目录</p>
+	其中的应用目录用来放置第三方应用程序，如下：<p class='style1'>
+drwxr-xr-x  3 carocean  staff  102  3 20 00:19 cj.lns.chip.sns.neuron.app.test
+drwxr-xr-x  8 carocean  staff  272  8  7 13:57 cj.lns.chip.sos.website-1.0</p>
+	神经元启动后如下：<p class='style1'>
+	 >ls
+------------------------------
+  开发者：c·j
+  版本：2016.0313.2200
+  神经元很有用，谢谢
+-------要善于用man命令----------
+ >man
+usage: app
+进入应用程序命令窗
+
+----------------
+usage: sc
+进入服务器管理命令窗
+
+----------------
+usage: ct
+进入群簇管理命令窗
+
+----------------
+usage: pc
+进入插件命令窗
+
+----------------
+usage: ls
+查看神经元说明
+
+----------------
+usage: kt
+进入证书库
+
+----------------
+usage: rp
+进入信道命令窗
+
+----------------
+ >
+ </p>
+二、神经元指令这么几类：
+	1.管理器管理指令：sc，如下：
+	<p class='style1'>  sc >ls
+
+------------服务器信息－－－－－－－－－
+    	服务名:sosSite
+    	地址:localhost
+    	端口:8085
+    	协议:http
+    	状态:listening
+    	属性:
+    		bossThreadCount:1
+    		heartbeatInterval:1000000
+    		workThreadCount:4
+
+    	------------------------
+    	服务名:tcpSite
+    	地址:localhost
+    	端口:8086
+    	协议:rio-tcp
+    	状态:listening
+    	属性:
+    		bossThreadCount:1
+    		heartbeatInterval:-1
+    		workThreadCount:10
+
+    	------------------------</p>
+	输出man可看sc的管理命令：
+	<p class='style1'>  sc >man
+服务器管理指令集
+usage: set
+为服务器设置群簇选择器，如：set basic -in serverName
+ -cl,--clear      清除选择器设置
+ -in,--in <arg>   服务器
+----------------
+usage: stop
+启动服务器。stop name
+
+----------------
+usage: sink
+为服务器插入script sink到端子，如：sink output.sinkname -in servername
+注意sinkname对应jss.js服务名
+ -in,--in <arg>   服务器
+ -re,--reload     重新加载该插件。
+                  只有runtime服务重新装载位于work目录下的对应jss服务，其它scope服务不能立即生效
+ -un,--unplug     清除sink插件
+----------------
+usage: ls
+查看服务器，如：ls -cs
+ -cs,--clusterSelector   仅查看服务器的簇选择器
+----------------
+usage: start
+启动服务器。start name -h ip:8888
+ -h,--host <arg>           主机：地址冒号端口，地址可以省略。
+ -P <property=value>       设置服务器相关属性,格式为：-Pproperty=value
+                           如心跳间隔：-PheartbeatInterval=1000
+ -t,--protocol <arg>       协议：rio-udt|rio-tcp|http|local
+ -T <poolPropName=value>   设置服务器端连接池属性，
+                           -TbossThreadCount=1
+                           主线程池大小，对于rio才有效。如没有大量的连接不停接入退出，1个即可，默认为1
+                           -TworkThreadCount=4 工作线程池大小，服务器默认为cpu数 x
+                           2，客户端默认为1
+----------------
+	</p>
+	2.簇管理指令，簇用于神经元将神经元的输出向远程连接
+	<p class='style1'> ct >ls
+    平衡算法------------------------
+
+    群簇------------------------3
+      群簇名:csc
+    	别名:客户服务接口
+    	平衡算法:cjhash
+    	匹配模式:none
+    	接受:
+    	信道类型:unicast
+    	信道插件:-
+    	插件表达式:-
+    	群簇用途:-
+    	有效目标:(2个)
+    	    名称:csc1
+    		地址:192.168.201.210
+    		端口:16000
+    		协议:rio-tcp
+    		实例:非共享
+    		属性:
+    			workThreadCount:4
+
+    	    名称:csc2
+    		地址:192.168.201.210
+    		端口:16002
+    		协议:rio-tcp
+    		实例:非共享
+    		属性:
+    			workThreadCount:4
+
+    	无效目标:(0个)
+
+    	------------------------
+      群簇名:sns
+    	别名:连接到互动中心云
+    	平衡算法:cjhash
+    	匹配模式:none
+    	接受:
+    	信道类型:unicast
+    	信道插件:-
+    	插件表达式:-
+    	群簇用途:-
+    	有效目标:(1个)
+    	    名称:c-dc1
+    		地址:192.168.201.210
+    		端口:13000
+    		协议:rio-tcp
+    		实例:非共享
+    		属性:
+    			bossThreadCount:1
+    			workThreadCount:4
+
+    	无效目标:(0个)
+
+    	------------------------
+      群簇名:sosdb
+    	别名:服务操作系统后台
+    	平衡算法:cjhash
+    	匹配模式:none
+    	接受:
+    	信道类型:unicast
+    	信道插件:-
+    	插件表达式:-
+    	群簇用途:-
+    	有效目标:(1个)
+    	    名称:sosdb-210-2
+    		地址:192.168.201.210
+    		端口:13100
+    		协议:rio-tcp
+    		实例:非共享
+    		属性:
+    			bossThreadCount:1
+    			workThreadCount:4
+
+    	无效目标:(3个)
+    	    名称:sosdb2
+    		地址:localhost
+    		端口:10000
+    		协议:rio-tcp
+    		实例:非共享
+    		失效原因:
+    		属性:
+    			bossThreadCount:1
+    			workThreadCount:0
+
+    	    名称:sosdb-210-1
+    		地址:192.168.201.210
+    		端口:13102
+    		协议:rio-tcp
+    		实例:非共享
+    		失效原因:
+    		属性:
+    			bossThreadCount:1
+    			workThreadCount:0
+
+    	    名称:sosdb1
+    		地址:localhost
+    		端口:10000
+    		协议:rio-tcp
+    		实例:非共享
+    		失效原因:
+    		属性:
+    			bossThreadCount:1
+    			workThreadCount:0
+
+
+    	------------------------</p>
+    	3.pc指令，用于列出神经元支持的簇群插件
+    	<p class='style1'> pc >ls
+    群簇插件：(4个)
+
+    	插件名	所在芯片
+    	auto.destination	basic-1.0.0.0 (D738FBCB-5A6F-4B28-94CC-E8A0BA1F7C6D)
+
+    		>用法：usage: wait
+等待远程目标的回路返回，并从中取得地址并建立连接。
+ -dname,--dname <arg>   在等待返回的回路中的头键，此值应为ip地址
+ -time,--time <arg>     回路超时时间，默认4000毫秒
+----------------
+	
+wait ip -dname neuron-address  -main xxxx -time 4000
+等待回路返回地址并向其连接构建，main是要连向的远程目标，time是回路超时间，默认4秒
+该插件尚没测试
+
+    	script	basic-1.0.0.0 (D738FBCB-5A6F-4B28-94CC-E8A0BA1F7C6D)
+
+    		>用法：	用法：
+	该插件使用jss服务在一个簇内对请求进行广播，用户可实现自定义的逻辑
+	function broadcast(frame, circuit, clients,dynamicDestnationBuilder){
+	//代码
+	}
+	注意：在使用脚本插件后，所在簇的平衡策略失效，而采用该插件自定义的平衡策略
+    	rewrite	basic-1.0.0.0 (D738FBCB-5A6F-4B28-94CC-E8A0BA1F7C6D)
+
+    		>用法：usage: 指令有：match,rewrite
+用于重写侦
+
+----------------
+
+
+usage: match
+匹配流。
+ -s,--simple <arg>     回路属性中的net协议
+ -t,--protocol <arg>   侦协议，正则表达式
+ -u,--url <arg>        侦地址，正则表达式
+----------------
+
+
+usage: rewrite
+重写或设置侦。
+ -H <property=value>   设置侦头，如：-Hproperty=value
+ -P <property=value>   设置侦参数,格式为：-Pproperty=value
+----------------
+
+
+	
+match -t PEER/1\.0 -u /device rewirte -Hcj-circuit-sync=true -Hcj-circuit-sync-timeout=3600
+匹配请求侦，并重写
+
+
+    	multicast.uniselect	basic-1.0.0.0 (D738FBCB-5A6F-4B28-94CC-E8A0BA1F7C6D)
+
+    		>用法：usage: 指令有：match,default,marshal,set
+主要用于远程目标的选路与编组内的均衡
+ -A <attributeName=value>         设置回路的属性,格式为：-AattributeName=value
+ -ab,--autobuild                  与dname结合，如果没有与-dname指定名的目标则按指定名创建目标并发起
+ -C <headName=value>              设置回路的头,格式为：-CheadName=value
+ -dname,--distinationName <arg>   指令：match。按地址匹配或自动创建远程目标的规则。
+                                  match ? -dname=dest-address -ab
+                                  其中dest-address是当前侦的head键,
+                                  信道插件将按此键在head中取ip来创建，
+                                  ip格式必须是：protocol://ip:host，将创建的目标对象以该ip地
+                                  址命名。
+ -g,--group                       匹配目标是否是编组，默认为非
+ -H <headName=value>              设置侦的头，格式：
+                                  -Hheadname=value
+ -in,--in <arg>                   指令match ?
+                                  的参数。表示构建远程目标时的ip来源，值为：FH,FP分别为侦的头，侦的参数。默
+                                  认为FH
+ -ip,--ip <arg>
+                                  侦的来源ip,即：circuit.attribute('remote-addre
+                                  ss')
+ -P <paramName=value>             设置侦的参数,格式为：-Pparamname=value
+ -share,--share
+                                  在自动创建目标时，是否启用在多个信道中共享该目标的实例，默认为不共享。设置共享可
+                                  以节省网络资源。
+ -t,--protocol <arg>              侦协议，使用正则表达式匹配，如果包含.号，则必须转义（.号的转义要用单斜扛）
+ -T <poolPropName=value>          在自动创建目标时，设置远程目标连接池属性，
+                                  -T
+                                  -TworkThreadCount=1
+                                  目标工作线程池大小，等同连接数，默认为1，该连接数在目标建立连接时一次性创建
+ -u,--url <arg>                   地址规则
+----------------
+
+
+usage: default
+设备默认的远程目标，也可以是目标编组。
+例：default xxx -g
+ -g,--group   是否是编组
+----------------
+
+
+usage: marshal
+将几个远程目标编成组，便可均衡该组内的目标。例：
+marshal 组名 -join d1,d2,d3,d4
+ -join,--join <arg>   要编入的远程目标名，以,号分隔
+----------------
+
+
+usage: set
+用于将神经元的地址设置到相应的侦和回路头中。
+ -from,--from <arg>   指令set ip
+                      的参数。表示ip的来源，值为：remote和local分别对应当前神经元流动的回路对象的：remote-
+                      address和local-address键值.默认为local
+ -to,--to <arg>       指令set ip
+                      的参数。表示将ip设置到的位置，键均为：neuron-local-address和neuron-remo
+                      ve-address值为：FH,FP,CH分别对应当前神经元流动的侦对象的头，参数和回路的头。默认为CH
+----------------
+	该插件使得多播信道由广播变为单播，并可按条件选择单一远程目标发送。
+与单播信道的差别是，多播信道同时具有所有连接到远程目标的连接，单播信道有且只有一个。
+如果使用了规则，则可使用命令匹配侦或回路，以选择远程目标不发送
+例：match 远程目标名 -ip 127.0.0.1 -t APP/1.0
+
+使用-dname动态在侦头中匹配远程目标名
+例：match ? -dname=destination-address -in FH -ab
+ab参数是根据dname指定的键以侦的head的该键值作为远程目标自动建立远程连接，并作为远程目标名
+match ? -dname=在没有ab参数的情况下可以匹配除地址之外的目标
+其中?号代表远程目标按-dname获取，且不能省。head('destination-address','rio-udt://192.168.0.125:7899')
+
+set ip -from remote|local -to FH|FP|CH
+将来源地址写入到相应的侦或回路头中。remote是当前神经元的远程客户端，local是当前神经元服务器的地址
+
+下面是配置一个簇的匹配规则例子：match ? -dname dest-host -in FH -ab
+match terminus3 -t TEST/1.0
+match terminus4 -t TEST/1.0
+marshal terminus -join terminus1,terminus2
+match terminus -g -t PEER/1.0
+default terminus</p>
+	4.app指令，用于管理应用程序，要向net进行插拔，如本例中将进程sos的芯片的input插入到sosSite,tcpSite，这样就可以接收来自这两个net的请求，应用的output输出到了sns群簇，说明它要向sns输出经应用处理后的消息到远程（或是一下神经元）：
+	<p class='style1'>  app >ls
+    程序集：serviceos
+    	进程号：sos
+    	标识：serviceos
+    	版本：1.0.0.0
+    	公司：开发者：cj;研发机构：lns平台部
+    	产品：cj.lns.chip.sos.website
+    	说明：服务操作系统
+    	Graph：
+    		接受协议：HTTP/1.1
+    		输入端子：
+    			端子：input	导线
+    				连接到的服务器：
+    					sosSite	
+    					tcpSite	
+    		输出端子：
+    			端子：output	导线
+    				连接到的服务器：
+    					-
+    				连接到的群簇：
+    					-
+    			端子：snsOutputPin	导线
+    				连接到的服务器：
+    					-
+    				连接到的群簇：
+    					sns	回馈到输入端子：-
+    			端子：cscOutputPin	导线
+    				连接到的服务器：
+    					-
+    				连接到的群簇：
+    					csc	回馈到输入端子：-
+    			端子：remoteOutputPin	导线
+    				连接到的服务器：
+    					-
+    				连接到的群簇：
+    					sosdb	回馈到输入端子：-
+
+    程序集：testApp
+    	进程号：testApp
+    	标识：cj.testApp
+    	版本：1.0.0.0
+    	公司：
+    	产品：testApp
+    	说明：
+    	Graph：
+    		接受协议：.*
+    		输入端子：
+    			端子：input	导线
+    				连接到的服务器：
+    					-
+    			端子：inputChannel	导线
+    				连接到的服务器：
+    					-
+    		输出端子：
+    			端子：output	导线
+    				连接到的服务器：
+    					-
+    				连接到的群簇：
+    					-
+    			端子：outputDevice	导线
+    				连接到的服务器：
+    					-
+    				连接到的群簇：
+    					-
+
+    默认应用是：serviceos 它是神经元全局默认的应用，它使得上下文为/根</p>
+    5.rp 神经元运行时监控命令，用于查看神经元中流动的信道。下图中可看到来自应用serviceos的两个信道被路由到远程目标sosdb和sns上，以使应用能够交由远程服务sosdb处理和互动服务sns处理并可能得到处理结果。
+    <p class='style1'>rp >ls
+    serviceos	2---------------------------------------------------
+    	信道号		信道类型		群簇名		是否包含共享目标错误
+    	1843653991    	unicast	sosdb	无共享目标	
+    		属性 ->	create-by=app.serviceos,is-prior=false,feedback-type=none,
+    			目标名		协议		主机		端口	状态		主线程		工作线程		目标实例
+    		0	sosdb-210-2	rio-tcp	192.168.201.210	13100	listening	1	4	1983530750
+
+    	1768347983    	unicast	sns	无共享目标	
+    		属性 ->	create-by=app.serviceos,is-prior=false,feedback-type=none,
+    			目标名		协议		主机		端口	状态		主线程		工作线程		目标实例
+    		0	c-dc1	rio-tcp	192.168.201.210	13000	listening	274948585</p>
+							</pre>
+						</div>
+						<div class="bottom"></div>
+					</div>
+				</div>
+				<div id="side">
+					<div class="fill"></div>
+					<div class="portlet">
+						<div class="title">
+							<span label>相关</span>
+						</div>
+						<ul class="items">
+				<li><a href="../views/ecm_hello.html" plugin target="_blank">· 从ecm 工具包的 helloworld 入门</a></li>
+		<li><a href="../views/net_hello.html" plugin target="_blank">· 从net 工具包的 helloworld 入门</a></li>
+		<li><a href="../views/intro_ecm.html" plugin target="_blank">· 介绍： ecm 面向连接电子模型开发工具包</a></li>
+		<li><a href="../views/intro_net.html" plugin target="_blank">· 介绍： net 通讯开发工具包</a></li>
+		<li><a href="../views/intro_plus.html" plugin target="_blank">· 介绍： plus 模块化、插件化、服务化增强开发工具包</a></li>
+		<li><a href="../views/intro_netdisk.html" plugin target="_blank">· 介绍： netdisk 多维云盘开发工具包</a></li>
+		<li><a href="../views/intro_netsite.html" plugin target="_blank">· 介绍： netsite 热插拔应用容器</a></li>
+		<li><a href="../views/intro_mdisk.html" plugin target="_blank">· 介绍： mdisk 多维云盘命令行工具</a></li>
+		<li><a href="../views/intro_cjnet.html" plugin target="_blank">· 介绍： cjnet 调试、测试命令行工具</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-sub"></div>
+		<div class="col-extra"></div>
+	</div>
+</body>
+</html>

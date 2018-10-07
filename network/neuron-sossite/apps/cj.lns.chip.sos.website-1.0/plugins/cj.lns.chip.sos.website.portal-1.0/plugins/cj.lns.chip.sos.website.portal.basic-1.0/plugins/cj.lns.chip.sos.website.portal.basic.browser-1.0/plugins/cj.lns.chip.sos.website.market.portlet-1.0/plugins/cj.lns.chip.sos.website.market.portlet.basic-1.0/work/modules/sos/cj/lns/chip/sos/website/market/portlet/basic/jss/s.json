@@ -1,0 +1,2 @@
+{"id":"servicews.public","phyId":80,"name":"公众","category":"portlet.sws","position":"desktop.right","contentUrl":"/basicPortlet/servicewsPublic.html","sort":1,"provider":"basicPortlet","useTemplate":"none","icon":"./servicews/img/iconfont-security.svg"}
+{"id":"servicews.viewer","phyId":81,"name":"视窗","category":"portlet.sws","position":"desktop.right","contentUrl":"/basicPortlet/servicewsViewer.html","sort":0,"provider":"basicPortlet","useTemplate":"none","icon":"./servicews/img/iconfont-security.svg"}

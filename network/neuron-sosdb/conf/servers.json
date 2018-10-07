@@ -1,0 +1,1 @@
+{"website":{"protocol":"http","port":"9800","props":{"bossThreadCount":"1","heartbeatInterval":"1000000","workThreadCount":"0"}},"sosdb":{"protocol":"rio-tcp","port":"10000","props":{"heartbeatInterval":"1000000"}}}

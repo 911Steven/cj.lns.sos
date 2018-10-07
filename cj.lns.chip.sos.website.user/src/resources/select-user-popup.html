@@ -1,0 +1,304 @@
+<script class="popup-user" type="text/javascript">
+<!--
+	$('.popup-user>.p-user-op>.p-user-button [cjevent]').on('click',
+			function() {
+				var but = $(this).attr('cjevent');
+				if (but == 'confirm') {
+
+				} else if (but == 'cancel') {
+					$(this).parents('.popup-user').hide();
+				}
+			});
+	var userList = $('.popup-user>.p-user-body>.p-user-right>.p-user-list');
+	userList.delegate('.person', 'mouseenter mouseleave', function(e) {
+		var p = $(this);
+		var input = p.children('input');
+		if (e.type == 'mouseenter') {
+			input.show();
+			return;
+		}
+		if (e.type == 'mouseleave') {
+			if (!input.prop('checked'))
+				input.hide();
+			return;
+		}
+	});
+	userList.delegate('.person', 'click', function(e) {
+		var p = $(this);
+		var check = p.children('input');
+		if (check.prop("checked")) {
+			check.prop('checked', false);
+		} else {
+			check.prop('checked', true);
+			var userPad = $('.popup-user>.p-user-view>.p-user-pad');
+			userPad.append("<li class='person' title='动客好友Id：3232323'><img class='p-h' "+
+					" src='7BF8C6FC-88A8-4279-860D-A32EA302F9F5/img/head.jpg' plugin><br> <span>Carocean</span><img "+
+					" class='p-op' src='7BF8C6FC-88A8-4279-860D-A32EA302F9F5/img/iconfont-icon.svg' plugin></li> ");
+			
+		}
+	});
+	function renderUserPadEvent(){
+		var userPad = $('.popup-user>.p-user-view>.p-user-pad');
+		userPad.delegate('.person', 'mouseenter mouseleave', function(e) {
+			var p = $(this);
+			var op = p.children('img.p-op');
+			if (e.type == 'mouseenter') {
+				op.show();
+				return;
+			}
+			if (e.type == 'mouseleave') {
+				op.hide();
+				return;
+			}
+		});
+		userPad.delegate('.person>img.p-op', 'click', function(e) {
+			var p = $(this).parent('.person');
+			p.remove();
+		});
+	};
+	renderUserPadEvent();
+//-->
+</script>
+<style class="popup-user">
+<!--
+.popup-user {
+	position: fixed;
+	top: 40px;
+	bottom: 40px;
+	left: 50%;
+	margin-left: -350px;
+	width: 700px;
+	background-color: #fff;
+	border: 3px solid #ececec;
+	-webkit-box-shadow: 0 0 15px rgba(176, 176, 176, .8);
+	-moz-box-shadow: 0 0 15px rgba(176, 176, 176, .8);
+	box-shadow: 0 0 15px rgba(176, 176, 176, .8);
+}
+
+.popup-user>.p-user-body {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 200px;
+	border-bottom: 1px solid #ececec;
+}
+
+.popup-user>.p-user-view {
+	position: absolute;
+	height: 140px;
+	left: 0;
+	right: 0;
+	bottom: 60px;
+	overflow: auto;
+	border-bottom: 1px solid #ececec;
+}
+
+.popup-user>.p-user-op {
+	position: absolute;
+	height: 60px;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: #f5f5f5;
+}
+
+.popup-user>.p-user-op>.p-user-button {
+	margin-top: 8px;
+	position: absolute;
+	right: 40px;
+}
+
+.popup-user>.p-user-op>.p-user-button>li {
+	float: left;
+	margin-right: 40px;
+	padding: 10px 30px;
+	border: 1px solid #ececec;
+}
+
+.popup-user>.p-user-op>.p-user-button>li:hover {
+	background-color: #ececec;
+}
+
+.popup-user>.p-user-body>.p-user-left {
+	top: 0;
+	left: 0;
+	width: 150px;
+	bottom: 0;
+	position: absolute;
+	border-right: 1px solid #ececec;
+	overflow: hidden;
+}
+
+.popup-user>.p-user-body>.p-user-left>.search {
+	height: 40px;
+	position: relative;
+}
+
+.popup-user>.p-user-body>.p-user-left>.search>input {
+	padding: 5px 30px 5px 5px;
+	height: 100%;
+	width: 100%;
+	position: static;
+	color: gray;
+	position: static;
+}
+
+.popup-user>.p-user-body>.p-user-left>.search>img {
+	position: absolute;
+	top: 8px;
+	right: 4px;
+	width: 25px;
+	height: 25px;
+}
+
+.popup-user>.p-user-body>.p-user-left>.group-box {
+	overflow: auto;
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	top: 40px;
+}
+
+.popup-user>.p-user-body>.p-user-left>.group-box>.a-g {
+	padding: 10px;
+	cursor: pointer;
+}
+
+.popup-user>.p-user-body>.p-user-left>.group-box>.a-g:hover {
+	background-color: #f5f5f5;
+}
+
+.popup-user>.p-user-body>.p-user-left>.group-box>.a-g>input {
+	margin-right: 10px;
+}
+
+.popup-user>.p-user-body>.p-user-right {
+	top: 0;
+	left: 150px;
+	right: 0;
+	bottom: 0;
+	position: absolute;
+	overflow: auto;
+}
+
+.popup-user>.p-user-body>.p-user-right>.p-user-list {
+	padding: 10px;
+}
+
+.popup-user>.p-user-body>.p-user-right>.p-user-list>.person {
+	float: left;
+	margin: 10px;
+	cursor: pointer;
+	text-align: center;
+	position: relative;
+}
+
+.popup-user>.p-user-body>.p-user-right>.p-user-list>.person:hover {
+	background-color: #ececec;
+}
+
+.popup-user>.p-user-body>.p-user-right>.p-user-list>.person>img {
+	width: 35px;
+	height: 35px;
+}
+
+.popup-user>.p-user-body>.p-user-right>.p-user-list>.person>input {
+	position: absolute;
+	top: 0;
+	right: 0;
+	display: none;
+}
+
+.popup-user>.p-user-view>.p-user-pad {
+	padding: 10px;
+}
+
+.popup-user>.p-user-view>.p-user-pad>.person {
+	float: left;
+	margin: 10px;
+	cursor: pointer;
+	text-align: center;
+	position: relative;
+}
+
+.popup-user>.p-user-view>.p-user-pad>.person>img.p-h {
+	width: 35px;
+	height: 35px;
+}
+
+.popup-user>.p-user-view>.p-user-pad>.person>img.p-op {
+	width: 25px;
+	height: 25px;
+	position: absolute;
+	top: -15px;
+	right: -15px;
+	display: none;
+}
+
+.popup-user>.p-user-view>.p-user-pad>.person>img.p-op:hover {
+	background-color: #ececec;
+}
+-->
+</style>
+
+<div class="popup-user">
+	<div class="p-user-body">
+		<div class="p-user-left">
+			<div class="search">
+				<input value='账号/昵称' type="text"> <img
+					src="img/iconfont-search.svg" plugin>
+			</div>
+			<ul class="group-box">
+				<li class="a-g" cjevent="groupid"><input name="groupCheck"
+					type="checkbox"><span>我的好友</span></li>
+				<li class="a-g" cjevent="groupid"><input name="groupCheck"
+					type="checkbox"><span>同事</span></li>
+				<li class="a-g" cjevent="groupid"><input name="groupCheck"
+					type="checkbox"><span>炮友</span></li>
+				<li class="a-g" cjevent="groupid"><input name="groupCheck"
+					type="checkbox"><span>吊友</span></li>
+				<li class="a-g" cjevent="groupid"><input name="groupCheck"
+					type="checkbox"><span>二手市场</span></li>
+				<li class="a-g" cjevent="groupid"><input name="groupCheck"
+					type="checkbox"><span>网友</span></li>
+				<li class="a-g" cjevent="groupid"><input name="groupCheck"
+					type="checkbox"><span>我的好友</span></li>
+				<li class="a-g" cjevent="groupid"><input name="groupCheck"
+					type="checkbox"><span>同事</span></li>
+				<li class="a-g" cjevent="groupid"><input name="groupCheck"
+					type="checkbox"><span>炮友</span></li>
+				<li class="a-g" cjevent="groupid"><input name="groupCheck"
+					type="checkbox"><span>吊友</span></li>
+				<li class="a-g" cjevent="groupid"><input name="groupCheck"
+					type="checkbox"><span>二手市场</span></li>
+				<li class="a-g" cjevent="groupid"><input name="groupCheck"
+					type="checkbox"><span>网友</span></li>
+			</ul>
+		</div>
+		<div class="p-user-right">
+			<ul class="p-user-list" cjevent="checkit">
+				<li class="person" title="动客好友Id：3232323"><img
+					src="img/head.jpg" plugin><br> <span>Carocean</span><input
+					type="checkbox"></li>
+				<li class="person" title="美国好友Id：3232544"><img
+					src="img/head.jpg" plugin><br> <span>想念你的微笑</span><input
+					type="checkbox"></li>
+			</ul>
+			<div style="clear: both;" />
+		</div>
+	</div>
+	<div class="p-user-view">
+		<ul class="p-user-pad" cjevent="checkit">
+		</ul>
+		<div style="clear: both;" />
+	</div>
+	<div class="p-user-op">
+		<ul class="p-user-button">
+			<li cjevent='confirm'>确认</li>
+			<li cjevent='cancel'>取消</li>
+		</ul>
+		<div style="clear: both;" />
+	</div>
+</div>

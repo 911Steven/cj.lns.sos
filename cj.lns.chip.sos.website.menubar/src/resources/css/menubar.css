@@ -1,0 +1,279 @@
+.menu-panel {
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
+
+.menu-panel img {
+	width: 12px;
+	height: 12px;
+	margin-left: 4px;
+	vertical-align: top;
+}
+.menu-panel a>img[cc] {
+	width: 20px;
+	height: 20px;
+	
+}
+.menu-panel>.menu-sos {
+	position: absolute;
+	left: 0;
+	top: 0;
+	bottom: 0;
+	width: 260px;
+}
+
+.menu-panel>.menu-sos>ul {
+	position: absolute;
+	right: 10px;
+	top: 5px;
+	white-space:nowrap;  
+}
+
+.menu-panel>.menu-sos>ul>li {
+	margin: auto 8px;
+	position: relative;
+	display: inline-block;
+	white-space:nowrap;  
+}
+
+.menu-panel>.menu-sos>ul>li>a {
+	padding: 2px 4px;
+}
+
+.menu-panel>.menu-tray {
+	position: absolute;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	width: 150px;
+}
+
+.menu-panel>.menu-tray>ul>li {
+	float: left;
+	margin: 5px 20px;
+	position: relative;
+}
+
+.menu-panel>.menu-tray>ul>li>a {
+	padding: 2px 4px;
+}
+
+.menu-panel>.menu-task {
+	position: absolute;
+	right: 150px;
+	left: 250px;
+	top: 0;
+	bottom: 0;
+}
+
+.menu-panel>.menu-task>ul.m-task-left>li {
+	float: left;
+	margin: 5px 20px;
+	position: relative;
+}
+
+.menu-panel>.menu-task>ul.m-task-left>li>a {
+	padding: auto 4px;
+	display: inline-block;
+	vertical-align: top;
+}
+.menu-panel>.menu-task>ul.m-task-center {
+	margin-top: 0;
+	padding: 3px 5px 3px 40px;
+	position: relative;
+}
+
+.menu-panel>.menu-task>ul.m-task-center>li[task] {
+	float: left;
+	border-bottom: 1px solid #f5f5f5;
+	min-width: 100px;
+	margin: 0 10px;
+	text-align: center;
+	display: none;
+	position: relative;
+}
+.menu-panel>.menu-task>ul.m-task-center>li[task]>span.close{
+	position: absolute;
+	right:0;
+	top:-2px;
+	padding: 0 4px;
+	display:none;
+}
+.menu-panel>.menu-task>ul.m-task-center>li[task]>span.close:{
+	background: #ededed;
+}
+.menu-panel>.menu-task>ul.m-task-center>.panels {
+	position: relative;
+	z-index: 99999999;
+}
+
+.menu-panel>.menu-task>ul.m-task-center>.panels>.panel {
+	display: none;
+	position: absolute;
+	min-height: 550px;
+	background: #f5f5f5;
+	min-width: 600px;
+	top: 48px;
+	left: 50px;
+	-webkit-box-shadow: 0 0 8px rgba(162,162,163, 1);
+	-moz-box-shadow: 0 0 8px rgba(162,162,163, 1);
+	box-shadow: 0 0 8px rgba(162,162,163, 1);
+	-moz-border-radius: 5px;      /* Gecko browsers */
+    -webkit-border-radius: 5px;   /* Webkit browsers */
+    border-radius:5px;
+    display: none;
+}
+.menu-panel>.menu-task>ul.m-task-center>.panels>.panel>.ctx{
+	position:absolute;
+	top:0;
+	bottom:0;
+	left:0;
+	right:0;
+}
+.menu-panel>.menu-task>ul.m-task-center>.panels>.panel>span.op{
+	position: absolute;
+	right:-20px;
+	top:0;
+	padding:0 5px;
+	color: red;
+}
+.menu-panel>.menu-task>ul.m-task-center>.panels>.panel>span.op:hover{
+	background: #f5f5f5;
+	-webkit-box-shadow: 0 0 2px rgba(162,162,163, 1);
+	-moz-box-shadow: 0 0 2px rgba(162,162,163, 1);
+	box-shadow: 0 0 2px rgba(162,162,163, 1);
+}
+.menu-panel>.menu-task>ul.m-task-center>li:hover {
+	background: #f5f5f5;
+}
+
+.menu-panel>.menu-task>ul.m-task-right {
+	position: absolute;
+	right: 10px;
+	top: 0;
+}
+
+.menu-panel>.menu-task>ul.m-task-right>li {
+	float: left;
+	margin: 5px 10px;
+	position: relative;
+}
+
+.menu-panel>.menu-task>ul.m-task-right>li>a {
+	padding: 2px 4px;
+}
+
+.menu-panel .downbox-owner {
+	background-color: white;
+}
+
+.menu-panel .downbox {
+	position: absolute;
+	left: 0;
+	top: 20px;
+	min-height: 100px;
+	min-width: 100px;
+	background-color: white;
+	display: none;
+	z-index: 999999999;
+	border-bottom: 1px solid #ececec;
+	border-right: 1px solid #ececec;
+	border-left: 1px solid #ececec;
+}
+
+.menu-panel .downbox>ul.style-row {
+	padding-top: 10px;
+}
+
+.menu-panel .downbox>ul.style-row>li {
+	padding: 5px 10px;
+	cursor: pointer;
+}
+
+.menu-panel .downbox>ul.style-row>li:hover {
+	background-color: #ececec;
+}
+
+.menu-panel .downbox>div.style-logout {
+	padding: 10px;
+	min-width: 100px;
+}
+
+.menu-panel .downbox>div.style-logout>ul {
+	border-bottom: 1px solid #ececec;
+	padding: 4px;
+}
+
+.menu-panel .downbox>div.style-logout>ul>li {
+	padding: 10px 0 10px 35px;
+	cursor: pointer;
+	position: relative;
+}
+.menu-panel .downbox>div.style-logout>ul>li>img{
+	width:25px;
+	height: 25px;
+	position: absolute;
+	left:0px;
+	top:8px;
+}
+.menu-panel .downbox>div.style-logout>ul>li:hover {
+	background-color: #ececec;
+}
+
+.menu-panel .downbox>div.style-logout>div {
+	margin-top: 10px;
+	text-align: center;
+}
+
+.menu-panel .downbox>div.style-logout>div>a {
+	padding: 4px 20px;
+}
+
+.menu-panel .downbox>div.style-logout>div>a:hover {
+	background-color: #ececec;
+}
+.menu-panel > .menu-task > ul.m-task-left > .service>.downbox{
+	padding-top: 10px;
+}
+.menu-panel > .menu-task > ul.m-task-left > .service>.downbox>li{
+	padding: 5px 10px;
+	cursor: pointer;
+}
+.menu-panel > .menu-task > ul.m-task-left > .service>.downbox>li:hover{
+	background: #f5f5f5;
+}
+.menu-panel > .menu-task > ul.m-task-left > .service >.downbox> .scenter{
+	background: white;
+}
+.menu-panel > .menu-task > ul.m-task-left > .service >.downbox> .scenter:hover{
+	background: white;
+}
+.service-center{
+	position:absolute;
+	background: white;
+	height: 580px;
+	width: 540px;
+	left:100px;
+	top:0;
+	border:2px solid #ececec;
+	cursor: default;
+	display: none;
+	padding: 0;
+}
+.service-center>.content{
+	width:100%;
+	height: 100%;
+}
+.service-center>span[close]{
+	padding: 2px 15px;
+	position: absolute;
+	right:-42px;
+	top:10px;
+	background: #ececec;
+	color: red;
+}
+.service-center>span[close]:hover{
+	background: gray;
+	color: white;
+}

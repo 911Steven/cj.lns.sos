@@ -1,0 +1,111 @@
+<html>
+<head>
+<link href="./api/css/zTreeStyle/zTreeStyle.css" rel="stylesheet" />
+<link href="/css/pa.css" rel="stylesheet" plugin />
+<script src="./api/js/jquery.ztree.all-3.5.js" />
+<script type="text/javascript" src="js/pa.js" plugin />
+</head>
+<body>
+	<div class="security bop">
+		<div class="content-panel">
+			<div class="sp-panel subject-sels">
+				<a href="#" rcode='allContacts' onclick="selectSubjectKind(this)">全部联系人</a><a
+					href="#" rcode='dongkes' onclick="selectSubjectKind(this)">动客联系人</a><a
+					href="#" onclick="selectSubjectKind(this)">地理微博联系人</a><a href="#"
+					onclick="selectSubjectKind(this)">仅自己</a><a href="#"
+					class="selected" onclick="selectSubjectKind(this)">自定义</a>
+			</div>
+			<div class="sp-panel" subject-group>分组</div>
+			<ul class="list security-pa" subject-group>
+				<li class="item" onclick="selectSubject(this)"><img
+					src="img/iconfont-picfill.svg" plugin>
+					<div class="main-panel">
+						<div>我的好友</div>
+					</div>
+					<div class="opp">
+						<input type="checkbox">
+					</div></li>
+				<li class="item" onclick="selectSubject(this)"><img
+					src="img/iconfont-picfill.svg" plugin>
+					<div class="main-panel">
+						<div>我的同事</div>
+					</div>
+					<div class="opp">
+						<input type="checkbox">
+					</div></li>
+			</ul>
+			<div class="sp-panel secu-setting" subject-allow>
+				<span>指定人</span><a onclick="selectAllowUsers();">设置</a>
+			</div>
+			<div class="list security-pa">
+				<ul class="user-list" subject-allow>
+					<li class="user"><img src="img/head.jpg" plugin><br>
+						<span>马面会吃饭</span></li>
+					<li class="user"><img src="img/iconfont-cameraaddfill.svg"
+						plugin><br> <span>c.j</span></li>
+					<li class="user"><img src="img/head.jpg" plugin><br>
+						<span>浪比的云浪比的云浪比的云</span></li>
+					<li class="user"><img src="img/iconfont-cameraaddfill.svg"
+						plugin><br> <span>马面会吃饭</span></li>
+					<li class="user"><img src="img/head.jpg" plugin><br>
+						<span>c.j</span></li>
+					<li class="user"><img src="img/iconfont-cameraaddfill.svg"
+						plugin><br> <span>浪比的云</span></li>
+					<li class="user"><img src="img/head.jpg" plugin><br>
+						<span>马面会吃饭</span></li>
+					<li class="user"><img src="img/iconfont-cameraaddfill.svg"
+						plugin><br> <span>c.j</span></li>
+					<li class="user"><img src="img/head.jpg" plugin><br>
+						<span>浪比的云</span></li>
+				</ul>
+				<div style="clear: both;" />
+			</div>
+			<div class="sp-panel secu-setting" subject-deny>
+				<span>拒绝名单</span><a onclick="selectDenyUsers();">设置</a><br>添加到该名单中的联系人或联系人组内的联系人会被拒绝当前许可
+			</div>
+			<div class="list security-pa" subject-deny>
+				<ul class="user-list" subject-deny>
+					<li class="user"><img src="img/iconfont-repair.svg" plugin><br>
+						<span>马面会吃饭</span></li>
+					<li class="user"><img src="img/iconfont-cameraaddfill.svg"
+						plugin><br> <span>c.j</span></li>
+				</ul>
+				<div style="clear: both;" />
+			</div>
+			<div class="sp-panel secu-setting" subject-aq>
+				回答问题<br>设置针对当前许可的申请规则，通过规则申请的用户可使用当前许可。
+			</div>
+			<ul class="list security-pa" subject-aq>
+				<li class="item bq" rq>
+					<div>
+						<label>答对问题的人:</label>
+					</div>
+				</li>
+				<li class="item bq" wq>
+					<div>
+						<label>未答对问题的人:</label>
+					</div>
+				</li>
+				<ul class="item aq" aq>
+					<li add><span cjaction='add'>添加问题</span></li>
+					<li aq><label>问题1:</label><input name='a'><label>答案：</label><input
+						name='q'><span cjaction='del'>X</span></li>
+					<li aq><label>问题2:</label><input name="a"><label>答案：</label><input
+						name="q"><span cjaction='del'>X</span></li>
+				</ul>
+			</ul>
+			<div class="sp-panel secu-setting" subject-apply>
+				<span>应用于</span><br>以下是子资源树勾选以确定权限应用范围
+			</div>
+			<ul class='apply-button'>
+				<li><a action="all">全部子资源</a></li>
+				<li><a action="custom">自定义</a></li>
+			</ul>
+			<div style="clear: both;" />
+			<div class="childs-container bop">
+				<div class="content-panel childs-box"></div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

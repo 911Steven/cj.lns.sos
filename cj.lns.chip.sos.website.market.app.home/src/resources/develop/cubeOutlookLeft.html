@@ -1,0 +1,265 @@
+<script type="text/javascript" src="develop/js/outlookLeft.js" plugin />
+<style>
+<!--
+.portlet[cube] {
+	background: white;
+}
+
+.portlet[cube]>.cube-face {
+	
+}
+
+.portlet[cube]>.cube-face>div {
+	margin: 10px;
+}
+
+.portlet[cube]>.cube-face>.face {
+	text-align: center;
+}
+
+.portlet[cube]>.cube-face>.face>img {
+	width: 80px;
+	height: 80px;
+	cursor: pointer;
+}
+
+.portlet[cube]>.cube-face>.face>img:hover {
+	border: 1px solid #ececec;
+}
+
+.portlet[cube]>.cube-face>.face>p {
+	cursor: pointer;
+}
+
+.portlet[cube]>.cube-face>.face>p:hover {
+	text-decoration: underline;
+}
+
+.portlet[cube]>.cube-face>.face>p[name] {
+	margin-top: 10px;
+}
+
+.portlet[cube]>.cube-face>.spliter {
+	text-align: right;
+	margin: 0;
+	padding-right: 10px;
+	border-bottom: 1px solid #ececec;
+	color: gray;
+	position: relative;
+	margin-bottom: 10px;
+}
+
+.portlet[cube]>.cube-face>.spliter>span[visitors] {
+	position: absolute;
+	display: inline-block;
+	left: 10px;
+	top: 0;
+	cursor: pointer;
+	color: #001F8C;
+}
+
+.portlet[cube]>.cube-face>.spliter>span[visitors]>span[label] {
+	padding-right: 3px;
+}
+
+.portlet[cube]>.cube-face>.spliter>span[visitors]:hover {
+	text-decoration: underline;
+}
+
+.portlet[cube]>.cube-tips {
+	padding: 0 10px;
+}
+
+.portlet[cube]>.cube-tips>ul {
+	margin-bottom: 10px;
+}
+
+.portlet[cube]>.cube-tips>.spliter {
+	height: 1px;
+	background: #ececec;
+}
+
+.portlet[cube]>.cube-tips>ul.space>li {
+	padding: 2px 0;
+}
+
+.portlet[cube]>.cube-tips>ul.space>li>span {
+	padding-right: 5px;
+}
+
+.portlet[cube]>.cube-tips>ul.space>li>span[unit] {
+	color: gray;
+}
+
+.portlet[cube]>.cube-tips>ul.space>li>span[label] {
+	width: 50px;
+	display: inline-block;
+	text-align: justify;
+	color: gray;
+}
+
+.portlet[cube]>.cube-tips>ul.space>li>span[value] {
+	padding: 0 8px;
+}
+
+.portlet[cube]>.cube-tips>ul.statistics>li {
+	padding: 2px 0;
+}
+
+.portlet[cube]>.cube-tips>ul.statistics>li[volume]>ul {
+	margin-left: 20px;
+}
+
+.portlet[cube]>.cube-tips>ul.statistics>li[volume]>ul>li>span {
+	padding-right: 5px;
+}
+
+.portlet[cube]>.cube-tips>ul.statistics>li[volume]>ul>li>span[label] {
+	width: 40px;
+	display: inline-block;
+	text-align: Justify;
+	text-justify: inter-ideograph;
+	color: gray;
+}
+
+.portlet[cube]>.cube-tips>ul.statistics>li[volume]>ul>li>span[unit] {
+	color: gray;
+}
+
+.portlet[cube]>.cube-tips>ul.statistics>li[volume]>ul>li>span[value] {
+	padding: 0 8px;
+	cursor: pointer;
+	text-decoration: underline;
+	color: #001F8C;
+}
+
+.portlet[cube]>.cube-tips>ul.statistics>li[volume]>ul>li>span[value]:hover
+	{
+	background: #f5f5f5;
+}
+
+.portlet[cube]>.cube-tips>ul.statistics>li>span {
+	padding-right: 5px;
+}
+
+.portlet[cube]>.cube-tips>ul.statistics>li>span[label] {
+	width: 60px;
+	display: inline-block;
+	text-align: Justify;
+	text-justify: inter-ideograph;
+	color: gray;
+}
+
+.portlet[cube]>.cube-tips>ul.statistics>li>span[unit] {
+	color: gray;
+}
+
+.portlet[cube]>.cube-tips>ul.statistics>li>span[value] {
+	padding: 0 8px;
+}
+.portlet[cube]>.cube-tips>ul.statistics>li[volume],
+.portlet[cube]>.cube-tips>ul.statistics>li[col] {
+	position: relative;
+}
+.portlet[cube]>.cube-tips>ul.statistics>li[volume]>.panel,
+.portlet[cube]>.cube-tips>ul.statistics>li[col]>.panel {
+	min-width: 100px; min-height : 40px;
+	background: #FFE599;
+	position: absolute;
+	top: 20px;
+	left: 65px;
+	display: none;
+	min-height: 40px;
+}
+.portlet[cube]>.cube-tips>ul.statistics>li[volume]>.panel>.tuple,
+.portlet[cube]>.cube-tips>ul.statistics>li[col]>.panel>.tuple {
+	padding: 0px 5px;
+	font-size: 10px;
+}
+.portlet[cube]>.cube-tips>ul.statistics>li[volume]>.panel>.tuple>ul,
+.portlet[cube]>.cube-tips>ul.statistics>li[col]>.panel>.tuple>ul {
+	display: inline-block;
+	white-space: nowrap;
+}
+.portlet[cube]>.cube-tips>ul.statistics>li[volume]>.panel>.tuple>ul>li,
+.portlet[cube]>.cube-tips>ul.statistics>li[col]>.panel>.tuple>ul>li {
+	display: inline-block;
+	white-space: nowrap;
+	margin-right: 5px;
+}
+.portlet[cube]>.cube-tips>ul.statistics>li[volume]>.panel>.tuple>ul>li>span[label],
+.portlet[cube]>.cube-tips>ul.statistics>li[col]>.panel>.tuple>ul>li>span[label]
+	{
+	display: inline-block;
+	margin-right: 2px;
+}
+.portlet[cube]>.cube-tips>ul.statistics>li[volume]>span[value]:hover,
+.portlet[cube]>.cube-tips>ul.statistics>li[col]>span[value]:hover {
+	background: #f5f5f5;
+}
+.portlet[cube]>.cube-tips>ul.statistics>li[volume]>span[value],
+.portlet[cube]>.cube-tips>ul.statistics>li[col]>span[value] {
+	text-decoration: underline;
+	color: #001F8C;
+	cursor: pointer;
+}
+-->
+</style>
+<div cube class="portlet">
+	<div class="cube-face">
+		<div class="face">
+			<img src="develop/img/disk-ssd.svg" plugin>
+			<p name>
+				<span label>开发网</span>
+			</p>
+			<p num>
+				<span label>6956155510</span>
+			</p>
+		</div>
+		<div class="spliter">
+			<span visitors style='display: none'><span label>访客</span>(<span
+				value>200</span>)</span><span label>存储空间</span>
+		</div>
+	</div>
+	<div class="cube-tips">
+		<ul class="space">
+			<li per><span label>空间已用</span><span value>100</span><span
+				unit>%</span></li>
+			<li datasize><span label>数据大小</span><span value>2</span><span
+				unit>G</span></li>
+			<li spacesize><span label>空间占用</span><span value>2</span><span
+				unit>G</span></li>
+			<li capacity><span label>空间配额</span><span value>2</span><span
+				unit>G</span></li>
+		</ul>
+		<ul class=statistics>
+			<li col><span label>系统表</span><span value>2</span><span unit>个</span>
+				<ul class="panel">
+					<li class="tuple">
+						<ul>
+							<li name><span label></span><span value>product.docs</span></li>
+							<li rows><span label>行数:</span><span value>80</span></li>
+							<li size><span label>数据小大:</span><span value>23</span></li>
+							<li space><span label>空间占用:</span><span value>23</span></li>
+							<li index><span label>索引占用:</span><span value>23</span></li>
+						</ul>
+					</li>
+				</ul></li>
+			<li folder><span label>目录数</span><span value>2</span><span unit>个</span></li>
+			<li file><span label>文件数</span><span value>2</span><span unit>个</span></li>
+			<li volume><span label>文件卷</span><span value>2</span><span unit>个</span>
+			<ul class="panel">
+					<li class="tuple">
+						<ul>
+							<li name><span label></span><span value>product.docs</span></li>
+							<li rows><span label>文件数:</span><span value>80</span></li>
+							<li count><span label>块数:</span><span value>23</span></li>
+							<li size><span label>数据大小:</span><span value>23</span></li>
+							<li space><span label>空间占用:</span><span value>23</span></li>
+							<li index><span label>索引占用:</span><span value>23</span></li>
+						</ul>
+					</li>
+				</ul></li>
+		</ul>
+	</div>
+</div>

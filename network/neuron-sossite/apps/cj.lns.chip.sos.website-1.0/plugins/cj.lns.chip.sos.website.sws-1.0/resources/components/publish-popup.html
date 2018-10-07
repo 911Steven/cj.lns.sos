@@ -1,0 +1,56 @@
+<style>
+<!--
+.pub-panel {
+	min-width: 320px;
+	min-height: 120px;
+	padding: 10px;
+	background-color: #f5f5f5;
+}
+.pub-panel>.pub-region {
+	
+}
+
+.pub-panel .a-t-box>.a-t-box-a {
+	float: left;
+	padding: 10px 20px;
+	cursor: pointer;
+	border: 1px solid #f5f5f5;
+}
+.pub-panel .a-t-box>.a-t-box-a:hover{
+	border: 1px solid red;
+}
+.pub-panel .a-t-box>.a-t-box-a>img {
+	width: 40px;
+	height: 40px;
+}
+.pub-panel .a-t-box>.a-t-box-a>span {
+	font-size: 11px;
+	color: gray;
+}
+-->
+</style>
+<script type="text/javascript">
+<!--
+(function(){
+	var item = $('.pub-panel').find('.a-t-box>.a-t-box-a[cjopen]');
+	item.on('click', function() {
+		var resourceId=$(this).attr('resourceId');
+		var valueId=$(this).attr('cjopen');
+		var tool=$(this).attr('tool');
+		$.cj.App.open(tool,resourceId,valueId);
+	});
+})();
+
+//-->
+</script>
+<div class="pub-panel">
+	<div class="pub-region">
+		<ul class="a-t-box">
+			<li class="a-t-box-a"><img src="img/iconfont-cameraaddfill.svg" plugin><br> <span>讨论</span></li>
+			<li class="a-t-box-a"><img src="img/iconfont-cameraaddfill.svg" plugin><br> <span>发布日志</span></li>
+			<li class="a-t-box-a"><img src="img/iconfont-cameraaddfill.svg" plugin><br> <span>发布文章</span></li>
+			<li class="a-t-box-a"><img src="img/iconfont-cameraaddfill.svg" plugin><br> <span>发布产品</span></li>
+		</ul>
+		<div style="clear: both;" />
+	</div>
+</div>

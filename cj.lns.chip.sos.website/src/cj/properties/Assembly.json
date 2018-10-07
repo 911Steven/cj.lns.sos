@@ -1,0 +1,53 @@
+{
+	entryPoint : {
+		activators : [
+		              {
+		            	  name:"服务操作系统启动器",
+		            	  class:"cj.lns.chip.sos.website.ServiceOSActivator",
+		            	  parameters:{}
+		              }
+			]
+	},
+	assemblyInfo : {
+		assemblyTitle : "serviceos",
+		assemblyResource:"site=/site;http.root=$(site)/framework;http.jss=$(site)/jss/http;ws.jss=$(site)/jss/ws;resource=/resources",
+		assemblyDescription : "服务操作系统",
+		assemblyConfiguration : "",
+		assemblyCompany : "开发者：cj;研发机构：lns平台部",
+		assemblyProduct : "cj.lns.chip.sos.website",
+		assemblyCopyright : "Copyright   2011",
+		assemblyTrademark : "",
+		assemblyCulture : "",
+		guid : "serviceos",
+		assemblyVersion : "1.0.0.0",
+		assemblyFileVersion : "1.0.0.0",
+		readme:"/readme.txt",
+		assemblyIcon:"plugin-noicon-default.icon"
+	},
+	global:{
+		default:"zh_CN",
+		desc:"如果系统环境要求各芯片采用的语言本芯片没有，则芯片可采用默认语言"
+		},
+	serviceContainer : {
+		name : "netContainer",
+		switchFilter:"off",
+		jss:[{
+			module:"portlets",
+			package:"site.framework.portlets",
+			runtimeHome:"/work/",
+			unzip:"true",
+			searchMode:"link",
+			extName:".jss.js"
+		}],
+		scans : [{
+					package : "cj.lns.chip.sos.website",
+					extName : ".class|.json|.xml",
+					exoterical:"true"
+				},{
+					package : "cj.lns.common.sos.website.moduleable",
+					extName : ".class|.json|.xml",
+					exoterical:"true"
+				}]
+
+	}
+}

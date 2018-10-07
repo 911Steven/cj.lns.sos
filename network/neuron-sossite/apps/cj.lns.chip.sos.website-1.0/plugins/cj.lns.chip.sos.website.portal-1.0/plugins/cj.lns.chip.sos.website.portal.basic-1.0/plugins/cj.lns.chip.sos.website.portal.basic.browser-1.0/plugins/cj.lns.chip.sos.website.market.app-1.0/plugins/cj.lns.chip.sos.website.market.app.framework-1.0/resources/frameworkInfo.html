@@ -1,0 +1,139 @@
+<html>
+<head>
+<script type="text/javascript" src="js/jquery/jquery-2.1.4.js" ></script>
+<script type="text/javascript">
+	$(document)
+			.ready(
+					function() {
+						function print(fi) {
+							var html = "<ul>";
+							var plugins = fi.plugins;
+							for (var i = 0; i < plugins.length; i++) {
+								var it = plugins[i];
+								html += "<li id='"+it.assemblyGuid+"' parent='"+it.dependencyPlugin+"'>"
+										+"<img src='/sos/sos-framework/frameworkInfo.html?appIcon="+it.assemblyGuid+"' >"
+										+"<ul class='fi-tl'>"
+										+"<li>"
+										+ it.assemblyTitle
+										+ "-"
+										+ it.assemblyVersion
+										+"</li>"
+										+"<li>"
+										+it.assemblyDescription
+										+"</li>"
+										+"</ul>"
+										+"<ul class='fi-de'>"
+										+"<li>"
+										+"<label>开发公司：</label>"	
+										+"<span>"+it.assemblyCompany+"</span>"	
+										+"</li>"
+										+"<li>"
+										+"<label>开发者网站：</label>"	
+										+"<span>"+it.assemblyDeveloperHome+"</span>"	
+										+"</li>"
+										+"<li>"
+										+"<label>版权：</label>"	
+										+"<span>"+it.assemblyCopyright+"</span>"	
+										+"</li>"
+										+"<li>"
+										+"<label>产品：</label>"	
+										+"<span>"+it.assemblyProduct+"</span>"	
+										+"</li>"
+										+"</ul>"
+										+ "</li>"
+							}
+							html += "</ul>";
+							return html;
+						}
+						$.getJSON("frameworkInfo.html?type=json",
+								function(json) {
+									var html = "";
+									$('.fi-container').html(print(json));
+									$('.fi-container>ul>li>.fi-tl').on('click',function(){
+										var de=$(this).parent('li').children('.fi-de');
+										de.toggle();
+									});
+								}); 
+					});
+</script>
+<SCRIPT type="text/javascript">
+		<!--
+		
+
+		$(document).ready(function(){
+			
+		});
+		//-->
+	</SCRIPT>
+<style type="text/css">
+* {
+	margin: 0;
+	padding: 0;
+	/*-moz-user-select: none;*/
+}
+
+* li {
+	list-style: none;
+}
+
+.fi-container {
+	
+}
+
+.fi-container>ul>li {
+	position: relative;
+	padding-left: 60px;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	margin: 10px auto;
+}
+
+.fi-container>ul>li {
+	background-color: #fff;
+}
+
+.fi-container>ul>li:hover {
+	border: 1px solid #cecece;
+}
+
+.fi-container>ul>li>img {
+	width: 35px;
+	height: 35px;
+	position: absolute;
+	top: 15px;
+	left: 10px;
+}
+
+.fi-container>ul>li>.fi-tl {
+	cursor: pointer;
+	font-size: 12px;
+	font-weight: bold;
+}
+.fi-container>ul>li>.fi-tl>li:FIRST-CHILD{
+	margin-bottom: 10px;
+}
+.fi-container>ul>li>.fi-de {
+	display: none;
+	margin-top: 10px;
+	border-top: 1px solid #C8C8C8;
+}
+.fi-container>ul>li>.fi-de>li{
+	margin: 10px;
+	font-size: 12px;
+}
+.fi-container>ul>li>.fi-de>li>label{
+	width:100px;
+	display: inline-block;
+	text-align: right;
+}
+.fi-container>ul>li>.fi-de>li>span{
+	margin-left: 15px;
+}
+</style>
+</head>
+<body>
+	<div class='fi-container'>
+		loading...
+	</div>
+</body>
+</html>

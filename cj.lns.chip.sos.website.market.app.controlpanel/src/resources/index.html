@@ -1,0 +1,266 @@
+<script type="text/javascript">
+<!--
+(function(){
+	var nav = {
+			appId : '',
+			history : [],
+			current : {
+				openContent : '',
+				title : '',
+				img : ''
+			},
+			memo : function(openContent, img, title) {
+				var prev={};
+				if(nav.current.openContent!=''&&typeof nav.current.openContent !='undefined'){
+					prev.openContent = nav.current.openContent;
+					prev.img = nav.current.img;
+					prev.title = nav.current.title;
+					nav.history.push(prev);
+				}
+				nav.current.openContent = openContent;
+				nav.current.img = img;
+				nav.current.title = title;
+			},
+			restore:function(){
+				var prev=nav.history.pop();
+				nav.current.openContent =  prev.openContent;
+				nav.current.img =prev.img;
+				nav.current.title = prev.title;
+
+			},
+			displayNav : function() {
+				var cntNav = $('.ctr-panel>.content-nav');
+				cntNav.find('.cur-title').html(nav.current.title);
+				if (nav.history.length==0) {
+					cntNav.find('.prev').hide();
+					cntNav.find('.spliter').hide();
+				} else {
+					var prev=nav.history[nav.history.length-1];
+					cntNav.find('.prev').show();
+					cntNav.find('.spliter').show();
+					cntNav.find('.prev').attr('openContent', prev.openContent);
+					cntNav.find('.prev>img').attr('src', prev.img);
+					cntNav.find('.prev>span').html(prev.title);
+				}
+			}
+		};
+		$('.ctr-panel').delegate('[openContent]', 'click', function() {
+			var the=$(this);
+			var isBack=the.parent('.content-nav').length>0?true:false;
+			var url = the.attr('openContent');
+			url=encodeURI(url);
+			$.ajax({
+				type : 'post',
+				url : url,
+				success : function(data) {
+					var old=$('.ctr-panel> .content').html();
+					$('.ctr-panel> .content').html(data);
+					if(isBack){
+						nav.restore();
+					}else{
+						var navEle=$('.ctr-panel> .content nav');
+						if(navEle.length<1){
+							alert("错误：要求返回nav标签,用于导航显示，格式：<nav imgsrc='' title='' />");
+							$('.ctr-panel> .content').html(old);
+							return;
+						}
+						nav.memo(url, navEle.attr('imgsrc'), navEle.attr('title'));
+					}
+					nav.displayNav();
+					old=null;
+				},
+				error : function(e) {
+					alert(e.status + ' ' + e.responseText);
+				}
+			});
+		});
+		$('.ctr-panel').find('[openapp]').on('click', function(e) {
+			var appId = $(this).attr('openapp');
+			var url = './controlPanelApp/?openapp=' + appId;
+			var imgsrc = $(this).find('img').attr('src');
+			var title = $(this).find('.title').text();
+			var ctrlimg = $('.ctr-panel>.panel-head>.label>img ').attr('src');
+			$.ajax({
+				type : 'post',
+				url : url,
+				success : function(data) {
+					$('.ctr-panel> .content').html(data);
+					$('.ctr-panel>.panel-head>.back').toggle();
+					$('.ctr-panel>.content-nav').toggle();
+					nav.appId = appId;
+					//nav.memo('./controlPanelApp/', ctrlimg, '控制面板');
+					nav.memo(url, imgsrc, title);
+					nav.displayNav();
+				},
+				error : function(e) {
+					alert(e.status + ' ' + e.responseText);
+				}
+			});
+		});
+		$('.ctr-panel').find('[back]').on('click', function(e) {
+			$.ajax({
+				type : 'post',
+				url : './controlPanelApp/?action=home',
+				success : function(data) {
+					$('.desktop>.windows>.win-content').html(data);
+					nav.appId = '';
+					nav.history = [];
+					nav.current = {};
+				},
+				error : function(e) {
+					alert(e.status + ' ' + e.responseText);
+				}
+			});
+
+		});
+})();
+
+//-->
+</script>
+<style>
+<!--
+.ctr-panel {
+	background-color: #EDEDED;
+	padding: 10px;
+}
+
+.ctr-panel>.panel-head {
+	position: relative;
+	height: 50px;
+}
+
+.ctr-panel>.panel-head>.label {
+	cursor: pointer;
+}
+
+.ctr-panel>.panel-head>.label>img {
+	width: 25px;
+	height: 25px;
+}
+
+.ctr-panel>.panel-head>.back {
+	position: absolute;
+	right: 0;
+	top: 0;
+	cursor: pointer;
+	height: 30px;
+	width: 60px;
+	display: none;
+	text-align: right;
+	font-size: 18px;
+}
+
+.ctr-panel>.content>.panel-body>.panel-item {
+	cursor: pointer;
+	padding: 40px 20px;
+	height: 80px;
+	width: 130px;
+	float: left;
+	margin: 1px;
+	text-align: center;
+	border: 1px solid #EDEDED;
+}
+
+.ctr-panel>.content>.panel-body>.panel-item:hover {
+	border: 1px solid red;
+}
+
+.ctr-panel>.content>.panel-body>.panel-item>img {
+	width: 50px;
+	height: 50px;
+}
+
+.ctr-panel>.content>.panel-body>.panel-item>.item>.title {
+	font-size: 13px;
+	font-weight: bold;
+}
+
+.ctr-panel>.content>.panel-body>.panel-item>.item>.desc {
+	font-size: 12px;
+	color: gray;
+}
+
+.ctr-panel>.content-nav {
+	font-weight: bold;
+	margin: 10px 0 10px 30px;
+	display: none;
+}
+
+.ctr-panel>.content-nav>.prev {
+	padding: 5px 20px 5px 40px;
+	position: relative;
+}
+
+.ctr-panel>.content-nav>.prev>img {
+	width: 25px;
+	height: 25px;
+	position: absolute;
+	left: 0;
+	top: 0px;
+}
+
+.ctr-panel>.content-nav>.prev>span {
+	
+}
+
+.ctr-panel>.content-nav>.cur-title {
+	padding-left: 20px;
+}
+-->
+</style>
+
+<div class="ctr-panel">
+	<div class="panel-head">
+		<div class="label">
+			<img src="img/iconfont-setting.svg" plugin><span>设置</span>
+		</div>
+		<div class="back" back>&larr; &#8592;</div>
+	</div>
+	<div class="content-nav">
+		<a href="#" class="prev" openContent="/security/"><img
+			src="img/iconfont-xiangzuo.svg" plugin><span>应用市场</span></a> <span class="spliter">&gt;</span><span
+			class="cur-title">控制面板</span>
+	</div>
+	<div class="content">
+		<ul class="panel-body">
+			<li class="panel-item" openapp="security"><img
+				src="img/iconfont-security.svg" plugin>
+				<div class="item">
+					<div class="title">安全隐私</div>
+					<div class="desc">信息网关、应用、菜单等</div>
+				</div></li>
+			<li class="panel-item" openapp="servicewsSetting"><img
+				src="img/iconfont-security.svg" plugin>
+				<div class="item">
+					<div class="title">系统设置</div>
+					<div class="desc">场景、布局、主题</div>
+				</div></li>
+			<li class="panel-item" openapp="appFair"><img
+				src="img/iconfont-security.svg" plugin>
+				<div class="item">
+					<div class="title">应用</div>
+					<div class="desc">启用或停用应用</div>
+				</div></li>
+			<li class="panel-item" openapp="menuFair"><img
+				src="img/iconfont-security.svg" plugin>
+				<div class="item">
+					<div class="title">菜单</div>
+					<div class="desc">为您的系统启用新菜单</div>
+				</div></li>
+
+			<li class="panel-item" openapp="portletFair"><img
+				src="img/iconfont-security.svg" plugin>
+				<div class="item">
+					<div class="title">栏目</div>
+					<div class="desc">启用或停用栏目</div>
+				</div></li>
+			<li class="panel-item" openapp="aboat"><img
+				src="img/iconfont-security.svg" plugin>
+				<div class="item">
+					<div class="title">关于</div>
+					<div class="desc">版本 开发商 主机</div>
+				</div></li>
+		</ul>
+		<div style="clear: both;"></div>
+	</div>
+</div>

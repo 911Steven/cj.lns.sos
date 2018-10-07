@@ -1,0 +1,140 @@
+//常规用法：http://leon-wood.iteye.com/blog/1708644
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'eclipse'
+	apply plugin: 'maven'
+	version = '1.0'
+    sourceSets { 
+	 main { 
+	 	java{
+	 		srcDir "$projectDir/src"
+	 	}
+	 	resources{
+		 	srcDir "$projectDir/src"
+		 }
+	 } 
+ 	}
+   	sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+    repositories {
+       mavenCentral()
+       flatDir(dirs: file("../global/lib")) 
+    }
+
+    dependencies {
+        testCompile 'junit:junit:4.8.2'
+    }
+    
+    jar {
+        manifest.attributes provider: 'cj crops'
+    }
+   
+	tasks.withType(JavaCompile) {  
+        options.encoding = "UTF-8"  
+    }  
+	
+    uploadArchives {
+	    repositories {
+	       flatDir {
+	           dirs file('../release')
+	       }
+    	}
+
+	}
+}
+
+task serviceOS_Common_service(){
+	doLast {
+			println 'sos common for service 环境发布完毕!'
+		}
+}
+serviceOS_Common_service.dependsOn ':cj.lns.common.sos.service.moduleable:release'
+serviceOS_Common_service.dependsOn ':cj.lns.common.sos.service.model:release'
+serviceOS_Common_service.dependsOn ':cj.lns.common.sos.service.info:release'
+tasks.getByPath(':cj.lns.common.sos.service.model:release').mustRunAfter tasks.getByPath(':cj.lns.common.sos.service.moduleable:release')
+tasks.getByPath(':cj.lns.common.sos.service.info:release').mustRunAfter tasks.getByPath(':cj.lns.common.sos.service.moduleable:release')
+
+
+task serviceOS_service(){
+	doLast {
+			println 'sos service环境发布完毕!'
+		}
+}
+serviceOS_service.dependsOn ':cj.lns.chip.sos.service:release'
+serviceOS_service.dependsOn ':cj.lns.chip.sos.service.db:release'
+serviceOS_service.dependsOn ':cj.lns.chip.sos.service.user:release'
+serviceOS_service.dependsOn ':cj.lns.chip.sos.service.sws:release'
+serviceOS_service.dependsOn ':cj.lns.chip.sos.service.framework:release'
+serviceOS_service.dependsOn ':cj.lns.chip.sos.service.builder:release'
+tasks.getByPath(':cj.lns.chip.sos.service.db:release').mustRunAfter tasks.getByPath(':cj.lns.chip.sos.service:release')
+tasks.getByPath(':cj.lns.chip.sos.service.user:release').mustRunAfter tasks.getByPath(':cj.lns.chip.sos.service:release')
+tasks.getByPath(':cj.lns.chip.sos.service.sws:release').mustRunAfter tasks.getByPath(':cj.lns.chip.sos.service:release')
+tasks.getByPath(':cj.lns.chip.sos.service.framework:release').mustRunAfter tasks.getByPath(':cj.lns.chip.sos.service:release')
+tasks.getByPath(':cj.lns.chip.sos.service.builder:release').mustRunAfter tasks.getByPath(':cj.lns.chip.sos.service:release')
+
+task serviceOS_Common_website(){
+	doLast {
+			println 'sos common for website 环境发布完毕!'
+		}
+}
+serviceOS_Common_website.dependsOn ':cj.lns.common.sos.website.moduleable:release'
+serviceOS_Common_website.dependsOn ':cj.lns.common.sos.website.customable:release'
+
+task serviceOS_website(){
+	doLast {
+			println 'sos website环境发布完毕!'
+		}
+}
+serviceOS_website.dependsOn ':cj.lns.chip.sos.website:release'
+serviceOS_website.dependsOn ':cj.lns.chip.sos.website.auth:release'
+serviceOS_website.dependsOn ':cj.lns.chip.sos.website.resource:release'
+serviceOS_website.dependsOn ':cj.lns.chip.sos.website.security:release'
+serviceOS_website.dependsOn ':cj.lns.chip.sos.website.user:release'
+serviceOS_website.dependsOn ':cj.lns.chip.sos.website.workbench:release'
+serviceOS_website.dependsOn ':cj.lns.chip.sos.website.sws:release'
+serviceOS_website.dependsOn ':cj.lns.chip.sos.website.portal.basic.browser:release'
+serviceOS_website.dependsOn ':cj.lns.chip.sos.website.portal.basic.mobile:release'
+serviceOS_website.dependsOn ':cj.lns.chip.sos.website.portal:release'
+serviceOS_website.dependsOn ':cj.lns.chip.sos.website.portal.basic:release'
+serviceOS_website.dependsOn ':cj.lns.chip.sos.website.market.menu:release'
+serviceOS_website.dependsOn ':cj.lns.chip.sos.website.market.menu.basic:release'
+serviceOS_website.dependsOn ':cj.lns.chip.sos.website.sossiteinfo:release'
+serviceOS_website.dependsOn ':cj.lns.chip.sos.website.desktop:release'
+serviceOS_website.dependsOn ':cj.lns.chip.sos.website.portlet:release'
+serviceOS_website.dependsOn ':cj.lns.chip.sos.website.menubar:release'
+serviceOS_website.dependsOn ':cj.lns.chip.sos.website.market.portlet:release'
+serviceOS_website.dependsOn ':cj.lns.chip.sos.website.market.portlet.basic:release'
+serviceOS_website.dependsOn ':cj.lns.chip.sos.website.startmenu:release'
+serviceOS_website.dependsOn ':cj.lns.chip.sos.website.market.app:release'
+serviceOS_website.dependsOn ':cj.lns.chip.sos.website.market.app.home:release'
+serviceOS_website.dependsOn ':cj.lns.chip.sos.website.market.app.contact:release'
+serviceOS_website.dependsOn ':cj.lns.chip.sos.website.market.app.cyberport:release'
+serviceOS_website.dependsOn ':cj.lns.chip.sos.website.market.app.controlpanel:release'
+serviceOS_website.dependsOn ':cj.lns.chip.sos.website.market.app.framework:release'
+tasks.getByPath(':cj.lns.chip.sos.website.auth:release').mustRunAfter tasks.getByPath(':cj.lns.chip.sos.website:release')
+tasks.getByPath(':cj.lns.chip.sos.website.resource:release').mustRunAfter tasks.getByPath(':cj.lns.chip.sos.website:release')
+tasks.getByPath(':cj.lns.chip.sos.website.security:release').mustRunAfter tasks.getByPath(':cj.lns.chip.sos.website:release')
+tasks.getByPath(':cj.lns.chip.sos.website.user:release').mustRunAfter tasks.getByPath(':cj.lns.chip.sos.website:release')
+tasks.getByPath(':cj.lns.chip.sos.website.sws:release').mustRunAfter tasks.getByPath(':cj.lns.chip.sos.website:release')
+tasks.getByPath(':cj.lns.chip.sos.website.workbench:release').mustRunAfter tasks.getByPath(':cj.lns.chip.sos.website.portal.basic:release')
+tasks.getByPath(':cj.lns.chip.sos.website.portal:release').mustRunAfter tasks.getByPath(':cj.lns.chip.sos.website:release')
+tasks.getByPath(':cj.lns.chip.sos.website.portal.basic:release').mustRunAfter tasks.getByPath(':cj.lns.chip.sos.website.portal:release')
+tasks.getByPath(':cj.lns.chip.sos.website.portal.basic.browser:release').mustRunAfter tasks.getByPath(':cj.lns.chip.sos.website.portal.basic:release')
+tasks.getByPath(':cj.lns.chip.sos.website.portal.basic.mobile:release').mustRunAfter tasks.getByPath(':cj.lns.chip.sos.website.portal.basic:release')
+tasks.getByPath(':cj.lns.chip.sos.website.market.menu:release').mustRunAfter tasks.getByPath(':cj.lns.chip.sos.website.portal.basic:release')
+tasks.getByPath(':cj.lns.chip.sos.website.market.menu.basic:release').mustRunAfter tasks.getByPath(':cj.lns.chip.sos.website.market.menu:release')
+tasks.getByPath(':cj.lns.chip.sos.website.sossiteinfo:release').mustRunAfter tasks.getByPath(':cj.lns.chip.sos.website.workbench:release')
+tasks.getByPath(':cj.lns.chip.sos.website.desktop:release').mustRunAfter tasks.getByPath(':cj.lns.chip.sos.website.workbench:release')
+tasks.getByPath(':cj.lns.chip.sos.website.menubar:release').mustRunAfter tasks.getByPath(':cj.lns.chip.sos.website.workbench:release')
+tasks.getByPath(':cj.lns.chip.sos.website.portlet:release').mustRunAfter tasks.getByPath(':cj.lns.chip.sos.website.workbench:release')
+tasks.getByPath(':cj.lns.chip.sos.website.market.portlet:release').mustRunAfter tasks.getByPath(':cj.lns.chip.sos.website.portal.basic:release')
+tasks.getByPath(':cj.lns.chip.sos.website.market.portlet.basic:release').mustRunAfter tasks.getByPath(':cj.lns.chip.sos.website.market.portlet:release')
+tasks.getByPath(':cj.lns.chip.sos.website.startmenu:release').mustRunAfter tasks.getByPath(':cj.lns.chip.sos.website.workbench:release')
+tasks.getByPath(':cj.lns.chip.sos.website.market.app:release').mustRunAfter tasks.getByPath(':cj.lns.chip.sos.website:release')
+tasks.getByPath(':cj.lns.chip.sos.website.market.app.home:release').mustRunAfter tasks.getByPath(':cj.lns.chip.sos.website.market.app:release')
+tasks.getByPath(':cj.lns.chip.sos.website.market.app.contact:release').mustRunAfter tasks.getByPath(':cj.lns.chip.sos.website.market.app:release')
+tasks.getByPath(':cj.lns.chip.sos.website.market.app.cyberport:release').mustRunAfter tasks.getByPath(':cj.lns.chip.sos.website.market.app:release')
+tasks.getByPath(':cj.lns.chip.sos.website.market.app.controlpanel:release').mustRunAfter tasks.getByPath(':cj.lns.chip.sos.website.market.app:release')
+tasks.getByPath(':cj.lns.chip.sos.website.market.app.framework:release').mustRunAfter tasks.getByPath(':cj.lns.chip.sos.website.market.app:release')
+
+

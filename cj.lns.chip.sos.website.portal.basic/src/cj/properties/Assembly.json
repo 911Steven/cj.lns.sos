@@ -1,0 +1,41 @@
+{
+	entryPoint : {
+		activators : []
+	},
+	assemblyInfo : {
+		assemblyTitle : "基础平台",
+		assemblyResource:"resource=/resources",
+		assemblyDescription : "基础服务操作系统平台",
+		assemblyConfiguration : "",
+		assemblyCompany : "开发者：cj;研发机构：cj工作室",
+		assemblyProduct : "cj.lns.chip.sos.website.portal.basic",
+		assemblyCopyright : "Copyright   2011",
+		assemblyTrademark : "",
+		assemblyCulture : "",
+		guid : "cjdk",
+		assemblyVersion : "1.0.0.0",
+		assemblyFileVersion : "1.0.0.0",
+		assemblyIcon:"iconfont-121fuwukaifajitai.svg"
+	},
+	global:{
+		default:"zh_CN",
+		desc:"如果系统环境要求各芯片采用的语言本芯片没有，则芯片可采用默认语言"
+		},
+	serviceContainer : {
+		name : "netContainer",
+		scans : [{
+					package : "cj.lns.chip.sos.website.portal.basic",
+					extName : ".class|.json|.xml",
+					exoterical:"true"
+				},{
+					package : "cj.lns.common.sos.website.moduleable",
+					extName : ".class|.json|.xml",
+					exoterical:"true"
+				},{
+					package : "cj.lns.common.sos.website.customable",
+					extName : ".class|.json|.xml",
+					exoterical:"true"
+				}]
+
+	}
+}

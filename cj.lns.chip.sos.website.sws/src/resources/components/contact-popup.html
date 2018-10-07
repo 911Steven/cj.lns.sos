@@ -1,0 +1,186 @@
+<script type="text/javascript">
+<!--
+(function(){
+	var t = $('.contact-panel').parent('.popup-panel');
+	if (typeof t != 'undefined')
+		t.css('top', '-190px')
+		//默认为打开用户组
+
+	var url = $(".contact-panel>.ct-main>.ct-left>.ct-kind>ul>li.selected")
+			.attr('src');
+	if (typeof url != 'undefined') {
+		$.ajax({
+			type : 'post',
+			url : url,
+			success : function(data) {
+				$('#ct-content').html(data);
+			},
+			error : function(e) {
+				alert(e.responseText);
+			}
+		});
+	}
+	var tabs = $(".contact-panel>.ct-main>.ct-left>.ct-kind>ul>li[tab]");
+	tabs.on('click', function() {
+		tabs.removeClass('selected');
+		$(this).addClass('selected');
+		var the = $(this).attr('tab');
+		var url = $(this).attr('src');
+		$(this).addClass('selected');
+		$.ajax({
+			type : 'post',
+			url : url,
+			success : function(data) {
+				$('#ct-content').html(data);
+			},
+			error : function(e) {
+				alert(e.responseText);
+			}
+		});
+	});
+	
+})();
+
+//-->
+</script>
+<style>
+<!--
+.contact-panel {
+	height: 400px;
+	min-width: 450px;
+	background: #f5f5f5;
+	padding-bottom: 80px;
+	position: relative;
+}
+
+.contact-panel>.ct-main {
+	position: relative;
+	height: 100%;
+	text-align: left;
+}
+
+.contact-panel>.ct-main>.ct-box {
+	height: 100%;
+}
+
+.contact-panel>.ct-main>.ct-box>.ct-right {
+	background: white;
+	height: 100%;
+	overflow: auto;
+}
+
+.contact-panel>.ct-main>.ct-left {
+	height: 100%;
+	position: relative;
+}
+
+.contact-panel>.ct-main>.ct-left>.ct-kind {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	text-align: right;
+	color: gray;
+}
+
+.contact-panel>.ct-main>.ct-left>.ct-kind>ul {
+	
+}
+
+.contact-panel>.ct-main>.ct-left>.ct-kind>ul>li {
+	padding: 5px 10px;
+	cursor: pointer;
+}
+
+.contact-panel>.ct-main>.ct-left>.ct-kind>ul>li.selected {
+	background: white;
+}
+
+.contact-panel>.ct-main>.ct-left>.ct-kind>ul>li:hover {
+	background: white;
+}
+
+.contact-panel>.ct-my {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	height: 80px;
+}
+
+.contact-panel>.ct-my>.card {
+	padding: 10px;
+	background-color: #f5f5f5;
+	text-align: left;
+	margin-left: -1px;
+	padding-left: 65px;
+	position: relative;
+}
+
+.contact-panel>.ct-my>.card>.ctrl-panel {
+	position: absolute;
+	right: 20px;
+	bottom: 10px;
+}
+
+.contact-panel>.ct-my>.card>.ctrl-panel>a>img {
+	width: 30px;
+	height: 30px;
+}
+
+.contact-panel>.ct-my>.card>.card-head {
+	cursor: pointer;
+	width: 60px;
+	position: absolute;
+	left: 10px;
+	top:20px;
+}
+
+.contact-panel>.ct-my>.card>.card-head>img {
+	width: 50px;
+	height: 50px;
+	border: 2px solid white;
+	-moz-border-radius: 50px; /* Gecko browsers */
+	-webkit-border-radius: 50px; /* Webkit browsers */
+	border-radius: 50px; /* W3C syntax */
+}
+
+.contact-panel>.ct-my>.card>.card-text {
+	padding: 5px 10px;
+	color: gray;
+	position: static;
+	margin-top: 5px;
+}
+.contact-panel>.ct-my>.card>.card-text >li{
+	padding: 2px 0;
+}
+-->
+</style>
+<div class="contact-panel">
+	<div class="ct-main layou-left-right ">
+		<div class="ct-box box">
+			<div class="ct-right right" id="ct-content"></div>
+		</div>
+		<div class="ct-left left">
+			<div class="ct-kind" category>
+				<ul>
+					<li class="selected" tab="userGroup">分组</li>
+					<li tab="chatGroup">群</li>
+					<li tab="comunity">地圈</li>
+					<li tab="payServicews">关注的视窗</li>
+					<li tab="services">服务号</li>
+					<li tab="acticle">关注的文章</li>
+					<li tab="acticle">关注的企业</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="ct-my">
+		<div class="card">
+			<div class="card-head">
+				<img src="./img/head.jpg" alt="" plugin>
+			</div>
+			<ul class="card-text"><li name></li><li text>生活着、感悟着、憧憬着、实现着</li></ul>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,62 @@
+{
+	"category":"system.framework",
+	"apps":[
+		{
+			"id":"test1",
+			"name":"测试1",
+			"position":"toolbar.win.app",
+			"icon":"./servicews/img/iconfont-security.svg",
+			"platform":"develop",
+			"command":"/sosFramework/",
+			"target":"_self",
+			"desc":"测度一下等",
+			"acl":[
+				"allow allUsers visible",
+				"allow allUsers mountable",
+				"deny guestUsers mountable"
+			]
+		},{
+			"id":"test2",
+			"name":"发布2",
+			"position":"toolbar.win.publish",
+			"icon":"./servicews/img/iconfont-security.svg",
+			"command":"/sosFramework/",
+			"target":"_self",
+			"platform":"dongke",
+			"desc":"发布3",
+			"acl":[
+				"allow allUsers visible",
+				"allow allUsers mountable",
+				"deny guestUsers mountable"
+			]
+		},{
+			"id":"test3",
+			"name":"发布3",
+			"position":"toolbar.win.publish",
+			"icon":"./servicews/img/iconfont-security.svg",
+			"command":"/sosFramework/",
+			"target":"_self",
+			"platform":"*",
+			"desc":"发布3",
+			"acl":[
+				"allow allUsers visible",
+				"allow allUsers mountable",
+				"deny guestUsers mountable"
+			]
+		},{
+			"id":"test4",
+			"name":"发布4",
+			"position":"toolbar.win.publish",
+			"icon":"./servicews/img/iconfont-security.svg",
+			"command":"/sosFramework/",
+			"target":"_self",
+			"platform":"*",
+			"desc":"发布4",
+			"acl":[
+				"allow $level>=2 visible",
+				"allow allUsers mountable",
+				"deny guestUsers mountable"
+			]
+		}
+	]
+}

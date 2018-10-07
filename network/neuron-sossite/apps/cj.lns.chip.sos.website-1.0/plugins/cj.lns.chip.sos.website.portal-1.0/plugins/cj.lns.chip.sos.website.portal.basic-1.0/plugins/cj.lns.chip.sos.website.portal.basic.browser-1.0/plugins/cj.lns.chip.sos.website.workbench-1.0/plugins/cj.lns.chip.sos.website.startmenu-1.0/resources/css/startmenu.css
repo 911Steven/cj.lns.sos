@@ -1,0 +1,288 @@
+.startMenu>ul>li {
+	position: relative;
+}
+.breathe-btn{ 
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#f5f5f5), to(#FF0000));
+    animation-timing-function: ease-in-out;
+    animation-name: breathe;
+    animation-duration: 2000ms;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    
+    -webkit-animation-timing-function: ease-in-out;
+    -webkit-animation-name: breathe;
+    -webkit-animation-duration: 2000ms;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-direction: alternate;
+    
+    -moz-animation-timing-function: ease-in-out;
+    -moz-animation-name: breathe;
+    -moz-animation-duration: 2000ms;
+    -moz-animation-iteration-count: infinite;
+    -moz-animation-direction: alternate;
+    
+    -o-animation-timing-function: ease-in-out;
+    -o-animation-name: breathe;
+    -o-animation-duration: 2000ms;
+    -o-animation-iteration-count: infinite;
+    -o-animation-direction: alternate;
+}
+@keyframes breathe {
+    0% { background:rgba(255,255,255,0.4); box-shadow:0 1px 2px rgba(255,0,0,0.4);}
+    100% { background:rgba(255,0,0,0.8); border:1px solid rgba(255,0,0,1); box-shadow:0 1px 30px rgba(255,0,0,0.8);}
+}
+@-webkit-keyframes breathe {
+    0% { background:rgba(255,255,255,0.4); box-shadow:0 1px 2px rgba(255,0,0,0.4);}
+    100% { background:rgba(255,0,0,0.8); border:1px solid rgba(255,0,0,1); box-shadow:0 1px 30px rgba(255,0,0,0.8);}
+}
+@-moz-keyframes breathe {
+     0% { background:rgba(255,255,255,0.4); box-shadow:0 1px 2px rgba(255,0,0,0.4);}
+    100% { background:rgba(255,0,0,0.8); border:1px solid rgba(255,0,0,1); box-shadow:0 1px 30px rgba(255,0,0,0.8);}
+}
+@-o-keyframes breathe {
+  0% { background:rgba(255,255,255,0.4); box-shadow:0 1px 2px rgba(255,0,0,0.4);}
+    100% { background:rgba(255,0,0,0.8); border:1px solid rgba(255,0,0,1); box-shadow:0 1px 30px rgba(255,0,0,0.8);}
+}
+.startMenu .first {
+	min-height: 50px;
+	position: relative;
+}
+
+.startMenu .first>a {
+	text-align: center;
+	display: block;
+	position: absolute;
+	right: 10px;
+	top: 0;
+}
+
+.startMenu .first>a>img {
+	width: 35px;
+	height: 35px;
+}
+
+.startMenu .first>a>div>label {
+	background: #e8e8e8;
+	white-space: nowrap;
+}
+
+.startMenu .second {
+	height: 22px;
+}
+
+.startMenu .second>.box {
+	position: relative;
+}
+
+.startMenu .second>.box>.left {
+	right: 20px;
+	top: 8px;
+	height: 1px;
+	width: 60px;
+	background: gray;
+	position: absolute;
+	background: gray;
+}
+
+.startMenu .second>.box>.right {
+	right: -6px;
+	top: -7px;
+	width: 30px;
+	position: absolute;
+	width: 30px;
+	display: none;
+}
+
+.startMenu .second>.box>.right img {
+	width: 30px;
+	height: 30px;
+}
+
+.startMenu .third {
+	height: 96px;
+	position: relative;
+}
+
+.startMenu .third>.left {
+	position: absolute;
+	right: 80px;
+	top: 0;
+	text-align: right;
+	display: none;
+	z-index: 999999999;
+}
+
+.startMenu .third>.left>a {
+	background: #ececec;
+	padding: 4px 8px 4px 8px;
+	margin-right: 2px;
+	white-space: nowrap;
+}
+
+.startMenu .third>.right {
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 60px;
+	height: 60px;
+}
+.gray-img { 
+    -webkit-filter: grayscale(100%);
+    -moz-filter: grayscale(100%);
+    -ms-filter: grayscale(100%);
+    -o-filter: grayscale(100%);
+    filter: grayscale(100%);
+    filter: gray;
+}
+.startMenu .third>.right .circle-box {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	display: block;
+	-moz-border-radius: 50px;
+	-webkit-border-radius: 50px;
+	border-radius: 50px;
+	-moz-border-radius: 50px;
+	/*rgba(251, 0, 6, 0.8)*/
+	background: rgba(255, 255, 255, 0.8) none repeat scroll 0 0;
+	/*实现FF背景透明，文字不透明*/
+	filter: Alpha(opacity = 80);
+}
+
+.startMenu .third>.right .circle-box span[code] {
+	bottom: -22px;
+	display: inline-block;
+	position: absolute;
+	font-size: 10px;
+	width: 100%;
+	text-align: center;
+	text-shadow:2px 2px 5px #333333;
+}
+.startMenu .third>.right .circle-box span[state] {
+	top: -22px;
+	display: inline-block;
+	position: absolute;
+	font-size: 10px;
+	width: 100%;
+	text-align: center;
+	color: gray;
+}
+.startMenu .third>.right .circle-box .circle-inner {
+	position: absolute;
+	display: block;
+	-moz-border-radius: 50px;
+	-webkit-border-radius: 50px;
+	border-radius: 50px;
+	border: 1px solid #ececec;
+	width: 40px;
+	height: 40px;
+	top: 8px;
+	right: 9px;
+}
+
+.startMenu .third>.right .circle-box .circle-inner:hover {
+	top: 8px;
+	right: 9px;
+}
+
+.startMenu .third  .msg-tips {
+	position: absolute;
+	z-index: 999999999;
+	display: block;
+	width: 20px;
+	height: 20px;
+	background: red;
+	top: 40px;
+	left: 22px;
+	-moz-border-radius: 50px;
+	-webkit-border-radius: 50px;
+	border-radius: 50px;
+	text-align: center;
+	display: none;
+}
+
+.startMenu .third  .msg-tips a {
+	color: white;
+	font-weight: bold;
+	display: inline-block;
+	width: 100%;
+	height: 100%;
+}
+
+.startMenu .fourth {
+	position: relative;
+}
+
+.startMenu .fourth>.left {
+	position: absolute;
+	right: 80px;
+	top: 0;
+	z-index: 9999999;
+	display: none;
+}
+
+.startMenu .fourth>.left>a {
+	background: #ececec;
+	padding: 4px 8px 4px 8px;
+	margin-right: 2px;
+	white-space: nowrap;
+	margin-right: 2px;
+}
+
+.startMenu .fourth>.right {
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 60px;
+	background: rgba(254, 254, 254, 0.8) none repeat scroll 0 0 ;
+	/*实现FF背景透明，文字不透明*/
+	filter: Alpha(opacity = 80);
+	background: #fff; /*实现IE背景透明*/
+	-moz-border-radius: 15px; /* Gecko browsers */
+	-webkit-border-radius: 15px; /* Webkit browsers */
+	border-radius: 15px; /* W3C syntax */
+}
+
+.startMenu .fourth>.right .title {
+	background-image: -moz-linear-gradient(top, #ffffff, #c6c6c6);
+	/* Firefox */
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #ffffff),
+		color-stop(1, #c6c6c6)); /* Saf4+, Chrome */
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff',
+		endColorstr='#c6c6c6', GradientType='0'); /* IE*/
+	line-height: 14px;
+	padding: 6px 10px 4px 4px;
+	position: relative;
+}
+
+.startMenu .fourth>.right .title label {
+	font-size: 11px;
+	padding-top: 6px;
+	padding-bottom: 6px;
+}
+
+.startMenu .fourth>.right .app-box {
+	text-align: center;
+}
+
+.startMenu .fourth>.right .app-box>li {
+	position: relative;
+}
+
+.startMenu .fourth>.right .app-icon {
+	display: block;
+	margin: 5px 0 5px 0;
+}
+
+.startMenu .fourth>.right .app-box .app-icon>div {
+	line-height: 14px;
+}
+
+.startMenu .fourth>.right .app-icon img {
+	width: 35px;
+	height: 35px;
+}
+
+.startMenu .fourth>.right .app-icon label {
+	font-weight: bold;
+}

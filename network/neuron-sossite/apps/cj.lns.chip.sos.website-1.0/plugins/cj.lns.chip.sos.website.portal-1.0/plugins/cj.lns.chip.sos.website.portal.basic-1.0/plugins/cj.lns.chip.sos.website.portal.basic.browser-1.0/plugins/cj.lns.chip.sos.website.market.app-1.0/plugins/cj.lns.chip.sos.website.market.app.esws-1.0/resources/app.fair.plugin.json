@@ -1,0 +1,34 @@
+{
+	"category":"site.esws",
+	"apps":[
+		{
+			"id":"servicews.develop.dynamic",
+			"name":"测试",
+			"position":"toolbar.win.app",
+			"icon":"./cyberportApp/develop/img/file.svg",
+			"command":"./cyberportApp/develop/myfile.html",
+			"platform":"develop",
+			"sort":"0",
+			"menus":[
+				{
+					"id":"servicews.develop.mystore",
+					"name":"比",
+					"cmd":"./cyberportApp/develop/mystore.html",
+					"icon":"#",
+					"desc":""
+				}
+			],
+			"portal":{
+				"left":"./cyberportApp/left.html",
+				"right":"./cyberportApp/right.html"
+			},
+			"target":"_self",
+			"desc":"技术文档",
+			"acl":[
+				"allow allUsers visible",
+				"allow allUsers mountable",
+				"deny guestUsers mountable"
+			]
+		}
+	]
+}

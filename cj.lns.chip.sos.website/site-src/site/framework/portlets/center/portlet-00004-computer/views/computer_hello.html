@@ -1,0 +1,212 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<title>云网</title>
+<link href="../../../../css/global.css" type="text/css" rel="stylesheet">
+<link href="../../../../css/pages/portal-viewer.css" type="text/css"
+	rel="stylesheet">
+<script type="text/javascript"
+	src="../../../../js/jquery/jquery-2.1.4.js"></script>
+<style type="text/css">
+#content_inner>.body>pre>img {
+	width: 100%;
+}
+
+.grid-s5m0e5 {
+	height: 11800px;
+}
+#content_inner > .body > pre>.result{
+	font-size: 10px;
+	margin-left: 60px;
+}
+#content_inner > .body > pre>.style1{
+font-size: 10px;
+	margin-left: 60px;
+}
+</style>
+</head>
+<body>
+	<div class="topbar">
+		<ul class="left">
+			<li class="about"><span label>关于</span></li>
+		</ul>
+		<ul class="right">
+			<li class="mine"><a target="_blank"
+				href="../../../../public/register2.html">注册</a></li>
+			<li class="login"><span label>登录</span></li>
+		</ul>
+	</div>
+	<div class="banner">
+		<div class="b-left"></div>
+		<div class="b-center">
+			<div class="logo">
+				<img src="../../../../img/pages/logo.png">
+				<p>云网</p>
+			</div>
+		</div>
+		<div class="b-right"></div>
+	</div>
+	<div class="grid-s5m0e5">
+		<div class="col-main">
+			<div class="main-wrap">
+				<div id="content">
+					<div id="content_inner">
+						<div class="title">
+							<p>看 云计算机的芯片开发过程：helloword 入门</p>
+						</div>
+						<div class="subtitle">
+							<ul>
+								<li><span label>作者：</span><span value
+									style="padding-right: 10px;">cj (赵向彬)</span><span label>发布日期：</span><span
+									value>2016年8月19日 21:15</span></li>
+							</ul>
+						</div>
+						<div class="body">
+							<div style="font-family: sans-serif; margin-bottom: 10px;">
+								<span><b>关键词：</b></span>神经元 神经网络
+							</div>
+							<div style="font-family: sans-serif; margin-bottom: 10px;">
+								<span><b>摘要：</b></span>
+								云计算机芯片的开发规范。首先要清楚，云计算机芯片是一处开发，跨终端运行，它以服务窗口的形式让企业与它的客户开展窗口服务。将来移动终端会有专门的窗口应用并且也会集成到cj终端里
+								</div>
+							<div style="font-family: sans-serif; margin-bottom: 10px;">
+								<span><b>正文：</b></span>
+							</div>
+<pre>
+一、开发一个云计算芯片，首先使用plus增强工具包，从CscGraph中派生
+<br>如图定义程序集的上下文：
+<p class='style1'>{
+	entryPoint : {
+		activators : []
+	},
+	assemblyInfo : {
+		assemblyTitle : "example",
+		assemblyResource:"resource=/web",
+		assemblyDescription : "喂",
+		assemblyConfiguration : "",
+		assemblyCompany : "逻辑界公司出品",
+		assemblyProduct : "cj.cloud.computer.example",
+		assemblyCopyright : "Copyright   2011",
+		assemblyTrademark : "",
+		assemblyCulture : "",
+		guid : "9A80BDAD-4817-422E-8002-FF0921AD3573",
+		assemblyVersion : "1.0.0.0",
+		assemblyFileVersion : "1.0.0.0",
+		assemblyIcon:"app.svg"
+	},
+	global:{
+		default:"zh_CN",
+		desc:"如果系统环境要求各芯片采用的语言本芯片没有，则芯片可采用默认语言"
+		},
+	serviceContainer : {
+		name : "netContainer",
+		switchFilter:"off",
+		jss:[{
+			module:"csc",
+			package:"widgets",
+			unzip:"true",
+			searchMode:"link",
+			extName:".jss.js"
+		}],
+		scans : [{
+					package : "cj.lns.chip.sos.csc.example",
+					extName : ".class|.json|.xml",
+					exoterical:"true"
+				}]
+
+	}
+}</p>
+<b>开发窗口graph</b>
+<p class='style1'>@CjService(name = "cj.neuron.app", isExoteric = true)
+public class ExampleCscGraph extends CscGraph {
+	
+	
+}</p>
+<b>开发jss组件</b>
+<p class='style1'>/*
+ * 功能：演示
+ * 版本：1.0
+ * 作者：cj
+ * extends可以实现一种类型，此类型将可在java中通过调用服务提供器的.getServices(type)获取到。这样在java代码中直接使用接口间接的调用到jss实现
+ * 注意使用extends的限制：
+ * 1.jss必须实现该接口的方法，而且一定是导出方法，即声明为exports.method=function格式
+ * 如果未有正确实现extends接口方法，则返回为null
+ * 
+ * extends的调用参考RefJssService类中的用例
+ * 
+ * 芯片内服务有三种：
+ * －－ tool：工具，位于服务台发送按钮下的工具栏，由工具绑定，提供表单服务
+ * －－ site:站点，即第三方web3.0网站（第三方开发），服务菜单绑定，点击采单将跳转到站点
+ * －－ bflow：业务流程，提供功能性、流程性、交互性服务，由第三方开发。
+ * <![jss:{
+		scope:'runtime',
+		extends:'cj.lns.chip.sos.csc.ICsc'
+ 	}
+ ]>
+ <![csc:{
+	type:'tool',
+	title:'测试',
+	usage:'用法'
+ * }]>
+ */
+//var imports = new JavaImporter(java.io, java.lang)导入类型的范围，单个用Java.type
+var Frame = Java.type('cj.studio.ecm.frame.Frame');
+var FormData = Java.type('cj.studio.ecm.frame.FormData');
+var FieldData = Java.type('cj.studio.ecm.frame.FieldData');
+var Circuit = Java.type('cj.studio.ecm.frame.Circuit');
+var String = Java.type('java.lang.String');
+var CircuitException = Java.type('cj.studio.ecm.graph.CircuitException');
+var Gson = Java.type('cj.ultimate.gson2.com.google.gson.Gson');
+var StringUtil = Java.type('cj.ultimate.util.StringUtil');
+var Document = Java.type('org.jsoup.nodes.Document');
+var Jsoup = Java.type('org.jsoup.Jsoup');
+var System = Java.type('java.lang.System');
+var TupleDocument = Java.type('cj.lns.chip.sos.cube.framework.TupleDocument');
+
+exports.definition=function(){
+	return imports;
+}
+
+exports.flow=function(frame,circuit,plug,ctx){
+	print('example----'+frame+'----'+imports);
+	
+	var visitor=ctx.visitor();
+	var user='';
+	var doc=null;
+	if(visitor!=null){
+		user=visitor.getVisitor();
+		 doc = ctx.html("/index.html",
+				"/?csc_resource_path=/"+user+"/helloworld/");
+		var v=doc.select('.hello>p[visit]>span');
+		v.html(visitor.getVisitor());
+	}else{
+		 doc = ctx.html("/index.html",
+				"/");
+	}
+	
+	circuit.content().writeBytes(doc.toString().getBytes());
+}</p>
+<b>最后打包发行,至于如何部署在视窗系统中，参见<a href="../views/computer_publish.html" target="_blank" plugin>《云计算机芯片发布流程》</a></b>
+</pre>
+						</div>
+						<div class="bottom"></div>
+					</div>
+				</div>
+				<div id="side">
+					<div class="fill"></div>
+					<div class="portlet">
+						<div class="title">
+							<span label>相关</span>
+						</div>
+						<ul class="items">
+		<li><a href="../views/computer_publish.html" plugin target="_blank">· 云计算机芯片发布流程</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-sub"></div>
+		<div class="col-extra"></div>
+	</div>
+</body>
+</html>

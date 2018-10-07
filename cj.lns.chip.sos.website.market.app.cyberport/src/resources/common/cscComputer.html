@@ -1,0 +1,146 @@
+<script type="text/javascript" src='./js/jquery/ajaxfileupload.js'/>
+<script type="text/javascript" src="common/js/cscComputer.js"
+	plugin />
+<style>
+<!--
+.ser-panel{
+}
+
+
+.ser-panel>.spliter {
+	margin-top: 10px;
+	position: relative;
+}
+
+.ser-panel>.runtimeEnv {
+	background: white;
+	padding: 10px 10px 0 10px;
+}
+
+
+
+.ser-panel>.spliter>span[pub] {
+	position: absolute;
+	right: 10px;
+	top: -4px;
+	cursor: pointer;
+	background: #ececec;
+	padding: 0 10px;
+	display: inline-block;
+}
+
+
+.ser-panel>.runtimeEnv{
+	position: relative;
+	padding-left: 180px;
+}
+.ser-panel>.runtimeEnv>.face{
+	position: absolute;
+	left:20px;
+	top:20px;
+	text-align: center;
+}
+.ser-panel>.runtimeEnv>.face>img{
+	width:80px;
+	height: 80px;
+}
+.ser-panel>.runtimeEnv>.face>p[name]{
+	margin-top: 5px;
+}
+.ser-panel>.runtimeEnv>.face>p[status]{
+	margin-top: 8px;
+}
+.ser-panel>.runtimeEnv>.face>p[status]>span[label]{
+	color: gray;
+}
+.ser-panel>.runtimeEnv>.info{
+	
+}
+.ser-panel>.runtimeEnv>.info>.host{
+	margin-bottom: 10px;
+}
+.ser-panel>.runtimeEnv>.info>.host>ul>li{
+	display: inline-block;
+	margin-right: 20px;
+}
+.ser-panel>.runtimeEnv>.info>.pc>li{
+	margin: 10px auto;
+}
+.ser-panel>.runtimeEnv>.info>.op{
+	border-bottom: 1px solid #f5f5f5;
+}
+.ser-panel>.runtimeEnv>.info>.op>li{
+	display: inline-block;
+	margin: 20px 20px 5px 0;
+	cursor: pointer;
+	text-decoration: underline;
+}
+.ser-panel>.runtimeEnv>.info>.panel{
+	position: absolute;
+	right:20px;
+	bottom:0px;
+}
+.ser-panel>.runtimeEnv>.info>.panel>li{
+	display: inline-block;
+	padding: 10px 10px 5px 10px;
+	cursor: pointer;
+	background: #f5f5f5;
+	-moz-border-radius: 15px 15px 0 0;      /* Gecko browsers */
+    -webkit-border-radius: 15px 15px 0 0;   /* Webkit browsers */
+    border-radius:15px 15px 0 0;            /* W3C syntax */
+}
+.ser-panel>.runtimeEnv>.info>.panel>li:hover{
+background: #6dccc4;
+}
+.ser-panel>.runtimeEnv>.info>.panel>li.selected{
+	background: #6dccc4;
+}
+.ser-panel>.runtimeEnv>.info>.op>li:hover{
+	color: blue;
+}
+.ser-panel>.runtimeEnv>.info span[label]{
+	color: gray;
+	font-weight: bold;
+}
+.ser-panel>.pc-content{
+}
+-->
+</style>
+<div class="ser-panel">
+	<div class="runtimeEnv">
+		<div class="face">
+			<img src="common/img/csc-computer.svg" plugin>
+			<p name>
+				<span value>userN</span><span label> 的云计算机</span>
+			</p>
+			<p status><span label>状态：</span><span value>xxx</span></p>
+		</div>
+		<div class="info">
+			<div class="host">
+				<ul>
+					<li name><span label>主机名：</span><span value>主机2</span></li>
+					<li pt><span label>主机协议：</span><span value>http</span></li>
+				</ul>
+			</div>
+			<ul class="pc">
+				<li source><span label>克隆源：</span><span value>mysql版云计算机</span></li>
+				<li interface><span label>接口：</span><span value>rio-udt://localhost:9003</span></li>
+				<li nrport><span label>神经元端口：</span><span value>8080</span></li>
+				<li ctime><span label>构建时间：</span><span value>xxx</span></li>
+			</ul>
+			<ul class="op">
+				<li start>开机</li>
+				<li restart>重启</li>
+				<li shutdown>关机</li>
+				<li title="警告：销毁云计算机将不得恢复" destroy>销毁</li>
+			</ul>
+			<ul class="panel">
+				<li myinstall  class="selected">已安装芯片</li>
+				<li mypub>我发布的芯片</li>
+			</ul>
+		</div>
+	</div>
+	
+	<div class="pc-content"></div>
+	
+</div>

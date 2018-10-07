@@ -1,0 +1,102 @@
+{
+	"category":"site.computer",
+	"apps":[
+		{
+			"id":"site.computer.common.csc.mycomputer",
+			"name":"云计算机",
+			"position":"toolbar.win.app",
+			"icon":"./img/cscm.svg",
+			"command":"./cyberportApp/common/cscComputer.html",
+			"platform":"computer",
+			"sort":"1",
+			"hidden":"none",
+			"menus":[
+				{
+					"id":"site.computer.common.csc.market",
+					"name":"芯片市场",
+					"cmd":"appi://site.computer.common.csc.market",
+					"icon":"./img/market.svg",
+					"desc":""
+				},{
+					"id":"site.computer.common.desktop",
+					"name":"服务窗口",
+					"cmd":"app://-6",
+					"icon":"./img/csc.svg",
+					"desc":""
+				}
+			],
+			"portal":{
+				"right":"./cyberportApp/common/cscToolbar.html"
+			},
+			"target":"_self",
+			"desc":"云计算机 Customer Service Center",
+			"acl":[
+				"allow $level<=2 visible",
+				"allow allUsers mountable",
+				"deny guestUsers mountable"
+			]
+		},{
+			"id":"site.computer.common.csc.market",
+			"name":"芯片市场",
+			"position":"toolbar.win.app",
+			"icon":"./img/market.svg",
+			"command":"./cyberportApp/common/cscMarket.html",
+			"platform":"computer",
+			"sort":"1",
+			"hidden":"none",
+			"menus":[
+				{
+					"id":"site.computer.common.csc",
+					"name":"云计算机",
+					"cmd":"appi://site.computer.common.csc.mycomputer",
+					"icon":"./img/cscm.svg",
+					"desc":""
+				},{
+					"id":"site.computer.common.desktop",
+					"name":"服务窗口",
+					"cmd":"app://-6",
+					"icon":"./img/csc.svg",
+					"desc":""
+				}
+			],
+			"portal":{
+				"right":"./cyberportApp/common/cscCategory.html"
+			},
+			"target":"_self",
+			"desc":"芯片市场 Customer Service Center",
+			"acl":[
+				"allow $level<=2 visible",
+				"allow allUsers mountable",
+				"deny guestUsers mountable"
+			]
+		},{
+			"id":"site.computer.common.csc.quickstart",
+			"name":"快速入门",
+			"position":"toolbar.win.app",
+			"icon":"./img/market.svg",
+			"command":"./cyberportApp/computer/level1/quickstart.html",
+			"platform":"computer",
+			"sort":"1",
+			"hidden":"none",
+			"menus":[
+				{
+					"id":"site.computer.leve1.home",
+					"name":"主页·云计算",
+					"cmd":"app://-7",
+					"icon":"./img/csc.svg",
+					"desc":""
+				}
+			],
+			"portal":{
+				
+			},
+			"target":"_self",
+			"desc":"快速入门",
+			"acl":[
+				"allow $level=1 visible",
+				"allow allUsers mountable",
+				"deny guestUsers mountable"
+			]
+		}
+	]
+}

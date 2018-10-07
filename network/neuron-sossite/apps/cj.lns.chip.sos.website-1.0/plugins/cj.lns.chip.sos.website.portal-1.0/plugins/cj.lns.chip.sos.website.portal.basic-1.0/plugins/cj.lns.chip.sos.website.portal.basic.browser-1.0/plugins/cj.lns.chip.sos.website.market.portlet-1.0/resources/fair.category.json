@@ -1,0 +1,20 @@
+[
+	{
+		"categoryId":"portlet.sws",
+		"categoryName":"视窗栏目",
+		"categoryIcon":"/img/chat.svg",
+		"desc":"展示视窗、持有人、来访等系统信息"
+	},
+	{
+		"categoryId":"portlet.content",
+		"categoryName":"内容栏目",
+		"categoryIcon":"/img/chat.svg",
+		"desc":"展示新闻、推荐等"
+	},
+	{
+		"categoryId":"test",
+		"categoryName":"测试",
+		"categoryIcon":"/img/chat.svg",
+		"desc":"用于程序员测试的栏目"
+	}
+]

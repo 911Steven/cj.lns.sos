@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1"
+	xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+	<persistence-unit name="sosdb" transaction-type="RESOURCE_LOCAL">
+		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+		<class>cj.lns.common.sos.service.model.SosAppModule</class>
+		<class>cj.lns.common.sos.service.model.SosMenu</class>
+		<class>cj.lns.common.sos.service.model.SosPlugin</class>
+		<class>cj.lns.common.sos.service.model.SosPortal</class>
+		<class>cj.lns.common.sos.service.model.SosPortletModule</class>
+		<class>cj.lns.common.sos.service.model.SosProperty</class>
+		<class>cj.lns.common.sos.service.model.SosUser</class>
+		<class>cj.lns.common.sos.service.model.SosAuth</class>
+		<class>cj.lns.common.sos.service.model.SosRole</class>
+		<class>cj.lns.common.sos.service.model.SosRoleUa</class>
+		<class>cj.lns.common.sos.service.model.sws.SwsAppModule</class>
+		<class>cj.lns.common.sos.service.model.sws.SwsContact</class>
+		<class>cj.lns.common.sos.service.model.sws.SwsContactGroup</class>
+		<class>cj.lns.common.sos.service.model.sws.SwsInfo</class>
+		<class>cj.lns.common.sos.service.model.sws.SwsMenuModule</class>
+		<class>cj.lns.common.sos.service.model.sws.SwsPortalConf</class>
+		<class>cj.lns.common.sos.service.model.sws.SwsPortletModule</class>
+		<class>cj.lns.common.sos.service.model.sws.SwsOwnerProfile</class>
+		<class>cj.lns.common.sos.service.model.sws.SwsRole</class>
+		<!-- 可以有多个jar-file元素 经验证：jar-file只是用于解析注解类元数据，可能是以temp类加载器解析成元数据，它并没有装载正式上下文中， 
+			因此：可以在任何芯片存取或读取模型。当然，如果你在db芯片中有一个模型类型，同时在b芯片中也有同样路径的模型类型， 则：b通过db调用该模型时实际加载的是db的类型，因此在b中转换出错。而如果db中无此类型，则b使用该模型正常。 
+			测试：如果不用jar-file指向元数据则报错，如果指向了jar-file而在调用者中未有此类型而查询此实体时也报错。 由于它仅是加载了实体模型的元数据，因此在查询时，必须在调用者芯片中声明一样全路径名的模型类型，否则报错。 
+			但目前不知不被db直接依赖的芯片中定义的模型是否能正确使用。 经再次验证：以上说法jar-file是加载元数据也是错误的，它可能只是确认了哪些类是托管类，只记下了类全名，其它什么都没做， 
+			而在运行时根据jar-file扫描到的托管类名在上下文类加载器中查找模型类型，因此如db依来b,c也依赖子，而模型类型在c中，则调在使用此模型时报无此模型错误。 
+			因此，模型必须得被db引用到 -->
+		<!-- <jar-file>model/test.jar</jar-file> -->
+		<!--<mapping-file>META-INF/employee_service_queries.xml</mapping-file> -->
+		<!-- exclude-unlisted-classes为false表示在芯片中搜索定义的实体类，true为排除了在上面没有列出的类 -->
+		<exclude-unlisted-classes>false</exclude-unlisted-classes>
+		<!-- <class>映射的实体类名</class> -->
+		<!-- <property name="eclipselink.session.customizer" value="org.eclipse.persistence.example.unified.integration.JPAEclipseLinkSessionCustomizer"/> -->
+		<properties>
+			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://121.201.67.55:3306/sosdb" />
+			<property name="javax.persistence.jdbc.user" value="root" />
+			<property name="javax.persistence.jdbc.password" value="021002" />
+			<!-- <property name="hibernate.show_sql" value="true" />
+			<property name="hibernate.format_sql" value="true" />
+			<property name="eclipselink.logging.level" value="FINE" />
+			<property name="eclipselink.logging.level.sql" value="FINE" />
+			<property name="eclipselink.logging.parameters" value="true" /> -->
+			<!-- EclipseLink should create the database schema automatically -->
+			<!-- <property name="eclipselink.ddl-generation" value="create-tables" 
+				/> <property name="eclipselink.ddl-generation.output-mode" value="database" 
+				/> -->
+			<!-- <property name="eclipselink.logging.level" value="FINE" /> <property 
+				name="eclipselink.logging.level.sql" value="FINE" /> <property name="eclipselink.logging.parameters" 
+				value="true" /> -->
+			<property name="eclipselink.logging.exceptions" value="false" />
+			<!-- <property name="eclipselink.cache.size.default" value="500" /> -->
+		</properties>
+	</persistence-unit>
+	<persistence-unit name="lnsdb" transaction-type="RESOURCE_LOCAL">
+		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+		<exclude-unlisted-classes>true</exclude-unlisted-classes>
+		<!-- <class>映射的实体类名</class> -->
+		<properties>
+			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://121.201.67.55:3306/lnsdb" />
+			<property name="javax.persistence.jdbc.user" value="root" />
+			<property name="javax.persistence.jdbc.password" value="021002" />
+			<!-- EclipseLink should create the database schema automatically -->
+			<!-- <property name="eclipselink.ddl-generation" value="create-tables" 
+				/> <property name="eclipselink.ddl-generation.output-mode" value="database" 
+				/> -->
+		</properties>
+	</persistence-unit>
+</persistence>
