@@ -1,6 +1,7 @@
 sos 是云平台的服务系统，提供网盘、个人视窗、个人微博、博客空间等服务
 
 ![Image text](https://github.com/carocean/cj.lns.sos/blob/master/document/img/sos1.jpg)
+![Image text](https://github.com/carocean/cj.lns.sos/blob/master/document/img/sos7.jpg)
 ![Image text](https://github.com/carocean/cj.lns.sos/blob/master/document/img/sos2.jpg)
 ![Image text](https://github.com/carocean/cj.lns.sos/blob/master/document/img/sos3.jpg)
 ![Image text](https://github.com/carocean/cj.lns.sos/blob/master/document/img/sos4.jpg)
